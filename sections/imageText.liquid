@@ -1,0 +1,227 @@
+
+ <div class="instagram-section card-{{section.id}} " >
+  {% if section.blocks.size > 0 %}
+    <div class="c202111201">
+      <div class="PC">
+      
+          <img  class="lazyload img_item"  srcset="{%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
+                      {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+                      {%- if section.settings.image.width >= 990 -%}{{ section.settings.image | img_url: '990x' }} 990w,{%- endif -%}
+                      {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
+                      {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}
+                      {%- if section.settings.image.width >= 2200 -%}{{ section.settings.image | img_url: '2200x' }} 2200w,{%- endif -%}
+                      {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | img_url: '3000x' }} 3000w,{%- endif -%}
+                      {{ section.settings.image | img_url: 'master' }} {{ section.settings.image.width }}w"
+                    src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto"/>
+
+             {% for block in section.blocks %}
+            {% assign top = block.settings.top %}
+            {% assign left = block.settings.left %}
+             {% assign width = block.settings.width %}
+            {% assign height = block.settings.height %}
+            {% assign link = block.settings.link.url %}
+            <a class="ins_item link   {% if section.settings.is_show  %}  ins_item_border {% endif %} " data-account-id="{{ forloop.index0 }}" style="width:{{width}}%;height:{{height}}%;top:{{top}}%;left:{{left}}%;" href="{{link}}">
+             
+            </a>
+          {% endfor %}
+      </div>
+      <div class="mobile">
+            <img  class="lazyload img_item"  srcset="{%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
+                      {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+                      {%- if section.settings.image.width >= 990 -%}{{ section.settings.image | img_url: '990x' }} 990w,{%- endif -%}
+                      {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
+                      {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}
+                      {%- if section.settings.image.width >= 2200 -%}{{ section.settings.image | img_url: '2200x' }} 2200w,{%- endif -%}
+                      {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | img_url: '3000x' }} 3000w,{%- endif -%}
+                      {{ section.settings.image | img_url: 'master' }} {{ section.settings.image.width }}w"
+                    src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto"/>
+
+              {% for block in section.blocks %}
+            {% assign top = block.settings.mobile_top %}
+            {% assign left = block.settings.mobile_left %}
+            {% assign width = block.settings.mobile_width %}
+            {% assign height = block.settings.mobile_height %}
+            {% assign link = block.settings.link.url %}
+            <a class="ins_item link {% if section.settings.is_show == 'true' %}  ins_item_border {% endif %} " data-account-id="{{ forloop.index0 }}" style="width:{{width}}%;height:{{height}}%;top:{{top}}%;left:{{left}}%;" href="{{link}}">
+             
+            </a>
+          {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+  </div>
+
+<style>
+
+   .ins_item_border{
+       border: 1px solid red;
+    }
+
+        .c202111201 {
+          width: 100%;
+        }
+
+        /*移动样式*/
+        @media (max-width: 767.98px) {
+          .c202111201 .PC {
+            display: none;
+          }
+          .c202111201 .mobile {
+            position: relative;
+          }
+          .c202111201 .mobile img {
+            width: 100%;
+          }
+          .c202111201 .mobile .link {
+            display: block;
+            position: absolute;
+          }
+        }
+        @media (min-width: 768px) {
+          /*PC样式*/
+          .c202111201 .mobile {
+            display: none;
+          }
+          .c202111201 .PC {
+            position: relative;
+          }
+          .c202111201 .PC img {
+            width: 100%;
+          }
+          .c202111201 .PC .link {
+            display: block;
+            position: absolute;
+          }
+        }
+</style>
+{% schema %}
+{
+  "name": "图文链接",
+  "settings": [
+    {
+      "type": "header",
+      "content": {
+        "en-US": "Settings",
+        "zh-CN": "设置"
+      }
+    },
+  {
+      "type": "image_picker",
+      "id": "image",
+      "label": "上传PC图片"
+    },
+      {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "上传mobile图片"
+    },
+        {
+      "type": "checkbox",
+      "label": "是否显示辅助线",
+      "id": "is_show",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name":"链接",
+      "settings": [
+       {
+  "type": "range",
+  "id": "top",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "label": "top",
+  "default": 0
+},     {
+  "type": "range",
+  "id": "width",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "label": "width",
+  "default": 0
+},
+       {
+  "type": "range",
+  "id": "left",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "label": "left",
+  "default": 0
+},
+       {
+  "type": "range",
+  "id": "height",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "label": "height",
+  "default": 0
+},
+    {
+      "type": "url",
+      "id": "link",
+      "label":"链接"
+    },
+           {
+  "type": "range",
+  "id": "mobile_top",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "label": "top",
+  "default": 16
+},     {
+  "type": "range",
+  "id": "mobile_width",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "label": "width",
+  "default": 16
+},
+       {
+  "type": "range",
+  "id": "mobile_left",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "label": "left",
+  "default": 16
+},
+       {
+  "type": "range",
+  "id": "mobile_height",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "%",
+  "label": "height",
+  "default": 16
+}
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "图文链接",
+      "blocks": [
+        {
+          "type": "banner"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
