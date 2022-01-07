@@ -15,6 +15,25 @@
 <noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
 
 <style>
+.header.header--middle-left{
+  position: relative;
+}
+details-disclosure > details {
+    position: unset;
+}
+.list-menu--disclosure {
+  left:0;
+  min-width:1000px!important;
+}
+.ld-navBorder{
+  float:left;
+border-right:1px #ccc solid;
+}
+.ld-navImage{
+  width: 500px;
+    padding: 20px;
+    margin-right: 80px;
+}
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
@@ -115,7 +134,7 @@
                                     <li>
                                       {%- if childlink.links == blank -%}
                                         <a href="{{ childlink.url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
-                                          {{ childlink.title | escape }}
+                                          {{ childlink.title | escape }}                                       
                                         </a>
                                       {%- else -%}
                                         <details id="Details-menu-drawer-submenu-{{ forloop.index }}">
@@ -357,32 +376,23 @@
                 <details-disclosure>
                   <details id="Details-HeaderMenu-{{ forloop.index }}">
                     <summary class="header__menu-item list-menu__item link focus-inset">
-                      <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
-                      {% render 'icon-caret' %}
+                      {% comment %} <a  class="link--text" style="text-decoration:none;" href="{{link.url}}"> <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span></a> {% endcomment %}
+                     <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
                     </summary>
                     <ul id="HeaderMenu-MenuList-{{ forloop.index }}" class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1">
+                    <a class="ld-navBorder" href="{{ link.url }}">                    
+                     <img src="https://cdn.shopify.com/s/files/1/0619/9682/6882/files/b172871dff2137726890cb6b7c6e3299_t_1000x@2x.jpg?v=1641543198"  style='float:left;'
+                      loading="lazy"
+                      class="ld-navImage"
+                      alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+                     >
+                    </a>
                       {%- for childlink in link.links -%}
                         <li>
                           {%- if childlink.links == blank -%}
                             <a href="{{ childlink.url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
                               {{ childlink.title | escape }}
                             </a>
-                          {%- else -%}
-                            <details id="Details-HeaderSubMenu-{{ forloop.index }}">
-                              <summary class="header__menu-item link link--text list-menu__item focus-inset caption-large">
-                                {{ childlink.title | escape }}
-                                {% render 'icon-caret' %}
-                              </summary>
-                              <ul id="HeaderMenu-SubMenuList-{{ forloop.index }}" class="header__submenu list-menu motion-reduce">
-                                {%- for grandchildlink in childlink.links -%}
-                                  <li>
-                                    <a href="{{ grandchildlink.url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if grandchildlink.current %} list-menu__item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
-                                      {{ grandchildlink.title | escape }}
-                                    </a>
-                                  </li>
-                                {%- endfor -%}
-                              </ul>
-                            </details>
                           {%- endif -%}
                         </li>
                       {%- endfor -%}
@@ -650,33 +660,11 @@
 {
   "name": "t:sections.header.name",
   "settings": [
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "accent-1",
-          "label": "t:sections.header.settings.color_scheme.options__1.label"
-        },
-        {
-          "value": "accent-2",
-          "label": "t:sections.header.settings.color_scheme.options__2.label"
-        },
-        {
-          "value": "background-1",
-          "label": "t:sections.header.settings.color_scheme.options__3.label"
-        },
-        {
-          "value": "background-2",
-          "label": "t:sections.header.settings.color_scheme.options__4.label"
-        },
-        {
-          "value": "inverse",
-          "label": "t:sections.header.settings.color_scheme.options__5.label"
-        }
-      ],
-      "default": "background-1",
-      "label": "t:sections.header.settings.color_scheme.label"
+       {
+         "type": "color",
+         "id": "background",
+        "label": "背景颜色",
+         "default": "#1e2d7d"
     },
     {
       "type": "image_picker",
