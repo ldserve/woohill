@@ -1,4 +1,32 @@
 <style>
+    @media screen and (max-width: 749px) {
+        .swiper {
+        width: 100%;
+        /* height: 200px; */
+        margin: 0 auto;
+        position: relative;
+        overflow-x: scroll;
+        list-style: none;
+        padding: 0;
+        z-index: 1;
+    }
+
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        width: 50%;
+        flex-shrink: 0;
+        height: 100%;
+        position: relative;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+       display: none;
+    }
+    }
+    @media screen and (min-width: 750px) {
     .swiper {
         width: 80%;
         /* height: 200px; */
@@ -33,19 +61,6 @@
         position: relative;
         transition-property: transform;
     }
-
-    .swiper-wrapper {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        display: flex;
-        transition-property: transform;
-        box-sizing: content-box;
-        transition-duration: 300ms;
-        transform: translate3d(0px, 0px, 0px);
-    }
-
     .swiper-button-next,
     .swiper-button-prev {
         position: absolute;
@@ -60,7 +75,6 @@
         justify-content: center;
         color: var(--swiper-navigation-color, var(--swiper-theme-color));
     }
-
     .swiper-button-prev {
         right: 0px;
         left: auto;
@@ -69,6 +83,21 @@
     .swiper-button-next {
         display: none;
     }
+    }
+    .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        transition-property: transform;
+        box-sizing: content-box;
+        transition-duration: 300ms;
+        transform: translate3d(0px, 0px, 0px);
+    }
+
+   
+
 </style>
 <!-- Swiper -->
 <div class="swiper mySwiper Slide-{{ section.id }}">
@@ -105,49 +134,54 @@
                 p-id="4485"></path>
         </svg></div>
 </div>
-
 <script>
-    var currentID = 4
-    console.log(document.querySelector('.Slide-{{ section.id }} .swiper-button-prev'))
-    document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').onclick = () => {
-        currentID += 4
-        const children = document.querySelector('.Slide-{{ section.id }} .swiper-wrapper').children.length
-        const boxWidth = document.querySelector('.Slide-{{ section.id }} .swiper-wrapper')
-        console.log(document.querySelector('.Slide-{{ section.id }} .swiper-slide').offsetWidth);
-        const width = document.querySelector('.Slide-{{ section.id }} .swiper-slide').offsetWidth * 4
-        let translates = document.defaultView.getComputedStyle(document.querySelector(
-                '.Slide-{{ section.id }} .swiper-wrapper'), null)
-            .transform
-        let translateX = parseFloat(translates.substring(6).split(',')[4]);
-        translateX = -width + translateX
-        if (currentID >= children) {
-            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "none"
-            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "block"
-        } else {
-            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "block"
-        }
-        document.querySelector('.Slide-{{ section.id }} .swiper-wrapper').style.transform = `translate3d(${translateX}px, 0px,
+        var currentID = 4
+        console.log(document.querySelector('.Slide-{{ section.id }} .swiper-button-prev'))
+        document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').onclick = () => {
+            currentID += 4
+            const children = document.querySelector('.Slide-{{ section.id }} .swiper-wrapper').children
+                .length
+            const boxWidth = document.querySelector('.Slide-{{ section.id }} .swiper-wrapper')
+            console.log(document.querySelector('.Slide-{{ section.id }} .swiper-slide').offsetWidth);
+            const width = document.querySelector('.Slide-{{ section.id }} .swiper-slide').offsetWidth * 4
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.Slide-{{ section.id }} .swiper-wrapper'), null)
+                .transform
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = -width + translateX
+            if (currentID >= children) {
+                document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "none"
+                document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display =
+                    "block"
+            } else {
+                document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display =
+                    "block"
+            }
+            document.querySelector('.Slide-{{ section.id }} .swiper-wrapper').style.transform = `translate3d(${translateX}px, 0px,
 0px)`
-        console.log(currentID);
-    }
-    document.querySelector('.swiper-button-next').onclick = () => {
-
-        const width = document.querySelector('.swiper-slide').offsetWidth * 4
-        currentID -= 4
-        let translates = document.defaultView.getComputedStyle(document.querySelector('.swiper-wrapper'), null)
-            .transform;
-        let translateX = parseFloat(translates.substring(6).split(',')[4]);
-        translateX = width + translateX
-        if (currentID === 4) {
-            document.querySelector('.swiper-button-next').style.display = "none"
-            document.querySelector('.swiper-button-prev').style.display = "block"
-        } else {
-            document.querySelector('.swiper-button-prev').style.display = "block"
+            console.log(currentID);
         }
-        document.querySelector('.swiper-wrapper').style.transform = `translate3d(${translateX}px, 0px, 0px)`
-        console.log(currentID);
-    }
+        document.querySelector('.swiper-button-next').onclick = () => {
+
+            const width = document.querySelector('.swiper-slide').offsetWidth * 4
+            currentID -= 4
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.swiper-wrapper'), null)
+                .transform;
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = width + translateX
+            if (currentID === 4) {
+                document.querySelector('.swiper-button-next').style.display = "none"
+                document.querySelector('.swiper-button-prev').style.display = "block"
+            } else {
+                document.querySelector('.swiper-button-prev').style.display = "block"
+            }
+            document.querySelector('.swiper-wrapper').style.transform =
+                `translate3d(${translateX}px, 0px, 0px)`
+            console.log(currentID);
+        }
 </script>
+
 
 </html>
 {% schema %}
