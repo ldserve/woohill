@@ -57,11 +57,13 @@
             -ms-flex-align: center;
             -webkit-align-items: center;
             align-items: center;
-            width: 24.49%;
+            width: 25%;
             flex-shrink: 0;
             height: 100%;
             position: relative;
             transition-property: transform;
+            padding: 5px;
+            box-sizing: border-box;
         }
 
         .swiper-button-next,
@@ -96,7 +98,7 @@
         z-index: 1;
         display: flex;
         transition-property: transform;
-        box-sizing: content-box;
+        box-sizing: border-box;
         transition-duration: 300ms;
         transform: translate3d(0px, 0px, 0px);
     }
@@ -143,8 +145,7 @@
         const children = document.querySelector('.Slide-{{ section.id }} .swiper-wrapper').children
             .length
         const boxWidth = document.querySelector('.Slide-{{ section.id }} .swiper-wrapper')
-        console.log(document.querySelector('.Slide-{{ section.id }} .swiper-slide').offsetWidth);
-        const width = document.querySelector('.Slide-{{ section.id }} .swiper-slide').offsetWidth * 4
+        const width = document.querySelector('.Slide-{{ section.id }}.swiper').offsetWidth
         let translates = document.defaultView.getComputedStyle(document.querySelector(
                 '.Slide-{{ section.id }} .swiper-wrapper'), null)
             .transform
@@ -162,21 +163,20 @@
 0px)`
     }
     document.querySelector('.swiper-button-next').onclick = () => {
-
-        const width = document.querySelector('.swiper-slide').offsetWidth * 4
+        const width = document.querySelector('.Slide-{{ section.id }}.swiper').offsetWidth
         currentID -= 4
         let translates = document.defaultView.getComputedStyle(document.querySelector(
-                '.swiper-wrapper'), null)
+                '.Slide-{{ section.id }} .swiper-wrapper'), null)
             .transform;
         let translateX = parseFloat(translates.substring(6).split(',')[4]);
         translateX = width + translateX
         if (currentID === 4) {
-            document.querySelector('.swiper-button-next').style.display = "none"
-            document.querySelector('.swiper-button-prev').style.display = "block"
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "none"
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "block"
         } else {
-            document.querySelector('.swiper-button-prev').style.display = "block"
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "block"
         }
-        document.querySelector('.swiper-wrapper').style.transform =
+        document.querySelector('.Slide-{{ section.id }} .swiper-wrapper').style.transform =
             `translate3d(${translateX}px, 0px, 0px)`
     }
 </script>
