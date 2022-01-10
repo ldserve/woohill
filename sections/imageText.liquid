@@ -4,7 +4,7 @@
     <div class="c202111201">
       <div class="PC">
       
-          <img  class="lazyload img_item"  srcset="{%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
+          <img  class="lazyload img_item"  srcset="{%- if section.settings.image.width >= 550 -%}{{ section.settings.image | img_url: '550x' }} 550w,{%- endif -%}
                       {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
                       {%- if section.settings.image.width >= 990 -%}{{ section.settings.image | img_url: '990x' }} 990w,{%- endif -%}
                       {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
