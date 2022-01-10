@@ -216,7 +216,11 @@ html.no-js .no-js-hidden {
   margin: 0 auto;
   padding: 0 1.5rem;
 }
-
+.page-width-right {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding-right:1.5rem;
+}
 .page-width-desktop {
   padding: 0;
   margin: 0 auto;
@@ -226,7 +230,9 @@ html.no-js .no-js-hidden {
   .page-width {
     padding: 0 5rem;
   }
-
+  .page-width-right {
+    padding-right: 5rem;
+  }
   .page-width--narrow {
     padding: 0 9rem;
   }
@@ -646,8 +652,14 @@ hr {
 
 .full-unstyled-link {
   text-decoration: none;
-  color: currentColor;
-  display: block;
+  color: rgb(var(--color-foreground));
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  word-break: break-word;
 }
 
 .placeholder {
@@ -1531,7 +1543,7 @@ details[open] > .share-button__fallback {
   font-style: var(--font-body-style);
   font-weight: var(--font-body-weight);
   font-size: 1.2rem;
-  color: rgba(var(--color-foreground), 0.75);
+  color: rgba(var(--color-foreground));
 }
 
 .field__input:hover,
@@ -2438,16 +2450,13 @@ details-disclosure > details {
 }
 
 .badge {
-  border: 1px solid transparent;
   border-radius: var(--badge-corner-radius);
   display: inline-block;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.1rem;
   line-height: 1;
-  padding: 0.6rem 1.3rem;
   text-align: center;
-  background-color: rgb(var(--color-badge-background));
-  border-color: rgba(var(--color-badge-border), var(--alpha-badge-border));
+  background-color: rgb(11,11,11);
   color: rgb(var(--color-foreground));
   word-break: break-word;
 }
@@ -2523,4 +2532,33 @@ details-disclosure > details {
   border-radius: 0;
   border-left: none;
   border-right: none;
+}
+@media screen and (max-width: 749px) {
+  .hidden-phone {
+    display: none !important;
+  }
+
+  .\31\/1--phone {
+    width: 100%;
+  }
+
+  .\31\/2--phone {
+    width: 50%;
+  }
+
+  .\31\/3--phone {
+    width: 33.333333%;
+  }
+
+  .\31\/4--phone {
+    width: 25%;
+  }
+
+  .\31\/5--phone {
+    width: 20%;
+  }
+
+  .\31\/6--phone {
+    width: 16.666667%;
+  }
 }
