@@ -3,7 +3,7 @@
      .Slide-{{ section.id }}.swiper-lunbo {
          position: relative;
          width: 100%;
-         /* height: 800px; */
+         height: 900px;
          margin: 0px auto;
      }
 
@@ -11,15 +11,19 @@
      .Slide-{{ section.id }} .swiper-sider {
          position: relative;
          width: 100%;
-         /* height: 800px; */
+         height: 900px;
      }
 
 
-     .Slide-{{ section.id }}  .swiper-sider>img {
+     .Slide-{{ section.id }}  .swiper-sider>a {
          position: absolute;
          width: 100%;
          /* height: 800px; */
          transition: opacity 1s linear;
+     }
+
+     .Slide-{{ section.id }}  .swiper-sider>a img {
+        vertical-align: middle;
      }
 
 
@@ -142,7 +146,8 @@
          </div>
          <div class="swiper-sider PC">
              {% for block in section.blocks %}
-             <img class="{%- if forloop.index == 1 -%} imgopshow {%- else -%} imgop {%- endif -%}" srcset="{%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
+             <a href="{{block.settings.link.url}}" class="{%- if forloop.index == 1 -%} imgopshow {%- else -%} imgop {%- endif -%}">
+             <img  srcset="{%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
                       {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | img_url: '720x' }} 720w,{%- endif -%}
                       {%- if block.settings.image.width >= 990 -%}{{ block.settings.image | img_url: '990x' }} 990w,{%- endif -%}
                       {%- if block.settings.image.width >= 1100 -%}{{ block.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
@@ -150,12 +155,13 @@
                       {%- if block.settings.image.width >= 2200 -%}{{ block.settings.image | img_url: '2200x' }} 2200w,{%- endif -%}
                       {%- if block.settings.image.width >= 3000 -%}{{ block.settings.image | img_url: '3000x' }} 3000w,{%- endif -%}
                       {{ block.settings.image | img_url: 'master' }} {{ block.settings.image.width }}w"
-                 src="{{ block.settings.image | img_url: '1500x' }}" data-sizes="auto" />
+                 src="{{ block.settings.image | img_url: '1500x' }}" data-sizes="auto" /></a>
              {% endfor %}
          </div>
          <div class="swiper-sider mobile">
             {% for block in section.blocks %}
-            <img class="{%- if forloop.index == 1 -%} imgopshow {%- else -%} imgop {%- endif -%}" srcset="{%- if block.settings.mobile_image.width >= 550 -%}{{ block.settings.mobile_image | img_url: '550x' }} 550w,{%- endif -%}
+            <a href="{{block.settings.link.url}}" class="{%- if forloop.index == 1 -%} imgopshow {%- else -%} imgop {%- endif -%}">
+            <img  srcset="{%- if block.settings.mobile_image.width >= 550 -%}{{ block.settings.mobile_image | img_url: '550x' }} 550w,{%- endif -%}
                      {%- if block.settings.mobile_image.width >= 720 -%}{{ block.settings.mobile_image | img_url: '720x' }} 720w,{%- endif -%}
                      {%- if block.settings.mobile_image.width >= 990 -%}{{ block.settings.mobile_image | img_url: '990x' }} 990w,{%- endif -%}
                      {%- if block.settings.mobile_image.width >= 1100 -%}{{ block.settings.mobile_image | img_url: '1100x' }} 1100w,{%- endif -%}
@@ -164,6 +170,7 @@
                      {%- if block.settings.mobile_image.width >= 3000 -%}{{ block.settings.mobile_image | img_url: '3000x' }} 3000w,{%- endif -%}
                      {{ block.settings.mobile_image | img_url: 'master' }} {{ block.settings.mobile_image.width }}w"
                 src="{{ block.settings.mobile_image | img_url: '1500x' }}" data-sizes="auto" />
+            </a>
             {% endfor %}
         </div>
          <div class="dian">
@@ -173,7 +180,7 @@
          </div>
      </div>
      <script>
-                  window.onload = function () {
+         window.onload = function () {
              var h = document.querySelector(".Slide-{{ section.id }} .imgop").offsetHeight;
              document.querySelector(".Slide-{{ section.id }}.swiper-lunbo").style.height = h + 'px';
              document.querySelector(".Slide-{{ section.id }} .swiper-sider").style.height = h + 'px';
@@ -206,7 +213,7 @@
          var num = aPar.children.length
          var dragsDot = 0; //触摸时的原点
          var dragsMove = 0;
-
+         var AnimateTime={{section.settings.animateTime}}
          //调整图片的顺序
          for (var i = 0; i < aPar.children.length; i++) {
              aPar.children[i].style.zIndex = aPar.children.length - i - 1;
@@ -217,7 +224,7 @@
          function showAnimate() {
              timer = setInterval(function () {
                  countAnimate(1)
-             }, 2000)
+             }, AnimateTime)
          }
 
          function countAnimate(num) {
@@ -326,6 +333,30 @@
      {% schema %}
      {
      "name": "轮播图",
+     "settings":[
+     {
+        "type": "select",
+        "id": "animateTime",
+        "options": [
+        {
+        "value": "2000",
+        "label": "二秒"
+        },
+        {
+        "value": "5000",
+        "label": "五秒"
+        },
+        {
+            "value": "8000",
+            "label": "八秒"
+        }
+        
+        ],
+        "default": "2000",
+"label": "自动轮播时间"
+
+    }
+     ],
      "blocks": [
      {
      "type": "banner",
