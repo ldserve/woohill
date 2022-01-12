@@ -15,7 +15,7 @@
             margin: 0 auto;
             background-color: #eee;
             box-sizing: border-box;
-            padding: 40px 20px;
+            padding:20px 0px;
         }
         .Slide-{{ section.id }} .swiper-slide {
             text-align: center;
@@ -31,6 +31,19 @@
         .Slide-{{ section.id }} .swiper-button-prev,
         .Slide-{{ section.id }} .swiper-button-next {
             display: none;
+        }
+        .Slide-{{ section.id }} .swiper-header{
+            width:100%;
+            text-align: center;
+        }
+        .Slide-{{ section.id }} .swiper-title{
+            /* display: none; */
+            border-bottom: 1.5px solid red;
+            font-size: 38px;
+            font-weight: 900;
+        }
+        .Slide-{{ section.id }} .swiper-content{
+            font-size: 18px;
         }
     }
 
@@ -102,6 +115,13 @@
         .Slide-{{ section.id }} .swiper-button-prev {
             display: none;
         }
+
+        .Slide-{{ section.id }} .swiper-title{
+            display: none;
+        }
+        .Slide-{{ section.id }} .swiper-content{
+            display: none;
+        }
     }
 
     .Slide-{{ section.id }} .swiper-wrapper {
@@ -136,6 +156,10 @@
     }
 </style>
 <div class="swiper-tab Slide-{{ section.id }}">
+    <div class="swiper-header">
+       <span class="swiper-title">{{section.settings.title}}</span>
+       <p class="swiper-content">{{section.settings.content}}</p>
+    </div>
     <div class="tab-banner ">
         <div class="tab-banner-item">
             <a href="{{section.settings.link.url}}">
@@ -330,6 +354,18 @@
 {
 "name": "商品tab切换",
 "settings": [
+{
+    "type": "text",
+    "id": "title",
+    "default": "title",
+    "label": "标题"
+  },
+  {
+    "type": "text",
+    "id": "content",
+    "default": "content",
+    "label": "内容"
+  },
 {
 "type": "image_picker",
 "id": "image",
