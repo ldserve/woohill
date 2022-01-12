@@ -259,6 +259,9 @@
   flex-grow: unset;
   background-color: #fc0;
 }
+.facets__list__color .list-menu__item input:checked +label{
+  border: .2rem solid #000;
+}
 .facets__list__size {
   display: grid;
   grid-gap: 1rem;
@@ -277,12 +280,17 @@
 .facets__list__size .facet-checkbox--disabled {
   color: rgba(var(--color-foreground), 0.4);
 }
+.facets__list__size label{
+  border: .2rem solid #000;
+}
+.facets__list__size .list-menu__item input:checked +label{
+  background-color: #000;
+  color: #fff;
+}
 .list-menu__item input {
   display: none;
 }
-.list-menu__item input:checked +label{
-  border: .2rem solid #000;
-}
+
 .facets__item {
   display: flex;
   align-items: center;
