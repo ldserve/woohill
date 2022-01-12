@@ -115,20 +115,20 @@
         transition-duration: 300ms;
         transform: translate3d(0px, 0px, 0px);
     }
-    .tab-banner{
+    .Slide-{{ section.id }} .tab-banner{
         width: 100%;
         display: flex;
         margin-bottom: 10px;
     }
-    .tab-banner-item{
+    .Slide-{{ section.id }} .tab-banner-item{
        width: 50%;
        overflow: hidden;
     }
-    .tab-banner-item img{
+    .Slide-{{ section.id }} .tab-banner-item img{
        width: 100%;
        transition: .8s;
     }
-    .tab-banner-item:hover img{
+    .Slide-{{ section.id }} .tab-banner-item:hover img{
         transform: scale(1.08);
     }
     .Slide-{{ section.id }} .collection-two{
@@ -231,7 +231,7 @@
         item.onmouseenter = () => {
             temp = index
             currentID = 4
-            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "none"
+
             if (temp === 0) {
                 document.querySelector('.Slide-{{ section.id }} .collection').style.display = "flex"
                 document.querySelector('.Slide-{{ section.id }} .collection-two').style.display = "none"
@@ -247,16 +247,25 @@
                     children = document.querySelector('.Slide-{{ section.id }} .collection-two').children
         .length
             }
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "none"
+            if (currentID >= children) {
+                document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "none"
+           }else{
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "block"
+           }
         }
     })
+
     document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').onclick = () => {
         left()
     }
-    document.querySelector('.swiper-button-next').onclick = () => {
+    document.querySelector('.Slide-{{ section.id }} .swiper-button-next').onclick = () => {
+        console.log(11111);
         right()
     }
 
     function right() {
+        console.log(11111);
         currentID += 4
         if (currentID >= children) {
             document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "none"
