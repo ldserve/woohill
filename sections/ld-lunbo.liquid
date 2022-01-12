@@ -122,10 +122,8 @@
              display: none;
          }
      }
- </style>
- </head>
+    </style>
 
- <body>
      <div class="Slide-{{ section.id }} swiper-lunbo">
          <div class="btn">
              <span class="btnleft">
@@ -179,6 +177,7 @@
              {% endfor %}
          </div>
      </div>
+
      <script>
          window.onload = function () {
              var h = document.querySelector(".Slide-{{ section.id }} .imgop").offsetHeight;
@@ -210,10 +209,10 @@
              aPar = document.querySelector(".Slide-{{ section.id }} .mobile");
          }
          var nowbg = dianpar.children[0]; //当前变色的点元素
-         var num = aPar.children.length
+         var num = aPar.children.length;
          var dragsDot = 0; //触摸时的原点
          var dragsMove = 0;
-         var AnimateTime={{section.settings.animateTime}}
+         var AnimateTime={{section.settings.animateTime}};
          //调整图片的顺序
          for (var i = 0; i < aPar.children.length; i++) {
              aPar.children[i].style.zIndex = aPar.children.length - i - 1;
@@ -330,6 +329,7 @@
              return false;
          };
      </script>
+
      {% schema %}
      {
      "name": "轮播图",
@@ -353,9 +353,8 @@
         
         ],
         "default": "2000",
-"label": "自动轮播时间"
-
-    }
+         "label": "自动轮播时间"
+     }
      ],
      "blocks": [
      {
@@ -382,7 +381,7 @@
      ],
      "presets": [
      {
-     "name": "图片",
+     "name": "轮播图",
      "blocks": [
      {
      "type": "banner"

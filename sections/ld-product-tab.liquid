@@ -1,0 +1,410 @@
+<style>
+    @media screen and (max-width: 749px) {
+        .Slide-{{ section.id }} .swiper {
+            width: 100%;
+            /* height: 200px; */
+            margin: 0 auto;
+            position: relative;
+            overflow-x: scroll;
+            list-style: none;
+            padding: 0;
+            z-index: 1;
+        }
+        .Slide-{{ section.id }}.swiper-tab{
+            width: 100%;
+            margin: 0 auto;
+            background-color: #eee;
+            box-sizing: border-box;
+            padding: 40px 20px;
+        }
+        .Slide-{{ section.id }} .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            width: 50%;
+            flex-shrink: 0;
+            height: 100%;
+            position: relative;
+        }
+
+        .Slide-{{ section.id }} .swiper-button-prev,
+        .Slide-{{ section.id }} .swiper-button-next {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: 750px) {
+        .Slide-{{ section.id }}.swiper-tab{
+            max-width: 1500px;
+            margin: 0 auto;
+            background-color: #eee;
+            box-sizing: border-box;
+            padding: 40px 20px;
+        }
+        .Slide-{{ section.id }} .swiper {
+            width: 100%;
+            /* height: 200px; */
+            position: relative;
+            overflow: hidden;
+            list-style: none;
+            padding: 0;
+            z-index: 1;
+            background-color: #eee;
+        }
+
+        .Slide-{{ section.id }} .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background-color: #eee;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            width: 25%;
+            flex-shrink: 0;
+            height: 100%;
+            position: relative;
+            transition-property: transform;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .Slide-{{ section.id }} .swiper-button-prev,
+        .Slide-{{ section.id }} .swiper-button-next {
+            position: absolute;
+            top: 36%;
+            width: calc(var(--swiper-navigation-size)/ 44 * 27);
+            height: var(--swiper-navigation-size);
+            margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
+            z-index: 10;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--swiper-navigation-color, var(--swiper-theme-color));
+        }
+
+        .Slide-{{ section.id }} .swiper-button-next {
+            right: 0px;
+            left: auto;
+        }
+
+        .Slide-{{ section.id }} .swiper-button-prev {
+            display: none;
+        }
+    }
+
+    .Slide-{{ section.id }} .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        transition-property: transform;
+        box-sizing: border-box;
+        transition-duration: 300ms;
+        transform: translate3d(0px, 0px, 0px);
+    }
+    .tab-banner{
+        width: 100%;
+        display: flex;
+        margin-bottom: 10px;
+    }
+    .tab-banner-item{
+       width: 50%;
+       overflow: hidden;
+    }
+    .tab-banner-item img{
+       width: 100%;
+       transition: .8s;
+    }
+    .tab-banner-item:hover img{
+        transform: scale(1.08);
+    }
+    .Slide-{{ section.id }} .collection-two{
+        display: none;
+    }
+</style>
+<div class="swiper-tab Slide-{{ section.id }}">
+    <div class="tab-banner ">
+        <div class="tab-banner-item">
+            <a href="{{section.settings.link.url}}">
+                <img class="lazyload img_item" srcset="{%- if section.settings.image.width >= 550 -%}{{ section.settings.image | img_url: '550x' }} 550w,{%- endif -%}
+                          {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+                          {%- if section.settings.image.width >= 990 -%}{{ section.settings.image | img_url: '990x' }} 990w,{%- endif -%}
+                          {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
+                          {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}
+                          {%- if section.settings.image.width >= 2200 -%}{{ section.settings.image | img_url: '2200x' }} 2200w,{%- endif -%}
+                          {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | img_url: '3000x' }} 3000w,{%- endif -%}
+                          {{ section.settings.image | img_url: 'master' }} {{ section.settings.image.width }}w"
+                    src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
+            </a>
+        </div>
+        <div class="tab-banner-item">
+            <a href="{{section.settings.link_two.url}}">
+                <img class="lazyload img_item" srcset="{%- if section.settings.image_two.width >= 550 -%}{{ section.settings.image_two | img_url: '550x' }} 550w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 720 -%}{{ section.settings.image_two | img_url: '720x' }} 720w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 990 -%}{{ section.settings.image_two | img_url: '990x' }} 990w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 1100 -%}{{ section.settings.image_two | img_url: '1100x' }} 1100w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 1500 -%}{{ section.settings.image_two | img_url: '1500x' }} 1500w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 2200 -%}{{ section.settings.image_two | img_url: '2200x' }} 2200w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 3000 -%}{{ section.settings.image_two | img_url: '3000x' }} 3000w,{%- endif -%}
+            {{ section.settings.image_two | img_url: 'master' }} {{ section.settings.image_two.width }}w"
+                    src="{{ section.settings.image_two | img_url: '1500x' }}" data-sizes="auto" />
+            </a>
+        </div>
+    </div>
+    <div class="swiper">
+        <div class="swiper-wrapper collection">
+            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+            <div id="Slide-{{ section.id }}-{{ forloop.index }}"
+                class="swiper-slide grid__item{% if section.settings.collection.all_products_count > 2 and section.settings.swipe_on_mobile and section.settings.products_to_show > 2 %} slider__slide{% endif %}">
+                {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating
+                  %}
+            </div>
+            {%- else -%}
+            {%- for i in (1..8) -%}
+            <div class="swiper-slide grid__item">
+                {% render 'card-product', show_vendor: section.settings.show_vendor %}
+            </div>
+            {%- endfor -%}
+            {%- endfor -%}
+        </div>
+        <div class="swiper-wrapper collection-two">
+    
+            {%- for product in section.settings.collection_two.products  -%}
+            <div id="Slide-{{ section.id }}-{{ forloop.index }}"
+                class="swiper-slide grid__item{% if section.settings.collection_two.all_products_count > 2 and section.settings.swipe_on_mobile and section.settings.products_to_show > 2 %} slider__slide{% endif %}">
+                {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating
+                  %}
+            </div>
+            {%- else -%}
+            {%- for i in (1..8) -%}
+            <div class="swiper-slide grid__item">
+                {% render 'card-product', show_vendor: section.settings.show_vendor %}
+            </div>
+            {%- endfor -%}
+            {%- endfor -%}
+        </div>
+        <div class="swiper-button-prev"><svg t="1641625574019" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="4164" width="48" height="48">
+                <path
+                    d="M617.38 873.7L289.61 545.94c-18.72-18.72-18.72-49.16 0-67.88L617.38 150.3c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L346.17 512l316.45 316.45c12.5 12.5 12.5 32.75 0 45.25-6.25 6.25-14.44 9.38-22.62 9.38s-16.38-3.13-22.62-9.38zM334.55 523.31h0.31-0.31z"
+                    p-id="4165"></path>
+            </svg></div>
+        <div class="swiper-button-next"><svg t="1641625601816" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="4484" width="48" height="48">
+                <path
+                    d="M384 883.08c-8.19 0-16.38-3.12-22.62-9.38-12.5-12.5-12.5-32.75 0-45.25L677.83 512 361.38 195.55c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L734.4 478.07c18.72 18.72 18.72 49.16 0 67.88L406.62 873.7c-6.24 6.25-14.43 9.38-22.62 9.38z m305.14-359.77h0.31-0.31z"
+                    p-id="4485"></path>
+            </svg></div>
+    </div>
+</div>
+<script>
+    var currentID = 4
+    var temp = 0
+    var childNodes = document.querySelectorAll('.Slide-{{ section.id }} .tab-banner-item')
+    const width = document.querySelector('.Slide-{{ section.id }} .swiper').offsetWidth
+    var children = document.querySelector('.Slide-{{ section.id }} .collection').children
+        .length
+    childNodes.forEach((item, index) => {
+        item.onmouseenter = () => {
+            temp = index
+            currentID = 4
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "none"
+            if (temp === 0) {
+                document.querySelector('.Slide-{{ section.id }} .collection').style.display = "flex"
+                document.querySelector('.Slide-{{ section.id }} .collection-two').style.display = "none"
+                document.querySelector('.Slide-{{ section.id }} .collection').style.transform =
+                    `translate3d(0px, 0px,0px)`
+                    children = document.querySelector('.Slide-{{ section.id }} .collection').children
+        .length
+            } else {
+                document.querySelector('.Slide-{{ section.id }} .collection-two').style.display = "flex"
+                document.querySelector('.Slide-{{ section.id }} .collection').style.display = "none"
+                document.querySelector('.Slide-{{ section.id }} .collection-two').style.transform =
+                    `translate3d(0px, 0px,0px)`
+                    children = document.querySelector('.Slide-{{ section.id }} .collection-two').children
+        .length
+            }
+        }
+    })
+    document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').onclick = () => {
+        left()
+    }
+    document.querySelector('.swiper-button-next').onclick = () => {
+        right()
+    }
+
+    function right() {
+        currentID += 4
+        if (currentID >= children) {
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "none"
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display =
+                "block"
+        } else {
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display =
+                "block"
+        }
+        if (temp === 0) {
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.Slide-{{ section.id }} .collection'), null)
+                .transform
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = -width + translateX
+            document.querySelector('.Slide-{{ section.id }} .collection').style.transform =
+                `translate3d(${translateX}px, 0px,0px)`
+        } else {
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.Slide-{{ section.id }} .collection-two'), null)
+                .transform
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = -width + translateX
+            document.querySelector('.Slide-{{ section.id }} .collection-two').style.transform =
+                `translate3d(${translateX}px, 0px,0px)`
+        }
+    }
+
+    function left() {
+
+        currentID -= 4
+
+        if (currentID === 4) {
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "none"
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "block"
+        } else {
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "block"
+        }
+        if (temp === 0) {
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.Slide-{{ section.id }} .collection'), null)
+                .transform;
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = width + translateX
+            document.querySelector('.Slide-{{ section.id }} .collection').style.transform =
+                `translate3d(${translateX}px, 0px,0px)`
+        } else {
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.Slide-{{ section.id }} .collection-two'), null)
+                .transform;
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = width + translateX
+            document.querySelector('.Slide-{{ section.id }} .collection-two').style.transform =
+                `translate3d(${translateX}px, 0px,0px)`
+        }
+    }
+</script> 
+
+
+</html>
+{% schema %}
+{
+"name": "商品tab切换",
+"settings": [
+{
+"type": "image_picker",
+"id": "image",
+"label": "上传PC图片"
+},
+{
+"type": "image_picker",
+"id": "mobile_image",
+"label": "上传mobile图片"
+},
+{
+"type": "url",
+"id": "link",
+"label":"图片链接"
+},
+{
+"type": "collection",
+"id": "collection",
+"label": "选择产品集合"
+},
+{
+"type": "image_picker",
+"id": "image_two",
+"label": "上传PC图片"
+},
+{
+"type": "image_picker",
+"id": "mobile_image_two",
+"label": "上传mobile图片"
+},
+{
+"type": "url",
+"id": "link_two",
+"label":"图片链接"
+},
+{
+"type": "collection",
+"id": "collection_two",
+"label": "选择产品集合"
+},
+{
+"type": "select",
+"id": "image_ratio",
+"options": [
+{
+"value": "adapt",
+"label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+},
+{
+"value": "portrait",
+"label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+},
+{
+"value": "square",
+"label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+}
+],
+"default": "adapt",
+"label": "t:sections.featured-collection.settings.image_ratio.label"
+},
+{
+"type": "checkbox",
+"id": "show_secondary_image",
+"default": false,
+"label": "t:sections.featured-collection.settings.show_secondary_image.label"
+},
+{
+"type": "checkbox",
+"id": "show_vendor",
+"default": false,
+"label": "t:sections.featured-collection.settings.show_vendor.label"
+},
+{
+"type": "checkbox",
+"id": "show_rating",
+"default": false,
+"label": "t:sections.featured-collection.settings.show_rating.label",
+"info": "t:sections.featured-collection.settings.show_rating.info"
+}
+],
+"presets": [
+{
+"name": "商品tab切换"
+}
+]
+}
+{% endschema %}
