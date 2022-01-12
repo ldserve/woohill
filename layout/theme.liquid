@@ -56,7 +56,7 @@
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
         --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
-
+        --color_orange_text: {{settings.color_orange_text}};
         --color-base-text: {{ settings.colors_text.red }}, {{ settings.colors_text.green }}, {{ settings.colors_text.blue }};
         --color-base-background-1: {{ settings.colors_background_1.red }}, {{ settings.colors_background_1.green }}, {{ settings.colors_background_1.blue }};
         --color-base-background-2: {{ settings.colors_background_2.red }}, {{ settings.colors_background_2.green }}, {{ settings.colors_background_2.blue }};
@@ -249,7 +249,54 @@
         playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
       }
     </script>
-
+    <script>
+      !function() {
+        var body = document.body;
+        let btn = body.querySelectorAll('.quick-view-btn')
+        body.addEventListener('click',(e) =>{
+          if(e.target.dataset.productspu){
+            var width = window.innerWidth|| document.documentElement.clientWidth|| document.body.clientWidth;
+            if(width > 999){
+              /* alert('open dialog') */
+              getdata(e.target.dataset.productspu).then(res => {
+                console.log(res.data.price)
+              })
+            } else {
+              location.href = `${location.href.origin}/products/${e.target.dataset.productspu}`
+            }
+          }
+        })
+        function getdata(spu){
+            return new Promise(function (resolve, reject) {
+              let xhr = null;
+              if (window.XMLHttpRequest) {
+                xhr = new XMLHttpRequest();
+              } else {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP")
+              }
+              let url='/products/' + spu + '.js';
+              xhr.open('get', url, true);
+              xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                  if (xhr.status === 200) {
+                    let data={};
+                    data.code=1;
+                    data.data=JSON.parse(xhr.responseText);
+                    resolve(data)
+                  } else {
+                    let data={};
+                    data.code=0;
+                    data.message=xhr.status;
+                    data.data={};
+                    resolve(data);
+                  }
+                }
+              }
+              xhr.send(null);
+            })
+        };
+      }()
+    </script>
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}

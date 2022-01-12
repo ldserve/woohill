@@ -1,106 +1,51 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "1641968209b8bb0cb6": {
+      "type": "imageText",
+      "blocks": {
+        "16419682091433c6e9-0": {
+          "type": "banner",
+          "settings": {
+            "top": 0,
+            "width": 0,
+            "left": 0,
+            "height": 0,
+            "link": "",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        }
+      },
+      "block_order": [
+        "16419682091433c6e9-0"
+      ],
       "settings": {
-        "desktop_content_position": "middle-center"
-      },
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Talk about your brand"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_label_2": ""
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ]
-    },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "heading": {
-          "type": "heading"
-        },
-        "text": {
-          "type": "text"
-        },
-        "button": {
-          "type": "button"
-        }
-      },
-      "block_order": [
-        "heading",
-        "text",
-        "button"
-      ]
+        "image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
+        "is_show": true
+      }
     },
     "featured_products": {
       "type": "featured-collection",
       "settings": {
         "title": "Featured products",
         "collection": "all",
-        "image_ratio": "square"
+        "products_to_show": 12,
+        "show_view_all": true,
+        "swipe_on_mobile": false,
+        "image_ratio": "square",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
-    },
-    "collage": {
-      "type": "collage",
-      "blocks": {
-        "video": {
-          "type": "video"
-        },
-        "product": {
-          "type": "product"
-        },
-        "collection": {
-          "type": "collection"
-        }
-      },
-      "block_order": [
-        "video",
-        "product",
-        "collection"
-      ]
-    },
-    "video": {
-      "type": "video"
-    },
-    "multi_column": {
-      "type": "multicolumn",
-      "blocks": {
-        "column1": {
-          "type": "column"
-        },
-        "column2": {
-          "type": "column"
-        },
-        "column3": {
-          "type": "column"
-        }
-      },
-      "block_order": [
-        "column1",
-        "column2",
-        "column3"
-      ]
     }
   },
   "order": [
-    "image_banner",
-    "rich_text",
-    "featured_products",
-    "collage",
-    "video",
-    "multi_column"
+    "1641968209b8bb0cb6",
+    "featured_products"
   ]
 }

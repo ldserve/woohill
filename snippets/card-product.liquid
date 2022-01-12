@@ -27,8 +27,9 @@
       assign ratio = 1
     endif
   -%}
-  <div class="card-wrapper underline-links-hover">
-    <div class="card
+
+  <div class="card-wrapper quikc-view-hover">
+    <div class="card 
       card--{{ settings.card_style }}
       {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
       {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }}{% endif %}
@@ -39,6 +40,7 @@
       <div class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }}{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}" style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;">
         {%- if card_product.featured_media -%}
           <div class="card__media">
+            <a href="{{ card_product.url | default: '#' }}">
             <div class="media media--transparent media--hover-effect">
               <img
                 srcset="{%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
@@ -76,32 +78,34 @@
                 >
               {%- endif -%}
             </div>
+          </a>
           </div>
         {%- endif -%}
         <div class="card__content">        
           <div class="card__information">
-            <h3 class="card__heading">
-              <a href="{{ card_product.url | default: '#' }}" class="full-unstyled-link">
+            <div class="card__heading">
+              <span class="full-unstyled-link">
                 {{ card_product.title | escape }}
-              </a>
-            </h3>
+              </span>
+            </div>
           </div>      
           <div class="card__badge {{ settings.badge_position }}"> 
             {%- if card_product.available == false -%}
               <span class="badge badge--bottom-left color-{{ settings.badge_sold_out_color_scheme }}">{{ 'products.product.sold_out' | t }}</span>
             {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-              <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}">{{ 'products.product.on_sale' | t }}</span>
+              <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}"></span>
             {%- endif -%}
           </div>
         </div>
       </div>
       <div class="card__content">
         <div class="card__information">  
-          <h3 class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}">
-            <a href="{{ card_product.url | default: '#' }}" class="full-unstyled-link">
+          <div class="card__heading">
+            <span class="full-unstyled-link">
               {{ card_product.title | escape }}
-            </a>
-          </h3>
+            </span>
+              <div class="quick-view-btn hidden-phone" data-productSpu="{{card_product.handle}}">Quick View</div>
+          </div>
           <div class="card-information">
             {%- if show_vendor -%}
               <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
@@ -131,22 +135,26 @@
                 <span class="visually-hidden">{{ card_product.metafields.reviews.rating_count }} {{ "accessibility.total_reviews" | t }}</span>
               </p>
             {%- endif -%}
-            
-            {% render 'price', product: card_product, price_class: '' %}
+            <div class="grade-and-price">
+              <div>8 points </div>
+              <div class="right">
+                {% render 'price', product: card_product, price_class: '' %}
+              </div>
+            </div>
           </div>
         </div>     
         <div class="card__badge {{ settings.badge_position }}">
           {%- if card_product.available == false -%}
             <span class="badge badge--bottom-left color-{{ settings.badge_sold_out_color_scheme }}">{{ 'products.product.sold_out' | t }}</span>
           {%- elsif card_product.compare_at_price > card_product.price and card_product.available -%}
-            <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}">{{ 'products.product.on_sale' | t }}</span>
+            <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}"></span>
           {%- endif -%}
         </div>
       </div>
     </div>
   </div>
 {%- else -%}
-  <div class="card-wrapper underline-links-hover">
+  <div class="card-wrapper quikc-view-hover">
     <div class="card
       card--{{ settings.card_style }}
       card--text
@@ -185,3 +193,22 @@
     </div>
   </div>
 {%- endif -%}
+<script>
+  !function () {
+    function setSave (){
+      if(document.querySelectorAll('.badge').length){
+        let saveEl1 = document.querySelectorAll('.badge')[0]
+        let saveEl2 = document.querySelectorAll('.badge')[1];
+        let price = "{{ card_product.price }}" || '';
+        let compare_at_price = "{{ card_product.compare_at_price }}" || '';
+        if((compare_at_price && compare_at_price - price)/10 >0.1){
+          saveEl1.style.padding =  '0.3rem 0.6rem';
+          saveEl1.innerText = 'Save '+Math.round((compare_at_price - price)*100/ compare_at_price)+'%';
+          saveEl2.style.padding =  '0.3rem 0.6rem';
+          saveEl2.innerText = 'Save '+Math.round((compare_at_price - price)*100/ compare_at_price)+'%';
+        }
+      }
+    }
+    setSave()
+  }()
+</script>

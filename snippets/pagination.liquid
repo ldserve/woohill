@@ -24,6 +24,11 @@
             {% render 'icon-caret' %}
           </a>
         </li>
+        <li>
+          <a href="{{ paginate.previous.url }}{{ anchor }}" class="pagination__item pagination__item--next pagination__item-arrow link motion-reduce" aria-label="{{ 'general.pagination.previous' | t }}">
+            <span class="pagination__item">Prev </span>
+          </a>
+        </li>
       {%- endif -%}
 
       {%- for part in paginate.parts -%}
@@ -41,11 +46,16 @@
       {%- endfor -%}
 
       {%- if paginate.next -%}
-        <li>
-          <a href="{{ paginate.next.url }}{{ anchor }}" class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce" aria-label="{{ 'general.pagination.next' | t }}" >
-            {%- render 'icon-caret' -%}
-          </a>
-        </li>
+      <li>
+        <a href="{{ paginate.previous.url }}{{ anchor }}" class="pagination__item pagination__item--next pagination__item-arrow link motion-reduce" aria-label="{{ 'general.pagination.previous' | t }}">
+          <span class="pagination__item">Next </span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ paginate.next.url }}{{ anchor }}" class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce" aria-label="{{ 'general.pagination.next' | t }}" >
+          {%- render 'icon-caret' -%}
+        </a>
+      </li>
       {%- endif -%}
       </ul>
     </nav>
