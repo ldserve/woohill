@@ -948,7 +948,7 @@
             "label": "t:settings_schema.badges.settings.position.options__4.label"
           }
         ],
-        "default": "bottom left",
+        "default": "top left",
         "label": "t:settings_schema.badges.settings.position.label"
       },
       {
@@ -959,7 +959,7 @@
         "step": 2,
         "unit": "px",
         "label": "t:settings_schema.global.settings.corner_radius.label",
-        "default": 40
+        "default": 0
       },
       {
         "type": "select",
@@ -1146,7 +1146,7 @@
         "type": "checkbox",
         "id": "currency_code_enabled",
         "label": "t:settings_schema.currency_format.settings.currency_code_enabled.label",
-        "default": true
+        "default": false
       }
     ]
   }
