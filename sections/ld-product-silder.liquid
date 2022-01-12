@@ -1,40 +1,12 @@
 <style>
     @media screen and (max-width: 749px) {
-        .Slide-{{ section.id }} .swiper {
-            width: 100%;
-            margin: 0 auto;
-            position: relative;
-            overflow-x: scroll;
-            list-style: none;
-            padding: 0;
-            z-index: 1;
-        }
-
-        .Slide-{{ section.id }} .swiper-slide {
-            text-align: center;
-            font-size: 18px;
-            background: #fff;
-            /* Center slide text vertically */
-            width: 50%;
-            flex-shrink: 0;
-            height: 100%;
-            position: relative;
-        }
-
-        .Slide-{{ section.id }} .swiper-button-next,
-        .Slide-{{ section.id }} .swiper-button-prev {
-            display: none;
-        }
-
-        .Slide-{{ section.id }} .center {
-           display: block;
+        .Slide-{{ section.id }}.banner-swiper{
+         display: none!important;
         }
     }
 
-    @media screen and (min-width: 750px) {
         .Slide-{{ section.id }} .swiper {
-            max-width: 1500px;
-            margin: 0 auto;
+            max-width: 100%;
             position: relative;
             overflow: hidden;
             list-style: none;
@@ -94,7 +66,6 @@
         .Slide-{{ section.id }} .center {
            display: none;
         }
-    }
 
     .Slide-{{ section.id }} .swiper-wrapper {
         position: relative;
@@ -109,15 +80,32 @@
     }
     .Slide-{{ section.id }}.banner-swiper{
         display: flex;
+        max-width: 1500px;
+        height: 100%;
+        margin:0 auto;
     }
     .Slide-{{ section.id }} .banner{
-        width: 20%;
+        max-width: 360px;
+        height: 200px;
+        margin: auto 0;
+    }
+    .Slide-{{ section.id }} .banner img{
+        max-width: 100%;
     }
 </style>
 <div class="banner-swiper Slide-{{ section.id }}">
     <div class="banner">
     <a href="{{ section.settings.collection.url }}">
-       <img src="{{ section.settings.banner | img_url }}" alt="">
+       <!-- <img src="{{ section.settings.banner | img_url }}" alt=""> -->
+       <img  class="lazyload img_item"  srcset="{%- if section.settings.banner.width >= 550 -%}{{ section.settings.banner | img_url: '550x' }} 550w,{%- endif -%}
+       {%- if section.settings.banner.width >= 720 -%}{{ section.settings.banner | img_url: '720x' }} 720w,{%- endif -%}
+       {%- if section.settings.banner.width >= 990 -%}{{ section.settings.banner | img_url: '990x' }} 990w,{%- endif -%}
+       {%- if section.settings.banner.width >= 1100 -%}{{ section.settings.banner | img_url: '1100x' }} 1100w,{%- endif -%}
+       {%- if section.settings.banner.width >= 1500 -%}{{ section.settings.banner | img_url: '1500x' }} 1500w,{%- endif -%}
+       {%- if section.settings.banner.width >= 2200 -%}{{ section.settings.banner | img_url: '2200x' }} 2200w,{%- endif -%}
+       {%- if section.settings.banner.width >= 3000 -%}{{ section.settings.banner | img_url: '3000x' }} 3000w,{%- endif -%}
+       {{ section.settings.banner | img_url: 'master' }} {{ section.settings.banner.width }}w"
+     src="{{ section.settings.banner | img_url: '1500x' }}" data-sizes="auto"/>
     </a>
     </div>
     <div class="swiper mySwiper">
@@ -154,14 +142,6 @@
                     p-id="4485"></path>
             </svg></div>
     </div>
-    {%- if section.settings.show_view_all -%}
-    <div class="center">
-        <a href="{{ section.settings.collection.url }}" class="button"
-            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: section.settings.collection.title }}">
-            {{ 'sections.featured_collection.view_all' | t }}
-        </a>
-    </div>
-    {%- endif -%}
 </div>
 <script>
     var currentID = 4
@@ -187,7 +167,7 @@
         document.querySelector('.Slide-{{ section.id }} .swiper-wrapper').style.transform = `translate3d(${translateX}px, 0px,
 0px)`
     }
-    document.querySelector('.swiper-button-next').onclick = () => {
+    document.querySelector('.Slide-{{ section.id }} .swiper-button-next').onclick = () => {
         const width = document.querySelector('.Slide-{{ section.id }} .swiper').offsetWidth
         currentID -= 4
         let translates = document.defaultView.getComputedStyle(document.querySelector(
@@ -230,13 +210,7 @@
     "step": 2,
     "default": 4,
     "label": "t:sections.featured-collection.settings.products_to_show.label"
-  },
-  {
-    "type": "checkbox",
-    "id": "show_view_all",
-    "default": true,
-    "label": "t:sections.featured-collection.settings.show_view_all.label"
-  },
+  }
 {
 "type": "select",
 "id": "image_ratio",

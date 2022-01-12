@@ -160,7 +160,7 @@
         document.querySelector('.Slide-{{ section.id }} .swiper-wrapper').style.transform = `translate3d(${translateX}px, 0px,
 0px)`
     }
-    document.querySelector('.swiper-button-next').onclick = () => {
+    document.querySelector('.Slide-{{ section.id }} .swiper-button-next').onclick = () => {
         const width = document.querySelector('.Slide-{{ section.id }}.swiper').offsetWidth
         currentID -= 4
         let translates = document.defaultView.getComputedStyle(document.querySelector(
