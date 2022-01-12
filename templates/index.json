@@ -42,10 +42,21 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "1641973313e37a8096": {
+      "type": "featured-product-silder",
+      "settings": {
+        "collection": "pant",
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false
+      }
     }
   },
   "order": [
     "1641968209b8bb0cb6",
-    "featured_products"
+    "featured_products",
+    "1641973313e37a8096"
   ]
 }
