@@ -52,11 +52,27 @@
         "show_vendor": false,
         "show_rating": false
       }
+    },
+    "1641974007df809541": {
+      "type": "ld-product-tab",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/b172871dff2137726890cb6b7c6e3299_t.jpg",
+        "link": "shopify:\/\/collections\/accessories",
+        "collection": "accessories",
+        "image_two": "shopify:\/\/shop_images\/b172871dff2137726890cb6b7c6e3299_t.jpg",
+        "link_two": "shopify:\/\/collections\/hoodie",
+        "collection_two": "hoodie",
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false
+      }
     }
   },
   "order": [
     "1641968209b8bb0cb6",
     "featured_products",
-    "1641973313e37a8096"
+    "1641973313e37a8096",
+    "1641974007df809541"
   ]
 }
