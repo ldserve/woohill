@@ -52,11 +52,11 @@
               "menu": "footer"
             }
           },
-          "footer-1": {
-            "type": "text",
+          "51d47bdb-2bb0-4fe7-9058-9eee23a70433": {
+            "type": "link_list",
             "settings": {
-              "heading": "Heading",
-              "subtext": "<p>Share store details, promotions, or brand content with your customers.<\/p>"
+              "heading": "HELP CENTER",
+              "menu": "help-center"
             }
           },
           "51d178a5-989f-438b-a594-0d2619a5c746": {
@@ -69,7 +69,7 @@
         },
         "block_order": [
           "footer-0",
-          "footer-1",
+          "51d47bdb-2bb0-4fe7-9058-9eee23a70433",
           "51d178a5-989f-438b-a594-0d2619a5c746"
         ],
         "settings": {
