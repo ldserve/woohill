@@ -56,6 +56,8 @@
     "1641974007df809541": {
       "type": "ld-product-tab",
       "settings": {
+        "title": "title",
+        "content": "content",
         "image": "shopify:\/\/shop_images\/b172871dff2137726890cb6b7c6e3299_t.jpg",
         "link": "shopify:\/\/collections\/accessories",
         "collection": "accessories",
@@ -67,12 +69,26 @@
         "show_vendor": false,
         "show_rating": false
       }
+    },
+    "164198619658c9b25f": {
+      "type": "ld-product-silder",
+      "settings": {
+        "banner": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
+        "collection": "accessories",
+        "products_to_show": 12,
+        "show_view_all": true,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false
+      }
     }
   },
   "order": [
     "1641968209b8bb0cb6",
     "featured_products",
     "1641973313e37a8096",
-    "1641974007df809541"
+    "1641974007df809541",
+    "164198619658c9b25f"
   ]
 }
