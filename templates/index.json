@@ -23,6 +23,7 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
         "is_show": true
       }
     },
