@@ -251,11 +251,7 @@ html.no-js .no-js-hidden {
     max-width: 1500px;
     padding: 20px;
   }
-  .main-page-title {
-    font-size: 38px;
-    text-align: center;
-    margin-bottom: 4rem;
-  }
+
   .page-width-desktop {
     max-width: var(--page-width);
     padding: 0 5rem;
@@ -1323,7 +1319,7 @@ button.shopify-payment-button__button--unbranded {
 }
 
 .button--secondary:after {
-  --border-opacity: var(--buttons-border-opacity);
+  --border-opacity: #ff7f50;
 }
 
 .button:focus-visible,
