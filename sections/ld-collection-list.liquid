@@ -1,0 +1,225 @@
+<style>
+   .Slide-{{ section.id }} .title{
+        /* display: flex;
+        justify-content: space-evenly;
+        align-items: center; */
+        overflow-x: scroll;
+        width: 100%;
+    }
+    .Slide-{{ section.id }} .title-nav{
+        margin: 20px;
+        font-weight: 900;
+        font-size: 18px;
+    }
+    .Slide-{{ section.id }} .active{
+      border-bottom: 1px solid #000;
+    }
+    .Slide-{{ section.id }} .collection-product{
+        display: none;
+        clear: both;
+    }
+    .Slide-{{ section.id }} .collection-product.selected{
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .Slide-{{ section.id }} .grid__item{
+      width: 50%;
+    }
+    .Slide-{{ section.id }} .center{
+      margin: 20px auto;
+    }
+    .Slide-{{ section.id }} .banner img{
+     width: 100px;
+    }
+    @media screen and (min-width: 750px) {
+      .Slide-{{ section.id }}.collection-list{
+        display: none!important;
+      }
+    }
+</style>
+
+<div class="collection-list Slide-{{ section.id }}">
+  {%- if section.settings.image -%}
+  <div class="banner">
+    <a href="{{section.settings.link.url}}">
+      <img class="lazyload img_item" srcset="{%- if section.settings.image.width >= 550 -%}{{ section.settings.image | img_url: '550x' }} 550w,{%- endif -%}
+                {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+                {%- if section.settings.image.width >= 990 -%}{{ section.settings.image | img_url: '990x' }} 990w,{%- endif -%}
+                {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
+                {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}
+                {%- if section.settings.image.width >= 2200 -%}{{ section.settings.image | img_url: '2200x' }} 2200w,{%- endif -%}
+                {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | img_url: '3000x' }} 3000w,{%- endif -%}
+                {{ section.settings.image | img_url: 'master' }} {{ section.settings.image.width }}w"
+          src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
+     </a>
+  </div>
+  {%- endif -%}
+  <div class="title">
+   <div style="display: flex;">
+    {%- for block in section.blocks -%}
+    <div class="title-nav {% if forloop.index == 1 %} active {% endif %}">
+      {{block.settings.title}}
+    </div>
+    {%- endfor -%}
+   </div>
+  </div>
+  <div class="collection">
+    {%- for block in section.blocks -%}
+    <div class="collection-product {% if forloop.index == 1 %} selected {% endif %}">
+      {%- for product in block.settings.collection.products limit: section.settings.products_to_show -%}
+      <div class="grid__item">
+        {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating
+                %}
+      </div>
+      {%- else -%}
+      {%- for i in (1..4) -%}
+      <div class="collection-product grid__item">
+        {% render 'card-product', show_vendor: section.settings.show_vendor %}
+      </div>
+      {%- endfor -%}
+      {%- endfor -%}
+      {%- if block.settings.show_view_all -%}
+      <div class="center">
+        <a href="{{ block.settings.collection.url }}" class="button"
+          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: block.settings.collection.title }}">
+          {{ 'sections.featured_collection.view_all' | t }}
+        </a>
+      </div>
+    {%- endif -%}
+    </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+const navs=document.querySelectorAll('.Slide-{{ section.id}} .title-nav')
+const lists=document.querySelectorAll('.Slide-{{ section.id}} .collection-product')
+let current=0
+navs.forEach((item,index)=>{
+console.log(item,index);
+item.onclick=()=>{
+  navs.forEach((i)=>{
+    i.classList.remove('active')
+  })
+  lists.forEach((i,idx)=>{
+    if(idx===index){
+      i.classList.add('selected')
+    }else{
+      i.classList.remove('selected')
+    }
+  })
+  item.classList.add('active')
+}
+})
+
+</script>
+{% schema %}
+{
+  "name": "分类集合组",
+  "settings": [
+  {
+    "type": "range",
+    "id": "products_to_show",
+    "min": 2,
+    "max": 12,
+    "step": 2,
+    "default": 4,
+    "label": "t:sections.featured-collection.settings.products_to_show.label"
+  },
+  {
+    "type": "image_picker",
+    "id": "image",
+    "label": "上传图片"
+    },
+    {
+    "type": "url",
+    "id": "link",
+    "label":"图片链接"
+    },
+  {
+    "type": "select",
+    "id": "image_ratio",
+    "options": [
+    {
+    "value": "adapt",
+    "label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+    },
+    {
+    "value": "portrait",
+    "label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+    },
+    {
+    "value": "square",
+    "label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+    }
+    ],
+    "default": "adapt",
+    "label": "t:sections.featured-collection.settings.image_ratio.label"
+    },
+    {
+    "type": "checkbox",
+    "id": "show_secondary_image",
+    "default": false,
+    "label": "t:sections.featured-collection.settings.show_secondary_image.label"
+    },
+    {
+    "type": "checkbox",
+    "id": "show_vendor",
+    "default": false,
+    "label": "t:sections.featured-collection.settings.show_vendor.label"
+    },
+    {
+    "type": "checkbox",
+    "id": "show_rating",
+    "default": false,
+    "label": "t:sections.featured-collection.settings.show_rating.label",
+    "info": "t:sections.featured-collection.settings.show_rating.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_list",    
+      "name":"集合",
+      "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "collection",
+        "label": "请输入集合名称"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "选择产品集合"
+        },
+    {
+      "type": "url",
+      "id": "link",
+      "label":"链接"
+    },
+    {
+        "type": "checkbox",
+        "id": "show_view_all",
+        "default": true,
+        "label": "t:sections.featured-collection.settings.show_view_all.label"
+      }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "分类集合组",
+      "blocks": [
+        {
+          "type": "collection_list"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
