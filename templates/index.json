@@ -58,10 +58,10 @@
       "settings": {
         "title": "title",
         "content": "content",
-        "image": "shopify:\/\/shop_images\/b172871dff2137726890cb6b7c6e3299_t.jpg",
+        "image": "shopify:\/\/shop_images\/mens-watch-and-ring.jpg",
         "link": "shopify:\/\/collections\/accessories",
         "collection": "accessories",
-        "image_two": "shopify:\/\/shop_images\/b172871dff2137726890cb6b7c6e3299_t.jpg",
+        "image_two": "shopify:\/\/shop_images\/runner-stretching-arms-in-sun.jpg",
         "link_two": "shopify:\/\/collections\/hoodie",
         "collection_two": "hoodie",
         "image_ratio": "adapt",
@@ -73,7 +73,7 @@
     "164198619658c9b25f": {
       "type": "ld-product-silder",
       "settings": {
-        "banner": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
+        "banner": "shopify:\/\/shop_images\/1.png",
         "collection": "accessories",
         "products_to_show": 12,
         "show_view_all": true,
