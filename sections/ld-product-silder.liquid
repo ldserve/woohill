@@ -86,11 +86,11 @@
     }
     .Slide-{{ section.id }} .banner{
         max-width: 360px;
-        height: 200px;
         margin: auto 0;
     }
     .Slide-{{ section.id }} .banner img{
         max-width: 100%;
+        display: inline-block;
     }
 </style>
 <div class="banner-swiper Slide-{{ section.id }}">
@@ -210,7 +210,7 @@
     "step": 2,
     "default": 4,
     "label": "t:sections.featured-collection.settings.products_to_show.label"
-  }
+  },
 {
 "type": "select",
 "id": "image_ratio",
