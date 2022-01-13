@@ -140,6 +140,7 @@
       ],
       "settings": {
         "products_to_show": 4,
+        "image": "shopify:\/\/shop_images\/Snipaste_2022-01-13_15-46-21.png",
         "link": "",
         "image_ratio": "adapt",
         "show_secondary_image": false,
