@@ -76,7 +76,71 @@
         "banner": "shopify:\/\/shop_images\/1.png",
         "collection": "accessories",
         "products_to_show": 12,
-        "show_view_all": true,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false
+      }
+    },
+    "1642062280e7be15bf": {
+      "type": "ld-collection-list",
+      "blocks": {
+        "164206228050a1dfc8-0": {
+          "type": "collection_list",
+          "settings": {
+            "title": "cap",
+            "collection": "cap-hat",
+            "link": "",
+            "show_view_all": true
+          }
+        },
+        "0835e98f-6c40-4fc2-b663-5637aed751d5": {
+          "type": "collection_list",
+          "settings": {
+            "title": "bottoms",
+            "collection": "pant",
+            "link": "",
+            "show_view_all": true
+          }
+        },
+        "5603ccda-10c5-49a4-9b34-d316896dd966": {
+          "type": "collection_list",
+          "settings": {
+            "title": "accessories",
+            "collection": "accessories",
+            "link": "",
+            "show_view_all": true
+          }
+        },
+        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a": {
+          "type": "collection_list",
+          "settings": {
+            "title": "hoodies",
+            "collection": "hoodie",
+            "link": "",
+            "show_view_all": true
+          }
+        },
+        "688d04e2-646d-4ee2-a43a-591d869ee96a": {
+          "type": "collection_list",
+          "settings": {
+            "title": "shorts",
+            "collection": "shorts",
+            "link": "",
+            "show_view_all": true
+          }
+        }
+      },
+      "block_order": [
+        "164206228050a1dfc8-0",
+        "0835e98f-6c40-4fc2-b663-5637aed751d5",
+        "5603ccda-10c5-49a4-9b34-d316896dd966",
+        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a",
+        "688d04e2-646d-4ee2-a43a-591d869ee96a"
+      ],
+      "settings": {
+        "products_to_show": 4,
+        "link": "",
         "image_ratio": "adapt",
         "show_secondary_image": false,
         "show_vendor": false,
@@ -89,6 +153,7 @@
     "featured_products",
     "1641973313e37a8096",
     "1641974007df809541",
-    "164198619658c9b25f"
+    "164198619658c9b25f",
+    "1642062280e7be15bf"
   ]
 }
