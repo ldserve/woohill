@@ -380,13 +380,13 @@ border-right:1px #ccc solid;
                      <span {%- if link.child_active %} class="header__active-menu-item"{% endif %}>{{ link.title | escape }}</span>
                     </summary>
                     <ul id="HeaderMenu-MenuList-{{ forloop.index }}" class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list" tabindex="-1">
-                    <a class="ld-navBorder" href="{{ link.url }}">                    
+                    <!-- <a class="ld-navBorder" href="{{ link.url }}">                    
                      <img src="https://cdn.shopify.com/s/files/1/0619/9682/6882/files/b172871dff2137726890cb6b7c6e3299_t_1000x@2x.jpg?v=1641543198"  style='float:left;'
                       loading="lazy"
                       class="ld-navImage"
                       alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
                      >
-                    </a>
+                    </a> -->
                       {%- for childlink in link.links -%}
                         <li>
                           {%- if childlink.links == blank -%}
