@@ -5,6 +5,8 @@
         align-items: center; */
         overflow-x: scroll;
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
     .Slide-{{ section.id }} .title-nav{
         margin: 20px;
@@ -29,7 +31,7 @@
       margin: 20px auto;
     }
     .Slide-{{ section.id }} .banner img{
-     width: 100px;
+     width: 100%;
     }
     @media screen and (min-width: 750px) {
       .Slide-{{ section.id }}.collection-list{
@@ -101,7 +103,6 @@ const navs=document.querySelectorAll('.Slide-{{ section.id}} .title-nav')
 const lists=document.querySelectorAll('.Slide-{{ section.id}} .collection-product')
 let current=0
 navs.forEach((item,index)=>{
-console.log(item,index);
 item.onclick=()=>{
   navs.forEach((i)=>{
     i.classList.remove('active')
