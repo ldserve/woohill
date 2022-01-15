@@ -18,41 +18,54 @@ if (!customElements.get('media-gallery')) {
     }
 
     onSlideChanged(event) {
-      const thumbnail = this.elements.thumbnails.querySelector(`[data-target="${ event.detail.currentElement.dataset.mediaId }"]`);
+      const thumbnail = this.elements.thumbnails.querySelector(`[data-target="${event.detail.currentElement.dataset.mediaId}"]`);
       this.setActiveThumbnail(thumbnail);
     }
 
-    setActiveMedia(mediaId, prepend) {
-      const activeMedia = this.elements.viewer.querySelector(`[data-media-id="${ mediaId }"]`);
-      this.elements.viewer.querySelectorAll('[data-media-id]').forEach((element) => {
-        element.classList.remove('is-active');
-      });
-      activeMedia.classList.add('is-active');
+    setActiveMedia(mediaAlt, mediaId, prepend) {
+      console.log(mediaId, this, prepend);
+      if (mediaAlt) {
+        const activeMedia = this.elements.viewer.querySelectorAll(`[data-media-id="${mediaAlt}"]`);
+        this.elements.viewer.querySelectorAll('[data-media-id]').forEach((element) => {
+          element.classList.remove('ld-active');
+        });
+        activeMedia.forEach((element) => {
+          element.classList.add('ld-active');
+        });
+      }
+      if (mediaId) {
+        const activeMedia = this.elements.viewer.querySelector(`[data-media-id="${mediaId}"]`);
+        this.elements.viewer.querySelectorAll('[data-media-id]').forEach((element) => {
+          element.classList.remove('is-active');
+        });
+        activeMedia.classList.add('is-active');
 
-      if (prepend) {
-        activeMedia.parentElement.prepend(activeMedia);
-        if (this.elements.thumbnails) {
-          const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${ mediaId }"]`);
-          activeThumbnail.parentElement.prepend(activeThumbnail);
+        if (prepend) {
+          activeMedia.parentElement.prepend(activeMedia);
+          if (this.elements.thumbnails) {
+            const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
+            activeThumbnail.parentElement.prepend(activeThumbnail);
+          }
+          if (this.elements.viewer.slider) this.elements.viewer.resetPages();
         }
-        if (this.elements.viewer.slider) this.elements.viewer.resetPages();
+
+        this.preventStickyHeader();
+        window.setTimeout(() => {
+          if (this.elements.thumbnails) {
+            activeMedia.parentElement.scrollTo({ left: activeMedia.offsetLeft });
+          }
+          if (!this.elements.thumbnails || this.dataset.desktopLayout === 'stacked') {
+            activeMedia.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+        this.playActiveMedia(activeMedia);
+
+        if (!this.elements.thumbnails) return;
+        const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
+        this.setActiveThumbnail(activeThumbnail);
+        this.announceLiveRegion(activeMedia, activeThumbnail.dataset.mediaPosition);
       }
 
-      this.preventStickyHeader();
-      window.setTimeout(() => {
-        if (this.elements.thumbnails) {
-          activeMedia.parentElement.scrollTo({ left: activeMedia.offsetLeft });
-        }
-        if (!this.elements.thumbnails || this.dataset.desktopLayout === 'stacked') {
-          activeMedia.scrollIntoView({behavior: 'smooth'});
-        }
-      });
-      this.playActiveMedia(activeMedia);
-
-      if (!this.elements.thumbnails) return;
-      const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${ mediaId }"]`);
-      this.setActiveThumbnail(activeThumbnail);
-      this.announceLiveRegion(activeMedia, activeThumbnail.dataset.mediaPosition);
     }
 
     setActiveThumbnail(thumbnail) {
