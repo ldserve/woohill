@@ -1,0 +1,27 @@
+{%- assign color = color | downcase -%}
+{%- assign color_list_str = 'Brich:#D8D1C5,Flower Grey:#B7B5B7,Black:#141414,Vallarta Blue:#24516C,Bright Navy Blue:#1E3453,Wasabi:#5F9688' -%}
+{%- assign color_config = color_list_str  | split: ',' -%}
+{%- assign color_style = 'background-color: ' | append: color -%}
+
+{%- for color_item in color_config -%}
+	{%- assign color_parts = color_item | split: ':' -%}
+	{%- assign color_key = color_parts.first | downcase | strip -%}
+	{%- if color == color_key -%}
+		{%- assign color_value = color_parts.last | strip -%}
+		{%- if color_value contains '#' -%}
+			{%- assign color_style = 'background-color: ' | append: color_value -%}
+		{%- endif -%}
+		{%- break -%}
+    {% else %}
+        {%- assign color_style = 'background-color: ' | append: '#fff' -%}
+	{%- endif -%}
+{%- endfor -%}
+{%- if type!=blank -%}
+	{%- if color_value contains '#' -%}
+		{{ color_value }}
+	{%- else -%}
+		{{ color }}
+	{%- endif -%}
+{%- else -%}
+	{{ color_style }}
+{%- endif -%}
