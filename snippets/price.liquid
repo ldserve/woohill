@@ -81,13 +81,15 @@
       </span>
     </small>
   </div>
-  {%- if show_badges -%}
-    <span class="badge price__badge-sale color-{{ settings.badge_sale_color_scheme }}">
-      {{ 'products.product.on_sale' | t }}
-    </span>
+  {%- comment -%}
+    {%- if show_badges -%}
+      <span class="badge price__badge-sale color-{{ settings.badge_sale_color_scheme }}">
+        {{ 'products.product.on_sale' | t }}
+      </span>
 
-    <span class="badge price__badge-sold-out color-{{ settings.badge_sold_out_color_scheme }}">
-      {{ 'products.product.sold_out' | t }}
-    </span>
-  {%- endif -%}
+      <span class="badge price__badge-sold-out color-{{ settings.badge_sold_out_color_scheme }}">
+        {{ 'products.product.sold_out' | t }}
+      </span>
+    {%- endif -%}
+  {%- endcomment -%}
 </div>
