@@ -28,6 +28,385 @@
     display:block !important;
   }
 {%- endstyle -%}
+ <style type="text/css">
+
+    .size-guide-wrap .size-select {
+        cursor: pointer;
+        text-align: center;
+        font-size: 17px;
+        padding: 0 20px;
+        color: #000;
+        margin-bottom: 10px;
+    }
+
+    .size-guide-wrap .size-select.selected {
+        background-color: #000000 !important;
+        color:#fff!important;
+    }
+
+    .size-guide-fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 99;
+    }
+
+    .sizeGuideBtn {
+        font-size: 1.8rem;
+        margin-top: 1rem;
+        text-align: left;
+        line-height: 1;
+        cursor: pointer;
+        margin-bottom: 5px;
+        color: rgb(235, 99, 57)!important;
+    }
+
+    .size-guide-wrap .size-detail.selected {
+        display: block;
+    }
+    .size-guide-wrap .size-detail tbody tr:nth-child(odd) td{
+         background-color:#eee;
+        }
+
+        .size-guide-wrap .size-tips {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+}
+   .size-guide-wrap .size-guide-title {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 5px 15px;
+            text-align: center;
+            background-color: #000;
+            color:#fff;
+        }
+        .size-guide-wrap .size-detail thead tr td {
+          color: rgb(235, 99, 57)!important;
+        }
+        .size-guide-wrap .size-detail .first-column {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .size-guide-wrap .size-tips {
+            display: block;
+            font-size: 10px;
+            margin-top: 10px;
+        }
+        .size-guide-wrap .size-guide-name {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px 20px;
+        }
+
+        .size-guide-wrap .size-select {
+            flex: 1;
+            cursor: pointer;
+            text-align: center;
+            font-size: 17px;
+            padding: 0 20px;
+            color: #000;
+            background-color: #eee;
+        }
+        .size-guide-wrap .size-content {
+            margin: 10px 20px;
+    border-bottom: 1px #7e7a7a solid;
+    padding-bottom: 30px;
+        }
+    @media (min-width: 768px) {
+
+        /*PC样式*/
+        /*尺码样式*/
+        .size-guide-wrap .table-fixed {
+            display: none;
+        }
+
+        .size-guide-wrap {
+            position: absolute;
+            top: 10%;
+            left: 20%;
+            width: 60%;
+            height:80%;
+            background-color: #fff;
+            padding-bottom: 50px;
+            z-index: 99;
+            border-radius: 5px;
+             overflow-y: scroll;
+        }
+        .size-guide-wrap::-webkit-scrollbar {
+            background-color: #fff;
+            width: 6px;
+            height: 6px;
+        }
+
+        .size-guide-wrap::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+           border-radius: 3px;
+        }
+
+
+        .size-guide-wrap .size-close {
+            position: absolute;
+            top: 9px;
+            right: 25px;
+            cursor: pointer;
+        }
+
+        .size-guide-wrap .size-select-wrap {
+            display: flex;
+            color: #b5b0b0;
+        }
+
+        .size-guide-wrap .size-select {
+            flex: 1;
+            cursor: pointer;
+            text-align: center;
+            font-size: 17px;
+            padding: 0 20px;
+            color: #000;
+            background-color: #eee;
+        }
+
+        .size-guide-wrap .size-detail {
+            display: none;
+        }
+
+        .size-guide-wrap .size-detail table {
+            width: 100%;
+            border: 1px solid #b3b3b3;
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 14px;
+            color: #333333;
+            font-family: Roboto-Regular;
+            margin-bottom: 15px;
+            margin-bottom: 10px;
+            margin-top: 5px;
+            table-layout: fixed;
+        }
+
+        .size-guide-wrap .size-detail td,
+        .size-guide-wrap .size-detail th {
+            border: 1px solid #b3b3b3;
+            height: 26px;
+            color: #4d4d4d;
+        }
+       
+        .size-guide-wrap .size-detail thead td {
+            font-weight: bold;
+        }
+        .size-guide-PC-image img{
+      display: block;
+      width: 100%;
+    }
+    .size-guide-M-image{
+      display: none;
+
+    }
+    }
+
+    @media (max-width: 767.98px) {
+
+        /*移动样式*/
+        /*尺码样式*/
+
+        .size-guide-wrap {
+            position: absolute;
+            top: 1rem;
+            left: 2%;
+            width: 96%;
+            height: 90%;
+            background-color: #fff;
+            padding-bottom: 2.5rem;
+            z-index: 99;
+            overflow-y: scroll;
+            border-radius: 5px;
+        }
+
+        .size-guide-wrap .size-select-wrap {
+            display: flex;
+            padding-right: 1rem;
+        }
+
+        .size-guide-wrap .size-detail-wrap {
+            position: relative;
+        }
+
+        .size-guide-wrap .size-detail {
+            display: none;
+            overflow-x: scroll;
+            margin-right: 0.5rem;
+        }
+
+        .size-guide-wrap .size-detail::-webkit-scrollbar {
+            background-color: #fff;
+            height: 2px;
+        }
+
+        .size-guide-wrap .size-detail::-webkit-scrollbar-thumb {
+            background-color: #333333;
+        }
+
+        .size-guide-wrap .size-detail table {
+            border: 1px solid #b3b3b3;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #333333;
+            font-family: Roboto-Regular;
+            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0.25rem;
+            /*table-layout:fixed;*/
+            font-size: 1rem;
+        }
+
+        .size-guide-wrap .size-detail td,
+        .size-guide-wrap .size-detail th {
+            border: 1px solid #b3b3b3;
+            height: 4rem;
+            min-width: 8rem;
+            padding: 0.2rem 0;
+            color: #4d4d4d;
+        }
+
+        .size-guide-wrap .size-detail .first-column {
+            font-weight: bold;
+            min-width: 12rem;
+            color: #000;
+        }
+
+        .size-guide-wrap .table-fixed {
+            position: absolute;
+            top: 0;
+            height: 0;
+            z-index: 99;
+            width: 8rem !important;
+            background: #fff;
+        }
+
+        .product-image__thumbs_left .product-image__thumbs-item.slick-current .product-image__thumb:after {
+            box-shadow: inset 0 0 0 1px #999999, inset 0 0 0 3px #fff;
+        }
+
+        .size-guide-wrap .size-tips {
+            display: block;
+            font-size: 0.5rem;
+        }
+
+        .size-guide-wrap .size-close {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.4rem;
+            cursor: pointer;
+    }
+    .size-guide-wrap .table-fixed tbody tr:nth-child(even) td{
+      background-color: #eee;
+    }
+    .size-guide-wrap .table-fixed tbody tr:nth-child(odd) td{
+      background-color: #fff;
+    }
+    .size-guide-wrap .table-fixed tbody tr:first-child td{
+      color: rgb(235, 99, 57)!important;
+    }
+    .size-guide-PC-image{
+      display: none;
+    }
+    .size-guide-M-image img{
+      display: block;
+      width: 100%;
+    }
+  }
+</style> 
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+    var sizeObj = {{ product.metafields.my_fields.sizeobj }}; 
+    var sizeGuideHtml =
+        `<div class="size-guide-fixed">
+          <div class="size-guide-wrap">
+            <div class="size-guide-title">SIZE GUIDE <div class="size-close"><svg t="1642408377022" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4004" width="26" height="26"><path d="M512 1024C229.220848 1024 0 794.779152 0 512S229.220848 0 512 0 1024 229.220848 1024 512 794.779152 1024 512 1024z m0-959.984485C264.564364 64.015515 63.984485 264.564364 63.984485 512c0 247.435636 200.579879 447.984485 448.015515 447.984485S960.015515 759.435636 960.015515 512c0-247.435636-200.579879-447.984485-448.015515-447.984485z m45.428364 448.170667l135.602424 135.602424a31.992242 31.992242 0 0 1-45.273212 45.242182l-135.602424-135.602424-136.471273 136.533333a32.271515 32.271515 0 0 1-45.614546-45.614545l136.502303-136.533334-135.602424-135.602424a31.992242 31.992242 0 1 1 45.273212-45.242182l135.602424 135.602424 137.495273-137.526303a32.271515 32.271515 0 1 1 45.614546 45.614546l-137.526303 137.526303z" p-id="4005" fill="#ffffff"></path></svg></div></div>
+            <div class="size-guide-name">MEN\`S TOPS SIZE CHART</div>
+            <div class="size-content"><div class="size-select-wrap"><div class="size-select selected" data-select="inch">INCH</div><div class="size-select" data-select="cm">CM</div></div><div class="size-detail-wrap">`;
+    var html = {};
+    var inchHtml = '<div class="size-detail selected" data-content="inch"><table>';
+    var cmHtml = '<div class="size-detail" data-content="cm"><table>';
+
+    function addTableHtml(list, html) {
+        var thisHtml = "";
+        var thisHtmlfixed = '<table class="table-fixed">';
+        list.forEach((v, i) => {
+            if (i == 0) {
+                thisHtml += '<thead><tr>';
+            } else {
+                thisHtml += '<tr>';
+            }
+            thisHtmlfixed += '<tr>';
+            v.forEach((value, index) => {
+                if (index == 0) {
+                    thisHtml += '<td class="first-column">' + value + '</td>';
+                    thisHtmlfixed += '<td class="first-column">' + value + '</td>';
+                } else {
+                    thisHtml += '<td>' + value + '</td>';
+                }
+            })
+            if (i == 0) {
+                thisHtml += '</thead></tr>';
+            } else {
+                thisHtml += '</tr>';
+            }
+            thisHtmlfixed += '</tr>';
+        });
+
+        thisHtml += '</table>';
+        thisHtmlfixed += '</table>';
+        if (html == inchHtml) {
+            inchHtml += (thisHtml + thisHtmlfixed);
+        } else if (html == cmHtml) {
+            cmHtml += (thisHtml + thisHtmlfixed);
+        };
+    }
+    addTableHtml(sizeObj.inchList, inchHtml);
+    addTableHtml(sizeObj.cmList, cmHtml);
+    inchHtml += '</div>';
+    cmHtml += '</div>';
+    sizeGuideHtml += (inchHtml + cmHtml);
+    sizeGuideHtml +=
+        `</div>
+        <div class='size-tips'>Short = 5'3 - 5'7 1/2", Regular = 5'8 - 6' 1/2", Tall = 6'1- 6'3", Tall sizes have 2" added to body and sleeve length. *Arm length refers to your actual arm length,not the garment's sleeve length. </div>
+        </div>
+        <div class="size-guide-name">SIZING INSTRUCTIONS</div>
+        <div class="size-guide-PC-image"><img src="https://cdn.shopify.com/s/files/1/0619/9682/6882/files/PC.jpg?v=1642407678" alt=""></div>
+        <div class="size-guide-M-image"><img src="https://cdn.shopify.com/s/files/1/0619/9682/6882/files/M.jpg?v=1642407678" alt=""></div>
+        </div>
+        </div>`;
+    document.querySelector("body").insertAdjacentHTML('beforeEnd', sizeGuideHtml);
+    setTimeout(function () {
+        document.querySelector(".sizeGuideBtn").addEventListener("click", function () {
+            document.querySelector(".size-guide-fixed").style.display = "block";
+        });
+        $(".size-select-wrap .size-select").on("click", function () {
+            var select = $(this).data("select");
+            $(".size-select").removeClass("selected");
+            $(".size-detail").removeClass("selected");
+            $('[data-select=' + select + ']').addClass("selected");
+            $('[data-content=' + select + ']').addClass("selected");
+        });
+        $(".size-guide-fixed,.size-close").on("click", function () {
+            $(".size-guide-fixed").hide();
+        });
+        $(".size-guide-wrap").on("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    }, 1000)
+</script> 
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
@@ -37,7 +416,6 @@
   <link id="ModelViewerStyle" rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css" media="print" onload="this.media='all'">
   <link id="ModelViewerOverride" rel="stylesheet" href="{{ 'component-model-viewer-ui.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
-
 <section class="page-width section-{{ section.id }}-padding">
   <div
     class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
@@ -394,10 +772,11 @@
           <script type="application/json">
             {{ product.variants | json }}  
           </script>
+
         </variant-selects>
         {%- endif -%}
         {%- endunless -%}
-
+        <div class="sizeGuideBtn">Size Chart</div>
         <noscript class="product-form__noscript-wrapper-{{ section.id }}">
           <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
             <label class="form__label"

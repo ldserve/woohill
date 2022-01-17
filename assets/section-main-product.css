@@ -279,6 +279,7 @@ border: 1px #000 solid;
 .product-form__submit {
   margin-bottom: 1rem;
   background-color: coral;
+  color: #fff;
 }
 
 .no-js .product-form__submit.button--secondary {
@@ -344,6 +345,7 @@ a.product__text {
 
 .product__text.caption-with-letter-spacing + .product__title {
   margin-top: 0;
+  font-size: 22px;
 }
 
 .product__accordion .accordion__content {
