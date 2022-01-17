@@ -21,7 +21,12 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
-
+  #Slider-Gallery-{{ section.id }} .ld-item{
+    display:none !important;
+  }
+  #Slider-Gallery-{{ section.id }} .ld-item.ld-active{
+    display:block !important;
+  }
 {%- endstyle -%}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -63,25 +68,26 @@
                 assign media_width = 0.45
               endif
             -%}
-            {%- if product.selected_or_first_available_variant.featured_media != null -%}
+            {%- if product.selected_or_first_available_variant.featured_media != null and product.media.first.alt != product.title -%}
             {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
-            <li id="Slide-{{ section.id }}-{{ featured_media.id }}"
-              class="product__media-item grid__item slider__slide is-active{% if featured_media.media_type != 'image' %} product__media-item--full{% endif %}{% if section.settings.hide_variants and variant_images contains featured_media.src %} product__media-item--variant{% endif %}"
-              data-media-id="{{ section.id }}-{{ featured_media.id }}">
-              {%- assign media_position = 1 -%}
-              {% render 'product-thumbnail', media: featured_media, position: media_position, loop: section.settings.enable_video_looping, modal_id: section.id, xr_button: true, media_width: media_width %}
-            </li>
-            {%- endif -%}
             {%- for media in product.media -%}
-            {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
+            <li id="Slide-{{ section.id }}-{{ media.alt }}"
+              class="product__media-item grid__item slider__slide is-active ld-item {% if featured_media.alt == media.alt %} ld-active {% endif %} {% if product.selected_or_first_available_variant.featured_media == null and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if section.settings.hide_variants and variant_images contains media.src %} product__media-item--variant{% endif %}"
+              data-media-id="{{ section.id }}-{{ media.alt }}">
+              {%- assign media_position = media_position | default: 0 | plus: 1 -%}
+              {% render 'product-thumbnail', media: media, position: media_position, loop: section.settings.enable_video_looping, modal_id: section.id, xr_button: true, media_width: media_width %}
+            </li>
+            {%- endfor -%}
+            {%- else -%}
+            {%- for media in product.media -%}
             <li id="Slide-{{ section.id }}-{{ media.id }}"
-              class="product__media-item grid__item slider__slide{% if product.selected_or_first_available_variant.featured_media == null and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if section.settings.hide_variants and variant_images contains media.src %} product__media-item--variant{% endif %}"
+              class="product__media-item grid__item slider__slide ld-item  ld-active  {% if product.selected_or_first_available_variant.featured_media == null and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if section.settings.hide_variants and variant_images contains media.src %} product__media-item--variant{% endif %}"
               data-media-id="{{ section.id }}-{{ media.id }}">
               {%- assign media_position = media_position | default: 0 | plus: 1 -%}
               {% render 'product-thumbnail', media: media, position: media_position, loop: section.settings.enable_video_looping, modal_id: section.id, xr_button: true, media_width: media_width %}
             </li>
-            {%- endunless -%}
             {%- endfor -%}
+            {%- endif -%}
           </ul>
           <div
             class="slider-buttons no-js-hidden{% if media_count < 2 or section.settings.mobile_thumbnails == 'show' %} small-hide{% endif %}">
@@ -360,11 +366,7 @@
 
           {%- endfor -%}
           <script type="application/json">
-            {
-              {
-                product.variants | json
-              }
-            }
+            {{ product.variants | json }}  
           </script>
         </variant-radios>
         {%- else -%}
@@ -389,13 +391,8 @@
             </div>
           </div>
           {%- endfor -%}
-
           <script type="application/json">
-            {
-              {
-                product.variants | json
-              }
-            }
+            {{ product.variants | json }}  
           </script>
         </variant-selects>
         {%- endif -%}
@@ -626,6 +623,7 @@
     variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
 
     document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function(event) {
+      console.log(event.currentTarget.value);
       hiddenInput.value = event.currentTarget.value;
     });
   });
