@@ -47,7 +47,11 @@ Green:#17700E' -%}
 	{%- if color == color_key -%}
 		{%- assign color_value = color_parts.last | strip -%}
 		{%- if color_value contains '#' -%}
-			{%- assign color_style = 'background-color: ' | append: color_value -%}
+            {%- if color == 'White' -%}
+                {%- assign color_style = 'background-color: ' | append: color_value | append: 'border-color:#e3e1d8' -%}
+            {%- else -%}
+                {%- assign color_style = 'background-color: ' | append: color_value -%}
+            {%- endif -%}
 		{%- endif -%}
 		{%- break -%}
     {% else %}
