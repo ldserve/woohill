@@ -260,7 +260,7 @@
   background-color: #fc0;
 }
 .facets__list__color .list-menu__item input:checked +label{
-  border: .2rem solid #000;
+  border: .3rem solid #000;
 }
 .facets__list__size {
   display: grid;

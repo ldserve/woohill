@@ -1,5 +1,43 @@
 {%- assign color = color | downcase -%}
-{%- assign color_list_str = 'Brich:#D8D1C5,Flower Grey:#B7B5B7,Black:#141414,Vallarta Blue:#24516C,Bright Navy Blue:#1E3453,Wasabi:#5F9688' -%}
+{%- assign color_list_str = '
+Light Apricot:#DAD3BD,
+Medium Grey:#494D50,
+Orange:#F09661,
+White:#FFFEF9,
+Apricot Color:#DAD3BD,
+Steel Color:#DDDDDD,
+Black:#0E0E0E,
+Dark Coffee:#645551,
+Sky Blue:#8AB0D3,
+Camel:#AC998C,
+Natural White:#DCDFE7,
+Grey Green:#5E8C8A,
+Khaki:#AE9F87,
+Light Grey:#B2A9AF,
+Camouflage:#3A4433,
+Blue:#263375,
+Dark Plum Red:#601726,
+Navy Blue:#292C40,
+Black Grey:#2C3536,
+Dark Apricot Color:#A89F81,
+Army Green:#4C4A28,
+Brownish Yellow:#BA9766,
+Dark Green:#205132,
+Orange Red:#C37260,
+Dark Red:#9B101C,
+Dark Blue:#1D2233,
+Coffee:#41372F,
+Grayish blue:#2E3D59,
+Light Coffee:#A37B59,
+Golden Gray:#FBF7D9,
+Light Plum Red:#78404F,
+Light Blue:#90ABBB,
+Dark grey:#494D50,
+Military Green:#4C4A28,
+Grey:#53585B,
+yellow mexico camo:#424434,
+Light Yellow:#CAD3A2,
+Green:#17700E' -%}
 {%- assign color_config = color_list_str  | split: ',' -%}
 {%- assign color_style = 'background-color: ' | append: color -%}
 
@@ -9,7 +47,11 @@
 	{%- if color == color_key -%}
 		{%- assign color_value = color_parts.last | strip -%}
 		{%- if color_value contains '#' -%}
-			{%- assign color_style = 'background-color: ' | append: color_value -%}
+            {%- if color == 'White' -%}
+                {%- assign color_style = 'background-color: ' | append: color_value | append: 'border-color:#e3e1d8' -%}
+            {%- else -%}
+                {%- assign color_style = 'background-color: ' | append: color_value -%}
+            {%- endif -%}
 		{%- endif -%}
 		{%- break -%}
     {% else %}

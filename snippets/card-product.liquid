@@ -26,9 +26,8 @@
     if ratio == 0 or ratio == nil
       assign ratio = 1
     endif
-  -%}
-
-  <div class="card-wrapper">
+    -%}
+    <div class="card-wrapper" id="{{ section.id }}-{{card_product.id}}">
     <div class="card 
       card--{{ settings.card_style }}
       {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
@@ -147,11 +146,37 @@
             </div>
             </div>
             <div class="color-selector">
-              {% for color in card_product.options_by_name['Color'].values limit:5 %}
-                <div class="color--active">
-                  <span class="color-item" style="{% render 'color-square' ,color:color %}" title="{{color}}"></span>
-                </div>
-            {% endfor %}
+              {%- for color in card_product.options_by_name['Color'].values limit:5 -%}
+                {%- for variant in card_product.variants -%}
+                    {%- if variant.option1 == color -%}
+                    {%- assign cur_variant = variant -%}
+                    {%- break -%}
+                    {%- endif -%}
+                {%- endfor -%}
+                      <div class="{%- if forloop.first == true -%} color--active {%- endif -%}">
+                        <span 
+                          class="color-item" 
+                          style="{% render 'color-square' ,color:color %}" 
+                          data-variantId="{{cur_variant.id}}" 
+                          data-variantUrl="{{cur_variant.featured_media | img_url: "533x" }}" 
+                          data-variantImg='{
+                            "srcset":"{%- if cur_variant.featured_media.width >= 165 -%}{{ cur_variant.featured_media | img_url: "165x" }} 165w,{%- endif -%}
+                              {%- if cur_variant.featured_media.width >= 360 -%}{{ cur_variant.featured_media | img_url: "360x" }} 360w,{%- endif -%}
+                              {%- if cur_variant.featured_media.width >= 533 -%}{{ cur_variant.featured_media | img_url: "533x" }} 533w,{%- endif -%}
+                              {%- if cur_variant.featured_media.width >= 720 -%}{{ cur_variant.featured_media | img_url: "720x" }} 720w,{%- endif -%}
+                              {%- if cur_variant.featured_media.width >= 940 -%}{{ cur_variant.featured_media | img_url: "940x" }} 940w,{%- endif -%}
+                              {%- if cur_variant.featured_media.width >= 1066 -%}{{ cur_variant.featured_media | img_url: "1066x" }} 1066w,{%- endif -%}
+                              {{ cur_variant.featured_media | img_url: "master" }} {{ cur_variant.featured_media.width }}w",
+                            "src":"{{ cur_variant.featured_media | img_url: "533x" }}",
+                            "sizes":"(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)",
+                            "alt":"{{ cur_variant.featured_media.alt | escape }}",
+                            "width":"{{ cur_variant.featured_media.width }}",
+                            "height":"{{ cur_variant.featured_media.height }}"
+                          }'
+                          title="{{color}}">
+                        </span>
+                      </div>
+              {% endfor %}
               {%- if card_product.options_by_name['Color'].values.size > 5 -%}
                 <div class="more" >
                   <span class="color-item" title="more">+</span>
@@ -213,9 +238,9 @@
 <script>
   !function () {
     function setSave (){
-      if(document.querySelectorAll('.badge').length){
-        let saveEl1 = document.querySelectorAll('.badge')[0]
-        let saveEl2 = document.querySelectorAll('.badge')[1];
+      if(document.querySelectorAll('#{{ section.id }}-{{card_product.id}} .badge').length){
+        let saveEl1 = document.querySelectorAll('#{{ section.id }}-{{card_product.id}} .badge')[0]
+        let saveEl2 = document.querySelectorAll('#{{ section.id }}-{{card_product.id}} .badge')[1];
         let price = "{{ card_product.price }}" || '';
         let compare_at_price = "{{ card_product.compare_at_price }}" || '';
         if((compare_at_price && compare_at_price - price)/10 >0.1){
@@ -226,12 +251,46 @@
         }
       }
     }
-    setSave()
-    class colorSelector {
-      constructor(){
-
+    class Product {
+      constructor(el){
+        this.elements = this._getElements(el)
+        this._setupEventListeners()
+      }
+      _getElements(el) {
+        const container = document.querySelector(el)
+        return container ? {
+          container,
+          colorSelector: container.querySelector('.color-selector'),
+          cardMedia:container.querySelector('.card__media')
+        } : {}; 
+      }
+      _setupEventListeners() {
+        this.elements.colorSelector.addEventListener('click', this._handleColorSelector)
+      }
+      _handleColorSelector = (e) => {
+       if(e.target.className.indexOf('color-item') > -1){
+         if(e.target.title === 'more'){
+           window.location.href = "{{ card_product.url | default: '#' }}"
+         }else {
+              this.elements.colorSelector.querySelector('.color--active').classList.remove('color--active')
+              e.target.parentElement.classList.add('color--active')
+              let variantObj = e.target.dataset
+              console.log(variantObj)
+              this.elements.cardMedia.querySelector('a').href = `{{ card_product.url | default: '#' }}?variant=${variantObj.variantid}`
+              let img = this.elements.cardMedia.querySelector('img')
+              /* img.src = variantObj.variantUrl */
+              let variantimg = JSON.parse(variantObj.variantimg)
+              img.src = variantimg.src
+              img.srcset = variantimg.srcset
+              img.sizes = variantimg.sizes
+              img.alt = variantimg.alt
+              img.width = variantimg.width
+              img.height = variantimg.height
+         }
+       }
       }
     }
-    new colorSelector()
+    setSave()
+    new Product('#{{ section.id }}-{{card_product.id}}');
   }()
 </script>
