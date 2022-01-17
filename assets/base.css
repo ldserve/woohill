@@ -190,7 +190,9 @@
 }
 
 /* base */
-
+.swiper-slide.grid__item .card-wrapper{
+  width: 100%;
+}
 .no-js:not(html) {
   display: none !important;
 }
