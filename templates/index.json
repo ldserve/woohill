@@ -188,16 +188,16 @@
         "title": "Text",
         "subtitle": "Text block",
         "button": "SHOP NOW",
-        "text_top": 0,
-        "text_left": 0,
+        "text_top": 26,
+        "text_left": 9,
         "title_size": 12,
         "big_title_size": 22,
-        "text_color": "#fff",
+        "text_color": "#ffffff",
         "text_style": "normal",
         "button_color": "#ed6123",
-        "button_text_color": "#fff",
-        "button_color_hover": "#fff",
-        "button_text_color_hover": "#000"
+        "button_text_color": "#ffffff",
+        "button_color_hover": "#ffffff",
+        "button_text_color_hover": "#000000"
       }
     },
     "164250311826bdc728": {
