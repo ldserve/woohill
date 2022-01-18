@@ -324,9 +324,8 @@
     }
   }
 </style> 
- <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
 
+<script>
     var sizeObj = {{ product.metafields.my_fields.sizeobj }}; 
     var sizeGuideHtml =
         `<div class="size-guide-fixed">
@@ -391,20 +390,32 @@
         document.querySelector(".sizeGuideBtn").addEventListener("click", function () {
             document.querySelector(".size-guide-fixed").style.display = "block";
         });
-        $(".size-select-wrap .size-select").on("click", function () {
-            var select = $(this).data("select");
-            $(".size-select").removeClass("selected");
-            $(".size-detail").removeClass("selected");
-            $('[data-select=' + select + ']').addClass("selected");
-            $('[data-content=' + select + ']').addClass("selected");
-        });
-        $(".size-guide-fixed,.size-close").on("click", function () {
-            $(".size-guide-fixed").hide();
-        });
-        $(".size-guide-wrap").on("click", function (e) {
+       const sizes= document.querySelectorAll(".size-select-wrap .size-select")
+       sizes.forEach((item)=>{
+         item.onclick = () =>{
+            var select = item.getAttribute("data-select");
+            sizes.forEach((i)=>{
+              i.classList.remove('selected')
+            })
+            // item.classList.add("selected");
+            document.querySelectorAll(".size-detail").forEach((el)=>{
+              el.classList.remove("selected");
+            })
+            document.querySelector('[data-select=' + select + ']').classList.add("selected");
+            document.querySelector('[data-content=' + select + ']').classList.add("selected");
+        };
+       })
+       console.log(document.querySelector(".size-guide-fixed,.size-close"));
+        document.querySelector(".size-guide-fixed").onclick= function () {
+          document.querySelector(".size-guide-fixed").style.display="none";
+        };
+        document.querySelector(".size-close").onclick= function () {
+          document.querySelector(".size-guide-fixed").style.display="none";
+        };
+        document.querySelector(".size-guide-wrap").onclick= function (e) {
             e.preventDefault();
             e.stopPropagation();
-        });
+        };
     }, 1000)
 </script> 
 
