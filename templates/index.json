@@ -24,7 +24,20 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
         "mobile_image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
-        "is_show": true
+        "is_show": true,
+        "title": "Text",
+        "subtitle": "Text block",
+        "button": "SHOP NOW",
+        "text_top": 0,
+        "text_left": 0,
+        "title_size": 12,
+        "big_title_size": 22,
+        "text_color": "#fff",
+        "text_style": "normal",
+        "button_color": "#ed6123",
+        "button_text_color": "#fff",
+        "button_color_hover": "#fff",
+        "button_text_color_hover": "#000"
       }
     },
     "featured_products": {
@@ -35,8 +48,8 @@
         "products_to_show": 12,
         "show_view_all": true,
         "swipe_on_mobile": false,
-        "image_ratio": "square",
-        "show_secondary_image": false,
+        "image_ratio": "adapt",
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "padding_top": 36,
@@ -46,9 +59,9 @@
     "1641973313e37a8096": {
       "type": "featured-product-silder",
       "settings": {
-        "collection": "pant",
+        "collection": "hoodies-sweatshirts",
         "image_ratio": "adapt",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false
       }
