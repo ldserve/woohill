@@ -16,6 +16,16 @@
           "settings": {
           }
         },
+        "3f46a901-dacd-4629-a43c-ac700bb3d255": {
+          "type": "shopify:\/\/apps\/product-reviews\/blocks\/star_rating\/bae150af-8da8-48b2-9867-398188115e5f",
+          "settings": {
+            "stars_fill_color": "#ed6123",
+            "star_size": 18,
+            "text_align": "flex-start",
+            "product": "{{product}}",
+            "stars_text_empty": ""
+          }
+        },
         "price": {
           "type": "price",
           "settings": {
@@ -53,6 +63,7 @@
       "block_order": [
         "vendor",
         "title",
+        "3f46a901-dacd-4629-a43c-ac700bb3d255",
         "price",
         "variant_picker",
         "quantity_selector",
