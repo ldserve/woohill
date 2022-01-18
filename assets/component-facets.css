@@ -257,10 +257,10 @@
   margin: 0 auto;
   display: block;
   flex-grow: unset;
-  background-color: #fc0;
+  border:.3rem solid #ebebeb
 }
 .facets__list__color .list-menu__item input:checked +label{
-  border: .3rem solid #000;
+  border-color: #000;
 }
 .facets__list__size {
   display: grid;
@@ -651,9 +651,16 @@ a.active-facets__button.focused .active-facets__button-inner,
 .mobile-facets__open:hover circle {
   stroke: rgb(var(--color-link));
 } */
-
 .mobile-facets__open-label {
   font-size: 3.5rem;
+}
+@media screen and (max-width: 749px) {
+  .mobile-facets__open {
+    padding: 0 .5rem;
+  }
+  .mobile-facets__open-label {
+    font-size: 2rem;
+  }
 }
 
 .mobile-facets__open svg {

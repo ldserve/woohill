@@ -887,3 +887,59 @@ class VariantRadios extends VariantSelects {
 }
 
 customElements.define('variant-radios', VariantRadios);
+
+class ProductItem extends HTMLElement  {
+    constructor(){
+      super()
+      this.elements = {
+        colorSelector: this.querySelector('.color-selector'),
+        cardMedia:this.querySelector('.card__media'),
+      }
+      this.setupEventListeners()
+      this.handleColorActive()
+    }
+
+    setupEventListeners() {
+      this.elements.colorSelector && this.elements.colorSelector.addEventListener('click', this.handleColorSelector)
+    }
+
+    handleColorSelector = (e) => {
+      if(e.target.className.indexOf('color-item') > -1){
+        if(e.target.title === 'more'){
+          window.location.href = this.elements.cardMedia.querySelector('a').dataset.href
+        }else {
+            let variantObj = e.target.dataset
+            this.elements.cardMedia.querySelector('a').href = this.elements.cardMedia.querySelector('a').dataset.href + `?variant=${variantObj.variantId}`
+            let img = this.elements.cardMedia.querySelector('img')
+            img.setAttribute('data-media-id',variantObj.mediaId);
+            if(this.handleColorActive()){
+              let variantimg = JSON.parse(variantObj.variantImg)
+              img.src = variantimg.src
+              img.srcset = variantimg.srcset
+              img.sizes = variantimg.sizes
+              img.alt = variantimg.alt
+              img.width = variantimg.width
+              img.height = variantimg.height
+              img.style.opacity = 1
+             
+            }
+        }
+      }
+    }
+
+    handleColorActive(){
+      let activeEl = this.elements.colorSelector && this.elements.colorSelector.querySelector('.color--active')
+      activeEl && activeEl.classList.remove('color--active')
+      let img = this.elements.cardMedia.querySelector('img')
+      let imgMediaId = img.dataset.mediaId
+      let spanList = this.elements.colorSelector.querySelectorAll('span[data-media-id]')
+      for(let i = 0 ; i< spanList.length; i ++){
+        if(spanList[i].dataset.mediaId === imgMediaId){
+          spanList[i].parentElement.classList.add('color--active')
+          return true
+        }
+      }
+    }
+}
+
+customElements.define('product-item',ProductItem)

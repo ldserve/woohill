@@ -82,7 +82,7 @@
                           {% if value.active %}checked{% endif %}
                           {% if value.count == 0 and value.active == false %}disabled{% endif %}
                         >
-                          <label for="Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}" style="{% render 'color-square' ,color:value.value %}" >
+                          <label for="Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}" style="{% render 'color-square' ,color:value.value %}" title="{{value.value}}">
                           </label>
                       </li>
                     {%- endfor -%}
@@ -338,17 +338,8 @@
                           {% if value.active %}checked{% endif %}
                           {% if value.count == 0 and value.active == false %}disabled{% endif %}
                         >
-                        {%- case value.value -%}
-                        {%- when 'Apricot' -%}
-                            <label for="Mobile-Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}" style="background-color:aliceblue;">
-                            </label>
-                          {%- when 'Army Green' -%}
-                            <label for="Mobile-Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}" style="background-color: chartreuse;">
-                            </label>
-                          {%- else -%}
-                            <label for="Mobile-Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}">
-                            </label>
-                        {%- endcase -%}
+                        <label for="Mobile-Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}" style="{% render 'color-square' ,color:value.value %}" title="{{value.value}}">
+                        </label>
                       </li>
                     {%- endfor -%}
                   </ul>

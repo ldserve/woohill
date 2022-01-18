@@ -60,10 +60,10 @@ Green:#17700E' -%}
 {%- endfor -%}
 {%- if type!=blank -%}
 	{%- if color_value contains '#' -%}
-		{{ color_value }}
+		{{- color_value -}}
 	{%- else -%}
-		{{ color }}
+		{{- color -}}
 	{%- endif -%}
 {%- else -%}
-	{{ color_style }}
+	{{- color_style -}}
 {%- endif -%}

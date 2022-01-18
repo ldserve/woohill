@@ -20,10 +20,6 @@
   text-align: right;
 }
 
-.price .price-item {
-  margin: 0 .5rem 0 0;
-}
-
 .price__regular .price-item--regular {
   margin-right: 0;
 }
