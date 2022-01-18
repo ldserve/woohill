@@ -651,9 +651,16 @@ a.active-facets__button.focused .active-facets__button-inner,
 .mobile-facets__open:hover circle {
   stroke: rgb(var(--color-link));
 } */
-
 .mobile-facets__open-label {
   font-size: 3.5rem;
+}
+@media screen and (max-width: 749px) {
+  .mobile-facets__open {
+    padding: 0 .5rem;
+  }
+  .mobile-facets__open-label {
+    font-size: 2rem;
+  }
 }
 
 .mobile-facets__open svg {

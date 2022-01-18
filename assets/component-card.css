@@ -48,6 +48,8 @@
 
 .card-information {
   text-align: var(--card-text-alignment);
+  line-height: 2.8rem;
+  width: 100%;
 }
 
 .card__media,
@@ -254,9 +256,6 @@
   overflow: hidden;
 }
 
-.card-information {
-  width: 100%;
-}
 
 .card-information > .price {
   color: rgb(var(--color-foreground));
@@ -287,9 +286,8 @@
   border: .2rem solid #ebebeb;
   border-radius: 2px;
   display: block;
-  font-size: 2rem;
   text-align: center;
-  line-height: 2rem;
+  line-height: 1.8rem;
   margin-right: .5rem;
 }
 .color-selector .color--active {
@@ -297,12 +295,11 @@
 }
 .color-selector .color-item {
   display: block;
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
   cursor: pointer;
 }
 .color-selector .more {
   border: 1px solid #000;
   font-size: 3rem;
-  transform: scale(0.8);
 }

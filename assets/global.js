@@ -912,14 +912,17 @@ class ProductItem extends HTMLElement  {
             this.elements.cardMedia.querySelector('a').href = this.elements.cardMedia.querySelector('a').dataset.href + `?variant=${variantObj.variantId}`
             let img = this.elements.cardMedia.querySelector('img')
             img.setAttribute('data-media-id',variantObj.mediaId);
-            this.handleColorActive()
-            let variantimg = JSON.parse(variantObj.variantImg)
-            img.src = variantimg.src
-            img.srcset = variantimg.srcset
-            img.sizes = variantimg.sizes
-            img.alt = variantimg.alt
-            img.width = variantimg.width
-            img.height = variantimg.height
+            if(this.handleColorActive()){
+              let variantimg = JSON.parse(variantObj.variantImg)
+              img.src = variantimg.src
+              img.srcset = variantimg.srcset
+              img.sizes = variantimg.sizes
+              img.alt = variantimg.alt
+              img.width = variantimg.width
+              img.height = variantimg.height
+              img.style.opacity = 1
+             
+            }
         }
       }
     }
@@ -933,6 +936,7 @@ class ProductItem extends HTMLElement  {
       for(let i = 0 ; i< spanList.length; i ++){
         if(spanList[i].dataset.mediaId === imgMediaId){
           spanList[i].parentElement.classList.add('color--active')
+          return true
         }
       }
     }
