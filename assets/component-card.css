@@ -280,6 +280,7 @@
 }
 .color-selector {
   display: flex;
+  flex-wrap: wrap;
 }
 .color-selector > div {
   padding: .2rem;
@@ -288,7 +289,7 @@
   display: block;
   font-size: 2rem;
   text-align: center;
-  line-height: 2.4rem;
+  line-height: 2rem;
   margin-right: .5rem;
 }
 .color-selector .color--active {
@@ -296,12 +297,12 @@
 }
 .color-selector .color-item {
   display: block;
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
 }
 .color-selector .more {
   border: 1px solid #000;
-  font-size: 4rem;
+  font-size: 3rem;
   transform: scale(0.8);
 }
