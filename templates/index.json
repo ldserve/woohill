@@ -28,8 +28,8 @@
         "title": "woohill",
         "subtitle": "VALENTINE'S DAY SALE",
         "button": "SHOP NOW",
-        "text_top": 34,
-        "text_left": 24,
+        "text_top": 28,
+        "text_left": 23,
         "title_size": 19,
         "big_title_size": 38,
         "text_color": "#ffffff",
@@ -183,6 +183,7 @@
         "16425010102ac2f6a5-0"
       ],
       "settings": {
+        "image": "shopify:\/\/shop_images\/PC-__04_291f3c7a-1f8d-4750-92fb-baf44bcecea6.jpg",
         "is_show": true,
         "title": "Text",
         "subtitle": "Text block",
@@ -198,6 +199,67 @@
         "button_color_hover": "#fff",
         "button_text_color_hover": "#000"
       }
+    },
+    "164250311826bdc728": {
+      "type": "ld-product-silder",
+      "settings": {
+        "collection": "",
+        "products_to_show": 4,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false
+      }
+    },
+    "16425031377a5e1b5e": {
+      "type": "image-banner",
+      "blocks": {
+        "16425031361195d2fe-0": {
+          "type": "heading",
+          "settings": {
+            "heading": "Woohill’s Mission",
+            "heading_size": "medium"
+          }
+        },
+        "16425031361195d2fe-1": {
+          "type": "text",
+          "settings": {
+            "text": "Woohill’s mission is to make all customers better through passion, design and the relentless pursuit of innovation Where we started? It all started with an idea to build a superior Clothes",
+            "text_style": "body"
+          }
+        },
+        "16425031361195d2fe-2": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "16425031361195d2fe-0",
+        "16425031361195d2fe-1",
+        "16425031361195d2fe-2"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/PC-__06_6263f2ae-8cb0-4953-b32d-07a4df0cbcf7.jpg",
+        "image_2": "shopify:\/\/shop_images\/PC-__06_6263f2ae-8cb0-4953-b32d-07a4df0cbcf7.jpg",
+        "image_overlay_opacity": 30,
+        "image_height": "medium",
+        "adapt_height_first_image": true,
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "color_scheme": "background-1",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true
+      }
     }
   },
   "order": [
@@ -207,6 +269,8 @@
     "1641974007df809541",
     "164198619658c9b25f",
     "1642062280e7be15bf",
-    "164250101104a505b9"
+    "164250101104a505b9",
+    "164250311826bdc728",
+    "16425031377a5e1b5e"
   ]
 }
