@@ -22,22 +22,22 @@
         "16419682091433c6e9-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__02.jpg",
         "mobile_image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
         "is_show": true,
-        "title": "Text",
-        "subtitle": "Text block",
+        "title": "woohill",
+        "subtitle": "VALENTINE'S DAY SALE",
         "button": "SHOP NOW",
-        "text_top": 0,
-        "text_left": 0,
-        "title_size": 12,
-        "big_title_size": 22,
-        "text_color": "#fff",
+        "text_top": 34,
+        "text_left": 12,
+        "title_size": 19,
+        "big_title_size": 38,
+        "text_color": "#ffffff",
         "text_style": "normal",
         "button_color": "#ed6123",
-        "button_text_color": "#fff",
-        "button_color_hover": "#fff",
-        "button_text_color_hover": "#000"
+        "button_text_color": "#ffffff",
+        "button_color_hover": "#ffffff",
+        "button_text_color_hover": "#000000"
       }
     },
     "featured_products": {
