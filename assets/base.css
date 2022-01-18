@@ -780,6 +780,9 @@ summary::-webkit-details-marker {
   }
 }
 
+product-item{
+  display: block;
+}
 /* base-focus */
 /*
   Focus ring - default (with offset)
@@ -2455,6 +2458,7 @@ details-disclosure > details {
   border-radius: var(--badge-corner-radius);
   display: inline-block;
   font-size: 1.5rem;
+  padding: .3rem .6rem;
   letter-spacing: 0.1rem;
   line-height: 1;
   text-align: center;
