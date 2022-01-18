@@ -29,7 +29,7 @@
         "subtitle": "VALENTINE'S DAY SALE",
         "button": "SHOP NOW",
         "text_top": 34,
-        "text_left": 12,
+        "text_left": 24,
         "title_size": 19,
         "big_title_size": 38,
         "text_color": "#ffffff",
@@ -160,6 +160,44 @@
         "show_vendor": false,
         "show_rating": false
       }
+    },
+    "164250101104a505b9": {
+      "type": "imageText",
+      "blocks": {
+        "16425010102ac2f6a5-0": {
+          "type": "banner",
+          "settings": {
+            "top": 0,
+            "width": 0,
+            "left": 0,
+            "height": 0,
+            "link": "",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        }
+      },
+      "block_order": [
+        "16425010102ac2f6a5-0"
+      ],
+      "settings": {
+        "is_show": true,
+        "title": "Text",
+        "subtitle": "Text block",
+        "button": "SHOP NOW",
+        "text_top": 0,
+        "text_left": 0,
+        "title_size": 12,
+        "big_title_size": 22,
+        "text_color": "#fff",
+        "text_style": "normal",
+        "button_color": "#ed6123",
+        "button_text_color": "#fff",
+        "button_color_hover": "#fff",
+        "button_text_color_hover": "#000"
+      }
     }
   },
   "order": [
@@ -168,6 +206,7 @@
     "1641973313e37a8096",
     "1641974007df809541",
     "164198619658c9b25f",
-    "1642062280e7be15bf"
+    "1642062280e7be15bf",
+    "164250101104a505b9"
   ]
 }
