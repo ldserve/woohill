@@ -209,7 +209,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__04_c6b0cf92-b35b-496a-ac0b-cda920dd5ec7.jpg",
         "mobile_image": "shopify:\/\/shop_images\/PC-__04_c6b0cf92-b35b-496a-ac0b-cda920dd5ec7.jpg",
-        "is_show": true,
+        "is_show": false,
         "title": "",
         "subtitle": "",
         "button": "",
