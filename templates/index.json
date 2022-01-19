@@ -62,7 +62,7 @@
         "16419682091433c6e9-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__03.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__05_54288d95-0a78-4c58-915c-e19b438402ca.jpg",
         "mobile_image": "shopify:\/\/shop_images\/M__03.jpg",
         "is_show": false,
         "title": "",
@@ -230,16 +230,29 @@
       "settings": {
         "title": "",
         "content": "",
-        "image": "shopify:\/\/shop_images\/PC-__07_b8e3e9f1-5f09-4a17-8560-fdc0492387b8.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__09_2d666de3-e645-4a5c-8fbb-a8a05ae1c2ab.jpg",
         "link": "shopify:\/\/collections\/new-in",
         "collection": "new-in",
-        "image_two": "shopify:\/\/shop_images\/PC-__09.jpg",
+        "image_two": "shopify:\/\/shop_images\/PC-__11.jpg",
         "link_two": "shopify:\/\/collections\/hot-sale",
         "collection_two": "hot-sale",
         "image_ratio": "adapt",
         "show_secondary_image": true,
         "show_vendor": false,
-        "show_rating": false
+        "show_rating": false,
+        "ld_title": "",
+        "subtitle": "NEW IN",
+        "button": "SHOP NOW",
+        "text_top": 38,
+        "text_left": 50,
+        "title_size": 12,
+        "big_title_size": 50,
+        "text_color": "#fff",
+        "text_style": "normal",
+        "button_color": "#ed6123",
+        "button_text_color": "#fff",
+        "button_color_hover": "#fff",
+        "button_text_color_hover": "#000"
       }
     },
     "1642579409fa3dafd6": {
