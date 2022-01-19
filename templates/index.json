@@ -32,12 +32,12 @@
         "text_left": 0,
         "title_size": 12,
         "big_title_size": 22,
-        "text_color": "#fff",
+        "text_color": "#ffffff",
         "text_style": "normal",
         "button_color": "#ed6123",
-        "button_text_color": "#fff",
-        "button_color_hover": "#fff",
-        "button_text_color_hover": "#000"
+        "button_text_color": "#ffffff",
+        "button_color_hover": "#ffffff",
+        "button_text_color_hover": "#000000"
       }
     },
     "1641968209b8bb0cb6": {
@@ -47,14 +47,14 @@
           "type": "banner",
           "settings": {
             "top": 0,
-            "width": 0,
+            "width": 100,
             "left": 0,
-            "height": 0,
-            "link": "",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "height": 100,
+            "link": "shopify:\/\/collections\/hot-sale",
+            "mobile_top": 0,
+            "mobile_width": 100,
+            "mobile_left": 0,
+            "mobile_height": 100
           }
         }
       },
@@ -63,8 +63,8 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__03.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
-        "is_show": true,
+        "mobile_image": "shopify:\/\/shop_images\/M__03.jpg",
+        "is_show": false,
         "title": "",
         "subtitle": "",
         "button": "",
@@ -86,11 +86,109 @@
         "1642579387d49fb479-0": {
           "type": "banner",
           "settings": {
-            "top": 0,
-            "width": 0,
-            "left": 0,
-            "height": 0,
-            "link": "",
+            "top": 17,
+            "width": 14,
+            "left": 22,
+            "height": 28,
+            "link": "shopify:\/\/collections\/long-sleeve",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        },
+        "2bd0c485-1161-4e58-a095-4c7a2a83438d": {
+          "type": "banner",
+          "settings": {
+            "top": 17,
+            "width": 15,
+            "left": 39,
+            "height": 28,
+            "link": "shopify:\/\/collections\/short-sleeve",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        },
+        "b6061246-f835-41b5-8112-038b9f13e3ea": {
+          "type": "banner",
+          "settings": {
+            "top": 17,
+            "width": 14,
+            "left": 57,
+            "height": 28,
+            "link": "shopify:\/\/collections\/hoodie",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        },
+        "a66c5ce2-4c0d-45b7-9873-eb7a99c299a1": {
+          "type": "banner",
+          "settings": {
+            "top": 17,
+            "width": 14,
+            "left": 76,
+            "height": 28,
+            "link": "shopify:\/\/collections\/pant",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        },
+        "f2314d3f-4777-4dd2-b4e3-f9fb7db5ffa5": {
+          "type": "banner",
+          "settings": {
+            "top": 50,
+            "width": 14,
+            "left": 22,
+            "height": 28,
+            "link": "shopify:\/\/collections\/jewelry",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        },
+        "ef071313-fd7d-4c5f-b1b0-c37bd1fc636e": {
+          "type": "banner",
+          "settings": {
+            "top": 50,
+            "width": 15,
+            "left": 39,
+            "height": 28,
+            "link": "shopify:\/\/collections\/cap-hat",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        },
+        "6083c6f1-c1cc-470d-a953-a1f67cb99aaa": {
+          "type": "banner",
+          "settings": {
+            "top": 50,
+            "width": 14,
+            "left": 57,
+            "height": 27,
+            "link": "shopify:\/\/collections\/usa-flag",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        },
+        "69c0c05d-a763-42f8-bc6e-1c2cacc65f00": {
+          "type": "banner",
+          "settings": {
+            "top": 50,
+            "width": 14,
+            "left": 76,
+            "height": 28,
+            "link": "shopify:\/\/collections\/camouflage",
             "mobile_top": 16,
             "mobile_width": 16,
             "mobile_left": 16,
@@ -99,11 +197,18 @@
         }
       },
       "block_order": [
-        "1642579387d49fb479-0"
+        "1642579387d49fb479-0",
+        "2bd0c485-1161-4e58-a095-4c7a2a83438d",
+        "b6061246-f835-41b5-8112-038b9f13e3ea",
+        "a66c5ce2-4c0d-45b7-9873-eb7a99c299a1",
+        "f2314d3f-4777-4dd2-b4e3-f9fb7db5ffa5",
+        "ef071313-fd7d-4c5f-b1b0-c37bd1fc636e",
+        "6083c6f1-c1cc-470d-a953-a1f67cb99aaa",
+        "69c0c05d-a763-42f8-bc6e-1c2cacc65f00"
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__04_c6b0cf92-b35b-496a-ac0b-cda920dd5ec7.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/PC-__04_c6b0cf92-b35b-496a-ac0b-cda920dd5ec7.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__04_73f17201-de9c-4ddb-8145-a7a48e879e10.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -112,19 +217,19 @@
         "text_left": 0,
         "title_size": 12,
         "big_title_size": 22,
-        "text_color": "#fff",
+        "text_color": "#ffffff",
         "text_style": "normal",
         "button_color": "#ed6123",
-        "button_text_color": "#fff",
-        "button_color_hover": "#fff",
-        "button_text_color_hover": "#000"
+        "button_text_color": "#ffffff",
+        "button_color_hover": "#ffffff",
+        "button_text_color_hover": "#000000"
       }
     },
     "1641974007df809541": {
       "type": "ld-product-tab",
       "settings": {
-        "title": "title",
-        "content": "content",
+        "title": "",
+        "content": "",
         "image": "shopify:\/\/shop_images\/PC-__07_b8e3e9f1-5f09-4a17-8560-fdc0492387b8.jpg",
         "link": "shopify:\/\/collections\/new-in",
         "collection": "new-in",
@@ -144,14 +249,14 @@
           "type": "banner",
           "settings": {
             "top": 0,
-            "width": 0,
+            "width": 100,
             "left": 0,
-            "height": 0,
+            "height": 100,
             "link": "shopify:\/\/collections\/jewelry",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 0,
+            "mobile_width": 100,
+            "mobile_left": 0,
+            "mobile_height": 100
           }
         }
       },
@@ -160,7 +265,7 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__15.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/PC-__15.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__13.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -169,19 +274,19 @@
         "text_left": 0,
         "title_size": 12,
         "big_title_size": 22,
-        "text_color": "#fff",
+        "text_color": "#ffffff",
         "text_style": "normal",
         "button_color": "#ed6123",
-        "button_text_color": "#fff",
-        "button_color_hover": "#fff",
-        "button_text_color_hover": "#000"
+        "button_text_color": "#ffffff",
+        "button_color_hover": "#ffffff",
+        "button_text_color_hover": "#000000"
       }
     },
     "164198619658c9b25f": {
       "type": "ld-product-silder",
       "settings": {
         "banner": "shopify:\/\/shop_images\/PC-__16_c48c3f20-e98c-4a4d-a681-0a572fa56fe0.jpg",
-        "collection": "accessories",
+        "collection": "hot-sale",
         "products_to_show": 12,
         "image_ratio": "adapt",
         "show_secondary_image": true,
@@ -247,7 +352,7 @@
       ],
       "settings": {
         "products_to_show": 4,
-        "image": "shopify:\/\/shop_images\/Snipaste_2022-01-13_15-46-21.png",
+        "image": "shopify:\/\/shop_images\/M__14.jpg",
         "link": "",
         "image_ratio": "adapt",
         "show_secondary_image": false,
@@ -278,7 +383,7 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__19.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/PC-__19.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__16.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
