@@ -143,6 +143,7 @@
     .Slide-{{ section.id }} .tab-banner-item{
        width: 50%;
        overflow: hidden;
+       position: relative;
     }
     .Slide-{{ section.id }} .tab-banner-item img{
        width: 100%;
@@ -154,6 +155,39 @@
     .Slide-{{ section.id }} .collection-two{
         display: none;
     }
+    #shopify-section-{{ section.id }}  .title {
+    position: absolute;
+    font-family: Cambria, Cochin,"MV Boli","MingLiU_HKSCS-ExtB", "MingLiU-ExtB","Georgia","Candara","黑体",serif;
+    top: {{section.settings.text_top}}%;
+    left: {{section.settings.text_left}}%;
+  }
+
+  #shopify-section-{{ section.id }}  .title .btn {
+    width: 180px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: {{section.settings.button_color}};
+    color:{{section.settings.button_text_color}};
+  }
+
+  #shopify-section-{{ section.id }} .title .title-item {
+    font-size: {{section.settings.title_size}}px;
+    color: {{section.settings.text_color}};
+    font-weight: {{section.settings.text_style}};
+  }
+
+  #shopify-section-{{ section.id }}  .title .title-big-title {
+    font-size: {{section.settings.big_title_size}}px;
+    color: {{section.settings.text_color}};
+    font-weight: {{section.settings.text_style}};
+    padding: 10px 0px;
+  }
+
+  #shopify-section-{{ section.id }}  .title .btn:hover {
+    background-color: {{section.settings.button_color_hover}};
+    color:{{section.settings.button_text_color_hover}};
+  }
 </style>
 <div class="swiper-tab Slide-{{ section.id }}">
     <div class="swiper-header">
@@ -161,7 +195,7 @@
        <p class="swiper-content">{{section.settings.content}}</p>
     </div>
     <div class="tab-banner ">
-        <div class="tab-banner-item">
+        <div class="tab-banner-item" style="margin-right: 10px;">
             <a href="{{section.settings.link.url}}">
                 <img class="lazyload img_item" srcset="{%- if section.settings.image.width >= 550 -%}{{ section.settings.image | img_url: '550x' }} 550w,{%- endif -%}
                           {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
@@ -173,8 +207,19 @@
                           {{ section.settings.image | img_url: 'master' }} {{ section.settings.image.width }}w"
                     src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
             </a>
+            <div class="title">
+                {% if section.settings.title %}
+                <div class="title-item">{{section.settings.ld_title}}</div>
+                {% endif %}
+                {% if section.settings.subtitle %}
+                <div class="title-big-title">{{section.settings.subtitle}}</div>
+                {% endif %}
+                {% if section.settings.button %}
+                <div class="btn">{{section.settings.button}}</div>
+                {% endif %}
+              </div>
         </div>
-        <div class="tab-banner-item">
+        <div class="tab-banner-item" style="margin-left: 10px;">
             <a href="{{section.settings.link_two.url}}">
                 <img class="lazyload img_item" srcset="{%- if section.settings.image_two.width >= 550 -%}{{ section.settings.image_two | img_url: '550x' }} 550w,{%- endif -%}
             {%- if section.settings.image_two.width >= 720 -%}{{ section.settings.image_two | img_url: '720x' }} 720w,{%- endif -%}
@@ -186,6 +231,17 @@
             {{ section.settings.image_two | img_url: 'master' }} {{ section.settings.image_two.width }}w"
                     src="{{ section.settings.image_two | img_url: '1500x' }}" data-sizes="auto" />
             </a>
+            <div class="title">
+                {% if section.settings.title %}
+                <div class="title-item">{{section.settings.ld_title}}</div>
+                {% endif %}
+                {% if section.settings.subtitle %}
+                <div class="title-big-title">{{section.settings.subtitle}}</div>
+                {% endif %}
+                {% if section.settings.button %}
+                <div class="btn">{{section.settings.button}}</div>
+                {% endif %}
+              </div>
         </div>
     </div>
     <div class="swiper">
@@ -457,7 +513,117 @@
 "default": false,
 "label": "t:sections.featured-collection.settings.show_rating.label",
 "info": "t:sections.featured-collection.settings.show_rating.info"
-}
+},
+{
+    "type": "text",
+    "id": "ld_title",
+    "default": "Text",
+    "label": "标题"
+    },
+    {
+    "type": "text",
+    "id": "subtitle",
+    "default": "Text block",
+    "label": "主标题"
+    },
+    {
+    "type": "text",
+    "id": "button",
+    "default": "SHOP NOW",
+    "label": "按钮"
+    },
+    {
+    "type": "range",
+    "id": "text_top",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "%",
+    "label": "文字布局top",
+    "default": 0
+    }, {
+    "type": "range",
+    "id": "text_left",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "%",
+    "label": "文字布局left",
+    "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "小标题文字大小",
+      "default": 12
+      }, {
+      "type": "range",
+      "id": "big_title_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "大标题文字大小",
+      "default": 22
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "default": "#fff",
+        "label": "标题字体色"
+      },
+      {
+        "type": "select",
+        "id": "text_style",
+        "options": [
+          {
+            "value": "lighter",
+            "label": "细"
+          },
+          {
+            "value": "normal",
+            "label": "常规"
+          },
+          {
+            "value": "bold",
+            "label": "粗体"
+          },
+          {
+            "value": "bolder",
+            "label": "加粗"
+          }
+        ],
+        "default": "normal",
+        "label": "标题文字粗细"
+      },
+    {
+      "type": "color",
+      "id": "button_color",
+      "default": "#ed6123",
+      "label": "按钮背景色"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "default": "#fff",
+      "label": "按钮字体色"
+    },
+    {
+      "type": "color",
+      "id": "button_color_hover",
+      "default": "#fff",
+      "label": "按钮交互背景色"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color_hover",
+      "default": "#000",
+      "label": "按钮交互字体色"
+    }
 ],
 "presets": [
 {
