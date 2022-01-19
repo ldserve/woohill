@@ -283,7 +283,6 @@
     },
     "164250101104a505b9": {
       "type": "imageText",
-      "disabled": true,
       "blocks": {
         "16425010102ac2f6a5-0": {
           "type": "banner",
@@ -304,11 +303,12 @@
         "16425010102ac2f6a5-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__04_291f3c7a-1f8d-4750-92fb-baf44bcecea6.jpg",
-        "is_show": true,
-        "title": "Text",
-        "subtitle": "Text block",
-        "button": "SHOP NOW",
+        "image": "shopify:\/\/shop_images\/PC-__19.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/PC-__19.jpg",
+        "is_show": false,
+        "title": "",
+        "subtitle": "",
+        "button": "",
         "text_top": 26,
         "text_left": 9,
         "title_size": 12,
@@ -336,6 +336,7 @@
     },
     "16425031377a5e1b5e": {
       "type": "image-banner",
+      "disabled": true,
       "blocks": {
         "16425031361195d2fe-0": {
           "type": "heading",
