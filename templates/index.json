@@ -247,12 +247,12 @@
         "text_left": 35,
         "title_size": 12,
         "big_title_size": 33,
-        "text_color": "#fff",
+        "text_color": "#ffffff",
         "text_style": "normal",
         "button_color": "#ed6123",
-        "button_text_color": "#fff",
-        "button_color_hover": "#fff",
-        "button_text_color_hover": "#000"
+        "button_text_color": "#ffffff",
+        "button_color_hover": "#ffffff",
+        "button_text_color_hover": "#000000"
       }
     },
     "1642579409fa3dafd6": {
@@ -278,7 +278,7 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__15.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__13.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__13_945412c1-282c-46f9-86ae-dcbb40c03829.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
