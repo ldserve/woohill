@@ -163,14 +163,54 @@
         "show_rating": false
       }
     },
+    "1642579409fa3dafd6": {
+      "type": "imageText",
+      "blocks": {
+        "1642579409b14e4668-0": {
+          "type": "banner",
+          "settings": {
+            "top": 0,
+            "width": 0,
+            "left": 0,
+            "height": 0,
+            "link": "shopify:\/\/collections\/jewelry",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
+        }
+      },
+      "block_order": [
+        "1642579409b14e4668-0"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/PC-__13.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/PC-__13.jpg",
+        "is_show": false,
+        "title": "",
+        "subtitle": "",
+        "button": "",
+        "text_top": 0,
+        "text_left": 0,
+        "title_size": 12,
+        "big_title_size": 22,
+        "text_color": "#fff",
+        "text_style": "normal",
+        "button_color": "#ed6123",
+        "button_text_color": "#fff",
+        "button_color_hover": "#fff",
+        "button_text_color_hover": "#000"
+      }
+    },
     "164198619658c9b25f": {
       "type": "ld-product-silder",
       "settings": {
-        "banner": "shopify:\/\/shop_images\/1.png",
+        "banner": "shopify:\/\/shop_images\/PC-__16_c48c3f20-e98c-4a4d-a681-0a572fa56fe0.jpg",
         "collection": "accessories",
         "products_to_show": 12,
         "image_ratio": "adapt",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false
       }
@@ -243,6 +283,7 @@
     },
     "164250101104a505b9": {
       "type": "imageText",
+      "disabled": true,
       "blocks": {
         "16425010102ac2f6a5-0": {
           "type": "banner",
@@ -282,6 +323,7 @@
     },
     "164250311826bdc728": {
       "type": "ld-product-silder",
+      "disabled": true,
       "settings": {
         "banner": "shopify:\/\/shop_images\/PC-__07.jpg",
         "collection": "hoodie",
@@ -350,6 +392,7 @@
     "featured_products",
     "1641973313e37a8096",
     "1641974007df809541",
+    "1642579409fa3dafd6",
     "164198619658c9b25f",
     "1642062280e7be15bf",
     "164250101104a505b9",
