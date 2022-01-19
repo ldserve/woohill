@@ -253,10 +253,10 @@
             "left": 0,
             "height": 100,
             "link": "shopify:\/\/collections\/jewelry",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 0,
+            "mobile_width": 100,
+            "mobile_left": 0,
+            "mobile_height": 100
           }
         }
       },
