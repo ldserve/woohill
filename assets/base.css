@@ -1013,7 +1013,7 @@ product-item{
     padding-left: var(--grid-desktop-horizontal-spacing);
     padding-bottom: var(--grid-desktop-vertical-spacing);
     width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
-    max-width: 50%;
+    max-width: 33.33%;
   }
 }
 
