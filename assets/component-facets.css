@@ -7,6 +7,7 @@
 .facet-filters-box .facet-filters-box-title {
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
   font-size: 2rem;
   line-height: 3rem;
   border-bottom: 1px solid #ccc;
@@ -546,6 +547,7 @@ a.active-facets__button.focused .active-facets__button-inner,
   left: 0;
   right: 0;
   bottom: 0;
+  inset: 0;
   z-index: 100;
   background-color: rgba(var(--color-foreground), 0.5);
   pointer-events: none;

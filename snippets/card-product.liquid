@@ -146,7 +146,7 @@
               </div>
               </div>
               <div class="color-selector">
-                {%- for color in card_product.options_by_name['Color'].values limit:5 -%}
+                {%- for color in card_product.options_by_name['Color'].values limit:4 -%}
                   {%- for variant in card_product.variants -%}
                       {%- if variant.option1 == color -%}
                       {%- assign cur_variant = variant -%}
@@ -178,7 +178,7 @@
                           </span>
                         </div>
                 {% endfor %}
-                {%- if card_product.options_by_name['Color'].values.size > 5 -%}
+                {%- if card_product.options_by_name['Color'].values.size > 4 -%}
                   <div class="more" >
                     <span class="color-item" title="more">+</span>
                   </div>

@@ -277,13 +277,21 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+@media screen and (max-width: 749px) {
+  .grade-and-price {
+    display: block;
+  }
+  .grade-and-price > div {
+    text-align: left;
+  }
+}
 .color-selector {
   display: flex;
   flex-wrap: wrap;
 }
 .color-selector > div {
   padding: .2rem;
-  border: .2rem solid #ebebeb;
+  border: .1rem solid #ebebeb;
   border-radius: 2px;
   display: block;
   text-align: center;

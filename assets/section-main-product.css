@@ -207,7 +207,7 @@ fieldset.product-img__input .form__label {
   position: relative;
 }
 .product-form__input input[type='radio'] + label {
-  border: .2rem solid rgba(var(--color-foreground), .1);
+  border: .1rem solid rgba(var(--color-foreground), .1);
   background-color: rgb(var(--color-background));
   color: rgba(var(--color-foreground));
   color: rgb(var(--color-foreground));
