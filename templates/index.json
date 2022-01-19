@@ -64,7 +64,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__03.jpg",
         "mobile_image": "shopify:\/\/shop_images\/M__03.jpg",
-        "is_show": true,
+        "is_show": false,
         "title": "",
         "subtitle": "",
         "button": "",
