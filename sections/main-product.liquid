@@ -842,7 +842,7 @@
     </div>
   </div>
 
-  <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">
+  <product-modal id="ProductModal-{{ section.id }}" class="aaa product-media-modal media-modal">
     <div class="product-media-modal__dialog" role="dialog" aria-label="{{ 'products.modal.label' | t }}"
       aria-modal="true" tabindex="-1">
       <button id="ModalClose-{{ section.id }}" type="button" class="product-media-modal__toggle"
@@ -1467,6 +1467,7 @@
     document.querySelector("body").insertAdjacentHTML('beforeEnd', sizeGuideHtml);
     document.querySelector(".sizeGuideBtn").addEventListener("click", function () {
       document.querySelector(".size-guide-fixed").style.display = "block";
+      document.body.classList.add('overflow-hidden');
     });
     const sizes = document.querySelectorAll(".size-select-wrap .size-select")
     sizes.forEach((item) => {
@@ -1475,7 +1476,6 @@
         sizes.forEach((i) => {
           i.classList.remove('selected')
         })
-        // item.classList.add("selected");
         document.querySelectorAll(".size-detail").forEach((el) => {
           el.classList.remove("selected");
         })
@@ -1483,12 +1483,13 @@
         document.querySelector('[data-content=' + select + ']').classList.add("selected");
       };
     })
-    console.log(document.querySelector(".size-guide-fixed,.size-close"));
     document.querySelector(".size-guide-fixed").onclick = function () {
       document.querySelector(".size-guide-fixed").style.display = "none";
+      document.body.classList.remove('overflow-hidden');
     };
     document.querySelector(".size-close").onclick = function () {
       document.querySelector(".size-guide-fixed").style.display = "none";
+      document.body.classList.remove('overflow-hidden');
     };
     document.querySelector(".size-guide-wrap").onclick = function (e) {
       e.preventDefault();
