@@ -51,9 +51,9 @@
             "left": 0,
             "height": 100,
             "link": "shopify:\/\/collections\/hot-sale",
-            "mobile_top": 16,
+            "mobile_top": 0,
             "mobile_width": 100,
-            "mobile_left": 16,
+            "mobile_left": 0,
             "mobile_height": 100
           }
         }
@@ -63,8 +63,8 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__03.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
-        "is_show": false,
+        "mobile_image": "shopify:\/\/shop_images\/M__03.jpg",
+        "is_show": true,
         "title": "",
         "subtitle": "",
         "button": "",
