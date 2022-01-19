@@ -16,14 +16,29 @@
             "mobile_left": 16,
             "mobile_height": 16
           }
+        },
+        "0eb517b4-0694-49a2-a6e6-d1153b80fbce": {
+          "type": "banner",
+          "settings": {
+            "top": 0,
+            "width": 0,
+            "left": 0,
+            "height": 0,
+            "link": "",
+            "mobile_top": 16,
+            "mobile_width": 16,
+            "mobile_left": 16,
+            "mobile_height": 16
+          }
         }
       },
       "block_order": [
-        "1642579235ddb88999-0"
+        "1642579235ddb88999-0",
+        "0eb517b4-0694-49a2-a6e6-d1153b80fbce"
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__03_e31459d3-2850-43bc-9c4f-ca62c8592636.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/PC-__02_8075fbf1-88b9-439b-a1a2-01850d2413a3.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__02.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -63,8 +78,8 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__03.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/TC-_PC__01.jpg",
-        "is_show": true,
+        "mobile_image": "shopify:\/\/shop_images\/M__03.jpg",
+        "is_show": false,
         "title": "",
         "subtitle": "",
         "button": "",
@@ -103,7 +118,7 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__04_c6b0cf92-b35b-496a-ac0b-cda920dd5ec7.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/PC-__04_c6b0cf92-b35b-496a-ac0b-cda920dd5ec7.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__04.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -160,7 +175,7 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__15.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/PC-__15.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__13.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -247,7 +262,7 @@
       ],
       "settings": {
         "products_to_show": 4,
-        "image": "shopify:\/\/shop_images\/Snipaste_2022-01-13_15-46-21.png",
+        "image": "shopify:\/\/shop_images\/M__14.jpg",
         "link": "",
         "image_ratio": "adapt",
         "show_secondary_image": false,
@@ -278,7 +293,7 @@
       ],
       "settings": {
         "image": "shopify:\/\/shop_images\/PC-__19.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/PC-__19.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__16.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
