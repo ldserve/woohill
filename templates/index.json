@@ -151,14 +151,14 @@
       "settings": {
         "title": "title",
         "content": "content",
-        "image": "shopify:\/\/shop_images\/mens-watch-and-ring.jpg",
-        "link": "shopify:\/\/collections\/accessories",
-        "collection": "accessories",
-        "image_two": "shopify:\/\/shop_images\/runner-stretching-arms-in-sun.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__07_b8e3e9f1-5f09-4a17-8560-fdc0492387b8.jpg",
+        "link": "shopify:\/\/collections\/hoodies-sweatshirts",
+        "collection": "hoodies-sweatshirts",
+        "image_two": "shopify:\/\/shop_images\/PC-__09.jpg",
         "link_two": "shopify:\/\/collections\/hoodie",
         "collection_two": "hoodie",
         "image_ratio": "adapt",
-        "show_secondary_image": false,
+        "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false
       }
