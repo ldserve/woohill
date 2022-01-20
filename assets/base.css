@@ -230,13 +230,13 @@ html.no-js .no-js-hidden {
 
 @media screen and (min-width: 750px) {
   .page-width {
-    padding: 0 5rem;
+    padding: 0 2.5rem;
   }
   .page-width-right {
-    padding-right: 5rem;
+    padding-right: 2.5rem;
   }
   .page-width--narrow {
-    padding: 0 9rem;
+    padding: 0 4.5rem;
   }
 
   .page-width-desktop {
@@ -244,7 +244,7 @@ html.no-js .no-js-hidden {
   }
 
   .page-width-tablet {
-    padding: 0 5rem;
+    padding: 0 2.5rem;
   }
 }
 
@@ -2007,7 +2007,9 @@ input[type='checkbox'] {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-
+.header details {
+  position: unset ;
+}
 @media screen and (min-width: 990px) {
   .header {
     padding-top: 2rem;

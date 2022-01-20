@@ -142,68 +142,70 @@
                   </ul>
                 {% endcase %}
               {% when 'price_range' %}
-                {% liquid
-                  assign currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
-                  assign uses_comma_decimals = false
-                  if currencies_using_comma_decimals contains cart.currency.iso_code
-                    assign uses_comma_decimals = true
-                  endif
-                %}
-                <details id="Details-{{ forloop.index }}-{{ section.id }}" class="disclosure-has-popup facets__disclosure js-filter" data-index="{{ forloop.index }}">
-                  <summary class="facets__summary caption-large focus-offset">
-                    <div>
-                      <span>{{ filter.label | escape }}</span>
-                      {% render 'icon-caret' %}
-                    </div>
-                  </summary>
-                  <div id="Facet-{{ forloop.index }}-{{ section.id }}" class="facets__display">
-                    <div class="facets__header">
-                      {%- assign max_price_amount = filter.range_max | money | strip_html | escape -%}
-                      <span class="facets__selected">{{ "products.facets.max_price" | t: price: max_price_amount }}</span>
-                      <facet-remove>
-                        <a href="{{ filter.url_to_remove }}" class="facets__reset link underlined-link" >
-                          {{ 'products.facets.reset' | t }}
-                        </a>
-                      </facet-remove>
-                    </div>
-                    <price-range class="facets__price">
-                      <span class="field-currency">{{ cart.currency.symbol }}</span>
-                      <div class="field">
-                        <input class="field__input"
-                          name="{{ filter.min_value.param_name }}"
-                          id="Filter-{{ filter.label | escape }}-GTE"
-                          {%- if filter.min_value.value -%}
-                            {%- if uses_comma_decimals -%}value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                          {%- endif -%}
-                          type="number"
-                          placeholder="0"
-                          min="0"
-                          {%- if uses_comma_decimals -%}max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"{% endif %}
-                        >
-                        <label class="field__label" for="Filter-{{ filter.label | escape }}-GTE">{{ 'products.facets.from' | t }}</label>
+                {%- comment -%}
+                  {% liquid
+                    assign currencies_using_comma_decimals = 'ANG,ARS,BRL,BYN,BYR,CLF,CLP,COP,CRC,CZK,DKK,EUR,HRK,HUF,IDR,ISK,MZN,NOK,PLN,RON,RUB,SEK,TRY,UYU,VES,VND' | split: ','
+                    assign uses_comma_decimals = false
+                    if currencies_using_comma_decimals contains cart.currency.iso_code
+                      assign uses_comma_decimals = true
+                    endif
+                  %}
+                  <details id="Details-{{ forloop.index }}-{{ section.id }}" class="disclosure-has-popup facets__disclosure js-filter" data-index="{{ forloop.index }}">
+                    <summary class="facets__summary caption-large focus-offset">
+                      <div>
+                        <span>{{ filter.label | escape }}</span>
+                        {% render 'icon-caret' %}
                       </div>
-                      <span class="field-currency">{{ cart.currency.symbol }}</span>
-                      <div class="field">
-                        <input class="field__input"
-                          name="{{ filter.max_value.param_name }}"
-                          id="Filter-{{ filter.label | escape }}-LTE"
-                          {%- if filter.max_value.value -%}{%- if uses_comma_decimals -%}value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
-                          {%- endif -%}
-                          type="number"
-                          min="0"
-                          {%- if uses_comma_decimals -%}
-                            placeholder="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
-                            max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
-                          {%- else -%}
-                            placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                            max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
-                          {% endif %}
-                        >
-                        <label class="field__label" for="Filter-{{ filter.label | escape }}-LTE">{{ 'products.facets.to' | t }}</label>
+                    </summary>
+                    <div id="Facet-{{ forloop.index }}-{{ section.id }}" class="facets__display">
+                      <div class="facets__header">
+                        {%- assign max_price_amount = filter.range_max | money | strip_html | escape -%}
+                        <span class="facets__selected">{{ "products.facets.max_price" | t: price: max_price_amount }}</span>
+                        <facet-remove>
+                          <a href="{{ filter.url_to_remove }}" class="facets__reset link underlined-link" >
+                            {{ 'products.facets.reset' | t }}
+                          </a>
+                        </facet-remove>
                       </div>
-                    </price-range>
-                  </div>
-                </details>
+                      <price-range class="facets__price">
+                        <span class="field-currency">{{ cart.currency.symbol }}</span>
+                        <div class="field">
+                          <input class="field__input"
+                            name="{{ filter.min_value.param_name }}"
+                            id="Filter-{{ filter.label | escape }}-GTE"
+                            {%- if filter.min_value.value -%}
+                              {%- if uses_comma_decimals -%}value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                            {%- endif -%}
+                            type="number"
+                            placeholder="0"
+                            min="0"
+                            {%- if uses_comma_decimals -%}max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"{% endif %}
+                          >
+                          <label class="field__label" for="Filter-{{ filter.label | escape }}-GTE">{{ 'products.facets.from' | t }}</label>
+                        </div>
+                        <span class="field-currency">{{ cart.currency.symbol }}</span>
+                        <div class="field">
+                          <input class="field__input"
+                            name="{{ filter.max_value.param_name }}"
+                            id="Filter-{{ filter.label | escape }}-LTE"
+                            {%- if filter.max_value.value -%}{%- if uses_comma_decimals -%}value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"{%- else -%}value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"{% endif %}
+                            {%- endif -%}
+                            type="number"
+                            min="0"
+                            {%- if uses_comma_decimals -%}
+                              placeholder="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                              max="{{ filter.range_max | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                            {%- else -%}
+                              placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                              max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                            {% endif %}
+                          >
+                          <label class="field__label" for="Filter-{{ filter.label | escape }}-LTE">{{ 'products.facets.to' | t }}</label>
+                        </div>
+                      </price-range>
+                    </div>
+                  </details>
+                {%- endcomment -%}
               {% endcase %}
             {%- endfor -%}
             <noscript>
@@ -398,6 +400,7 @@
                   </ul>
                 {% endcase %}
                 {% when 'price_range' %}
+                {%- comment -%}
                   <details id="Details-Mobile-{{ forloop.index }}-{{ section.id }}" class="mobile-facets__details js-filter" data-index="mobile-{{ forloop.index }}">
                     <summary class="mobile-facets__summary focus-inset">
                       <div>
@@ -463,6 +466,7 @@
                       </div>
                     </div>
                   </details>
+                {%- endcomment -%}
                 {% endcase %}
               {%- endfor -%}
               <div class="mobile-facets__footer">
@@ -531,8 +535,8 @@
   i.addEventListener('click',function(e){
     let tragetHeight = i.parentElement.nextElementSibling.style.height
     if(!tragetHeight || tragetHeight == '0px'){
-      i.parentElement.nextElementSibling.style.height = 'auto'
-    }else if (tragetHeight == 'auto'){
+      i.parentElement.nextElementSibling.style.height = i.parentElement.nextElementSibling.scrollHeight + 'px'
+    }else if (tragetHeight && tragetHeight !== '0px'){
       i.parentElement.nextElementSibling.style.height = '0px'
     }
   })

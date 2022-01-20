@@ -1,5 +1,5 @@
-.facets-container {
-
+.facets-container details {
+  position: unset ;
 }
 .facet-filters-box {
   padding: 1rem 0;
@@ -240,7 +240,8 @@
 
 .facets__list {
   height: 0;
-  overflow: auto;
+  overflow: hidden;
+  transition: .2s ease-in-out;
 }
 .facets__list__color {
   display: flex;
@@ -259,6 +260,7 @@
   display: block;
   flex-grow: unset;
   border:.3rem solid #ebebeb
+
 }
 .facets__list__color .list-menu__item input:checked +label{
   border-color: #000;
@@ -725,7 +727,7 @@ details.menu-opening .mobile-facets__close svg {
 
 .mobile-facets__main {
   padding: 6rem 2rem 0rem 2rem;
-  position: relative;
+ /*  position: relative; */
   z-index: 1;
   flex-grow: 1;
   display: flex;
@@ -857,6 +859,7 @@ input.mobile-facets__checkbox {
   padding: 2rem;
   bottom: 0;
   position: sticky;
+  position: -webkit-sticky;
   display: flex;
   z-index: 2;
   margin-top: auto;
