@@ -216,12 +216,12 @@ html.no-js .no-js-hidden {
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
 }
 .page-width-right {
   max-width: var(--page-width);
   margin: 0 auto;
-  padding-right:1.5rem;
+  padding-right:2rem;
 }
 .page-width-desktop {
   padding: 0;
@@ -230,13 +230,13 @@ html.no-js .no-js-hidden {
 
 @media screen and (min-width: 750px) {
   .page-width {
-    padding: 0 2.5rem;
+    padding: 0 3.25rem;
   }
   .page-width-right {
-    padding-right: 2.5rem;
+    padding-right: 3.25rem;
   }
   .page-width--narrow {
-    padding: 0 4.5rem;
+    padding: 0 6.5rem;
   }
 
   .page-width-desktop {
@@ -244,7 +244,7 @@ html.no-js .no-js-hidden {
   }
 
   .page-width-tablet {
-    padding: 0 2.5rem;
+    padding: 0 3.25rem;
   }
 }
 
@@ -256,7 +256,7 @@ html.no-js .no-js-hidden {
 
   .page-width-desktop {
     max-width: var(--page-width);
-    padding: 0 5rem;
+    padding: 0 3.25rem;
   }
 }
 
