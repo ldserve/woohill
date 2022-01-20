@@ -310,11 +310,11 @@
     "1642062280e7be15bf": {
       "type": "ld-collection-list",
       "blocks": {
-        "164206228050a1dfc8-0": {
+        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a": {
           "type": "collection_list",
           "settings": {
-            "title": "cap",
-            "collection": "cap-hat",
+            "title": "HOODIES",
+            "collection": "hoodie",
             "link": "",
             "show_view_all": true
           }
@@ -322,8 +322,17 @@
         "0835e98f-6c40-4fc2-b663-5637aed751d5": {
           "type": "collection_list",
           "settings": {
-            "title": "bottoms",
+            "title": "BOTTOMS",
             "collection": "pant",
+            "link": "",
+            "show_view_all": true
+          }
+        },
+        "164206228050a1dfc8-0": {
+          "type": "collection_list",
+          "settings": {
+            "title": "CAP&HAT",
+            "collection": "cap-hat",
             "link": "",
             "show_view_all": true
           }
@@ -331,17 +340,8 @@
         "5603ccda-10c5-49a4-9b34-d316896dd966": {
           "type": "collection_list",
           "settings": {
-            "title": "accessories",
+            "title": "ACCESSORIES",
             "collection": "accessories",
-            "link": "",
-            "show_view_all": true
-          }
-        },
-        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a": {
-          "type": "collection_list",
-          "settings": {
-            "title": "hoodies",
-            "collection": "hoodie",
             "link": "",
             "show_view_all": true
           }
@@ -349,7 +349,7 @@
         "688d04e2-646d-4ee2-a43a-591d869ee96a": {
           "type": "collection_list",
           "settings": {
-            "title": "shorts",
+            "title": "SHORTS",
             "collection": "shorts",
             "link": "",
             "show_view_all": true
@@ -357,10 +357,10 @@
         }
       },
       "block_order": [
-        "164206228050a1dfc8-0",
-        "0835e98f-6c40-4fc2-b663-5637aed751d5",
-        "5603ccda-10c5-49a4-9b34-d316896dd966",
         "2f6cf7e7-457a-4a41-960e-5bc822b62c9a",
+        "0835e98f-6c40-4fc2-b663-5637aed751d5",
+        "164206228050a1dfc8-0",
+        "5603ccda-10c5-49a4-9b34-d316896dd966",
         "688d04e2-646d-4ee2-a43a-591d869ee96a"
       ],
       "settings": {
