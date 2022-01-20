@@ -94,7 +94,7 @@
             "mobile_top": 27,
             "mobile_width": 21,
             "mobile_left": 4,
-            "mobile_height": 22
+            "mobile_height": 30
           }
         },
         "2bd0c485-1161-4e58-a095-4c7a2a83438d": {
@@ -108,7 +108,7 @@
             "mobile_top": 27,
             "mobile_width": 21,
             "mobile_left": 28,
-            "mobile_height": 22
+            "mobile_height": 30
           }
         },
         "b6061246-f835-41b5-8112-038b9f13e3ea": {
@@ -122,7 +122,7 @@
             "mobile_top": 27,
             "mobile_width": 22,
             "mobile_left": 50,
-            "mobile_height": 22
+            "mobile_height": 30
           }
         },
         "a66c5ce2-4c0d-45b7-9873-eb7a99c299a1": {
@@ -136,7 +136,7 @@
             "mobile_top": 27,
             "mobile_width": 21,
             "mobile_left": 75,
-            "mobile_height": 22
+            "mobile_height": 30
           }
         },
         "f2314d3f-4777-4dd2-b4e3-f9fb7db5ffa5": {
@@ -150,7 +150,7 @@
             "mobile_top": 62,
             "mobile_width": 21,
             "mobile_left": 4,
-            "mobile_height": 21
+            "mobile_height": 26
           }
         },
         "ef071313-fd7d-4c5f-b1b0-c37bd1fc636e": {
@@ -164,7 +164,7 @@
             "mobile_top": 62,
             "mobile_width": 21,
             "mobile_left": 28,
-            "mobile_height": 21
+            "mobile_height": 26
           }
         },
         "6083c6f1-c1cc-470d-a953-a1f67cb99aaa": {
@@ -178,7 +178,7 @@
             "mobile_top": 62,
             "mobile_width": 22,
             "mobile_left": 50,
-            "mobile_height": 21
+            "mobile_height": 26
           }
         },
         "69c0c05d-a763-42f8-bc6e-1c2cacc65f00": {
@@ -192,7 +192,7 @@
             "mobile_top": 62,
             "mobile_width": 21,
             "mobile_left": 75,
-            "mobile_height": 21
+            "mobile_height": 26
           }
         }
       },
