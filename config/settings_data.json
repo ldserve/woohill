@@ -9,6 +9,7 @@
     "colors_background_2": "#F3F3F3",
     "type_header_font": "assistant_n4",
     "type_body_font": "assistant_n4",
+    "favicon": "shopify:\/\/shop_images\/1_b37294eb-64e7-47d0-ace0-cfa48cb61fee.jpg",
     "color_orange_text": "#ed6124",
     "sections": {
       "announcement-bar": {
@@ -26,6 +27,10 @@
           "announcement-bar-0"
         ],
         "settings": {
+          "show": true,
+          "color_text": "#251a0f",
+          "color_bg": "#ED6123",
+          "time": 10
         }
       },
       "header": {
