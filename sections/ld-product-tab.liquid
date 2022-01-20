@@ -1,4 +1,77 @@
 <style>
+    img{
+        vertical-align: middle;
+    }
+    .Slide-{{ section.id }} .tab-banner-item:first-child {
+   margin-right: 10px;
+  }
+  .Slide-{{ section.id }} .tab-banner-item:last-child {
+   margin-left: 10px;
+  }
+    .Slide-{{ section.id }} .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        transition-property: transform;
+        box-sizing: border-box;
+        transition-duration: 300ms;
+        transform: translate3d(0px, 0px, 0px);
+    }
+    .Slide-{{ section.id }} .tab-banner{
+        width: 100%;
+        display: flex;
+        margin-bottom: 10px;
+    }
+    .Slide-{{ section.id }} .tab-banner-item{
+       width: 50%;
+       overflow: hidden;
+       position: relative;
+    }
+    .Slide-{{ section.id }} .tab-banner-item img{
+       width: 100%;
+       transition: .8s;
+    }
+    .Slide-{{ section.id }} .tab-banner-item:hover img{
+        transform: scale(1.08);
+    }
+    .Slide-{{ section.id }} .collection-two{
+        display: none;
+    }
+    #shopify-section-{{ section.id }}  .title {
+    position: absolute;
+    font-family: Cambria, Cochin,"MV Boli","MingLiU_HKSCS-ExtB", "MingLiU-ExtB","Georgia","Candara","黑体",serif;
+    top: {{section.settings.text_top}}%;
+    left: {{section.settings.text_left}}%;
+  }
+
+  #shopify-section-{{ section.id }}  .title .btn {
+    width: 180px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: {{section.settings.button_color}};
+    color:{{section.settings.button_text_color}};
+  }
+
+  #shopify-section-{{ section.id }} .title .title-item {
+    font-size: {{section.settings.title_size}}px;
+    color: {{section.settings.text_color}};
+    font-weight: {{section.settings.text_style}};
+  }
+
+  #shopify-section-{{ section.id }}  .title .title-big-title {
+    font-size: {{section.settings.big_title_size}}px;
+    color: {{section.settings.text_color}};
+    font-weight: {{section.settings.text_style}};
+    padding: 10px 0px;
+  }
+
+  #shopify-section-{{ section.id }}  .title .btn:hover {
+    background-color: {{section.settings.button_color_hover}};
+    color:{{section.settings.button_text_color_hover}};
+  }
     @media screen and (max-width: 749px) {
         .Slide-{{ section.id }} .swiper {
             width: 100%;
@@ -45,6 +118,35 @@
         .Slide-{{ section.id }} .swiper-content{
             font-size: 18px;
         }
+        #shopify-section-{{ section.id }}  .title.mobile {
+          display: block;
+          top: {{section.settings.mobile_text_top}}%;
+    left: {{section.settings.mobile_text_left}}%;
+       }
+       #shopify-section-{{ section.id }}  .title.pc {
+          display: none;
+       }
+      #shopify-section-{{ section.id }}  .title.mobile .btn {
+        width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+    }
+
+  #shopify-section-{{ section.id }} .title.mobile .title-item {
+    font-size: {{section.settings.title_size}}px;
+  }
+  .Slide-{{ section.id }} .tab-banner-item:first-child {
+   margin-right: 5px;
+  }
+  .Slide-{{ section.id }} .tab-banner-item:last-child {
+   margin-left: 5px;
+  }
+  #shopify-section-{{ section.id }}  .title.mobile .title-big-title {
+    font-size: {{section.settings.mobile_big_title_size}}px;
+    padding: 10px 0px;
+  }
     }
 
     @media screen and (min-width: 750px) {
@@ -122,72 +224,13 @@
         .Slide-{{ section.id }} .swiper-content{
             display: none;
         }
+        #shopify-section-{{ section.id }}  .title.mobile {
+          display: none;
+       }
+       #shopify-section-{{ section.id }}  .title.pc {
+          display: block;
+       }
     }
-
-    .Slide-{{ section.id }} .swiper-wrapper {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        display: flex;
-        transition-property: transform;
-        box-sizing: border-box;
-        transition-duration: 300ms;
-        transform: translate3d(0px, 0px, 0px);
-    }
-    .Slide-{{ section.id }} .tab-banner{
-        width: 100%;
-        display: flex;
-        margin-bottom: 10px;
-    }
-    .Slide-{{ section.id }} .tab-banner-item{
-       width: 50%;
-       overflow: hidden;
-       position: relative;
-    }
-    .Slide-{{ section.id }} .tab-banner-item img{
-       width: 100%;
-       transition: .8s;
-    }
-    .Slide-{{ section.id }} .tab-banner-item:hover img{
-        transform: scale(1.08);
-    }
-    .Slide-{{ section.id }} .collection-two{
-        display: none;
-    }
-    #shopify-section-{{ section.id }}  .title {
-    position: absolute;
-    font-family: Cambria, Cochin,"MV Boli","MingLiU_HKSCS-ExtB", "MingLiU-ExtB","Georgia","Candara","黑体",serif;
-    top: {{section.settings.text_top}}%;
-    left: {{section.settings.text_left}}%;
-  }
-
-  #shopify-section-{{ section.id }}  .title .btn {
-    width: 180px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    background-color: {{section.settings.button_color}};
-    color:{{section.settings.button_text_color}};
-  }
-
-  #shopify-section-{{ section.id }} .title .title-item {
-    font-size: {{section.settings.title_size}}px;
-    color: {{section.settings.text_color}};
-    font-weight: {{section.settings.text_style}};
-  }
-
-  #shopify-section-{{ section.id }}  .title .title-big-title {
-    font-size: {{section.settings.big_title_size}}px;
-    color: {{section.settings.text_color}};
-    font-weight: {{section.settings.text_style}};
-    padding: 10px 0px;
-  }
-
-  #shopify-section-{{ section.id }}  .title .btn:hover {
-    background-color: {{section.settings.button_color_hover}};
-    color:{{section.settings.button_text_color_hover}};
-  }
 </style>
 <div class="swiper-tab Slide-{{ section.id }}">
     <div class="swiper-header">
@@ -195,7 +238,7 @@
        <p class="swiper-content">{{section.settings.content}}</p>
     </div>
     <div class="tab-banner ">
-        <div class="tab-banner-item" style="margin-right: 10px;">
+        <div class="tab-banner-item">
             <a href="{{section.settings.link.url}}">
                 <img class="lazyload img_item" srcset="{%- if section.settings.image.width >= 550 -%}{{ section.settings.image | img_url: '550x' }} 550w,{%- endif -%}
                           {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
@@ -207,7 +250,7 @@
                           {{ section.settings.image | img_url: 'master' }} {{ section.settings.image.width }}w"
                     src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
             </a>
-            <div class="title">
+            <div class="title pc">
                 {% if section.settings.title %}
                 <div class="title-item">{{section.settings.ld_title}}</div>
                 {% endif %}
@@ -217,9 +260,20 @@
                 {% if section.settings.button %}
                 <div class="btn">{{section.settings.button}}</div>
                 {% endif %}
-              </div>
+            </div>
+            <div class="title mobile">
+                {% if section.settings.title %}
+                <div class="title-item">{{section.settings.ld_title}}</div>
+                {% endif %}
+                {% if section.settings.subtitle %}
+                <div class="title-big-title">{{section.settings.subtitle}}</div>
+                {% endif %}
+                {% if section.settings.button %}
+                <div class="btn">{{section.settings.button}}</div>
+                {% endif %}
+            </div>
         </div>
-        <div class="tab-banner-item" style="margin-left: 10px;">
+        <div class="tab-banner-item">
             <a href="{{section.settings.link_two.url}}">
                 <img class="lazyload img_item" srcset="{%- if section.settings.image_two.width >= 550 -%}{{ section.settings.image_two | img_url: '550x' }} 550w,{%- endif -%}
             {%- if section.settings.image_two.width >= 720 -%}{{ section.settings.image_two | img_url: '720x' }} 720w,{%- endif -%}
@@ -231,17 +285,28 @@
             {{ section.settings.image_two | img_url: 'master' }} {{ section.settings.image_two.width }}w"
                     src="{{ section.settings.image_two | img_url: '1500x' }}" data-sizes="auto" />
             </a>
-            <div class="title">
+            <div class="title pc">
                 {% if section.settings.title %}
-                <div class="title-item">{{section.settings.ld_title}}</div>
+                <div class="title-item">{{section.settings.two_ld_title}}</div>
                 {% endif %}
                 {% if section.settings.subtitle %}
-                <div class="title-big-title">{{section.settings.subtitle}}</div>
+                <div class="title-big-title">{{section.settings.two_subtitle}}</div>
                 {% endif %}
                 {% if section.settings.button %}
                 <div class="btn">{{section.settings.button}}</div>
                 {% endif %}
-              </div>
+            </div>
+            <div class="title mobile">
+                {% if section.settings.title %}
+                <div class="title-item">{{section.settings.two_ld_title}}</div>
+                {% endif %}
+                {% if section.settings.subtitle %}
+                <div class="title-big-title">{{section.settings.two_subtitle}}</div>
+                {% endif %}
+                {% if section.settings.button %}
+                <div class="btn">{{section.settings.button}}</div>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="swiper">
@@ -518,14 +583,26 @@
     "type": "text",
     "id": "ld_title",
     "default": "Text",
-    "label": "标题"
+    "label": "标题1"
     },
     {
     "type": "text",
     "id": "subtitle",
     "default": "Text block",
-    "label": "主标题"
+    "label": "主标题1"
     },
+    {
+        "type": "text",
+        "id": "two_ld_title",
+        "default": "Text",
+        "label": "标题2"
+        },
+        {
+        "type": "text",
+        "id": "two_subtitle",
+        "default": "Text block",
+        "label": "主标题2"
+        },
     {
     "type": "text",
     "id": "button",
@@ -570,6 +647,44 @@
       "label": "大标题文字大小",
       "default": 22
       },
+      {
+        "type": "range",
+        "id": "mobile_text_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "手机端文字布局top",
+        "default": 0
+        }, {
+        "type": "range",
+        "id": "mobile_text_left",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "手机端文字布局left",
+        "default": 0
+        },
+        {
+          "type": "range",
+          "id": "mobile_title_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "手机端小标题文字大小",
+          "default": 12
+          }, {
+          "type": "range",
+          "id": "mobile_big_title_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "手机端大标题文字大小",
+          "default": 22
+          },
       {
         "type": "color",
         "id": "text_color",
