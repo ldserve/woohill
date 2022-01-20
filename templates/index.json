@@ -91,10 +91,10 @@
             "left": 22,
             "height": 28,
             "link": "shopify:\/\/collections\/long-sleeve",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 27,
+            "mobile_width": 21,
+            "mobile_left": 4,
+            "mobile_height": 22
           }
         },
         "2bd0c485-1161-4e58-a095-4c7a2a83438d": {
@@ -105,10 +105,10 @@
             "left": 39,
             "height": 28,
             "link": "shopify:\/\/collections\/short-sleeve",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 27,
+            "mobile_width": 21,
+            "mobile_left": 28,
+            "mobile_height": 22
           }
         },
         "b6061246-f835-41b5-8112-038b9f13e3ea": {
@@ -119,10 +119,10 @@
             "left": 57,
             "height": 28,
             "link": "shopify:\/\/collections\/hoodie",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 27,
+            "mobile_width": 22,
+            "mobile_left": 50,
+            "mobile_height": 22
           }
         },
         "a66c5ce2-4c0d-45b7-9873-eb7a99c299a1": {
@@ -133,10 +133,10 @@
             "left": 76,
             "height": 28,
             "link": "shopify:\/\/collections\/pant",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 27,
+            "mobile_width": 21,
+            "mobile_left": 75,
+            "mobile_height": 22
           }
         },
         "f2314d3f-4777-4dd2-b4e3-f9fb7db5ffa5": {
@@ -147,10 +147,10 @@
             "left": 22,
             "height": 28,
             "link": "shopify:\/\/collections\/jewelry",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 62,
+            "mobile_width": 21,
+            "mobile_left": 4,
+            "mobile_height": 21
           }
         },
         "ef071313-fd7d-4c5f-b1b0-c37bd1fc636e": {
@@ -161,10 +161,10 @@
             "left": 39,
             "height": 28,
             "link": "shopify:\/\/collections\/cap-hat",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 62,
+            "mobile_width": 21,
+            "mobile_left": 28,
+            "mobile_height": 21
           }
         },
         "6083c6f1-c1cc-470d-a953-a1f67cb99aaa": {
@@ -175,10 +175,10 @@
             "left": 57,
             "height": 27,
             "link": "shopify:\/\/collections\/usa-flag",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 62,
+            "mobile_width": 22,
+            "mobile_left": 50,
+            "mobile_height": 21
           }
         },
         "69c0c05d-a763-42f8-bc6e-1c2cacc65f00": {
@@ -189,10 +189,10 @@
             "left": 76,
             "height": 28,
             "link": "shopify:\/\/collections\/camouflage",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "mobile_top": 62,
+            "mobile_width": 21,
+            "mobile_left": 75,
+            "mobile_height": 21
           }
         }
       },
