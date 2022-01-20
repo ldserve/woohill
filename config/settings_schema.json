@@ -4,8 +4,8 @@
     "theme_name": "Dawn",
     "theme_version": "2.5.0",
     "theme_author": "Shopify",
-    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes/os20/themes-by-shopify/dawn",
-    "theme_support_url": "https://support.shopify.com/"
+    "theme_documentation_url": "https:\/\/help.shopify.com\/manual\/online-store\/themes\/os20\/themes-by-shopify\/dawn",
+    "theme_support_url": "https:\/\/support.shopify.com\/"
   },
   {
     "name": "t:settings_schema.colors.name",
@@ -151,7 +151,7 @@
         ],
         "default": "1800",
         "label": "t:settings_schema.layout.settings.page_width.label"
-        },
+      },
       {
         "type": "range",
         "id": "spacing_sections",
@@ -189,12 +189,12 @@
         "default": 8,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_grid_vertical.label"
-      }     
+      }
     ]
   },
   {
     "name": "t:settings_schema.buttons.name",
-    "settings": [     
+    "settings": [
       {
         "type": "header",
         "content": "t:settings_schema.global.settings.header__border.content"
@@ -218,7 +218,7 @@
         "unit": "%",
         "label": "t:settings_schema.global.settings.opacity.label",
         "default": 100
-      },      
+      },
       {
         "type": "range",
         "id": "buttons_radius",
@@ -277,7 +277,7 @@
   },
   {
     "name": "t:settings_schema.variant_pills.name",
-    "settings": [     
+    "settings": [
       {
         "type": "header",
         "content": "t:settings_schema.global.settings.header__border.content"
@@ -301,7 +301,7 @@
         "unit": "%",
         "label": "t:settings_schema.global.settings.opacity.label",
         "default": 55
-      },      
+      },
       {
         "type": "range",
         "id": "variant_pills_radius",
@@ -360,7 +360,7 @@
   },
   {
     "name": "t:settings_schema.inputs.name",
-    "settings": [     
+    "settings": [
       {
         "type": "header",
         "content": "t:settings_schema.global.settings.header__border.content"
@@ -384,7 +384,7 @@
         "unit": "%",
         "label": "t:settings_schema.global.settings.opacity.label",
         "default": 55
-      },     
+      },
       {
         "type": "range",
         "id": "inputs_radius",
@@ -600,7 +600,7 @@
   },
   {
     "name": "t:settings_schema.content_containers.name",
-    "settings": [    
+    "settings": [
       {
         "type": "header",
         "content": "t:settings_schema.global.settings.header__border.content"
@@ -624,7 +624,7 @@
         "unit": "%",
         "label": "t:settings_schema.global.settings.opacity.label",
         "default": 0
-      },      
+      },
       {
         "type": "range",
         "id": "text_boxes_radius",
