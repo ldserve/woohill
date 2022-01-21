@@ -552,8 +552,8 @@
         </div>
         {%- when 'description' -%}
         {%- if product.description != blank -%}
-        <div class="product__description rte">
-          <details id="Details-{{ block.id }}-{{ section.id }}" open>
+        <div class="product__description rte accordion">
+          <details id="Details-{{ block.id }}-{{ section.id }}"  open >
             <summary>
               <div class="summary__title">
                 <h2 class="accordion__title">
@@ -667,7 +667,7 @@
             <input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
               name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}"
               {% if option.selected_value == value %}checked{% endif %}>
-            <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+            <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" title="{{value}}">
               <img src="{{ variant.image | img_url: '36x' }}" alt="{{ variant.image.alt | escape }}">
             </label>
             {%- break -%}

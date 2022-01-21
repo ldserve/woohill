@@ -21,6 +21,10 @@
   flex: 1 0 4.4rem;
   max-width: 4.4rem;
 }
+.pagination__list .text__li {
+  flex: 1 0 8rem;
+  max-width: 8rem;
+}
 .pagination__list > li:not(:last-child) {
   margin-right: 1rem;
 }
@@ -66,7 +70,7 @@ a.pagination__item:hover::after {
 } */
 
 .pagination__item--next .icon {
-  margin-left: 2rem;
+  margin-left: 1rem;
   transform: rotate(90deg);
 }
 
@@ -75,7 +79,7 @@ a.pagination__item:hover::after {
 }
 
 .pagination__item--prev .icon {
-  margin-right: 2rem;
+  margin-right: 1rem;
   transform: rotate(-90deg);
 }
 
@@ -85,4 +89,17 @@ a.pagination__item:hover::after {
 
 .pagination__item-arrow:hover::after {
   display: none;
+}
+@media screen and (max-width: 749px) {
+  .pagination__item {
+    font-size: 1.8rem;    
+  }
+  .pagination__list .text__li {
+    flex: 1 0 6rem;
+    max-width: 6rem;
+  }
+  .pagination__item .icon-caret {
+    margin-top: 0;
+    height: 0.8rem;
+  }
 }
