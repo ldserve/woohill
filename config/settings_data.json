@@ -18,7 +18,7 @@
           "announcement-bar-0": {
             "type": "announcement",
             "settings": {
-              "text": "Welcome to our store",
+              "text": "FREE SHIPPING ON ORDER OVER $60",
               "link": ""
             }
           }
@@ -29,7 +29,7 @@
         "settings": {
           "show": true,
           "color_text": "#251a0f",
-          "color_bg": "#ED6123",
+          "color_bg": "#ed6123",
           "time": 10
         }
       },
