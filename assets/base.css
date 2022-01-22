@@ -2535,6 +2535,13 @@ details-disclosure > details {
   .content-container--full-width-mobile:after {
     display: none;
   }
+  .button--full-width {
+    display: flex;
+    width: 91%;
+    position: fixed;
+    bottom: 40px;
+    z-index: 99;
+  }
 }
 
 .content-container--full-width {
