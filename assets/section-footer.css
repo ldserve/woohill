@@ -84,7 +84,15 @@
 @media screen and (max-width: 749px) {
   .footer__localization:empty + .footer__column {
     padding-top: 1.5rem;
+    padding-bottom: 50px;
   }
+  button#checkout {
+    display: flex;
+    width: 91%;
+    position: fixed;
+    bottom: 50px;
+    z-index: 99;
+}
 }
 .footer__column {
   width: 100%;
