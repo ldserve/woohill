@@ -325,6 +325,24 @@
             "show_view_all": true
           }
         },
+        "b71c9143-6133-45ba-9152-fbacfcc8fa3b": {
+          "type": "collection_list",
+          "settings": {
+            "title": "SHORT SLEEVE",
+            "collection": "short-sleeve",
+            "link": "",
+            "show_view_all": true
+          }
+        },
+        "b21b395b-c5c4-4122-af03-24976c69757f": {
+          "type": "collection_list",
+          "settings": {
+            "title": "LONG SLEEVE",
+            "collection": "long-sleeve",
+            "link": "",
+            "show_view_all": true
+          }
+        },
         "0835e98f-6c40-4fc2-b663-5637aed751d5": {
           "type": "collection_list",
           "settings": {
@@ -343,17 +361,27 @@
             "show_view_all": true
           }
         },
+        "eccfd45f-ceb8-4a53-90ed-f10df3cd9a7c": {
+          "type": "collection_list",
+          "settings": {
+            "title": "BELT",
+            "collection": "belt",
+            "link": "",
+            "show_view_all": true
+          }
+        },
         "5603ccda-10c5-49a4-9b34-d316896dd966": {
           "type": "collection_list",
           "settings": {
-            "title": "ACCESSORIES",
-            "collection": "accessories",
+            "title": "JEWELRY",
+            "collection": "jewelry",
             "link": "",
             "show_view_all": true
           }
         },
         "688d04e2-646d-4ee2-a43a-591d869ee96a": {
           "type": "collection_list",
+          "disabled": true,
           "settings": {
             "title": "SHORTS",
             "collection": "shorts",
@@ -364,8 +392,11 @@
       },
       "block_order": [
         "2f6cf7e7-457a-4a41-960e-5bc822b62c9a",
+        "b71c9143-6133-45ba-9152-fbacfcc8fa3b",
+        "b21b395b-c5c4-4122-af03-24976c69757f",
         "0835e98f-6c40-4fc2-b663-5637aed751d5",
         "164206228050a1dfc8-0",
+        "eccfd45f-ceb8-4a53-90ed-f10df3cd9a7c",
         "5603ccda-10c5-49a4-9b34-d316896dd966",
         "688d04e2-646d-4ee2-a43a-591d869ee96a"
       ],
