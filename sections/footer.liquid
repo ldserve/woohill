@@ -13,7 +13,17 @@
 <noscript>{{ 'component-list-social.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'disclosure.css' | asset_url | stylesheet_tag }}</noscript>
+<style>
+    @media screen and (max-width: 749px) {
+      .footer-block__details-content.list-unstyled{
+  display: none;
+}
+.footer-block.grid__item.footer-block--menu:hover .footer-block__details-content{
+  display: block;
+}
+    }
 
+</style>
 <footer class="footer color-{{ section.settings.color_scheme }} gradient">
   {%- if section.blocks.size > 0 or section.settings.newsletter_enable or section.settings.show_social -%}
     <div class="footer__content-top page-width">
