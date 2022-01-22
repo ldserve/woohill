@@ -84,6 +84,54 @@
           "enable_language_selector": true,
           "payment_enable": true
         }
+      },
+      "foot-navbar": {
+        "type": "foot-navbar",
+        "blocks": {
+          "45b2e1aa-d6d0-45a5-add7-50dcc4ee2c2f": {
+            "type": "footer-nav",
+            "settings": {
+              "title": "Home",
+              "link": "\/",
+              "icon": "home"
+            }
+          },
+          "ca3ce4c9-6a00-471a-b2d8-61d5884c44d5": {
+            "type": "footer-nav",
+            "settings": {
+              "title": "Category",
+              "link": "",
+              "icon": "category"
+            }
+          },
+          "2aba1ea8-9624-48b8-b482-f1e8e9eb18be": {
+            "type": "footer-nav",
+            "settings": {
+              "title": "Cart",
+              "link": "\/cart",
+              "icon": "cart"
+            }
+          },
+          "f27f09a4-2361-444e-a107-857a9f85b687": {
+            "type": "footer-nav",
+            "settings": {
+              "title": "Me",
+              "link": "\/account",
+              "icon": "account"
+            }
+          }
+        },
+        "block_order": [
+          "45b2e1aa-d6d0-45a5-add7-50dcc4ee2c2f",
+          "ca3ce4c9-6a00-471a-b2d8-61d5884c44d5",
+          "2aba1ea8-9624-48b8-b482-f1e8e9eb18be",
+          "f27f09a4-2361-444e-a107-857a9f85b687"
+        ],
+        "settings": {
+          "navbar_bgcolor": "#ffffff",
+          "navbar_color": "#cccccc",
+          "navbar_active_color": "#000000"
+        }
       }
     },
     "content_for_index": [
