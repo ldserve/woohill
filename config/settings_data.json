@@ -21,10 +21,34 @@
               "text": "FREE SHIPPING ON ORDER OVER $60",
               "link": ""
             }
+          },
+          "693d9cb3-c404-468e-ad50-bd8fcea6b105": {
+            "type": "announcement",
+            "settings": {
+              "text": "$5 OFF ON ORDER $49",
+              "link": ""
+            }
+          },
+          "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9": {
+            "type": "announcement",
+            "settings": {
+              "text": "$10 OFF ON ORDER $69",
+              "link": ""
+            }
+          },
+          "0fc2d0ff-c749-49d2-a29a-4c19e02fe1f9": {
+            "type": "announcement",
+            "settings": {
+              "text": "$20 OFF ON ORDER $119",
+              "link": ""
+            }
           }
         },
         "block_order": [
-          "announcement-bar-0"
+          "announcement-bar-0",
+          "693d9cb3-c404-468e-ad50-bd8fcea6b105",
+          "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9",
+          "0fc2d0ff-c749-49d2-a29a-4c19e02fe1f9"
         ],
         "settings": {
           "show": true,
