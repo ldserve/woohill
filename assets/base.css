@@ -601,7 +601,9 @@ h6:empty {
   font-size: 1.4rem;
   font-family: inherit;
 }
-
+a {
+  text-decoration: none;
+}
 .link--text {
   color: rgb(var(--color-foreground));
 }
@@ -793,12 +795,12 @@ product-item{
   box-shadow: none;
 }
 
-*:focus-visible {
+/* *:focus-visible {
   outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   outline-offset: 0.3rem;
   box-shadow: 0 0 0 0.3rem rgb(var(--color-background)),
     0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
-}
+} */
 
 /* Fallback - for browsers that don't support :focus-visible, a fallback is set for :focus */
 .focused,
@@ -2568,4 +2570,25 @@ details-disclosure > details {
   .\31\/6--phone {
     width: 16.666667%;
   }
+}
+.d-flex {
+	display: flex;
+}
+.justify-content-center {
+	justify-content: center;
+}
+.position-fixed {
+	position: fixed;
+}
+.bottom-0 {
+	bottom: 0;
+}
+.flex-10 {
+	flex: 1 0 auto;
+}
+.d-block {
+	display: block;
+}
+.h-100 {
+  height: 100%;
 }
