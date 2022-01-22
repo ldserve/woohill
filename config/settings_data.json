@@ -100,7 +100,7 @@
             "type": "footer-nav",
             "settings": {
               "title": "Category",
-              "link": "",
+              "link": "\/category",
               "icon": "category"
             }
           },
