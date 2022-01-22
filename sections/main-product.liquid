@@ -663,7 +663,7 @@
           {% if option.name == "color" or option.name == "COLOR" or option.name == "Color" %}
           {%- capture option_name -%}option{{ option.position }}{%- endcapture -%}
           <fieldset class="js product-img__input">
-            <legend class="form__label">{{ option.name }}</legend>
+            <legend class="form__label">{{ option.name }} : <span class="product-form__selected-value">{{ option.selected_value }}</span></legend>
             {%- for value in option.values -%}
             {%- capture variant_swatch_id -%}{{ option_name }}-{{ forloop.index }}{%- endcapture -%}
             {%- for variant in product.variants -%}
@@ -681,7 +681,7 @@
           </fieldset>
           {% else %}
           <fieldset class="js product-form__input">
-            <legend class="form__label">{{ option.name }}</legend>
+            <legend class="form__label">{{ option.name }} : <span class="product-form__selected-value">{{ option.selected_value }}</span></legend>
             {%- for value in option.values -%}
             <input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
               name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}"

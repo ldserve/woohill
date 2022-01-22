@@ -2542,6 +2542,12 @@ details-disclosure > details {
     bottom: 40px;
     z-index: 99;
   }
+  .button.loading {
+    width: 91%;
+    position: fixed;
+    bottom: 40px;
+    z-index: 99;
+  }
 }
 
 .content-container--full-width {

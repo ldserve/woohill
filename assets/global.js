@@ -542,8 +542,6 @@ class SliderComponent extends HTMLElement {
     const previousPage = this.currentPage;
     this.currentPage = Math.round(this.slider.scrollLeft / this.sliderLastItem.clientWidth) + 1;
     if (this.currentPageElement && this.pageTotalElement) {
-      console.log(this.slider.scrollLeft)
-      console.log(this.sliderLastItem.clientWidth)
       this.currentPageElement.textContent = this.currentPage;
       this.pageTotalElement.textContent = this.totalPages;
     }
@@ -769,8 +767,18 @@ class VariantSelects extends HTMLElement {
     if (!this.currentVariant.featured_media) return;
 
     const mediaGallery = document.getElementById(`MediaGallery-${this.dataset.section}`);
-    console.log(`${this.currentVariant.featured_media.alt}`);
+    console.log(this.currentVariant.option1);
     console.log(`${this.currentVariant.featured_media.id}`);
+    if(!this.currentVariant.option1){
+     //
+    }else{
+      document.querySelectorAll(".product-form__selected-value")[0].innerText=this.currentVariant.option1
+    }
+    if(!this.currentVariant.option2){
+      //
+     }else{
+       document.querySelectorAll(".product-form__selected-value")[1].innerText=this.currentVariant.option2
+     }
     if(this.currentVariant.featured_media.alt){
       mediaGallery.setActiveMedia(`${this.dataset.section}-${this.currentVariant.featured_media.alt}`,null, true);
     }else{
