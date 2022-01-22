@@ -52,7 +52,7 @@
         ],
         "settings": {
           "show": true,
-          "color_text": "#251a0f",
+          "color_text": "#ffffff",
           "color_bg": "#ed6123",
           "time": 10
         }
