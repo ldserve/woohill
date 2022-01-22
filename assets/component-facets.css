@@ -266,16 +266,18 @@
   border-color: #000;
 }
 .facets__list__size {
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
+  display:flex;
+  flex-wrap: wrap;
 }
-
+.facets__list__size .facets__item {
+  margin:.5rem 1rem;
+  flex: unset;
+}
 .facets__list__size .facet-checkbox{
   min-width: 5rem;
-  padding: 0 1rem;
+  padding: 1rem;
   text-align: center;
-  line-height: 3.75rem;
+  line-height: 2rem;
   display: block;
   flex-grow: unset;
   color: rgb(var(--color-foreground));
