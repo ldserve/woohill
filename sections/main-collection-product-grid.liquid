@@ -39,7 +39,7 @@
               {% if collection.products_count == 4 %} grid--4-col-desktop{% else %} grid--4-col-tablet grid--one-third-max grid--4-col-desktop grid--quarter-max{% endif %}
             {% endif %}">
             {%- for product in collection.products -%}
-              <li class="grid__item">
+              <li class="grid__item" id="{{product.handle}}">
                 {% render 'card-product',
                   card_product: product,
                   media_aspect_ratio: section.settings.image_ratio,
@@ -59,7 +59,24 @@
   </div>
   
 </div>
-
+<script>
+    var searchObj = Object.fromEntries(new URLSearchParams(location.search))
+    if(searchObj.spu){
+      let els = Array.from(document.querySelectorAll('#product-grid li'))
+      let arr = searchObj.spu.split(',')
+      let intersection = []
+      for(let i = 0; i <= arr.length; i++){
+        els.map( j => {
+          if(j.id == arr[i]){
+            intersection.push(j)
+          }
+        })
+      }
+      intersection.reverse().map(i => {
+        i.parentNode.prepend(i)
+      })
+    }
+</script>
 {% schema %}
 {
   "name": "t:sections.main-collection-product-grid.name",
