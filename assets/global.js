@@ -916,33 +916,38 @@ class ProductItem extends HTMLElement  {
     }
 
     handleColorSelector = (e) => {
-      if(e.target.className.indexOf('color-item') > -1){
+      if (e.target.className.indexOf('color-item') > -1) {
         let newHref = window.location.origin + '/products/' + this.elements.cardMedia.querySelector('a').dataset.handle
-        if(e.target.title === 'more'){
+        if (e.target.title === 'more') {
           window.location.href = newHref
-        }else {
-            let variantObj = e.target.dataset
-            this.elements.cardMedia.querySelector('a').href = newHref + `?variant=${variantObj.variantId}`
-            let img = this.elements.cardMedia.querySelector('img')
-            img.setAttribute('data-media-id',variantObj.mediaId);
-            if(this.handleColorActive()){
-              let variantimg = JSON.parse(variantObj.variantImg)
-              img.src = variantimg.src
-              img.srcset = variantimg.srcset
-              img.sizes = variantimg.sizes
-              img.alt = variantimg.alt
-              img.width = variantimg.width
-              img.height = variantimg.height
+        } else {
+          let variantObj = e.target.dataset
+          this.elements.cardMedia.querySelector('a').href = newHref + `?variant=${variantObj.variantId}`
+          let img = this.elements.cardMedia.querySelector('img')
+          img.setAttribute('data-media-id', variantObj.mediaId);
+          if (this.handleColorActive()) {
+            img.style.opacity = 0
+            img.style.transition = "opacity .2s ease-in-out,visibility .2s ease-in-out;"
+            img.src = variantObj.variantSrc
+            img.srcset = variantObj.variantSrcset
+            img.sizes = variantObj.svariantSizes
+            img.alt = variantObj.variantAlt
+            img.width = variantObj.variantWidth
+            img.height = variantObj.variantHeight
+            img.onload = function (e) {
+              e.stopPropagation();
               img.style.opacity = 1
-             
             }
+          }
         }
       }
     }
-
     handleColorActive(){
       let activeEl = this.elements.colorSelector && this.elements.colorSelector.querySelector('.color--active')
       activeEl && activeEl.classList.remove('color--active')
+      if(!this.elements.cardMedia){
+        return
+      }
       let img = this.elements.cardMedia.querySelector('img')
       let imgMediaId = img.dataset.mediaId
       let spanList = this.elements.colorSelector.querySelectorAll('span[data-media-id]')

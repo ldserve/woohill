@@ -152,7 +152,7 @@ variant-selects {
 }
 variant-radios {
   border-top: var(--media-border-width) solid rgba(var(--color-foreground), var(--media-border-opacity));
-  padding: 1.5rem 0;
+  padding-top: 1.5rem;
 
 }
 .product-form__input--dropdown {

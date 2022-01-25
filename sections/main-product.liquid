@@ -1409,14 +1409,6 @@
 }
 {% endschema %}
 <script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-      console.log("DOM fully loaded and parsed");
-      let productReviews = document.querySelector('#shopify-product-reviews')
-      console.log(productReviews)
-      /* productReviews.querySelector('.spr-summary-actions').addEventListener('click',() => {
-        console.log(1)
-      }) */
-  });
   var sizeObj = {% if product.metafields.my_fields.sizeobj %} {{ product.metafields.my_fields.sizeobj }} {% else %} 0 {% endif %};
   if (sizeObj) {
     var sizeGuideHtml =
