@@ -1038,6 +1038,9 @@ product-item{
 }
 
 @media screen and (min-width: 990px) {
+  .grid--quarter-max.grid--5-col-desktop .grid__item {
+    max-width: 20%;
+  }
   .grid--quarter-max.grid--4-col-desktop .grid__item {
     max-width: 25%;
   }
@@ -1081,6 +1084,9 @@ product-item{
 }
 
 @media screen and (min-width: 990px) {
+  .grid--5-col-desktop .grid__item {
+    width: calc(20% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+  }
   .grid--4-col-desktop .grid__item {
     width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
   }
