@@ -207,7 +207,7 @@
         "69c0c05d-a763-42f8-bc6e-1c2cacc65f00"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__06_1b47fed8-f290-4708-83e4-3c083a46be15.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__06_207ffd18-e94a-418b-a94a-83d4f6530af4.jpg",
         "mobile_image": "shopify:\/\/shop_images\/M__04_390c2a84-169b-4283-b342-9fb0d76e1452.jpg",
         "is_show": false,
         "title": "",
@@ -455,7 +455,7 @@
       "settings": {
         "title": "Featured products",
         "collection": "all",
-        "products_to_show": 8,
+        "products_to_show": 10,
         "show_view_all": true,
         "swipe_on_mobile": false,
         "image_ratio": "adapt",
@@ -468,7 +468,6 @@
     },
     "1641973313e37a8096": {
       "type": "featured-product-silder",
-      "disabled": true,
       "settings": {
         "collection": "hoodies-sweatshirts",
         "image_ratio": "adapt",
