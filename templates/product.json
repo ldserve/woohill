@@ -58,6 +58,11 @@
           "settings": {
           }
         },
+        "32cf2449-4fcf-43de-9af8-bf7754d4d4f2": {
+          "type": "contactService",
+          "settings": {
+          }
+        },
         "share": {
           "type": "share",
           "settings": {
@@ -75,6 +80,7 @@
         "buy_buttons",
         "description",
         "020b554d-2135-4d5a-ac44-4bd60820a802",
+        "32cf2449-4fcf-43de-9af8-bf7754d4d4f2",
         "share"
       ],
       "settings": {
