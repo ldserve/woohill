@@ -468,6 +468,7 @@
     },
     "1641973313e37a8096": {
       "type": "featured-product-silder",
+      "disabled": true,
       "settings": {
         "collection": "hoodies-sweatshirts",
         "image_ratio": "adapt",
