@@ -322,7 +322,13 @@ border: 1px #000 solid;
 .product__info-container .product__description {
   margin: 2.5rem 0;
 }
-
+.product__info-container .contact-service {
+  display: flex;
+}
+.icon-box > *{
+  margin-right: .5rem;
+  margin-top: .5rem;
+}
 .product__text {
   margin-bottom: 0;
 }
