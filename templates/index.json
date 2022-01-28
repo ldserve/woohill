@@ -464,7 +464,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "Featured products",
-        "collection": "all",
+        "collection": "hawaiian-style",
         "products_to_show": 10,
         "show_view_all": true,
         "swipe_on_mobile": false,
