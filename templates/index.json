@@ -316,15 +316,6 @@
     "1642062280e7be15bf": {
       "type": "ld-collection-list",
       "blocks": {
-        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a": {
-          "type": "collection_list",
-          "settings": {
-            "title": "HOODIE",
-            "collection": "hoodie",
-            "link": "",
-            "show_view_all": true
-          }
-        },
         "b71c9143-6133-45ba-9152-fbacfcc8fa3b": {
           "type": "collection_list",
           "settings": {
@@ -339,6 +330,24 @@
           "settings": {
             "title": "LONG SLEEVE",
             "collection": "long-sleeve",
+            "link": "",
+            "show_view_all": true
+          }
+        },
+        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a": {
+          "type": "collection_list",
+          "settings": {
+            "title": "HOODIE&SWEATSHIRT",
+            "collection": "hoodie",
+            "link": "",
+            "show_view_all": true
+          }
+        },
+        "ae7f38f1-b6c1-4e11-b5b0-d94858b09e48": {
+          "type": "collection_list",
+          "settings": {
+            "title": "OUTERWEAR",
+            "collection": "outerwear",
             "link": "",
             "show_view_all": true
           }
@@ -391,9 +400,10 @@
         }
       },
       "block_order": [
-        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a",
         "b71c9143-6133-45ba-9152-fbacfcc8fa3b",
         "b21b395b-c5c4-4122-af03-24976c69757f",
+        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a",
+        "ae7f38f1-b6c1-4e11-b5b0-d94858b09e48",
         "0835e98f-6c40-4fc2-b663-5637aed751d5",
         "164206228050a1dfc8-0",
         "eccfd45f-ceb8-4a53-90ed-f10df3cd9a7c",
