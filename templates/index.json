@@ -464,9 +464,9 @@
     "featured_products": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
+        "title": "Featured Products",
         "collection": "hawaiian-style",
-        "products_to_show": 10,
+        "products_to_show": 6,
         "show_view_all": true,
         "swipe_on_mobile": false,
         "image_ratio": "adapt",
@@ -479,6 +479,7 @@
     },
     "1641973313e37a8096": {
       "type": "featured-product-silder",
+      "disabled": true,
       "settings": {
         "collection": "hoodies-sweatshirts",
         "image_ratio": "adapt",
