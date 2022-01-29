@@ -319,14 +319,15 @@
         "b71c9143-6133-45ba-9152-fbacfcc8fa3b": {
           "type": "collection_list",
           "settings": {
-            "title": "SHORT SLEEVE",
-            "collection": "short-sleeve",
+            "title": "T-SHIRT",
+            "collection": "t-shirts",
             "link": "",
             "show_view_all": true
           }
         },
         "b21b395b-c5c4-4122-af03-24976c69757f": {
           "type": "collection_list",
+          "disabled": true,
           "settings": {
             "title": "LONG SLEEVE",
             "collection": "long-sleeve",
