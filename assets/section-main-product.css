@@ -90,7 +90,7 @@
   line-height: calc(1 + 0.2 / var(--font-body-scale));
   letter-spacing: 0.07rem;
   background-color: var(--color_orange2_text);
-  color: #fff;
+  color: #000;
 }
 
 .shopify-payment-button__button--unbranded::selection {
