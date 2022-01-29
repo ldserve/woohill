@@ -89,17 +89,17 @@
   font-size: 1.4rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
   letter-spacing: 0.07rem;
-  background-color: var(--color_orange_text);
+  background-color: var(--color_orange2_text);
   color: #fff;
 }
 
 .shopify-payment-button__button--unbranded::selection {
-  background-color: var(--color_orange_text);
+  background-color: var(--color_orange2_text);
 }
 
 .shopify-payment-button__button--unbranded:hover,
 .shopify-payment-button__button--unbranded:hover:not([disabled]) {
-  background-color: var(--color_orange_text);
+  background-color: var(--color_orange2_text);
 }
 
 .shopify-payment-button__more-options {
