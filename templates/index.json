@@ -88,9 +88,9 @@
           "settings": {
             "top": 17,
             "width": 14,
-            "left": 22,
-            "height": 28,
-            "link": "shopify:\/\/collections\/long-sleeve",
+            "left": 24,
+            "height": 31,
+            "link": "shopify:\/\/collections\/t-shirts",
             "mobile_top": 27,
             "mobile_width": 21,
             "mobile_left": 4,
@@ -102,9 +102,9 @@
           "settings": {
             "top": 17,
             "width": 15,
-            "left": 39,
-            "height": 28,
-            "link": "shopify:\/\/collections\/short-sleeve",
+            "left": 41,
+            "height": 30,
+            "link": "shopify:\/\/collections\/hoodies-sweatshirts",
             "mobile_top": 27,
             "mobile_width": 21,
             "mobile_left": 28,
@@ -116,9 +116,9 @@
           "settings": {
             "top": 17,
             "width": 14,
-            "left": 57,
-            "height": 28,
-            "link": "shopify:\/\/collections\/hoodie",
+            "left": 59,
+            "height": 32,
+            "link": "shopify:\/\/collections\/outerwear",
             "mobile_top": 27,
             "mobile_width": 22,
             "mobile_left": 50,
@@ -129,9 +129,9 @@
           "type": "banner",
           "settings": {
             "top": 17,
-            "width": 14,
+            "width": 15,
             "left": 76,
-            "height": 28,
+            "height": 31,
             "link": "shopify:\/\/collections\/pant",
             "mobile_top": 27,
             "mobile_width": 21,
@@ -142,57 +142,57 @@
         "f2314d3f-4777-4dd2-b4e3-f9fb7db5ffa5": {
           "type": "banner",
           "settings": {
-            "top": 50,
+            "top": 52,
             "width": 14,
-            "left": 22,
-            "height": 28,
+            "left": 24,
+            "height": 30,
             "link": "shopify:\/\/collections\/jewelry",
             "mobile_top": 62,
             "mobile_width": 21,
             "mobile_left": 4,
-            "mobile_height": 26
+            "mobile_height": 28
           }
         },
         "ef071313-fd7d-4c5f-b1b0-c37bd1fc636e": {
           "type": "banner",
           "settings": {
-            "top": 50,
+            "top": 52,
             "width": 15,
-            "left": 39,
-            "height": 28,
+            "left": 41,
+            "height": 30,
             "link": "shopify:\/\/collections\/cap-hat",
             "mobile_top": 62,
             "mobile_width": 21,
             "mobile_left": 28,
-            "mobile_height": 26
+            "mobile_height": 28
           }
         },
         "6083c6f1-c1cc-470d-a953-a1f67cb99aaa": {
           "type": "banner",
           "settings": {
-            "top": 50,
+            "top": 52,
             "width": 14,
-            "left": 57,
-            "height": 27,
-            "link": "shopify:\/\/collections\/usa-flag",
+            "left": 59,
+            "height": 30,
+            "link": "shopify:\/\/collections\/retro-style",
             "mobile_top": 62,
             "mobile_width": 22,
             "mobile_left": 50,
-            "mobile_height": 26
+            "mobile_height": 28
           }
         },
         "69c0c05d-a763-42f8-bc6e-1c2cacc65f00": {
           "type": "banner",
           "settings": {
-            "top": 50,
-            "width": 14,
+            "top": 52,
+            "width": 15,
             "left": 76,
-            "height": 28,
-            "link": "shopify:\/\/collections\/camouflage",
+            "height": 30,
+            "link": "shopify:\/\/collections\/hawaiian-style",
             "mobile_top": 62,
             "mobile_width": 21,
             "mobile_left": 75,
-            "mobile_height": 26
+            "mobile_height": 28
           }
         }
       },
