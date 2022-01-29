@@ -281,8 +281,8 @@ border: 1px #000 solid;
 
 .product-form__submit {
   margin-bottom: 1rem;
-  background-color: var(--color_orange_text);
-  color: #fff;
+  background-color: var(--color_orange2_text);
+  color: #000;
 }
 
 .no-js .product-form__submit.button--secondary {
