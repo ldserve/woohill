@@ -22,8 +22,8 @@
         "1642579235ddb88999-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__03_e31459d3-2850-43bc-9c4f-ca62c8592636.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__02_a29a76e8-f91a-4a14-8d7d-aa3dfa47d40a.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__02_1caf8f76-f720-457c-8937-8ea66a22a94f.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__02_3352ddd1-f009-4792-bb5d-3caf0352160f.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -62,8 +62,8 @@
         "16419682091433c6e9-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__05_54288d95-0a78-4c58-915c-e19b438402ca.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__03_a7e0bc81-b651-4b53-9230-e78ef6dff563.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__04_5094bb25-3d24-4796-88ae-0f78f938eb3c.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__03_ee98a4ff-1087-447f-9932-3dbb222cd9a6.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -207,8 +207,8 @@
         "69c0c05d-a763-42f8-bc6e-1c2cacc65f00"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__06_207ffd18-e94a-418b-a94a-83d4f6530af4.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__04_390c2a84-169b-4283-b342-9fb0d76e1452.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__05_9c1e0f07-e45d-4f72-8e1b-cad24880678a.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__04_fa5bb9b1-7420-4cf6-8b88-8098a1f8b084.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -230,10 +230,10 @@
       "settings": {
         "title": "",
         "content": "",
-        "image": "shopify:\/\/shop_images\/PC-__09_2d666de3-e645-4a5c-8fbb-a8a05ae1c2ab.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__08.jpg",
         "link": "shopify:\/\/collections\/new-in",
         "collection": "new-in",
-        "image_two": "shopify:\/\/shop_images\/PC-__11.jpg",
+        "image_two": "shopify:\/\/shop_images\/PC-__10.jpg",
         "link_two": "shopify:\/\/collections\/hot-sale",
         "collection_two": "hot-sale",
         "image_ratio": "adapt",
@@ -245,18 +245,18 @@
         "two_ld_title": "",
         "two_subtitle": "HOT SALE",
         "button": "SHOP NOW",
-        "text_top": 23,
-        "text_left": 21,
+        "text_top": 52,
+        "text_left": 64,
         "title_size": 12,
         "big_title_size": 33,
         "mobile_text_top": 0,
-        "mobile_text_left": 0,
+        "mobile_text_left": 25,
         "mobile_title_size": 12,
-        "mobile_big_title_size": 22,
+        "mobile_big_title_size": 18,
         "text_color": "#ffffff",
         "text_style": "normal",
-        "button_color": "#ed6123",
-        "button_text_color": "#ffffff",
+        "button_color": "#e7b34e",
+        "button_text_color": "#121212",
         "button_color_hover": "#ffffff",
         "button_text_color_hover": "#000000"
       }
@@ -283,8 +283,8 @@
         "1642579409b14e4668-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__15.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__13_cbcc5386-bc5a-422a-b9ae-a670ae7d3e24.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__14.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__13_349392ec-c689-49e6-8053-caaf1f5c35b5.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -304,7 +304,7 @@
     "164198619658c9b25f": {
       "type": "ld-product-silder",
       "settings": {
-        "banner": "shopify:\/\/shop_images\/PC-__16_c48c3f20-e98c-4a4d-a681-0a572fa56fe0.jpg",
+        "banner": "shopify:\/\/shop_images\/PC-QQQQ__17.jpg",
         "collection": "hot-sale",
         "products_to_show": 12,
         "image_ratio": "adapt",
@@ -413,7 +413,7 @@
       ],
       "settings": {
         "products_to_show": 4,
-        "image": "shopify:\/\/shop_images\/M__14.jpg",
+        "image": "shopify:\/\/shop_images\/M__14_b4fa5b01-54a7-443c-ac20-caeff4143419.jpg",
         "link": "",
         "image_ratio": "adapt",
         "show_secondary_image": false,
@@ -443,8 +443,8 @@
         "16425010102ac2f6a5-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__19.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__16.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__20.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__16_924da617-b913-4f37-baf1-eeade67989ef.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
