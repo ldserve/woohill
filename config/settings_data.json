@@ -124,7 +124,7 @@
             "type": "footer-nav",
             "settings": {
               "title": "Category",
-              "link": "\/collections\/new-in",
+              "link": "shopify:\/\/collections\/new-in",
               "icon": "category"
             }
           },
