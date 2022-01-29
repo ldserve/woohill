@@ -370,20 +370,20 @@
             "show_view_all": true
           }
         },
-        "eccfd45f-ceb8-4a53-90ed-f10df3cd9a7c": {
-          "type": "collection_list",
-          "settings": {
-            "title": "BELT",
-            "collection": "belt",
-            "link": "",
-            "show_view_all": true
-          }
-        },
         "5603ccda-10c5-49a4-9b34-d316896dd966": {
           "type": "collection_list",
           "settings": {
             "title": "JEWELRY",
             "collection": "jewelry",
+            "link": "",
+            "show_view_all": true
+          }
+        },
+        "eccfd45f-ceb8-4a53-90ed-f10df3cd9a7c": {
+          "type": "collection_list",
+          "settings": {
+            "title": "BELT",
+            "collection": "belt",
             "link": "",
             "show_view_all": true
           }
@@ -406,8 +406,8 @@
         "ae7f38f1-b6c1-4e11-b5b0-d94858b09e48",
         "0835e98f-6c40-4fc2-b663-5637aed751d5",
         "164206228050a1dfc8-0",
-        "eccfd45f-ceb8-4a53-90ed-f10df3cd9a7c",
         "5603ccda-10c5-49a4-9b34-d316896dd966",
+        "eccfd45f-ceb8-4a53-90ed-f10df3cd9a7c",
         "688d04e2-646d-4ee2-a43a-591d869ee96a"
       ],
       "settings": {
