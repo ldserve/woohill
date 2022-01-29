@@ -249,10 +249,10 @@
         "text_left": 64,
         "title_size": 12,
         "big_title_size": 33,
-        "mobile_text_top": 0,
-        "mobile_text_left": 25,
-        "mobile_title_size": 12,
-        "mobile_big_title_size": 18,
+        "mobile_text_top": 5,
+        "mobile_text_left": 48,
+        "mobile_title_size": 10,
+        "mobile_big_title_size": 14,
         "text_color": "#ffffff",
         "text_style": "normal",
         "button_color": "#e7b34e",
@@ -283,7 +283,7 @@
         "1642579409b14e4668-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__14.jpg",
+        "image": "shopify:\/\/shop_images\/PC-_AB_14.jpg",
         "mobile_image": "shopify:\/\/shop_images\/M__13_349392ec-c689-49e6-8053-caaf1f5c35b5.jpg",
         "is_show": false,
         "title": "",
@@ -443,7 +443,7 @@
         "16425010102ac2f6a5-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__20.jpg",
+        "image": "shopify:\/\/shop_images\/PC-_AB_20.jpg",
         "mobile_image": "shopify:\/\/shop_images\/M__16_924da617-b913-4f37-baf1-eeade67989ef.jpg",
         "is_show": false,
         "title": "",
