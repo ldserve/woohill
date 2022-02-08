@@ -233,6 +233,9 @@
           display: block;
        }
     }
+    #shopify-section-{{ section.id }}  .title {
+         z-index: 9;
+       }
 </style>
 <div class="swiper-tab Slide-{{ section.id }}">
     <div class="swiper-header">
@@ -242,6 +245,28 @@
     <div class="tab-banner ">
         <div class="tab-banner-item">
             <a href="{{section.settings.link.url}}">
+                <div class="title pc">
+                    {% if section.settings.title %}
+                    <div class="title-item">{{section.settings.ld_title}}</div>
+                    {% endif %}
+                    {% if section.settings.subtitle %}
+                    <div class="title-big-title">{{section.settings.subtitle}}</div>
+                    {% endif %}
+                    {% if section.settings.button %}
+                    <div class="btn">{{section.settings.button}}</div>
+                    {% endif %}
+                </div>
+                <div class="title mobile">
+                    {% if section.settings.title %}
+                    <div class="title-item">{{section.settings.ld_title}}</div>
+                    {% endif %}
+                    {% if section.settings.subtitle %}
+                    <div class="title-big-title">{{section.settings.subtitle}}</div>
+                    {% endif %}
+                    {% if section.settings.button %}
+                    <div class="btn">{{section.settings.button}}</div>
+                    {% endif %}
+                </div>
                 <img class="lazyload img_item" srcset="{%- if section.settings.image.width >= 550 -%}{{ section.settings.image | img_url: '550x' }} 550w,{%- endif -%}
                           {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
                           {%- if section.settings.image.width >= 990 -%}{{ section.settings.image | img_url: '990x' }} 990w,{%- endif -%}
@@ -252,31 +277,32 @@
                           {{ section.settings.image | img_url: 'master' }} {{ section.settings.image.width }}w"
                     src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
             </a>
-            <div class="title pc">
-                {% if section.settings.title %}
-                <div class="title-item">{{section.settings.ld_title}}</div>
-                {% endif %}
-                {% if section.settings.subtitle %}
-                <div class="title-big-title">{{section.settings.subtitle}}</div>
-                {% endif %}
-                {% if section.settings.button %}
-                <div class="btn">{{section.settings.button}}</div>
-                {% endif %}
-            </div>
-            <div class="title mobile">
-                {% if section.settings.title %}
-                <div class="title-item">{{section.settings.ld_title}}</div>
-                {% endif %}
-                {% if section.settings.subtitle %}
-                <div class="title-big-title">{{section.settings.subtitle}}</div>
-                {% endif %}
-                {% if section.settings.button %}
-                <div class="btn">{{section.settings.button}}</div>
-                {% endif %}
-            </div>
+           
         </div>
         <div class="tab-banner-item">
             <a href="{{section.settings.link_two.url}}">
+                <div class="title pc">
+                    {% if section.settings.title %}
+                    <div class="title-item">{{section.settings.two_ld_title}}</div>
+                    {% endif %}
+                    {% if section.settings.subtitle %}
+                    <div class="title-big-title">{{section.settings.two_subtitle}}</div>
+                    {% endif %}
+                    {% if section.settings.button %}
+                    <div class="btn">{{section.settings.button}}</div>
+                    {% endif %}
+                </div>
+                <div class="title mobile">
+                    {% if section.settings.title %}
+                    <div class="title-item">{{section.settings.two_ld_title}}</div>
+                    {% endif %}
+                    {% if section.settings.subtitle %}
+                    <div class="title-big-title">{{section.settings.two_subtitle}}</div>
+                    {% endif %}
+                    {% if section.settings.button %}
+                    <div class="btn">{{section.settings.button}}</div>
+                    {% endif %}
+                </div>
                 <img class="lazyload img_item" srcset="{%- if section.settings.image_two.width >= 550 -%}{{ section.settings.image_two | img_url: '550x' }} 550w,{%- endif -%}
             {%- if section.settings.image_two.width >= 720 -%}{{ section.settings.image_two | img_url: '720x' }} 720w,{%- endif -%}
             {%- if section.settings.image_two.width >= 990 -%}{{ section.settings.image_two | img_url: '990x' }} 990w,{%- endif -%}
@@ -287,28 +313,7 @@
             {{ section.settings.image_two | img_url: 'master' }} {{ section.settings.image_two.width }}w"
                     src="{{ section.settings.image_two | img_url: '1500x' }}" data-sizes="auto" />
             </a>
-            <div class="title pc">
-                {% if section.settings.title %}
-                <div class="title-item">{{section.settings.two_ld_title}}</div>
-                {% endif %}
-                {% if section.settings.subtitle %}
-                <div class="title-big-title">{{section.settings.two_subtitle}}</div>
-                {% endif %}
-                {% if section.settings.button %}
-                <div class="btn">{{section.settings.button}}</div>
-                {% endif %}
-            </div>
-            <div class="title mobile">
-                {% if section.settings.title %}
-                <div class="title-item">{{section.settings.two_ld_title}}</div>
-                {% endif %}
-                {% if section.settings.subtitle %}
-                <div class="title-big-title">{{section.settings.two_subtitle}}</div>
-                {% endif %}
-                {% if section.settings.button %}
-                <div class="btn">{{section.settings.button}}</div>
-                {% endif %}
-            </div>
+           
         </div>
     </div>
     <div class="swiper">
@@ -465,9 +470,7 @@
     }
 
     function left() {
-
         currentID -= 4
-
         if (currentID === 4) {
             document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "none"
             document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "block"
