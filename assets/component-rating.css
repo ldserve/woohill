@@ -12,7 +12,15 @@
   --letter-spacing: 0.2;
   --font-size: 2;
 }
-
+.ld-collect .icon{
+  /* display: inline-block; */
+  float: right;
+  margin-right:20px ;
+  margin-top: 20px;
+}
+.ld-collect .icon:last-child{
+  display: none;
+}
 .rating-star {
   --percent: calc(
     (
