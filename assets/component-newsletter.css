@@ -37,10 +37,12 @@
     justify-content: flex-start;
   }
 }
-
 .newsletter-form__button {
-  width: 4.4rem;
+  width: 7.4rem;
   margin: 0;
+  background: #000;
+  color: #fff;
+  height: 100%;
 }
 
 .newsletter-form__button .icon {
