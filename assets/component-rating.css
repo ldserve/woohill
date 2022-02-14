@@ -17,10 +17,9 @@
   float: right;
   margin-right:20px ;
   margin-top: 20px;
-}
-.ld-collect .icon:last-child{
   display: none;
 }
+
 .rating-star {
   --percent: calc(
     (
