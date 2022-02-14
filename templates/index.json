@@ -463,6 +463,7 @@
     },
     "featured_products": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "title": "Featured Products",
         "collection": "hawaiian-style",
