@@ -5,7 +5,110 @@ function getFocusableElements(container) {
     )
   );
 }
+var timer = 0
+function removeCollect(item) {
+  const newTime = Date.parse(new Date())
+  if (newTime - timer < 2000) {
+    return
+  }
+  timer = newTime
+  var collectData = {
+    customerId: "{{ customer.id}}",
+    productId: item.getAttribute('data-id'),
+    productSpu: item.getAttribute('data-spu')
+  }
+  postData("customerCollectionProduct/collectionProduct", collectData)
+    .then(res => {
+      if (res.success) {
+        item.style.display = 'none'
+        item.previousElementSibling.style.display = "block"
+        item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText)-1
+      }
+    });
+}
+function addCollect(item) {
+  const newTime = Date.parse(new Date())
+  if (newTime - timer < 2000) {
+    return
+  }
+  timer = newTime
+  var collectData = {
+    customerId: "{{ customer.id}}",
+    productId: item.getAttribute('data-id'),
+    productSpu: item.getAttribute('data-spu')
+  }
+  postData("customerCollectionProduct/collectionProduct", collectData)
+    .then(res => {
+      if (res.success) {
+        item.style.display = 'none'
+        item.nextElementSibling.style.display = "block"
+        item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText)+1
+      }
+    });
+}
+async function postData(url, data) {
+  const response = await fetch(`https://api.leandow-technology.com/api/${url}`, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      "siteValue": "ldccs",
+      "Access-Control-Allow-Origin": "*"
+    },
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer',
+    body: JSON.stringify(data)
+  });
+  return response.json();
+}
+window.onload = () => {
+  var addNodes = document.querySelectorAll('.remove-collect')
+  var removeNodes = document.querySelectorAll('.add-collect')
+  var ids = []
+  removeNodes.forEach(item => {
+    ids.push(item.getAttribute("data-id"))
+  })
+  var searchData = {
+    customerId: "{{ customer.id}}",
+    productIds: ids
+  }
 
+  if ("{{ customer.id}}") {
+    postData("customerCollectionProduct/selectProductIsCollection", searchData)
+      .then(res => {
+        if (res.success) {
+          res.data.forEach(i => {
+            if (i.isCollection) {
+              addNodes.forEach(item => {
+                var id = item.getAttribute("data-id")
+                item.parentElement.style.display = 'flex'
+                if (id === i.productId) {
+                  item.style.display = 'none'
+                  item.nextElementSibling.style.display = "block"
+                }
+              })
+            } else {
+              removeNodes.forEach(item => {
+                item.parentElement.style.display = 'flex'
+                var id = item.getAttribute("data-id")
+                if (id === i.productId) {
+                  item.style.display = 'none'
+                  item.previousElementSibling.style.display = "block"
+                }
+              })
+            }
+          })
+        }
+      });
+  } else {
+    addNodes.forEach(i => {
+      i.style.display = 'block'
+      i.parentElement.style.display = 'flex'
+    })
+  }
+}
 document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   summary.setAttribute('role', 'button');
   summary.setAttribute('aria-expanded', 'false');

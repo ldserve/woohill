@@ -794,24 +794,31 @@
                 {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
                   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
                   <div class="product-form__buttons">
-                    <button type="submit" name="add"
-                            class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
-                            {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
-                <span>
-                  {%- if product.selected_or_first_available_variant.available -%}
-                    {{ 'products.product.add_to_cart' | t }}
-                  {%- else -%}
-                    {{ 'products.product.sold_out' | t }}
-                  {%- endif -%}
-                </span>
-                      <div class="loading-overlay__spinner hidden">
-                        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
-                             viewBox="0 0 66 66"
-                             xmlns="http://www.w3.org/2000/svg">
-                          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                        </svg>
-                      </div>
-                    </button>
+             <div class="ld-add-cart">
+                   <button type="submit" name="add"
+                   class="product-form__submit button button--full-width {% if block.settings.show_dynamic_checkout and product.selling_plan_groups == empty %}button--secondary{% else %}button--primary{% endif %}"
+                   {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}>
+                 <span>
+                   {%- if product.selected_or_first_available_variant.available -%}
+                     {{ 'products.product.add_to_cart' | t }}
+                   {%- else -%}
+                     {{ 'products.product.sold_out' | t }}
+                   {%- endif -%}
+                 </span>
+             <div class="loading-overlay__spinner hidden">
+               <svg aria-hidden="true" focusable="false" role="presentation" class="spinner"
+                    viewBox="0 0 66 66"
+                    xmlns="http://www.w3.org/2000/svg">
+                 <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+               </svg>
+             </div>
+           </button>
+           <div class="ld-collect" style="margin-top: 5px;">
+            <svg t="1644375730921" onclick="addCollect(this)" class="icon remove-collect" data-id="{{ product.id}}" data-spu="{{ product.handle}}" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2024" width="35" height="35"><path d="M752 144c55.6 0 107.8 21.6 147.1 60.9S960 296.4 960 352c0 32.7-6.1 66.4-18.1 100.2-11.4 32-28.3 64.9-50.3 97.8-38.7 57.8-93.4 116.2-162.5 173.6C643 795.1 555.6 847.2 512 871.5c-43.2-24-129.4-75.1-215.2-146-69.6-57.5-124.6-116-163.7-174-22.2-33.1-39.3-66.1-50.8-98.4C70.2 418.9 64 385 64 352c0-55.6 21.6-107.8 60.9-147.1S216.4 144 272 144c76.9 0 147.2 42.2 183.6 110.1l28.2 52.7c12.1 22.5 44.4 22.5 56.4 0l28.2-52.7C604.8 186.2 675.1 144 752 144z m0-64c-101.3 0-189.7 55.4-236.5 137.6-1.5 2.7-5.4 2.7-6.9 0C461.7 135.4 373.3 80 272 80 121.8 80 0 201.8 0 352c0 338 512 592 512 592s512-255 512-592c0-150.2-121.8-272-272-272z" fill="#ccc" p-id="2025"></path></svg>
+            <svg t="1644375855436" onclick="removeCollect(this)" class="icon add-collect" data-id="{{ product.id}}" data-spu="{{ product.handle}}" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14019" width="35" height="35"><path d="M0 368.64C0 209.92 130.56 79.36 286.72 79.36c89.6 0 171.52 43.52 225.28 112.64 53.76-69.12 135.68-112.64 225.28-112.64C893.44 79.36 1024 209.92 1024 368.64 1024 627.2 709.12 844.8 573.44 926.72c-38.4 23.04-84.48 23.04-122.88 0C314.88 844.8 0 627.2 0 368.64z" fill="#FF3E4C" p-id="14020"></path></svg>
+            <span style="display: none;">13423</span>
+          </div>
+       </div>
                     {%- if block.settings.show_dynamic_checkout -%}
                       {{ form | payment_button }}
                     {%- endif -%}

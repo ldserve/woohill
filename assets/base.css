@@ -1392,8 +1392,8 @@ button.shopify-payment-button__button--unbranded {
 }
 
 .button--full-width {
-  display: flex;
-  width: 100%;
+  /* display: flex; */
+  width: 88%;
 }
 
 .button.loading {
@@ -2541,12 +2541,18 @@ details-disclosure > details {
   .content-container--full-width-mobile:after {
     display: none;
   }
-  .button--full-width {
-    display: flex;
-    width: 91%;
+  .ld-add-cart{
+    width: 100%;
     position: fixed;
-    bottom: 40px;
+    bottom: 50px;
     z-index: 99;
+    background: #fff;
+    padding-right: 5px;
+    margin-left: -20px;
+    box-sizing: border-box;
+  }
+  .button--full-width {
+    width: 80%;
   }
   .button.loading {
     width: 91%;
