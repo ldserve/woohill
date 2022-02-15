@@ -14,12 +14,17 @@
 }
 .ld-collect .icon{
   /* display: inline-block; */
-  float: right;
-  margin-right:20px ;
-  margin-top: 20px;
   display: none;
+  margin-right: 5px;
+  cursor: pointer;
 }
+.ld-collect{
 
+  float: right;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
 .rating-star {
   --percent: calc(
     (

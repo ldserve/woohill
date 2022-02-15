@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+ <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print"
@@ -52,9 +52,11 @@
     line-height: calc(1 + 0.3 / var(--font-body-scale));
 
   }
-.header  .list-menu__item{
+
+  .header .list-menu__item {
     white-space: nowrap;
-}
+  }
+
   .list-menu__item--link {
     text-decoration: none;
     padding-bottom: 1rem;
@@ -67,11 +69,21 @@
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
     }
+
+    .ld-header-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   @media screen and (max-width: 749px) {
     .list-menu.ld-submenu {
       margin-left: 50px;
+    }
+
+    .ld-header-icon {
+      display: none;
     }
   }
 </style>
@@ -384,8 +396,7 @@
             <details id="Details-HeaderMenu-{{ forloop.index }}">
               <summary class="header__menu-item list-menu__item link focus-inset">
                 {% comment %} <a class="link--text" style="text-decoration:none;" href="{{link.url}}"> <span {%- if
-                    link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span></a> {%
-                endcomment %}
+                    link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span></a> {% endcomment %}
                 <span {%- if link.child_active %} class="header__active-menu-item" {% endif %}>{{ link.title | escape
                   }}</span>
               </summary>
@@ -489,7 +500,10 @@
           </div>
         </details>
       </details-modal>
-
+      <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+      class="ld-header-icon">
+      <svg t="1644375730921"  class="icon"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2024" width="20" height="20"><path d="M752 144c55.6 0 107.8 21.6 147.1 60.9S960 296.4 960 352c0 32.7-6.1 66.4-18.1 100.2-11.4 32-28.3 64.9-50.3 97.8-38.7 57.8-93.4 116.2-162.5 173.6C643 795.1 555.6 847.2 512 871.5c-43.2-24-129.4-75.1-215.2-146-69.6-57.5-124.6-116-163.7-174-22.2-33.1-39.3-66.1-50.8-98.4C70.2 418.9 64 385 64 352c0-55.6 21.6-107.8 60.9-147.1S216.4 144 272 144c76.9 0 147.2 42.2 183.6 110.1l28.2 52.7c12.1 22.5 44.4 22.5 56.4 0l28.2-52.7C604.8 186.2 675.1 144 752 144z m0-64c-101.3 0-189.7 55.4-236.5 137.6-1.5 2.7-5.4 2.7-6.9 0C461.7 135.4 373.3 80 272 80 121.8 80 0 201.8 0 352c0 338 512 592 512 592s512-255 512-592c0-150.2-121.8-272-272-272z" p-id="2025"></path></svg>
+    </a>
       {%- if shop.customer_accounts_enabled -%}
       <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
         class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">
