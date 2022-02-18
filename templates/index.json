@@ -62,8 +62,8 @@
         "16419682091433c6e9-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__04_7286e376-7fb6-48a1-937a-98821881873e.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__03_ee98a4ff-1087-447f-9932-3dbb222cd9a6.jpg",
+        "image": "shopify:\/\/shop_images\/PC-__03_41e2a1f7-d315-4b62-8194-79523ab5d763.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__03_a0c2a7d1-ba79-4af7-b40a-c324a930792e.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
@@ -86,113 +86,127 @@
         "1642579387d49fb479-0": {
           "type": "banner",
           "settings": {
-            "top": 17,
-            "width": 14,
+            "top": 14,
+            "width": 12,
             "left": 24,
-            "height": 31,
-            "link": "shopify:\/\/collections\/t-shirts",
-            "mobile_top": 27,
-            "mobile_width": 21,
-            "mobile_left": 4,
-            "mobile_height": 30
+            "height": 73,
+            "link": "shopify:\/\/collections\/short-sleeve",
+            "mobile_top": 0,
+            "mobile_width": 0,
+            "mobile_left": 0,
+            "mobile_height": 0
           }
         },
         "2bd0c485-1161-4e58-a095-4c7a2a83438d": {
           "type": "banner",
           "settings": {
-            "top": 17,
-            "width": 15,
-            "left": 41,
-            "height": 30,
-            "link": "shopify:\/\/collections\/hoodies-sweatshirts",
-            "mobile_top": 27,
-            "mobile_width": 21,
-            "mobile_left": 28,
-            "mobile_height": 30
+            "top": 14,
+            "width": 13,
+            "left": 37,
+            "height": 73,
+            "link": "shopify:\/\/collections\/long-sleeve",
+            "mobile_top": 0,
+            "mobile_width": 0,
+            "mobile_left": 0,
+            "mobile_height": 0
           }
         },
         "b6061246-f835-41b5-8112-038b9f13e3ea": {
           "type": "banner",
           "settings": {
-            "top": 17,
-            "width": 14,
-            "left": 59,
-            "height": 32,
-            "link": "shopify:\/\/collections\/outerwear",
+            "top": 15,
+            "width": 13,
+            "left": 50,
+            "height": 72,
+            "link": "shopify:\/\/collections\/hoodies-sweatshirts",
             "mobile_top": 27,
-            "mobile_width": 22,
-            "mobile_left": 50,
-            "mobile_height": 30
+            "mobile_width": 25,
+            "mobile_left": 38,
+            "mobile_height": 33
           }
         },
         "a66c5ce2-4c0d-45b7-9873-eb7a99c299a1": {
           "type": "banner",
           "settings": {
-            "top": 17,
-            "width": 15,
-            "left": 76,
-            "height": 31,
-            "link": "shopify:\/\/collections\/pant",
+            "top": 15,
+            "width": 12,
+            "left": 64,
+            "height": 73,
+            "link": "shopify:\/\/collections\/outerwear",
             "mobile_top": 27,
-            "mobile_width": 21,
-            "mobile_left": 75,
-            "mobile_height": 30
+            "mobile_width": 27,
+            "mobile_left": 65,
+            "mobile_height": 32
           }
         },
         "f2314d3f-4777-4dd2-b4e3-f9fb7db5ffa5": {
           "type": "banner",
           "settings": {
-            "top": 52,
-            "width": 14,
-            "left": 24,
-            "height": 30,
-            "link": "shopify:\/\/collections\/jewelry",
-            "mobile_top": 62,
-            "mobile_width": 21,
-            "mobile_left": 4,
-            "mobile_height": 28
+            "top": 15,
+            "width": 13,
+            "left": 77,
+            "height": 72,
+            "link": "shopify:\/\/collections\/accessories",
+            "mobile_top": 0,
+            "mobile_width": 0,
+            "mobile_left": 0,
+            "mobile_height": 0
           }
         },
         "ef071313-fd7d-4c5f-b1b0-c37bd1fc636e": {
           "type": "banner",
           "settings": {
-            "top": 52,
-            "width": 15,
-            "left": 41,
-            "height": 30,
-            "link": "shopify:\/\/collections\/cap-hat",
+            "top": 0,
+            "width": 0,
+            "left": 0,
+            "height": 0,
+            "link": "shopify:\/\/collections\/jewelry",
             "mobile_top": 62,
-            "mobile_width": 21,
-            "mobile_left": 28,
-            "mobile_height": 28
+            "mobile_width": 25,
+            "mobile_left": 10,
+            "mobile_height": 31
           }
         },
         "6083c6f1-c1cc-470d-a953-a1f67cb99aaa": {
           "type": "banner",
           "settings": {
-            "top": 52,
-            "width": 14,
-            "left": 59,
-            "height": 30,
-            "link": "shopify:\/\/collections\/retro-style",
-            "mobile_top": 62,
-            "mobile_width": 22,
-            "mobile_left": 50,
-            "mobile_height": 28
+            "top": 0,
+            "width": 0,
+            "left": 0,
+            "height": 0,
+            "link": "shopify:\/\/collections\/t-shirts",
+            "mobile_top": 27,
+            "mobile_width": 25,
+            "mobile_left": 10,
+            "mobile_height": 31
           }
         },
         "69c0c05d-a763-42f8-bc6e-1c2cacc65f00": {
           "type": "banner",
           "settings": {
-            "top": 52,
-            "width": 15,
-            "left": 76,
-            "height": 30,
-            "link": "shopify:\/\/collections\/hawaiian-style",
+            "top": 0,
+            "width": 0,
+            "left": 0,
+            "height": 0,
+            "link": "shopify:\/\/collections\/cap-hat",
+            "mobile_top": 61,
+            "mobile_width": 26,
+            "mobile_left": 37,
+            "mobile_height": 32
+          }
+        },
+        "b4cb84f3-752c-4427-935f-171ef022a912": {
+          "type": "banner",
+          "settings": {
+            "top": 0,
+            "width": 0,
+            "left": 0,
+            "height": 0,
+            "link": "shopify:\/\/collections\/retro-style",
             "mobile_top": 62,
-            "mobile_width": 21,
-            "mobile_left": 75,
-            "mobile_height": 28
+            "mobile_width": 26,
+            "mobile_left": 65,
+            "mobile_height": 31
           }
         }
       },
@@ -204,11 +218,12 @@
         "f2314d3f-4777-4dd2-b4e3-f9fb7db5ffa5",
         "ef071313-fd7d-4c5f-b1b0-c37bd1fc636e",
         "6083c6f1-c1cc-470d-a953-a1f67cb99aaa",
-        "69c0c05d-a763-42f8-bc6e-1c2cacc65f00"
+        "69c0c05d-a763-42f8-bc6e-1c2cacc65f00",
+        "b4cb84f3-752c-4427-935f-171ef022a912"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__05_9c1e0f07-e45d-4f72-8e1b-cad24880678a.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__04_fa5bb9b1-7420-4cf6-8b88-8098a1f8b084.jpg",
+        "image": "shopify:\/\/shop_images\/2.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/M__04_7b4fc4f8-1365-4782-9ce2-685c1c8dfa10.jpg",
         "is_show": false,
         "title": "",
         "subtitle": "",
