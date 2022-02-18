@@ -253,6 +253,7 @@
   </head>
 
   <body class="gradient">
+    
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ "accessibility.skip_to_text" | t }}
     </a>
@@ -287,6 +288,23 @@
       function ldClose(){
         document.querySelector(".ld-dialog").style.display="none"
         document.querySelector(".mask").style.display="none"
+      }
+      async function postData(url, data) {
+        const response = await fetch(`https://api-dev.leandow-technology.com/api/${url}`, {
+          method: 'POST',
+          mode: 'cors',
+          cache: 'no-cache',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            "siteValue": "leandowTest",
+            "Access-Control-Allow-Origin": "*"
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify(data)
+        });
+        return response.json();
       }
       var timer = 0
       function removeCollect(item) {
@@ -346,23 +364,6 @@
             document.querySelector(".ld-hint").style.display = "none"
           },2000)
         }
-      }
-      async function postData(url, data) {
-        const response = await fetch(`https://api.leandow-technology.com/api/${url}`, {
-          method: 'POST',
-          mode: 'cors',
-          cache: 'no-cache',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
-            "siteValue": "ldccs",
-            "Access-Control-Allow-Origin": "*"
-          },
-          redirect: 'follow',
-          referrerPolicy: 'no-referrer',
-          body: JSON.stringify(data)
-        });
-        return response.json();
       }
       window.onload = () => {
         var addNodes = document.querySelectorAll('.remove-collect')

@@ -1,0 +1,16 @@
+<script>
+     var collectList={
+        current: 1,
+        customerId:"{{customer.id}}",
+        size: 20
+      }
+      function getCollectList(){
+        postData("customerCollectionProduct/collectionProductList", collectList)
+            .then(res => {
+                console.log(res);
+            });
+      }
+     if("{{ customer.id}}"){
+       getCollectList()
+     }
+</script>
