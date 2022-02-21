@@ -179,7 +179,6 @@
         font-weight: var(--font-body-weight);
       }
       .ld-dialog {
-        display: none;
         width: 60%;
         margin: 12% 20%;
         position: fixed;
@@ -187,6 +186,9 @@
         background: #fff;
         box-shadow:0 4px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
         border-radius:5px;
+      }
+      .ld-dialog-body{
+        display: flex;
       }
       .ld-dialog-off {
         position: absolute;
@@ -224,9 +226,52 @@
        background: rgba(0,0,0,0.5);
        z-index:98;
      }
+     .ld-dialog .create_account{
+       display:none;
+     }
+     .ld-dialog-header{
+      text-align: center;
+      font-weight:900;
+     }
+     .dialog-header-nav{
+       display:flex;
+       justify-content: space-around;
+       align-items: center;
+       font-size:22px;
+     }
+
+
+     .ld-dialog .customer:not(.account):not(.order){
+      margin: 1rem auto 9rem;
+     }
       @media screen and (min-width: 750px) {
         body {
           font-size: 1.6rem;
+        }
+      }
+      @media screen and (max-width: 749px) {
+        .ld-dialog .customer.register{
+          display:none;
+        }
+        .ld-dialog .create_account{
+          display:block;
+          cursor: pointer;
+        }
+        .dialog-active{
+          text-decoration: underline;
+        }
+        .ld-dialog {
+          width: 100%;
+          margin: 0;
+          position: fixed;
+          z-index: 99;
+          background: #fff;
+          box-shadow:none;
+          border-radius:0px;
+          height: 100%;
+        }
+        .dialog-header-nav div{
+          cursor: pointer;
         }
       }
     {% endstyle %}
@@ -273,8 +318,17 @@
       <div class="ld-dialog-off" onclick="ldClose()">
         <svg t="1644921460319" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4679" width="32" height="32"><path d="M550.848 502.496l308.64-308.896a31.968 31.968 0 1 0-45.248-45.248l-308.608 308.896-308.64-308.928a31.968 31.968 0 1 0-45.248 45.248l308.64 308.896-308.64 308.896a31.968 31.968 0 1 0 45.248 45.248l308.64-308.896 308.608 308.896a31.968 31.968 0 1 0 45.248-45.248l-308.64-308.864z" fill="#ccc" p-id="4680"></path></svg>
       </div>
-      {% render 'login' %}
-      {% render 'register' %}
+      <div class="ld-dialog-header">
+        <h1 class="dialog-header-title">WOOHILL</h1>
+        <div class="dialog-header-nav">
+          <div class="dialog-active" onclick="toggleDialog('login')">LOGIN</div>
+          <div onclick="toggleDialog('greate')">GREATE ACCOUNT</div>
+        </div>
+      </div>
+      <div class="ld-dialog-body">
+        {% render 'login' %}
+        {% render 'register' %}
+      </div>
     </div>
     <div class="ld-hint">
       <svg t="1645077288608" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2020" width="20" height="20"><path d="M512 85.333333c235.648 0 426.666667 191.018667 426.666667 426.666667s-191.018667 426.666667-426.666667 426.666667S85.333333 747.648 85.333333 512 276.352 85.333333 512 85.333333z m0 170.666667a42.666667 42.666667 0 0 0-42.666667 42.666667v341.333333a42.666667 42.666667 0 0 0 85.333334 0V298.666667a42.666667 42.666667 0 0 0-42.666667-42.666667z m0 554.666667a42.666667 42.666667 0 1 0 0-85.333334 42.666667 42.666667 0 0 0 0 85.333334z" fill="#FAAD14" p-id="2021"></path></svg>
@@ -328,7 +382,7 @@
               }
             });
         } else {
-          document.querySelector(".ld-dialog").style.display = "flex"
+          document.querySelector(".ld-dialog").style.display = "block"
           document.querySelector(".mask").style.display="block"
           document.querySelector(".ld-hint").style.display = "block"
           setTimeout(()=>{
@@ -357,7 +411,7 @@
             }
           });
         }else{
-          document.querySelector(".ld-dialog").style.display = "flex"
+          document.querySelector(".ld-dialog").style.display = "block"
           document.querySelector(".mask").style.display="block"
           document.querySelector(".ld-hint").style.display = "block"
           setTimeout(()=>{
@@ -365,7 +419,7 @@
           },2000)
         }
       }
-      window.onload = () => {
+      function getCollectNode(){
         var addNodes = document.querySelectorAll('.remove-collect')
         var removeNodes = document.querySelectorAll('.add-collect')
         var ids = []
@@ -410,6 +464,26 @@
             i.parentElement.style.display = 'flex'
           })
         }
+      }
+      window.onload = () => {
+        getCollectNode()
+      }
+      var dialogNav=document.querySelector(".dialog-header-nav")
+      var dialogLogin=document.querySelector(".ld-dialog .customer.login")
+      var dialogRegister=document.querySelector(".ld-dialog .customer.register")
+      function toggleDialog(type){
+       if(window.screen.availWidth>749)return
+       if(type==="login"){
+        dialogNav.firstElementChild.classList.add("dialog-active")
+        dialogNav.lastElementChild.classList.remove("dialog-active")
+        dialogRegister.style.display="none"
+        dialogLogin.style.display="block"
+       }else{
+         dialogNav.lastElementChild.classList.add("dialog-active")
+         dialogNav.firstElementChild.classList.remove("dialog-active")
+         dialogRegister.style.display="block"
+         dialogLogin.style.display="none"
+       }
       }
       window.shopUrl = '{{ shop.url }}';
       window.routes = {
