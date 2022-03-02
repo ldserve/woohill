@@ -961,3 +961,25 @@ class ProductItem extends HTMLElement  {
 }
 
 customElements.define('product-item',ProductItem)
+window.getFormatDate = function getFormatDate() {
+    //获得当前运行环境时间
+    let d = new Date();
+    let currentDate = new Date();
+    let tmpHours = currentDate.getHours();
+    //算得时区
+    let time_zone = -d.getTimezoneOffset() / 60;
+    if (time_zone < 0) {
+        time_zone = Math.abs(time_zone) + 8;
+        currentDate.setHours(tmpHours + time_zone);
+    } else {
+        time_zone -= 8;
+        currentDate.setHours(tmpHours - time_zone);
+    }
+    let Y = currentDate.getFullYear();
+    let M = (currentDate.getMonth() + 1 < 10 ? '0' + (currentDate.getMonth() + 1) : currentDate.getMonth() + 1);
+    let D = currentDate.getDate() < 10 ? ('0' + currentDate.getDate()) : currentDate.getDate();
+    let h = currentDate.getHours() < 10 ? ('0' + currentDate.getHours()) : currentDate.getHours();
+    let m = currentDate.getMinutes() < 10 ? ('0' + currentDate.getMinutes()) : currentDate.getMinutes();
+    let s = currentDate.getSeconds() < 10 ? ('0' + currentDate.getSeconds()) : currentDate.getSeconds();
+    return Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s;
+}

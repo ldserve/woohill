@@ -87,6 +87,17 @@
     ]
   },
   {
+    "name": "颜色配置",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "color_config",
+        "label": "颜色配置",
+        "info": "使用规则：变体颜色名:#颜色16进制表示法(Blue:#1d304e)，每一行一条"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.typography.name",
     "settings": [
       {
