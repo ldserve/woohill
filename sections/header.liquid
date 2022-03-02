@@ -38,8 +38,14 @@
   }
 
   .list-menu--inline {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: 900;
+    font-family: var(--font-heading-family);
   }
 
   summary.list-menu__item {
@@ -55,6 +61,8 @@
 
   .header .list-menu__item {
     white-space: nowrap;
+    font-size: 24px;
+    font-weight: 900;
   }
 
   .list-menu__item--link {
