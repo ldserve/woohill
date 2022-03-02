@@ -40,9 +40,8 @@
               <div class="select facet-filters-box-content">
                 {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
                 <select name="sort_by" class="facet-filters__sort select__select caption-large" id="SortBy" aria-describedby="a11y-refresh-page-message">
-                  {%- for option in results.sort_options -%}
-                    <option value="{{ option.value | escape }}"{% if option.value == sort_by %} selected="selected"{% endif %}>{{ option.name | escape }}</option>
-                  {%- endfor -%}
+                  <option value="featured">featured</option>
+                  <option value="new">new</option>
                 </select>
                 {% render 'icon-caret' %}
               </div>
@@ -74,17 +73,39 @@
                   {% when 'Color' %}
                   <ul class="facets__list facets__list__color list-unstyled"  role="list">
                     {%- for value in filter.values -%}
-                      <li class="list-menu__item facets__item">
-                        <input type="checkbox"
-                          name="{{ value.param_name }}"
-                          value="{{ value.value }}"
-                          id="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
-                          {% if value.active %}checked{% endif %}
-                          {% if value.count == 0 and value.active == false %}disabled{% endif %}
-                        >
-                          <label for="Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}" style="{% render 'color-square' ,color:value.value %}" title="{{value.value}}">
-                          </label>
-                      </li>
+                    {%- if forloop.index < 12 -%}
+                    <li class="list-menu__item facets__item">
+                      <input type="checkbox"
+                        name="{{ value.param_name }}"
+                        value="{{ value.value }}"
+                        id="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+                        {% if value.active %}checked{% endif %}
+                        {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                      >
+                        <label for="Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}" style="{% render 'color-square' ,color:value.value %}" title="{{value.value}}">
+                        </label>
+                    </li>
+                    {% elsif forloop.index > 12  %}
+                      
+                    <li class="list-menu__item facets__item hidden">
+                      <input type="checkbox"
+                        name="{{ value.param_name }}"
+                        value="{{ value.value }}"
+                        id="Filter-{{ filter.label | escape }}-{{ forloop.index }}"
+                        {% if value.active %}checked{% endif %}
+                        {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                      >
+                        <label for="Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}" style="{% render 'color-square' ,color:value.value %}" title="{{value.value}}">
+                        </label>
+                    </li>
+                    {%- else -%}
+                    <li class="list-menu__item facets__item" onclick="removeHide(this)">
+                      <div class="more" >
+                        <span class="color-item" title="more">+</span>
+                      </div>
+                    </li>
+                    {%- endif -%}
+                      
                     {%- endfor -%}
                   </ul>
                   {% when 'Size' %}
@@ -535,10 +556,18 @@
   i.addEventListener('click',function(e){
     let tragetHeight = i.parentElement.nextElementSibling.style.height
     if(!tragetHeight || tragetHeight == '0px'){
+      // console.log(i.parentElement.nextElementSibling.scrollHeight + 'px');
       i.parentElement.nextElementSibling.style.height = i.parentElement.nextElementSibling.scrollHeight + 'px'
     }else if (tragetHeight && tragetHeight !== '0px'){
       i.parentElement.nextElementSibling.style.height = '0px'
     }
   })
 })
+function removeHide(el){
+for (let index = 0; index < el.parentElement.children.length; index++) {
+  el.parentElement.children[index].classList.remove("hidden")
+}
+el.classList.add("hidden")
+el.parentElement.style.height = el.parentElement.scrollHeight + 'px'
+}
 </script>

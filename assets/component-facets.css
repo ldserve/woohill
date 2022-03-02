@@ -252,6 +252,16 @@
   margin-right: 5%;
   margin-bottom: 2rem;
 }
+.facets__list__color .more {
+  width: 35px;
+  height: 35px;
+  border: 2px solid #eee;
+  margin-left: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
 .facets__list__color .facet-checkbox{
   width: 3.5rem;
   padding: 0;

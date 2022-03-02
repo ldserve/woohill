@@ -213,7 +213,14 @@ html.no-js .no-js-inline {
 html.no-js .no-js-hidden {
   display: none !important;
 }
-
+.price_left{
+  position: absolute;
+    top: 23px;
+    left: 350px;
+}
+span.price-item.price-item--regular {
+  font-size: 20px;
+}
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;

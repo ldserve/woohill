@@ -545,7 +545,7 @@
               {{ product.title | escape }}
             </h2>
           {%- when 'price' -%}
-            <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+            <div class="no-js-hidden price_left" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
               {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
             </div>
             {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
@@ -567,7 +567,7 @@
           {%- when 'description' -%}
             {%- if product.description != blank -%}
             <div class="product__description rte accordion">
-              <details id="Details-{{ block.id }}-{{ section.id }}" open>
+              <details id="Details-{{ block.id }}-{{ section.id }}">
                 <summary>
                   <div class="summary__title">
                     <h2 class="accordion__title">
