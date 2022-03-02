@@ -63,6 +63,11 @@
     white-space: nowrap;
     font-size: 24px;
     font-weight: 900;
+    color: {{section.settings.text}};
+  }
+
+  .header .list-menu__item:hover {
+    color: {{section.settings.text_hover}};
   }
 
   .list-menu__item--link {
@@ -71,15 +76,17 @@
     padding-top: 1rem;
     line-height: calc(1 + 0.8 / var(--font-body-scale));
   }
-
+  @media screen and (min-width: 989px) {
+    .header__heading{
+      display: none;
+    }
+  }
   @media screen and (min-width: 750px) {
     .list-menu__item--link {
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
     }
-    .header__heading{
-      display: none;
-    }
+
    li .header__heading{
       display: block;
     }
@@ -336,6 +343,18 @@ requestAnimationFrame(this.hide.bind(this));
     "label": "背景颜色",
     "default": "#1e2d7d"
     },
+    {
+      "type": "color",
+      "id": "text",
+      "label": "字体颜色",
+      "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "text_hover",
+        "label": "文字转换色",
+        "default": "#ec6f08"
+        },
     {
     "type": "image_picker",
     "id": "logo",
