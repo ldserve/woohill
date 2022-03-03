@@ -15,13 +15,6 @@
       "announcement-bar": {
         "type": "announcement-bar",
         "blocks": {
-          "announcement-bar-0": {
-            "type": "announcement",
-            "settings": {
-              "text": "FREE SHIPPING ON ORDER OVER $60",
-              "link": ""
-            }
-          },
           "693d9cb3-c404-468e-ad50-bd8fcea6b105": {
             "type": "announcement",
             "settings": {
@@ -45,13 +38,12 @@
           }
         },
         "block_order": [
-          "announcement-bar-0",
           "693d9cb3-c404-468e-ad50-bd8fcea6b105",
           "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9",
           "0fc2d0ff-c749-49d2-a29a-4c19e02fe1f9"
         ],
         "settings": {
-          "show": true,
+          "show": false,
           "color_text": "#ffffff",
           "color_bg": "#967f5d",
           "time": 10
@@ -61,6 +53,8 @@
         "type": "header",
         "settings": {
           "background": "#1e2d7d",
+          "text": "#000",
+          "text_hover": "#ec6f08",
           "logo": "shopify:\/\/shop_images\/1.png",
           "logo_width": 100,
           "logo_position": "middle-left",
