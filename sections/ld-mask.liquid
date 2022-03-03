@@ -14,7 +14,11 @@ src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
       <div class="mask-link-text">
           <div>
             {% for block in section.blocks %}
-            <div>{{block.settings.text}}</div>
+            {%- if forloop.index > 1 -%}
+              <div style="position: relative;top:-25px" >{{block.settings.text}}</div>
+            {% else %}
+              <div>{{block.settings.text}}</div>
+            {% endif %}
            {% endfor %}
           </div>
       </div>
@@ -34,7 +38,11 @@ src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
         <div class="mask-link-text">
           <div>
             {% for block in section.blocks %}
-            <div>{{block.settings.text}}</div>
+            {%- if forloop.index > 1 -%}
+              <div style="position: relative;top:-15px" >{{block.settings.text}}</div>
+            {% else %}
+              <div>{{block.settings.text}}</div>
+            {% endif %}
            {% endfor %}
           </div>
         </div>
@@ -85,7 +93,11 @@ src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
   }
+  .ld-mask {
+    margin: 10px;
+   }
   }
 
   @media (min-width: 768px) {
@@ -116,6 +128,7 @@ src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
    }
   .card-{{section.id}} .mask-link:hover .mask-link-text{
     opacity: 1;
