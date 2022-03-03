@@ -19,7 +19,7 @@
         "3f46a901-dacd-4629-a43c-ac700bb3d255": {
           "type": "shopify:\/\/apps\/product-reviews\/blocks\/star_rating\/bae150af-8da8-48b2-9867-398188115e5f",
           "settings": {
-            "stars_fill_color": "#ed6123",
+            "stars_fill_color": "#121212",
             "star_size": 22,
             "text_align": "flex-start",
             "product": "{{product}}",
