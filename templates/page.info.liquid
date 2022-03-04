@@ -1,15 +1,63 @@
+
+<style>
+    .info{
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .about{
+        font-weight: 900;
+        font-size: 18px;
+    }
+    .info p{
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .info-content{
+        display: flex;
+    }
+    #leftMenu{
+    border-right: 1px #000 solid;
+    text-align: right;
+    font-weight: 900;
+    font-size: 22px;
+    width: 180px;
+    display: flex;
+    flex-flow: column;
+    }
+    #leftMenu button{
+    cursor: pointer;
+    display: block;
+    border: none;
+    background: none;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: right;
+    padding: 10px;
+    text-transform: uppercase;
+    }
+    #leftMenu button:hover{
+    color: rgb(245, 95, 8);
+    }
+    #content{
+        padding:0px 20px 20px 20px;
+    }
+    #content .content{
+       display: none;
+    }
+    .info-active{
+        display: block !important;
+    }
+</style>
 <div class="info">
     <div id="info-main">
         <div class="info-header">
-            <div class="header">
-                About COVID-19
+            <div class="about">
+                ABOUT COVID-19 :
             </div>
-            <div>
-                <p size="0" >
+                <p >
                     <span>We are
                         still put every effort into fighting with COVID-19 and protect our staffs and goods from
                         danger.
-                        <br />
                         <br />
                         But due to increased volume and the impact of COVID-19, we are experiencing
                         delays in processing and shipping. Therefore, your order may take longer than usual to arrive
@@ -20,39 +68,57 @@
                     All of our packages and warehouses are rigorously disinfected several times daily using hospital
                     standards. Our employees also get daily checkups by medical professionals. So your packages are
                     totally safe.<br /><br />
-                    <img src="https://img.shoplazza.com/fb12f81ab52a48c32300c9b067a9782a.png"
-                        alt="" height="780" width="780" /><br /><br />
                         We also would like to appeal to our dear consumers
                     to wash your hands regularly, wear masks, and disinfect the packaging of the goods received in a
                     timely manner.
                 </p>
+        </div>
+        <div class="info-content">
+            <div id="leftMenu">
+                    <button>Privacy Policy</button>
+                    <button>Shipping and Delivery</button>
+                    <button>Terms and Condition</button>
+                    <button>Intellectual Property Rights</button>
+                    <button>Terms of Service</button>
+                    <button>Refund policy</button>
+                    <button>Frequently Asked Questions</button>
+                    <button>Contact Us</button>
+                    <button>Payment Methods</button>
+                    <button>Track Your Order</button>
+
             </div>
-        </div>
-        <div id="leftMenu">
-            <ul>
-                <li>Privacy Policy</li>
-                <li>Shipping and Delivery</li>
-                <li>Terms and Condition</li>
-                <li>Intellectual Property Rights</li>
-                <li>Terms of Service</li>
-                <li>Refund policy</li>
-                <li>Frequently Asked Questions</li>
-                <li>Contact Us</li>
-                <li>Payment Methods</li>
-                <li>Track Your Order</li>
-            </ul>
-        </div>
-        <div id="content">
-            <div id="privacy" class="content"></div>
-            <div id="shipping" class="content"></div>
-            <div id="condition" class="content"></div>
-            <div id="intellectual" class="content"></div>
-            <div id="service" class="content"></div>
-            <div id="refund" class="content"></div>
-            <div id="questions" class="content"></div>
-            <div id="contact_us" class="content"></div>
-            <div id="pay_methods" class="content"></div>
-            <div id="order" class="content"></div>
+            <div id="content">
+                <div id="privacy" class="content info-active">
+                    {% render 'Privacy Policy' %}
+                </div>
+                <div id="shipping" class="content">
+                    {% render 'Shipping and Delivery' %}
+                </div>
+                <div id="condition" class="content">
+                    {% render 'Terms and Condition' %}
+                </div>
+                <div id="intellectual" class="content">
+                    {% render 'Intellectual Property Rights' %}
+                </div>
+                <div id="service" class="content">
+                    {% render 'Terms of Service' %}
+                </div>
+                <div id="refund" class="content">
+                    {% render 'Refund policy' %}
+                </div>
+                <div id="questions" class="content">
+                    {% render 'Frequently Asked Questions' %}
+                </div>
+                <div id="contact_us" class="content">
+                    {% render 'Contact Us' %}
+                </div>
+                <div id="pay_methods" class="content">
+                    {% render 'Payment Methods' %}
+                </div>
+                <div id="order" class="content">
+                    {% render 'Track Your Order' %}
+                </div>
+            </div>
         </div>
     </div>
 </div>

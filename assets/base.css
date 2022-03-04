@@ -213,11 +213,7 @@ html.no-js .no-js-inline {
 html.no-js .no-js-hidden {
   display: none !important;
 }
-.price_left{
-  position: absolute;
-    top: 23px;
-    left: 350px;
-}
+
 span.price-item.price-item--regular {
   font-size: 20px;
 }
@@ -242,7 +238,11 @@ span.price-item.price-item--regular {
   .page-width {
     padding: 0 3.25rem;
   }
-
+  .price_left{
+    position: absolute;
+      top: 23px;
+      left: 350px;
+  }
   .page-width-right {
     padding-right: 3.25rem;
   }
@@ -1051,7 +1051,6 @@ product-item {
     max-width: none;
   }
 }
-
 @media screen and (min-width: 750px) and (max-width: 989px) {
   .grid--one-third-max.grid--3-col-tablet .grid__item {
     max-width: 33.33%;
