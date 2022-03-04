@@ -1,50 +1,61 @@
-
 <style>
-    .info{
+    .info {
         max-width: 900px;
         margin: 0 auto;
     }
-    .about{
+
+    .about {
         font-weight: 900;
         font-size: 18px;
     }
-    .info p{
-      font-size: 14px;
-      font-weight: 700;
+
+    .info p {
+        font-size: 14px;
+        font-weight: 700;
     }
-    .info-content{
+
+    .info-content {
         display: flex;
     }
-    #leftMenu{
-    border-right: 1px #000 solid;
-    text-align: right;
-    font-weight: 900;
-    font-size: 22px;
-    width: 180px;
-    display: flex;
-    flex-flow: column;
+
+    #leftMenu {
+        border-right: 1px #000 solid;
+        text-align: right;
+        font-weight: 900;
+        font-size: 22px;
+        width: 180px;
+        display: flex;
+        flex-flow: column;
     }
-    #leftMenu button{
-    cursor: pointer;
-    display: block;
-    border: none;
-    background: none;
-    font-size: 18px;
-    font-weight: 700;
-    text-align: right;
-    padding: 10px;
-    text-transform: uppercase;
+
+    #leftMenu button {
+        cursor: pointer;
+        display: block;
+        border: none;
+        background: none;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: right;
+        padding: 10px;
+        text-transform: uppercase;
     }
-    #leftMenu button:hover{
-    color: rgb(245, 95, 8);
+
+    #leftMenu button:hover {
+        color: rgb(245, 95, 8);
     }
-    #content{
-        padding:0px 20px 20px 20px;
+
+   .button-active {
+        color: rgb(245, 95, 8);
     }
-    #content .content{
-       display: none;
+    #content {
+        padding: 0px 20px 20px 20px;
     }
-    .info-active{
+
+    #content .content {
+        display: none;
+    }
+
+    .info-active {
         display: block !important;
     }
 </style>
@@ -54,38 +65,37 @@
             <div class="about">
                 ABOUT COVID-19 :
             </div>
-                <p >
-                    <span>We are
-                        still put every effort into fighting with COVID-19 and protect our staffs and goods from
-                        danger.
-                        <br />
-                        But due to increased volume and the impact of COVID-19, we are experiencing
-                        delays in processing and shipping. Therefore, your order may take longer than usual to arrive
-                        and we are working diligently to get them to you as quickly as possible.
-                    </span>
-                </p>
-                <p>
-                    All of our packages and warehouses are rigorously disinfected several times daily using hospital
-                    standards. Our employees also get daily checkups by medical professionals. So your packages are
-                    totally safe.<br /><br />
-                        We also would like to appeal to our dear consumers
-                    to wash your hands regularly, wear masks, and disinfect the packaging of the goods received in a
-                    timely manner.
-                </p>
+            <p>
+                <span>We are
+                    still put every effort into fighting with COVID-19 and protect our staffs and goods from
+                    danger.
+                    <br />
+                    But due to increased volume and the impact of COVID-19, we are experiencing
+                    delays in processing and shipping. Therefore, your order may take longer than usual to arrive
+                    and we are working diligently to get them to you as quickly as possible.
+                </span>
+            </p>
+            <p>
+                All of our packages and warehouses are rigorously disinfected several times daily using hospital
+                standards. Our employees also get daily checkups by medical professionals. So your packages are
+                totally safe.<br /><br />
+                We also would like to appeal to our dear consumers
+                to wash your hands regularly, wear masks, and disinfect the packaging of the goods received in a
+                timely manner.
+            </p>
         </div>
         <div class="info-content">
             <div id="leftMenu">
-                    <button>Privacy Policy</button>
-                    <button>Shipping and Delivery</button>
-                    <button>Terms and Condition</button>
-                    <button>Intellectual Property Rights</button>
-                    <button>Terms of Service</button>
-                    <button>Refund policy</button>
-                    <button>Frequently Asked Questions</button>
-                    <button>Contact Us</button>
-                    <button>Payment Methods</button>
-                    <button>Track Your Order</button>
-
+                <button>Privacy Policy</button>
+                <button>Shipping and Delivery</button>
+                <button>Terms and Condition</button>
+                <button>Intellectual Property Rights</button>
+                <button>Terms of Service</button>
+                <button>Refund policy</button>
+                <button>Frequently Asked Questions</button>
+                <button>Contact Us</button>
+                <button>Payment Methods</button>
+                <button>Track Your Order</button>
             </div>
             <div id="content">
                 <div id="privacy" class="content info-active">
@@ -124,5 +134,14 @@
 </div>
 
 <script>
-
+    var leftMenu = document.getElementById("leftMenu");
+    const contents=document.querySelectorAll("#content .content")
+    leftMenu.querySelectorAll("button").forEach((el, index) => {
+        el.onclick = () => {
+            leftMenu.querySelectorAll("button").forEach(item=>item.classList.remove("button-active"))
+            el.classList.add("button-active")
+            contents.forEach(item=>item.classList.remove("info-active"))
+            contents[index].classList.add("info-active")
+        }
+    })
 </script>

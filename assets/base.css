@@ -2564,10 +2564,12 @@ details-disclosure>details {
 
   .button--full-width {
     display: flex;
-    width: 91%;
+    width: 100%;
     position: fixed;
     bottom: 40px;
+    right: 0px;
     z-index: 99;
+    box-sizing: border-box;
   }
 
   .button.loading {
