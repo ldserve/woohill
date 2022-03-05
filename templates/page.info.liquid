@@ -49,6 +49,7 @@
     }
     #content {
         padding: 0px 20px 20px 20px;
+        flex: 1;
     }
 
     #content .content {
@@ -86,19 +87,31 @@
         </div>
         <div class="info-content">
             <div id="leftMenu">
+                <button>Contact Us</button>
+                <button>Frequently Asked Questions</button>
+                <button>Payment Methods</button>
+                <button>Track Your Order</button>
                 <button>Privacy Policy</button>
                 <button>Shipping and Delivery</button>
                 <button>Terms and Condition</button>
                 <button>Intellectual Property Rights</button>
                 <button>Terms of Service</button>
                 <button>Refund policy</button>
-                <button>Frequently Asked Questions</button>
-                <button>Contact Us</button>
-                <button>Payment Methods</button>
-                <button>Track Your Order</button>
             </div>
             <div id="content">
-                <div id="privacy" class="content info-active">
+                <div id="contact_us" class="content info-active">
+                    {% render 'Contact Us' %}
+                </div>
+                <div id="questions" class="content">
+                    {% render 'Frequently Asked Questions' %}
+                </div>
+                <div id="pay_methods" class="content">
+                    {% render 'Payment Methods' %}
+                </div>
+                <div id="order" class="content">
+                    {% render 'Track Your Order' %}
+                </div>
+                <div id="privacy" class="content">
                     {% render 'Privacy Policy' %}
                 </div>
                 <div id="shipping" class="content">
@@ -115,18 +128,6 @@
                 </div>
                 <div id="refund" class="content">
                     {% render 'Refund policy' %}
-                </div>
-                <div id="questions" class="content">
-                    {% render 'Frequently Asked Questions' %}
-                </div>
-                <div id="contact_us" class="content">
-                    {% render 'Contact Us' %}
-                </div>
-                <div id="pay_methods" class="content">
-                    {% render 'Payment Methods' %}
-                </div>
-                <div id="order" class="content">
-                    {% render 'Track Your Order' %}
                 </div>
             </div>
         </div>
