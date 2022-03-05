@@ -44,9 +44,10 @@
         color: rgb(245, 95, 8);
     }
 
-   .button-active {
+    .button-active {
         color: rgb(245, 95, 8);
     }
+
     #content {
         padding: 0px 20px 20px 20px;
         flex: 1;
@@ -54,10 +55,66 @@
 
     #content .content {
         display: none;
+        font-size: 14px;
     }
 
     .info-active {
         display: block !important;
+    }
+
+    #content .control {
+        display: none;
+    }
+
+    @media screen and (max-width:749px) {
+        .info-header {
+            padding: 10px;
+        }
+
+        #leftMenu {
+            display: none;
+        }
+
+        #content {
+            font-weight: 900;
+            font-size: 22px;
+            display: flex;
+            flex-flow: column;
+        }
+        #content .content {
+        margin-bottom: 20px;
+    }
+        #content .control {
+            cursor: pointer;
+            display: block;
+            border: none;
+            background: none;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: left;
+            padding: 10px 0px;
+            text-transform: uppercase;
+            border-top: 2px dotted;
+            position: relative;
+        }
+
+        #content .control:after {
+            content: "";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-left: 1.5px solid #000;
+            border-top: 1.5px solid #000;
+            transform: rotate(135deg);
+            margin-top: -3px;
+        }
+
+        #content .control.active:after {
+            transform: rotate(225deg);
+        }
     }
 </style>
 <div class="info">
@@ -99,33 +156,43 @@
                 <button>Refund policy</button>
             </div>
             <div id="content">
+                <button class="control">Contact Us</button>
                 <div id="contact_us" class="content info-active">
                     {% render 'Contact Us' %}
                 </div>
+                <button class="control">Frequently Asked Questions</button>
                 <div id="questions" class="content">
                     {% render 'Frequently Asked Questions' %}
                 </div>
+                <button class="control">Payment Methods</button>
                 <div id="pay_methods" class="content">
                     {% render 'Payment Methods' %}
                 </div>
+                <button class="control">Track Your Order</button>
                 <div id="order" class="content">
                     {% render 'Track Your Order' %}
                 </div>
+                <button class="control">Privacy Policy</button>
                 <div id="privacy" class="content">
                     {% render 'Privacy Policy' %}
                 </div>
+                <button class="control">Shipping and Delivery</button>
                 <div id="shipping" class="content">
                     {% render 'Shipping and Delivery' %}
                 </div>
+                <button class="control">Terms and Condition</button>
                 <div id="condition" class="content">
                     {% render 'Terms and Condition' %}
                 </div>
+                <button class="control">Intellectual Property Rights</button>
                 <div id="intellectual" class="content">
                     {% render 'Intellectual Property Rights' %}
                 </div>
+                <button class="control">Terms of Service</button>
                 <div id="service" class="content">
                     {% render 'Terms of Service' %}
                 </div>
+                <button class="control">Refund policy</button>
                 <div id="refund" class="content">
                     {% render 'Refund policy' %}
                 </div>
@@ -136,13 +203,19 @@
 
 <script>
     var leftMenu = document.getElementById("leftMenu");
-    const contents=document.querySelectorAll("#content .content")
+    const contents = document.querySelectorAll("#content .content")
     leftMenu.querySelectorAll("button").forEach((el, index) => {
         el.onclick = () => {
-            leftMenu.querySelectorAll("button").forEach(item=>item.classList.remove("button-active"))
+            leftMenu.querySelectorAll("button").forEach(item => item.classList.remove("button-active"))
             el.classList.add("button-active")
-            contents.forEach(item=>item.classList.remove("info-active"))
+            contents.forEach(item => item.classList.remove("info-active"))
             contents[index].classList.add("info-active")
         }
     })
+    $("#content .control").on("click", function () {
+        $(this).siblings("button").removeClass("active")
+        $(this).siblings(".content").removeClass("info-active")
+        $(this).toggleClass("active");
+        $(this).next().toggleClass("info-active");
+    });
 </script>
