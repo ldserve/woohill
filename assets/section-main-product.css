@@ -90,7 +90,7 @@
   font-size: 1.4rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
   letter-spacing: 0.07rem;
-  background-color: var(--color_orange2_text);
+  background-color: #000;
   color: #fff;
 }
 
@@ -294,7 +294,7 @@ fieldset.product-img__input .form__label {
 
 .product-form__submit {
   margin-bottom: 1rem;
-  background-color: var(--color_orange2_text);
+  background-color: #000;
   color: #fff;
 }
 
