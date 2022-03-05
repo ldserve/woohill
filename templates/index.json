@@ -24,8 +24,8 @@
         "text_align": "center",
         "title_top": 39,
         "title_left": 18,
-        "m_title_top": 0,
-        "m_title_left": 0
+        "m_title_top": 38,
+        "m_title_left": 9
       }
     },
     "164627556236be741d": {
@@ -59,8 +59,8 @@
         "text_align": "center",
         "title_top": 40,
         "title_left": 37,
-        "m_title_top": 0,
-        "m_title_left": 0
+        "m_title_top": 32,
+        "m_title_left": 24
       }
     },
     "1646275569eec31c8d": {
@@ -87,8 +87,8 @@
         "text_align": "center",
         "title_top": 39,
         "title_left": 18,
-        "m_title_top": 0,
-        "m_title_left": 0
+        "m_title_top": 38,
+        "m_title_left": 9
       }
     },
     "1646275576578162d2": {
@@ -115,8 +115,8 @@
         "text_align": "center",
         "title_top": 39,
         "title_left": 18,
-        "m_title_top": 0,
-        "m_title_left": 0
+        "m_title_top": 44,
+        "m_title_left": 9
       }
     },
     "164627558301d8d88f": {
@@ -150,8 +150,8 @@
         "text_align": "center",
         "title_top": 40,
         "title_left": 33,
-        "m_title_top": 0,
-        "m_title_left": 0
+        "m_title_top": 32,
+        "m_title_left": 16
       }
     }
   },
