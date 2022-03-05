@@ -129,7 +129,9 @@
     }
 
     @media (min-width: 768px) {
-
+      .section-{{ section.id }}-padding .grid--1-col .grid__item{
+      max-width: 50% !important;
+      }
         /*PC样式*/
         /*尺码样式*/
         .size-guide-wrap .table-fixed {
@@ -348,9 +350,7 @@
         color: var(--color_orange_text);
         text-decoration: none;
     }
-    .section-{{ section.id }}-padding .grid--1-col .grid__item{
-      max-width: 50% !important;
-    }
+
 </style>
 
 
