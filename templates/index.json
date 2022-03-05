@@ -20,7 +20,12 @@
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "bold"
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 39,
+        "title_left": 18,
+        "m_title_top": 0,
+        "m_title_left": 0
       }
     },
     "164627556236be741d": {
@@ -50,7 +55,12 @@
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "bold"
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 40,
+        "title_left": 37,
+        "m_title_top": 0,
+        "m_title_left": 0
       }
     },
     "1646275569eec31c8d": {
@@ -73,7 +83,12 @@
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "bold"
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 39,
+        "title_left": 18,
+        "m_title_top": 0,
+        "m_title_left": 0
       }
     },
     "1646275576578162d2": {
@@ -96,7 +111,12 @@
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "bold"
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 39,
+        "title_left": 18,
+        "m_title_top": 0,
+        "m_title_left": 0
       }
     },
     "164627558301d8d88f": {
@@ -126,7 +146,12 @@
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "bold"
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 40,
+        "title_left": 33,
+        "m_title_top": 0,
+        "m_title_left": 0
       }
     }
   },
