@@ -2611,12 +2611,13 @@ details-disclosure>details {
   }
   .header__icon,
 .header__icon--cart .icon {
-  height: 3.4rem;
-  width: 3.4rem;
+  height: 2.6rem;
+  width: 2.6rem;
 }
 .cart-count-bubble{
-  bottom: 0.3rem;
-  left: 1rem;
+  bottom: 0.1rem;
+  left: 0.5rem;
+  font-size: 1.4rem;
 }
 }
 
