@@ -2568,7 +2568,7 @@ details-disclosure>details {
     position: fixed;
     bottom: 40px;
     right: 0px;
-    z-index: 99;
+    z-index: 16;
     box-sizing: border-box;
   }
 

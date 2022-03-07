@@ -14,7 +14,7 @@ class CartNotification extends HTMLElement {
 
   open() {
     this.notification.classList.add('animate', 'active');
-
+    document.querySelector(".body_mask").classList.add('active');
     this.notification.addEventListener('transitionend', () => {
       this.notification.focus();
       trapFocus(this.notification);
@@ -25,15 +25,15 @@ class CartNotification extends HTMLElement {
 
   close() {
     this.notification.classList.remove('active');
-
+    document.querySelector(".body_mask").classList.remove('active');
     document.body.removeEventListener('click', this.onBodyClick);
-
     removeTrapFocus(this.activeElement);
   }
 
   renderContents(parsedState) {
       this.productId = parsedState.id;
       this.getSectionsToRender().forEach((section => {
+        console.log(document.getElementById(section.id));
         document.getElementById(section.id).innerHTML =
           this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
       }));
@@ -51,9 +51,9 @@ class CartNotification extends HTMLElement {
       {
         id: 'cart-notification-button'
       },
-      {
-        id: 'cart-icon-bubble'
-      }
+      // {
+      //   id: 'cart-icon-bubble'
+      // }
     ];
   }
 
@@ -65,6 +65,7 @@ class CartNotification extends HTMLElement {
 
   handleBodyClick(evt) {
     const target = evt.target;
+    console.log(target);
     if (target !== this.notification && !target.closest('cart-notification')) {
       const disclosure = target.closest('details-disclosure');
       this.activeElement = disclosure ? disclosure.querySelector('summary') : null;

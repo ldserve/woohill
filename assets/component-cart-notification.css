@@ -1,9 +1,13 @@
 .cart-notification-wrapper {
   position: relative;
+  height: 100%;
+  width: 500px;
 }
 
 .cart-notification-wrapper .cart-notification {
   display: block;
+  height: 100%;
+  width: 500px;
 }
 
 .cart-notification {
@@ -16,27 +20,29 @@
   padding: 2.5rem 3.5rem;
   position: absolute;
   right: 0;
-  transform: translateY(-100%);
+  transform: translateX(100%);
   visibility: hidden;
   width: 100%;
-  z-index: -1;
-  filter: drop-shadow(
-    var(--popup-shadow-horizontal-offset)
-    var(--popup-shadow-vertical-offset)
-    var(--popup-shadow-blur-radius)
-    rgba(var(--color-foreground), var(--popup-shadow-opacity))
-  );
+  /* z-index: -1; */
+  filter: drop-shadow(var(--popup-shadow-horizontal-offset) var(--popup-shadow-vertical-offset) var(--popup-shadow-blur-radius) rgba(var(--color-foreground), var(--popup-shadow-opacity)));
 }
 
 @media screen and (min-width: 750px) {
-  .header-wrapper:not(.header-wrapper--border-bottom) + cart-notification .cart-notification {
+  .header-wrapper:not(.header-wrapper--border-bottom)+cart-notification .cart-notification {
     border-top-width: 0.1rem;
   }
 
   .cart-notification {
     border-width: 0 var(--popup-border-width) var(--popup-border-width);
-    max-width: 36.8rem;
-    right: 4rem;
+    max-width: 500px;
+  }
+
+  .cart_notification {
+    position: fixed;
+    z-index: 100;
+    width: 500px;
+    right: 0px;
+    height: 100%;
   }
 }
 
@@ -46,7 +52,7 @@
 }
 
 .cart-notification.active {
-  transform: translateY(0);
+  transform: translateX(0%);
   transition: transform var(--duration-default) ease, visibility 0s;
   visibility: visible;
 }
@@ -79,7 +85,7 @@
   text-align: center;
 }
 
-.cart-notification__links > * {
+.cart-notification__links>* {
   margin-top: 1rem;
 }
 
@@ -104,4 +110,26 @@
 .cart-notification-product__name {
   margin-bottom: 0.5rem;
   margin-top: 0;
+}
+.body_mask{
+  height: 100%;
+  width: 100%;
+  display: none;
+  background: rgba(0, 0, 0, 0.294);
+  z-index: 18;
+  position: fixed;
+}
+.body_mask.active{
+  display: block;
+}
+@media screen and (max-width: 749px) {
+  .cart-notification-wrapper .cart-notification {
+    display: block;
+    position: fixed;
+    z-index: 99;
+    width: 90%;
+    right: 0px;
+    height: 100%;
+    margin-top: -75px;
+  }
 }
