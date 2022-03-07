@@ -647,6 +647,7 @@ a.active-facets__button.focused .active-facets__button-inner,
 
 .mobile-facets__open-wrapper {
   display: inline-block;
+  width: 90%;
 }
 
 .mobile-facets__open {
@@ -675,12 +676,12 @@ a.active-facets__button.focused .active-facets__button-inner,
     padding: 0 .5rem;
   }
   .mobile-facets__open-label {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 }
 
 .mobile-facets__open svg {
-  width: 3.5rem;
+  width: 2.5rem;
 }
 
 .mobile-facets__open line,
