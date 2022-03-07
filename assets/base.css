@@ -217,6 +217,7 @@ html.no-js .no-js-hidden {
 span.price-item.price-item--regular {
   font-size: 20px;
 }
+
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;
@@ -238,11 +239,13 @@ span.price-item.price-item--regular {
   .page-width {
     padding: 0 3.25rem;
   }
-  .price_left{
+
+  .price_left {
     position: absolute;
-      top: 23px;
-      left: 350px;
+    top: 23px;
+    left: 350px;
   }
+
   .page-width-right {
     padding-right: 3.25rem;
   }
@@ -1051,6 +1054,7 @@ product-item {
     max-width: none;
   }
 }
+
 @media screen and (min-width: 750px) and (max-width: 989px) {
   .grid--one-third-max.grid--3-col-tablet .grid__item {
     max-width: 33.33%;
@@ -2033,7 +2037,7 @@ input[type='checkbox'] {
 }
 
 @media screen and (min-width: 990px) {
-  
+
   .header {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -2055,6 +2059,7 @@ input[type='checkbox'] {
     grid-template-areas: 'heading navigation icons';
     /* grid-template-columns: auto auto 1fr; */
     column-gap: 0rem;
+    position: relative;
   }
 
   .header--top-center {
@@ -2117,10 +2122,12 @@ input[type='checkbox'] {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
+
   .header__heading,
   .header__heading-link {
     text-align: center;
   }
+
   .header__heading-logo {
     width: 80%;
   }
@@ -2188,8 +2195,10 @@ input[type='checkbox'] {
 }
 
 .header__icon--cart {
-  position: relative;
+  position: absolute;
   margin-right: -1.2rem;
+  top: 27px;
+  right: 20px;
 }
 
 @media screen and (max-width: 989px) {
@@ -2235,6 +2244,17 @@ menu-drawer+.header__search {
   .header:not(.header--top-center)>.header__search,
   .header--top-center *>.header__search {
     display: none;
+  }
+
+  .header__icon,
+  .header__icon--cart .icon {
+    height: 6.4rem;
+    width: 6.4rem;
+  }
+
+  .cart-count-bubble {
+    bottom: 1.5rem;
+    left: 3.2rem;
   }
 }
 
@@ -2580,6 +2600,12 @@ details-disclosure>details {
     right: 0px;
     z-index: 16;
     box-sizing: border-box;
+  }
+
+  .header__icon--cart {
+    position: relative;
+    top: 3px;
+    left: 20px;
   }
 }
 

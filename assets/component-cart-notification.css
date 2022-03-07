@@ -34,15 +34,12 @@
 
   .cart-notification {
     border-width: 0 var(--popup-border-width) var(--popup-border-width);
-    max-width: 500px;
-  }
-
-  .cart_notification {
     position: fixed;
     z-index: 100;
     width: 500px;
     right: 0px;
     height: 100%;
+    margin-top:-105px;
   }
 }
 
