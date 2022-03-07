@@ -2573,10 +2573,13 @@ details-disclosure>details {
   }
 
   .button.loading {
-    width: 91%;
+    display: flex;
+    width: 100%;
     position: fixed;
     bottom: 40px;
-    z-index: 99;
+    right: 0px;
+    z-index: 16;
+    box-sizing: border-box;
   }
 }
 
