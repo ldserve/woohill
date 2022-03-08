@@ -277,17 +277,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-@media screen and (max-width: 749px) {
-  .grade-and-price {
-    display: block;
-  }
-  .grade-and-price > div {
-    text-align: left;
-  }
-}
 .color-selector {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .color-selector > div {
   padding: .2rem;
@@ -303,11 +296,29 @@
 }
 .color-selector .color-item {
   display: block;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 3rem;
+  /* height: 1.8rem; */
   cursor: pointer;
+}
+
+.color-selector .color-item img{
+width: 100%;
 }
 .color-selector .more {
   border: 1px solid #000;
   font-size: 3rem;
+}
+@media screen and (max-width: 749px) {
+  .grade-and-price {
+    display: block;
+  }
+  .grade-and-price > div {
+    text-align: left;
+  }
+  .color-selector .color-item {
+    display: block;
+    width: 1.8rem;
+    /* height: 1.8rem; */
+    cursor: pointer;
+  }
 }

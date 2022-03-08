@@ -98,18 +98,18 @@
                 <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}">Save:{{ savings | append: '%'  }}</span>
               {%- endif -%}
             </div>
-          </div>
-        </div> -->
-        <!-- <div class="card__content">
+          </div> -->
+        </div>
+         <div class="card__content">
           <div class="card__information">  
-            <div class="card__heading">
+            <!-- <div class="card__heading">
               <span class="full-unstyled-link">
                 {{ card_product.title | escape }}
               </span>
                 <div class="quick-view-btn hidden-phone" data-productSpu="{{card_product.handle}}">Quick View</div>
-            </div>
+            </div> -->
             <div class="card-information">
-              {%- if show_vendor -%}
+              <!-- {%- if show_vendor -%}
                 <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
                 <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
               {%- endif -%}    
@@ -144,7 +144,7 @@
               <div class="right">
                 {% render 'price', product: card_product, price_class: '' %}
               </div>
-              </div>
+              </div> -->
               <div class="color-selector">
                 {%- for color in card_product.options_by_name['Color'].values limit:4 -%}
                   {%- for variant in card_product.variants -%}
@@ -154,7 +154,7 @@
                       {%- endif -%}
                   {%- endfor -%}
                         <div>
-                          <span 
+                          <!-- <span 
                             class="color-item" 
                             style="{% render 'color-square' ,color:color %}" 
                             data-media-id="{{ cur_variant.featured_media.id }}"
@@ -172,15 +172,39 @@
                             data-variant-alt="{{ cur_variant.featured_media.alt | escape }}"
                             data-variant-width="{{ cur_variant.featured_media.width }}"
                             data-variant-height="{{ cur_variant.featured_media.height }}"
-                            title="{{color}}">
-                          </span>
+                            title="{{color}}"> -->
+                            {%- if card_product.options_by_name['Color'].values.size < 6 -%}
+                            <img class="color-item" 
+                            style="{% render 'color-square' ,color:color %}" 
+                            data-media-id="{{ cur_variant.featured_media.id }}"
+                            data-variant-id="{{cur_variant.id}}"
+                            data-variant-url="{{cur_variant.featured_media | img_url: "533x" }}" 
+                               srcset="{%- if cur_variant.featured_media.width >= 165 -%}{{ cur_variant.featured_media | img_url: "165x" }} 165w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 360 -%}{{ cur_variant.featured_media | img_url: "360x" }} 360w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 533 -%}{{ cur_variant.featured_media | img_url: "533x" }} 533w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 720 -%}{{ cur_variant.featured_media | img_url: "720x" }} 720w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 940 -%}{{ cur_variant.featured_media | img_url: "940x" }} 940w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 1066 -%}{{ cur_variant.featured_media | img_url: "1066x" }} 1066w,{%- endif -%}
+                               {{ cur_variant.featured_media | img_url: "master" }} {{ cur_variant.featured_media.width }}w"
+                               data-variant-srcset="{%- if cur_variant.featured_media.width >= 165 -%}{{ cur_variant.featured_media | img_url: "165x" }} 165w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 360 -%}{{ cur_variant.featured_media | img_url: "360x" }} 360w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 533 -%}{{ cur_variant.featured_media | img_url: "533x" }} 533w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 720 -%}{{ cur_variant.featured_media | img_url: "720x" }} 720w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 940 -%}{{ cur_variant.featured_media | img_url: "940x" }} 940w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 1066 -%}{{ cur_variant.featured_media | img_url: "1066x" }} 1066w,{%- endif -%}
+                               {{ cur_variant.featured_media | img_url: "master" }} {{ cur_variant.featured_media.width }}w"
+                               data-variant-src="{{ cur_variant.featured_media | img_url: "533x" }}"
+                               data-variant-sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                               data-variant-alt="{{ cur_variant.featured_media.alt | escape }}">
+                               {%- endif -%}
+                          <!-- </span> -->
                         </div>
                 {% endfor %}
-                {%- if card_product.options_by_name['Color'].values.size > 4 -%}
+                <!-- {%- if card_product.options_by_name['Color'].values.size > 4 -%}
                   <div class="more" >
                     <span class="color-item" title="more">+</span>
                   </div>
-                {%- endif -%}
+                {%- endif -%} -->
               </div>
             </div>
           </div>     
@@ -191,7 +215,7 @@
             {%- elsif card_product.compare_at_price > card_product.price and card_product.available and savings >= 10 -%}
               <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}">{{save | append: '%' }}</span>
             {%- endif -%}
-          </div> -->
+          </div>
         </div>
       </div>
   </product-item>

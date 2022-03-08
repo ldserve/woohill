@@ -129,7 +129,7 @@
     }
 
     @media (min-width: 768px) {
-      .section-{{ section.id }}-padding .grid--1-col .grid__item{
+      .section-{{ section.id }}-padding .grid--1-col .product__media-item{
       max-width: 50% !important;
       }
         /*PC样式*/
@@ -815,9 +815,9 @@
                         </svg>
                       </div>
                     </button>
-                    {%- if block.settings.show_dynamic_checkout -%}
+                    <!-- {%- if block.settings.show_dynamic_checkout -%}
                       {{ form | payment_button }}
-                    {%- endif -%}
+                    {%- endif -%} -->
                   </div>
                 {%- endform -%}
               </product-form>
