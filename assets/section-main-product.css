@@ -248,7 +248,7 @@ fieldset.product-img__input .form__label {
 }
  */
 .product-img__input input[type='radio']:checked+label {
-  border: 1px #000 solid;
+  border:1px #c0bcbc solid;
 }
 
 .product-form__input input[type='radio']:checked+label {
