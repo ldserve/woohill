@@ -100,17 +100,17 @@
             </div>
           </div> -->
         </div>
-         <div class="card__content">
+         <!-- <div class="card__content"> 
           <div class="card__information">  
-            <!-- <div class="card__heading">
+           <div class="card__heading">
               <span class="full-unstyled-link">
                 {{ card_product.title | escape }}
               </span>
                 <div class="quick-view-btn hidden-phone" data-productSpu="{{card_product.handle}}">Quick View</div>
-            </div> -->
-            <div class="card-information">
-              <!-- {%- if show_vendor -%}
-                <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+            </div> 
+             <div class="card-information"> 
+           {%- if show_vendor -%}
+                   <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
                 <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
               {%- endif -%}    
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
@@ -145,7 +145,7 @@
                 {% render 'price', product: card_product, price_class: '' %}
               </div>
               </div> -->
-              <div class="color-selector">
+              <!-- <div class="color-selector">
                 {%- for color in card_product.options_by_name['Color'].values limit:4 -%}
                   {%- for variant in card_product.variants -%}
                       {%- if variant.option1 == color -%}
@@ -154,7 +154,7 @@
                       {%- endif -%}
                   {%- endfor -%}
                         <div>
-                          <!-- <span 
+                          <span 
                             class="color-item" 
                             style="{% render 'color-square' ,color:color %}" 
                             data-media-id="{{ cur_variant.featured_media.id }}"
@@ -172,7 +172,7 @@
                             data-variant-alt="{{ cur_variant.featured_media.alt | escape }}"
                             data-variant-width="{{ cur_variant.featured_media.width }}"
                             data-variant-height="{{ cur_variant.featured_media.height }}"
-                            title="{{color}}"> -->
+                            title="{{color}}">
                             {%- if card_product.options_by_name['Color'].values.size < 6 -%}
                             <img class="color-item" 
                             style="{% render 'color-square' ,color:color %}" 
@@ -197,18 +197,18 @@
                                data-variant-sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                                data-variant-alt="{{ cur_variant.featured_media.alt | escape }}">
                                {%- endif -%}
-                          <!-- </span> -->
+                          </span>
                         </div>
                 {% endfor %}
-                <!-- {%- if card_product.options_by_name['Color'].values.size > 4 -%}
+                {%- if card_product.options_by_name['Color'].values.size > 4 -%}
                   <div class="more" >
                     <span class="color-item" title="more">+</span>
                   </div>
-                {%- endif -%} -->
-              </div>
-            </div>
-          </div>     
-          <div class="card__badge {{ settings.badge_position }}">
+                {%- endif -%}
+              </div> 
+          </div>
+        </div>    
+         <div class="card__badge {{ settings.badge_position }}">
             {%- assign savings = card_product.compare_at_price | minus: card_product.price | times: 100.0 | divided_by: card_product.compare_at_price | round -%}
             {%- if card_product.available == false -%}
               <span class="badge badge--bottom-left color-{{ settings.badge_sold_out_color_scheme }}">{{ 'products.product.sold_out' | t }}</span>
@@ -216,7 +216,7 @@
               <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}">{{save | append: '%' }}</span>
             {%- endif -%}
           </div>
-        </div>
+        </div> -->
       </div>
   </product-item>
 {%- else -%}
