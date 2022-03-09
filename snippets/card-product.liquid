@@ -145,7 +145,7 @@
                 {% render 'price', product: card_product, price_class: '' %}
               </div>
               </div> -->
-              <div class="color-selector">
+              <!-- <div class="color-selector">
                 {%- for color in card_product.options_by_name['Color'].values limit:4 -%}
                   {%- for variant in card_product.variants -%}
                       {%- if variant.option1 == color -%}
@@ -154,7 +154,7 @@
                       {%- endif -%}
                   {%- endfor -%}
                         <div>
-                          <!-- <span 
+                          <span 
                             class="color-item" 
                             style="{% render 'color-square' ,color:color %}" 
                             data-media-id="{{ cur_variant.featured_media.id }}"
@@ -172,7 +172,7 @@
                             data-variant-alt="{{ cur_variant.featured_media.alt | escape }}"
                             data-variant-width="{{ cur_variant.featured_media.width }}"
                             data-variant-height="{{ cur_variant.featured_media.height }}"
-                            title="{{color}}"> -->
+                            title="{{color}}">
                             {%- if card_product.options_by_name['Color'].values.size < 6 -%}
                             <img class="color-item" 
                             style="{% render 'color-square' ,color:color %}" 
@@ -197,15 +197,15 @@
                                data-variant-sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                                data-variant-alt="{{ cur_variant.featured_media.alt | escape }}">
                                {%- endif -%}
-                          <!-- </span> -->
+                          </span>
                         </div>
                 {% endfor %}
-                <!-- {%- if card_product.options_by_name['Color'].values.size > 4 -%}
+                {%- if card_product.options_by_name['Color'].values.size > 4 -%}
                   <div class="more" >
                     <span class="color-item" title="more">+</span>
                   </div>
-                {%- endif -%} -->
-              </div>
+                {%- endif -%}
+              </div> -->
             </div>
           </div>     
           <div class="card__badge {{ settings.badge_position }}">
