@@ -51,7 +51,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-_07.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-_07.jpg",
-        "link": "",
+        "link": "https:\/\/www.woohill.com\/",
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
@@ -79,7 +79,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-_09_c87fad87-d827-4141-a20f-f1edbf8cb782.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-_09_c87fad87-d827-4141-a20f-f1edbf8cb782.jpg",
-        "link": "",
+        "link": "shopify:\/\/collections\/shirts-1",
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
@@ -107,7 +107,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-_11_67c97418-52b6-4bfd-9445-fb77e19e13b7.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-_11_67c97418-52b6-4bfd-9445-fb77e19e13b7.jpg",
-        "link": "",
+        "link": "shopify:\/\/collections\/pant",
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
@@ -142,7 +142,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-_13.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-_13.jpg",
-        "link": "",
+        "link": "https:\/\/www.woohill.com\/",
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
