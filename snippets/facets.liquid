@@ -73,7 +73,7 @@
                   {% when 'Color' %}
                   <ul class="facets__list facets__list__color list-unstyled"  role="list">
                     {%- for value in filter.values -%}
-                    {%- if forloop.index < 10 -%}
+                    {%- if forloop.index < 12 -%}
                     <li class="list-menu__item facets__item">
                       <input type="checkbox"
                         name="{{ value.param_name }}"
@@ -85,7 +85,7 @@
                         <label for="Filter-{{ filter.label | escape }}-{{ forloop.index }}" class="facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}" style="{% render 'color-square' ,color:value.value %}" title="{{value.value}}">
                         </label>
                     </li>
-                    {% elsif forloop.index > 10  %}
+                    {% elsif forloop.index > 12  %}
                       
                     <li class="list-menu__item facets__item hidden">
                       <input type="checkbox"

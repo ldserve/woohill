@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 16px;
   line-height: 3rem;
   border-bottom: 1px solid #ccc;
   color: rgb(var(--color-foreground));
@@ -248,23 +248,23 @@
   flex-wrap: wrap;
 }
 .facets__list__color li{
-  width: 20%;
+  width: 15%;
   margin-bottom: 1rem;
 }
 .facets__list__color .more {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   border: 2px solid #eee;
-  margin-left: 13px;
+  margin-left: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 .facets__list__color .facet-checkbox{
-  width: 3rem;
+  width: 26px;
   padding: 0;
-  height: 3rem;
+  height: 26px;
   margin: 0 auto;
   display: block;
   flex-grow: unset;
@@ -279,14 +279,14 @@
   flex-wrap: wrap;
 }
 .facets__list__size .facets__item {
-  margin:.5rem 1rem;
+  margin:.5rem 0.8rem;
   flex: unset;
 }
 .facets__list__size .facet-checkbox{
-  min-width: 5rem;
-  padding: 1rem;
+  min-width: 4rem;
+  padding: .8rem;
   text-align: center;
-  line-height: 1.5rem;
+  line-height: 1rem;
   display: block;
   flex-grow: unset;
   color: rgb(var(--color-foreground));
@@ -295,7 +295,7 @@
   color: rgba(var(--color-foreground), 0.4);
 }
 .facets__list__size label{
-  border: .2rem solid #000;
+  border: 1px solid #ccc;
 }
 .facets__list__size .list-menu__item input:checked +label{
   background-color: #000;
@@ -319,7 +319,7 @@
   padding: .5rem 2rem .5rem 0;
   flex-grow: 1;
   position: relative;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   display: flex;
   word-break: break-word;
 }

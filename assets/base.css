@@ -2199,8 +2199,8 @@ input[type='checkbox'] {
 
 .header__icon,
 .header__icon--cart .icon {
-  height: 4rem;
-  width: 4rem;
+  height: 35px;
+  width: 35px;
 }
 
 .header__icon--cart {
@@ -2256,10 +2256,10 @@ menu-drawer+.header__search {
   }
 
   .cart-count-bubble {
-    bottom: 0.3rem;
-    left: 1rem;
-    height: 2.1rem;
-    width: 2.1rem;
+    bottom: 0.2rem;
+    left: 0.8rem;
+    height: 2rem;
+    width: 2rem;
   }
 }
 

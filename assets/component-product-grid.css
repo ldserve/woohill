@@ -2,7 +2,7 @@
   display: flex;
 }
 #main-collection-product-grid-box #main-collection-filters{
-  width: 24%;
+  width: 20%;
 }
 #main-collection-product-grid-box #ProductGridContainer {
   flex: 1;
