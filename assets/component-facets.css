@@ -12,7 +12,7 @@
   line-height: 3rem;
   border-bottom: 1px solid #ccc;
   color: rgb(var(--color-foreground));
-  font-weight:550;
+  font-weight:400;
 }
 .facet-filters-box .facet-filters-box-title .icon {
   width: 1.7rem;
@@ -249,12 +249,11 @@
 }
 .facets__list__color li{
   width: 20%;
-  margin-right: 5%;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .facets__list__color .more {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   border: 2px solid #eee;
   margin-left: 13px;
   display: flex;
@@ -263,9 +262,9 @@
   cursor: pointer;
 }
 .facets__list__color .facet-checkbox{
-  width: 3.5rem;
+  width: 3rem;
   padding: 0;
-  height: 3.5rem;
+  height: 3rem;
   margin: 0 auto;
   display: block;
   flex-grow: unset;
@@ -287,7 +286,7 @@
   min-width: 5rem;
   padding: 1rem;
   text-align: center;
-  line-height: 2rem;
+  line-height: 1.5rem;
   display: block;
   flex-grow: unset;
   color: rgb(var(--color-foreground));

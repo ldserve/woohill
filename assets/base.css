@@ -237,6 +237,9 @@ span.price-item.price-item--regular {
 .product__info-wrapper .shopify-app-block{
   display: none;
 }
+.product__info-wrapper .link {
+  font-size: 1.4rem;
+}
 @media screen and (min-width: 750px) {
   .page-width {
     padding: 0 3.25rem;
