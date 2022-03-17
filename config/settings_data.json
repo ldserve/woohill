@@ -61,6 +61,7 @@
           "text": "#000000",
           "text_hover": "#dbdb55",
           "logo": "shopify:\/\/shop_images\/1.png",
+          "logo_hover": "shopify:\/\/shop_images\/WPS.png",
           "logo_width": 160,
           "logo_position": "middle-left",
           "menu": "main-menu",
