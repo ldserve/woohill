@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 3rem;
   border-bottom: 1px solid #ccc;
   color: rgb(var(--color-foreground));
@@ -319,7 +319,7 @@
   padding: .5rem 2rem .5rem 0;
   flex-grow: 1;
   position: relative;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   display: flex;
   word-break: break-word;
 }
