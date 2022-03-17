@@ -167,11 +167,19 @@
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
         {%- if section.settings.logo != blank -%}
         {%- assign image_size = section.settings.logo_width | append: 'x' -%}
+        {%- if request.page_type == 'index' -%}
         <img
-          srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-          src="{{ section.settings.logo | img_url: image_size }}" loading="lazy" class="header__heading-logo"
-          width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
-          alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+        srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+        src="{{ section.settings.logo | img_url: image_size }}" loading="lazy" class="header__heading-logo"
+        width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
+        alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+        {%- else -%}
+        <img
+          srcset="{{ section.settings.logo_hover | img_url: image_size }} 1x, {{ section.settings.logo_hover | img_url: image_size, scale: 2 }} 2x"
+          src="{{ section.settings.logo_hover | img_url: image_size }}" loading="lazy" class="header__heading-logo"
+          width="{{ section.settings.logo_hover.width }}" height="{{ section.settings.logo_hover.height }}"
+          alt="{{ section.settings.logo_hover.alt | default: shop.name | escape }}">
+        {% endif %}
         {%- else -%}
         <span class="h2">{{ shop.name }}</span>
         {%- endif -%}
@@ -192,11 +200,19 @@
             <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
               {%- if section.settings.logo != blank -%}
               {%- assign image_size = section.settings.logo_width | append: 'x' -%}
-              <img
+              {%- if request.page_type == 'index' -%}
+                <img
                 srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
                 src="{{ section.settings.logo | img_url: image_size }}" loading="lazy" class="header__heading-logo"
                 width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
                 alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+                {%- else -%}
+                <img
+                  srcset="{{ section.settings.logo_hover | img_url: image_size }} 1x, {{ section.settings.logo_hover | img_url: image_size, scale: 2 }} 2x"
+                  src="{{ section.settings.logo_hover | img_url: image_size }}" loading="lazy" class="header__heading-logo"
+                  width="{{ section.settings.logo_hover.width }}" height="{{ section.settings.logo_hover.height }}"
+                  alt="{{ section.settings.logo_hover.alt | default: shop.name | escape }}">
+                {% endif %}
               {%- else -%}
               <span class="h2">{{ shop.name }}</span>
               {%- endif -%}
@@ -381,8 +397,13 @@ requestAnimationFrame(this.hide.bind(this));
     {
     "type": "image_picker",
     "id": "logo",
-    "label": "t:sections.header.settings.logo.label"
+    "label": "首页logo"
     },
+    {
+      "type": "image_picker",
+      "id": "logo_hover",
+      "label": "详情页logo"
+      },
     {
     "type": "range",
     "id": "logo_width",
