@@ -26,7 +26,7 @@ src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
     </div>
     <div class="mobile">
         <a href="{{section.settings.link.url}}" class="mask-link">
-          <img class="lazyload img_item" srcset="{%- if block.settings.mobile_image.width >= 550 -%}{{ block.settings.mobile_image | img_url: '550x' }} 550w,{%- endif -%}
+          <img class="lazyload img_item" srcset="{%- if section.settings.mobile_image.width >= 550 -%}{{ section.settings.mobile_image | img_url: '550x' }} 550w,{%- endif -%}
                       {%- if section.settings.mobile_image.width >= 720 -%}{{ section.settings.mobile_image | img_url: '720x' }} 720w,{%- endif -%}
                       {%- if section.settings.mobile_image.width >= 990 -%}{{ section.settings.mobile_image | img_url: '990x' }} 990w,{%- endif -%}
                       {%- if section.settings.mobile_image.width >= 1100 -%}{{ section.settings.mobile_image | img_url: '1100x' }} 1100w,{%- endif -%}
