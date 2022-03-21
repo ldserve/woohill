@@ -981,7 +981,6 @@
         variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
 
         document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
-            console.log(event.currentTarget.value);
             hiddenInput.value = event.currentTarget.value;
         });
     });

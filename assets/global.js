@@ -433,8 +433,6 @@ class ModalDialog extends HTMLElement {
     });
     if (this.classList.contains('media-modal')) {
       this.addEventListener('pointerup', (event) => {
-        console.log(event.pointerType)
-        console.log(event.target)
         if (event.pointerType === 'mouse' && !event.target.closest('deferred-media, product-model')) this.hide();
       });
     } else {
@@ -472,7 +470,6 @@ class ModalOpener extends HTMLElement {
     if (!button) return;
     button.addEventListener('click', () => {
       const modal = document.querySelector(this.getAttribute('data-modal'));
-      console.log(modal)
       if (modal) modal.show(button);
     });
   }
@@ -769,8 +766,6 @@ class VariantSelects extends HTMLElement {
     if (!this.currentVariant.featured_media) return;
 
     const mediaGallery = document.getElementById(`MediaGallery-${this.dataset.section}`);
-    console.log(this.currentVariant.option1);
-    console.log(`${this.currentVariant.featured_media.id}`);
     if (!this.currentVariant.option1) {
       //
     } else {
@@ -909,8 +904,8 @@ class ProductItem extends HTMLElement {
       colorSelector: this.querySelector('.color-selector'),
       cardMedia: this.querySelector('.card__media'),
     }
-    this.setupEventListeners()
-    this.handleColorActive()
+    // this.setupEventListeners()
+    // this.handleColorActive()
   }
 
   setupEventListeners() {

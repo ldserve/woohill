@@ -556,7 +556,6 @@
   i.addEventListener('click',function(e){
     let tragetHeight = i.parentElement.nextElementSibling.style.height
     if(!tragetHeight || tragetHeight == '0px'){
-      // console.log(i.parentElement.nextElementSibling.scrollHeight + 'px');
       i.parentElement.nextElementSibling.style.height = i.parentElement.nextElementSibling.scrollHeight + 'px'
     }else if (tragetHeight && tragetHeight !== '0px'){
       i.parentElement.nextElementSibling.style.height = '0px'
