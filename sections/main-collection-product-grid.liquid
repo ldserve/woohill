@@ -8,12 +8,12 @@
 
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
-<div id="main-collection-product-grid-box" class="page-width">
+<div id="main-collection-product-grid-box" class="page-width-900" >
   {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
     {{ 'component-facets.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
   
-    <div  id="main-collection-filters" class="page-width-right" data-id="{{ section.id }}">
+    <div  id="main-collection-filters" class="page-width-right" data-id="{{ section.id }}" style="display: none;">
       {% render 'facets', results: collection, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
     </div>
   {%- endif -%}
