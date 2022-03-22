@@ -10,7 +10,7 @@
   cursor: pointer;
   font-size: 14px;
   line-height: 3rem;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
   color: rgb(var(--color-foreground));
   font-weight:400;
 }
@@ -239,7 +239,7 @@
 }
 
 .facets__list {
-  height: 0;
+  /* height: 0; */
   overflow: hidden;
   transition: .2s ease-in-out;
 }
@@ -304,7 +304,13 @@
 .list-menu__item input {
   display: none;
 }
-
+.facets__list__collection{
+  display: flex;
+  flex-wrap: wrap;
+}
+.facets__list__collection li{
+  width: 50%;
+}
 .facets__item {
   display: flex;
   align-items: center;

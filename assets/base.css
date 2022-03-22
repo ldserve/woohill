@@ -243,6 +243,7 @@ span.price-item.price-item--regular {
 .page-width-900{
   width: 90rem;
   margin: 0 auto;
+  position: relative;
 }
 @media screen and (min-width: 750px) {
   .page-width {

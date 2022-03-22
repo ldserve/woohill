@@ -140,11 +140,11 @@
                 <ul class="menu-drawer__menu list-menu" role="list">
                       <li>
                         <a href="https://www.woohill.com/collections/shop"
-                          class="header__menu-item list-menu__item link link--text focus-inset caption-large">SHOP</a>
+                          class="header__menu-item list-menu__item link link--text focus-inset caption-large">SHOP&nbsp;</a>
                       </li>
                       <li>
                         <a href="https://www.woohill.com/collections/t-shirts"
-                          class="header__menu-item list-menu__item link link--text focus-inset caption-large">TEES</a>
+                          class="header__menu-item list-menu__item link link--text focus-inset caption-large">TEES&nbsp;</a>
                       </li>
                      
                       <li>
@@ -189,11 +189,11 @@
       <ul class="list-menu list-menu--inline" role="list">
         <li>
           <a href="https://www.woohill.com/collections/shop"
-            class="header__menu-item list-menu__item link link--text focus-inset caption-large">SHOP</a>
+            class="header__menu-item list-menu__item link link--text focus-inset caption-large">SHOP&nbsp;</a>
         </li>
         <li>
           <a href="https://www.woohill.com/collections/t-shirts"
-            class="header__menu-item list-menu__item link link--text focus-inset caption-large">TEES</a>
+            class="header__menu-item list-menu__item link link--text focus-inset caption-large">TEES&nbsp;</a>
         </li>
         <li>
           <h1 class="header__heading">
@@ -229,14 +229,10 @@
         </li>
       </ul>
     </nav>
-    {%- if cart.item_count > 0 -%}
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+        {%- if cart.item_count > 0 -%}
         {%- liquid
-        if cart == empty
-        render 'icon-cart-empty'
-        else
-        render 'icon-cart'
-        endif
+        render 'icon-cart' 
         -%}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
@@ -246,8 +242,8 @@
             <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
         </div>
         {%- endif -%}
+        {%- endif -%}
       </a>
-      {%- endif -%}
     </div>
   </header>
 </{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}>
