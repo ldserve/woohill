@@ -1397,6 +1397,7 @@ button.shopify-payment-button__button--unbranded {
 .customer button {
   font-size: 1.5rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
+  color: #fff;
 }
 
 .button--tertiary {
@@ -1962,7 +1963,7 @@ input[type='checkbox'] {
   left: 2.2rem;
   line-height: calc(1 + 0.1 / var(--font-body-scale));
 }
-.header__icon--cart:hover .icon-cart{
+.header__icon:hover {
   color:rgb(var(--color-button));
 }
 .header__icon--cart:hover .cart-count-bubble span{
@@ -2049,7 +2050,13 @@ input[type='checkbox'] {
 .header details {
   position: unset;
 }
-
+.header_ny_icon {
+  position: absolute;
+  margin-right: -1.2rem;
+  top: 27px;
+  right: 60px;
+  display: flex;
+}
 @media screen and (min-width: 990px) {
 
   .header {
@@ -2108,7 +2115,7 @@ input[type='checkbox'] {
 
 .header__heading-link {
   display: inline-block;
-  padding: 0.75rem;
+  /* padding: 0.75rem; */
   text-decoration: none;
   word-break: break-word;
 }
@@ -2203,16 +2210,17 @@ input[type='checkbox'] {
 }
 
 .header__icon,
-.header__icon--cart .icon {
-  height: 35px;
-  width: 35px;
+.header__icon--cart .icon,
+.header__icon--account .icon
+ {
+  height: 28px;
+  width: 28px;
 }
-
+.header__icon--account{
+margin-right: 10px;
+}
 .header__icon--cart {
-  position: absolute;
-  margin-right: -1.2rem;
-  top: 27px;
-  right: 20px;
+position: relative;
 }
 
 @media screen and (max-width: 989px) {
@@ -2261,10 +2269,10 @@ menu-drawer+.header__search {
   }
 
   .cart-count-bubble {
-    bottom: 0.2rem;
-    left: 0.8rem;
-    height: 2rem;
-    width: 2rem;
+    bottom: 0.3rem;
+    left: 0.9rem;
+    height: 1.2rem;
+    width: 1.2rem;
   }
 }
 
@@ -2664,6 +2672,15 @@ details-disclosure>details {
   .\31\/6--phone {
     width: 16.666667%;
   }
+  .header_ny_icon {
+    position: relative;
+    right: 0px;
+    top: 0;
+}
+.header__icon--account {
+  top: 3px;
+  position: relative;
+}
 }
 
 .d-flex {
