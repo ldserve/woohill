@@ -2057,6 +2057,7 @@ input[type='checkbox'] {
   top: 27px;
   right: 60px;
   display: flex;
+  justify-content: end;
 }
 @media screen and (min-width: 990px) {
 
