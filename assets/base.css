@@ -1397,7 +1397,7 @@ button.shopify-payment-button__button--unbranded {
 .customer button {
   font-size: 1.5rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
-  color: #fff;
+  color: #fff !important;
 }
 
 .button--tertiary {
