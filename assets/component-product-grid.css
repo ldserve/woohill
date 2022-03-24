@@ -1,5 +1,6 @@
 #main-collection-product-grid-box{
   display: flex;
+  position: relative;
 }
 #main-collection-product-grid-box #main-collection-filters{
   width: 35%;
@@ -39,7 +40,8 @@
     display: block;
   }
   #main-collection-product-grid-box #main-collection-filters{
-    width: 100%;
+    width: 90%;
     padding-right: 0;
+    top: 0;
   }
 }

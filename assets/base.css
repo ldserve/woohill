@@ -264,7 +264,6 @@ span.price-item.price-item--regular {
   .page-width-900{
     width: 90rem;
     margin: 0 auto;
-    position: relative;
   }
 }
 
@@ -1952,7 +1951,7 @@ input[type='checkbox'] {
 .cart-count-bubble {
   position: absolute;
   /* background-color: rgb(var(--color-button)); */
-  color: #fff;
+  color: #1b1b1b;
   height: 1.7rem;
   width: 1.7rem;
   border-radius: 100%;
@@ -2223,6 +2222,7 @@ margin-right: 10px;
 }
 .header__icon--cart {
 position: relative;
+margin-right: 5px;
 }
 
 @media screen and (max-width: 989px) {
