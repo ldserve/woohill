@@ -240,11 +240,7 @@ span.price-item.price-item--regular {
 .product__info-wrapper .link {
   font-size: 1.2rem;
 }
-.page-width-900{
-  width: 90rem;
-  margin: 0 auto;
-  position: relative;
-}
+
 @media screen and (min-width: 750px) {
   .page-width {
     padding: 0 3.25rem;
@@ -264,6 +260,11 @@ span.price-item.price-item--regular {
 
   .page-width-tablet {
     padding: 0 3.25rem;
+  }
+  .page-width-900{
+    width: 90rem;
+    margin: 0 auto;
+    position: relative;
   }
 }
 
