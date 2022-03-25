@@ -51,7 +51,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-2.0.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-2.0.jpg",
-        "link": "https:\/\/www.woohill.com\/",
+        "link": "shopify:\/\/collections\/all",
         "title_size": 30,
         "m_title_size": 20,
         "text_color": "#ffffff",
