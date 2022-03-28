@@ -171,7 +171,7 @@ FacetFiltersForm.searchParamsInitial = window.location.search.slice(1);
 FacetFiltersForm.searchParamsPrev = window.location.search.slice(1);
 customElements.define('facet-filters-form', FacetFiltersForm);
 FacetFiltersForm.setListeners();
-
+ 
 class PriceRange extends HTMLElement {
   constructor() {
     super();

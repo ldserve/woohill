@@ -1,0 +1,221 @@
+.loadingPage {
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+}
+.loader {
+    font-size: 8px;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    text-indent: -9999em;
+    animation: load-effect 1s infinite linear;
+}
+
+@keyframes load-effect {
+    0% {
+        box-shadow:
+
+            /*
+ 
+           0:左移3em
+ 
+           -3em:下移2em
+ 
+           0:模糊距离0，即纯色
+ 
+           .2em:外扩.2em
+ 
+           var(--color-loading):白色
+ 
+          */
+
+            0 -3em 0 .2em var(--color-loading),
+            /*上*/
+
+            2em -2em 0 0 var(--color-loading),
+            /*右上*/
+
+            3em 0 0 -.5em var(--color-loading),
+            /*右*/
+
+            2em 2em 0 -.5em var(--color-loading),
+            /*右下*/
+
+            0 3em 0 -.5em var(--color-loading),
+            /*下*/
+
+            -2em 2em 0 -.5em var(--color-loading),
+            /*左下*/
+
+            -3em 0 0 -.5em var(--color-loading),
+            /*左*/
+
+            -2em -2em 0 0 var(--color-loading);
+        /*左上*/
+    }
+
+    12.5% {
+        box-shadow:
+
+            0 -3em 0 0 var(--color-loading),
+
+            2em -2em 0 .2em var(--color-loading),
+
+            3em 0 0 0 var(--color-loading),
+
+            2em 2em 0 -.5em var(--color-loading),
+
+            0 3em 0 -.5em var(--color-loading),
+
+            -2em 2em 0 -.5em var(--color-loading),
+
+            -3em 0 0 -.5em var(--color-loading),
+
+            -2em -2em 0 -.5em var(--color-loading);
+    }
+
+    25% {
+        box-shadow:
+
+            0 -3em 0 -.5em var(--color-loading),
+
+            2em -2em 0 0 var(--color-loading),
+
+            3em 0 0 .2em var(--color-loading),
+
+            2em 2em 0 0 var(--color-loading),
+
+            0 3em 0 -.5em var(--color-loading),
+
+            -2em 2em 0 -.5em var(--color-loading),
+
+            -3em 0 0 -.5em var(--color-loading),
+
+            -2em -2em 0 -.5em var(--color-loading);
+    }
+
+    37.5% {
+        box-shadow:
+
+            0 -3em 0 -.5em var(--color-loading),
+
+            2em -2em 0 -.5em var(--color-loading),
+
+            3em 0 0 0 var(--color-loading),
+
+            2em 2em 0 .2em var(--color-loading),
+
+            0 3em 0 0 var(--color-loading),
+
+            -2em 2em 0 -.5em var(--color-loading),
+
+            -3em 0 0 -.5em var(--color-loading),
+
+            -2em -2em 0 -.5em var(--color-loading);
+    }
+
+    50% {
+        box-shadow:
+
+            0 -3em 0 -.5em var(--color-loading),
+
+            2em -2em 0 -.5em var(--color-loading),
+
+            3em 0 0 -.5em var(--color-loading),
+
+            2em 2em 0 0 var(--color-loading),
+
+            0 3em 0 .2em var(--color-loading),
+
+            -2em 2em 0 0 var(--color-loading),
+
+            -3em 0 0 -.5em var(--color-loading),
+
+            -2em -2em 0 -.5em var(--color-loading);
+    }
+
+    62.5% {
+        box-shadow:
+
+            0 -3em 0 -.5em var(--color-loading),
+
+            2em -2em 0 -.5em var(--color-loading),
+
+            3em 0 0 -.5em var(--color-loading),
+
+            2em 2em 0 -.5em var(--color-loading),
+
+            0 3em 0 0 var(--color-loading),
+
+            -2em 2em 0 .2em var(--color-loading),
+
+            -3em 0 0 0 var(--color-loading),
+
+            -2em -2em 0 -.5em var(--color-loading);
+    }
+
+    75% {
+        box-shadow:
+
+            0 -3em 0 -.5em var(--color-loading),
+
+            2em -2em 0 -.5em var(--color-loading),
+
+            3em 0 0 -.5em var(--color-loading),
+
+            2em 2em 0 -.5em var(--color-loading),
+
+            0 3em 0 -.5em var(--color-loading),
+
+            -2em 2em 0 0 var(--color-loading),
+
+            -3em 0 0 .2em var(--color-loading),
+
+            -2em -2em 0 0 var(--color-loading);
+    }
+
+
+    87.5% {
+        box-shadow:
+
+            0 -3em 0 0 var(--color-loading),
+
+            2em -2em 0 -.5em var(--color-loading),
+
+            3em 0 0 -.5em var(--color-loading),
+
+            2em 2em 0 -.5em var(--color-loading),
+
+            0 3em 0 -.5em var(--color-loading),
+
+            -2em 2em 0 0 var(--color-loading),
+
+            -3em 0 0 0 var(--color-loading),
+
+            -2em -2em 0 .2em var(--color-loading);
+    }
+
+
+    100% {
+        box-shadow:
+
+            0 -3em 0 .2em var(--color-loading),
+
+            2em -2em 0 0 var(--color-loading),
+
+            3em 0 0 -.5em var(--color-loading),
+
+            2em 2em 0 -.5em var(--color-loading),
+
+            0 3em 0 -.5em var(--color-loading),
+
+            -2em 2em 0 -.5em var(--color-loading),
+
+            -3em 0 0 -.5em var(--color-loading),
+
+            -2em -2em 0 0 var(--color-loading);
+    }
+}

@@ -1,6 +1,7 @@
 {{ 'template-collection.css' | asset_url | stylesheet_tag }}
 {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-loading.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-product-grid.css' | asset_url | stylesheet_tag }}
 
@@ -50,8 +51,11 @@
               </li>
             {%- endfor -%}
           </ul>
+          {% assign pages = paginate.pages %}
           {%- if paginate.pages > 1 -%}
-            {% render 'pagination', paginate: paginate, anchor: '' %}
+          <div class="loadingPage" style="display: none;">
+            <div class="loader">Loading...</div>
+          </div>
           {%- endif -%}
         </div>
       {%- endif -%}
@@ -76,6 +80,27 @@
         i.parentNode.prepend(i)
       })
     }
+  const pages = {{ pages }};
+  var currentPage=1;
+  function getCollection() {
+    currentPage += 1
+    fetch(`${window.location.pathname}?page=${currentPage}`)
+    .then((response) =>  response.text())
+    .then((responseText) => {
+        const html = responseText;
+        document.getElementById('product-grid').innerHTML+=new DOMParser().parseFromString(html, 'text/html').getElementById('product-grid').innerHTML
+        document.querySelector(".loadingPage").style.display="none"
+    })
+   }
+
+  window.addEventListener('scroll', function () {
+		var targetRect = document.querySelector('.loadingPage').getBoundingClientRect()
+    if( currentPage+1 > pages) return
+    if(targetRect.bottom<600){
+      document.querySelector(".loadingPage").style.display="flex"
+      getCollection()
+    }
+	})
 </script>
 {% schema %}
 {
