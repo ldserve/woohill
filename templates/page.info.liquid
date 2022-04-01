@@ -5,13 +5,12 @@
     }
 
     .about {
-        font-weight: 900;
         font-size: 18px;
     }
 
     .info p {
         font-size: 14px;
-        font-weight: 700;
+        /* font-weight: 700; */
     }
 
     .info-content {
@@ -21,7 +20,6 @@
     #leftMenu {
         border-right: 1px #000 solid;
         text-align: right;
-        font-weight: 900;
         font-size: 22px;
         width: 180px;
         display: flex;
@@ -34,18 +32,17 @@
         border: none;
         background: none;
         font-size: 18px;
-        font-weight: 700;
         text-align: right;
         padding: 10px;
         text-transform: uppercase;
     }
 
     #leftMenu button:hover {
-        color: rgb(245, 95, 8);
+        color: #dadb56;
     }
 
     .button-active {
-        color: rgb(245, 95, 8);
+        color: #dadb56;
     }
 
     #content {
@@ -67,19 +64,28 @@
     }
 
     @media screen and (max-width:749px) {
+        #content .content {
+        display: none;
+        font-size: 12px;
+      }
+
         .info-header {
             padding: 10px;
         }
-
+        .info p {
+        font-size: 12px;
+        /* font-weight: 700; */
+    }
         #leftMenu {
             display: none;
         }
 
         #content {
-            font-weight: 900;
+            /* font-weight: 900; */
             font-size: 22px;
             display: flex;
             flex-flow: column;
+            width: 100%;
         }
         #content .content {
         margin-bottom: 20px;
@@ -90,7 +96,6 @@
             border: none;
             background: none;
             font-size: 18px;
-            font-weight: 700;
             text-align: left;
             padding: 10px 0px;
             text-transform: uppercase;
