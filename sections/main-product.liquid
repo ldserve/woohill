@@ -570,12 +570,12 @@
           {%- when 'description' -%}
             {%- if product.description != blank -%}
             <div class="product__description rte accordion">
-              <details id="Details-{{ block.id }}-{{ section.id }}">
+              <details id="Details-{{ block.id }}-{{ section.id }}" open>
                 <summary>
                   <div class="summary__title">
-                    <h2 class="accordion__title">
+                    <div class="accordion__title">
                       Features
-                    </h2>
+                    </div>
                   </div>
                   {% render 'icon-caret' %}
                 </summary>
@@ -583,9 +583,43 @@
                   {{ product.description }}
                 </div>
               </details>
-
             </div>
             {%- endif -%}
+            {%- when 'policy' -%}       
+            <div class="product__description rte accordion">
+              <details id="Details-{{ block.id }}-{{ section.id }}">
+                <summary>
+                  <div class="summary__title">
+                    <div class="accordion__title">
+                      Return Policy
+                    </div>
+                  </div>
+                  {% render 'icon-caret' %}
+                </summary>
+                <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                  You have a max of 30 days to make returns.
+                  You must send back your items to an informed address by customer service.
+                  No returns made after 30 days from the purchase date will be accepted.
+                </div>
+              </details>
+            </div>           
+            {%- when 'delivery' -%}        
+            <div class="product__description rte accordion">
+              <details id="Details-{{ block.id }}-{{ section.id }}">
+                <summary>
+                  <div class="summary__title">
+                    <div class="accordion__title">
+                      Delivery
+                    </div>
+                  </div>
+                  {% render 'icon-caret' %}
+                </summary>
+                <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                  Standard Shipping: US$9.9 , FREE on orders US$69.00+
+                  Estimated delivery time to the US/EU is 12-15 days.
+                </div>
+              </details>
+            </div>          
           {%- when 'custom_liquid' -%}
             {{ block.settings.custom_liquid }}
           {%- when 'collapsible_tab' -%}
@@ -1140,6 +1174,16 @@
   "name": "t:sections.main-product.blocks.description.name",
   "limit": 1
   },
+  {
+    "type": "policy",
+    "name": "Return Policy",
+    "limit": 1
+    },
+    {
+      "type": "delivery",
+      "name": "Delivery",
+      "limit": 1
+      },
   {
   "type": "share",
   "name": "t:sections.main-product.blocks.share.name",
