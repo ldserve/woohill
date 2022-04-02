@@ -48,8 +48,18 @@
             "show_dynamic_checkout": true
           }
         },
+        "245af18d-3d92-4c00-9984-9096b68bdc1a": {
+          "type": "delivery",
+          "settings": {
+          }
+        },
         "description": {
           "type": "description",
+          "settings": {
+          }
+        },
+        "a852c33f-3c99-4834-abc8-b489b47605da": {
+          "type": "policy",
           "settings": {
           }
         },
@@ -78,7 +88,9 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "245af18d-3d92-4c00-9984-9096b68bdc1a",
         "description",
+        "a852c33f-3c99-4834-abc8-b489b47605da",
         "020b554d-2135-4d5a-ac44-4bd60820a802",
         "32cf2449-4fcf-43de-9af8-bf7754d4d4f2",
         "share"
