@@ -570,7 +570,7 @@
           {%- when 'description' -%}
             {%- if product.description != blank -%}
             <div class="product__description rte accordion">
-              <details id="Details-{{ block.id }}-{{ section.id }}" open>
+              <details id="Details-{{ block.id }}-{{ section.id }}">
                 <summary>
                   <div class="summary__title">
                     <div class="accordion__title">
@@ -605,7 +605,7 @@
             </div>           
             {%- when 'delivery' -%}        
             <div class="product__description rte accordion">
-              <details id="Details-{{ block.id }}-{{ section.id }}">
+              <details id="Details-{{ block.id }}-{{ section.id }}" open>
                 <summary>
                   <div class="summary__title">
                     <div class="accordion__title">
