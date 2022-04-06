@@ -3,7 +3,9 @@
   /* height: 100%; */
   width: 500px;
 }
-
+cart-notification.cart_notification {
+  position: absolute;
+}
 .cart-notification-wrapper .cart-notification {
   display: block;
   height: 100%;
@@ -39,7 +41,6 @@
     width: 500px;
     right: 0px;
     height: 100%;
-    margin-top:-105px;
   }
 }
 
@@ -127,6 +128,5 @@
     width: 90%;
     right: 0px;
     height: 100%;
-    margin-top: -75px;
   }
 }

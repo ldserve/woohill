@@ -26,7 +26,7 @@ document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
     event.currentTarget.closest('details').setAttribute('open', true);
   })
   if (summary.closest('header-drawer')) return;
-  // summary.parentElement.addEventListener('keyup', onKeyUpEscape);
+  summary.parentElement.addEventListener('keyup', onKeyUpEscape);
 });
 document.querySelectorAll('li>a.header__menu-item').forEach((ele) => {
   ele.addEventListener('mouseenter',(event)=>{

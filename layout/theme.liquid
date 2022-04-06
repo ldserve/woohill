@@ -216,6 +216,7 @@
 
     {% section 'announcement-bar' %}
     {% section 'header' %}
+
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
@@ -225,7 +226,8 @@
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
     </ul>
-
+    {%- render 'cart-notification'-%}
+    <div class="body_mask"></div>
     <script>
       window.shopUrl = '{{ shop.url }}';
       window.routes = {
