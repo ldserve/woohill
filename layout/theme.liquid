@@ -256,5 +256,9 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-  </body>
+  
+<!-- **BEGIN** Hextom USB Integration // Main Include - DO NOT MODIFY -->
+    {% render 'hextom_usb_main', product: product, customer: customer %}
+    <!-- **END** Hextom USB Integration // Main Include - DO NOT MODIFY -->
+</body>
 </html>
