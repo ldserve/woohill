@@ -113,8 +113,6 @@
                 <ul class="menu-drawer__menu list-menu" role="list">
                   {%- for link in section.settings.menu.links -%}
                   <li>
-                    56666
-                    {{link.links}}
                     {%- if link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}" open >
                             <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
@@ -165,25 +163,6 @@
                               </div>
                             </div> 
                           </details>
-                    <div>
-                      <summary
-                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
-                        {{ link.title | escape }}
-                        {% render 'icon-arrow' %}
-                        {% render 'icon-caret' %}
-                      </summary>
-                      <ul class="menu-drawer__menu list-menu ld-submenu" role="list" tabindex="-1">
-                        {%- for childlink in link.links -%}
-                        <li>
-                          <a href="{{ childlink.url }}"
-                            class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
-                            {% if childlink.current %} aria-current="page" {% endif %}>
-                            {{ childlink.title | escape }}
-                          </a>
-                        </li>
-                        {%- endfor -%}
-                      </ul>
-                    </div>
                     {%- else -%}
                     <a href="{{ link.url }}"
                       class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
@@ -313,7 +292,7 @@
     <div class="header__icons">
       {%- if shop.customer_accounts_enabled -%}
       <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-        class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">
+        class="header__icon header__icon--account link focus-inset">
         {% render 'icon-account' %}
         <span class="visually-hidden">
           {%- liquid
@@ -357,8 +336,11 @@
             <summary class="header__menu-item list-menu__item link focus-inset">
               {% comment %} <a class="link--text" style="text-decoration:none;" href="{{link.url}}"> <span {%- if
                   link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span></a> {% endcomment %}
-              <span {%- if link.child_active %} class="header__active-menu-item" {% endif %}>{{ link.title | escape
-                }}</span>
+                  <a href="{{ link.url }}"
+                  class="header__menu-item header__menu-item list-menu__item link link--text focus-inset" {% if link.current
+                  %} aria-current="page" {% endif %}>
+                  <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
+                </a>
             </summary>
             <div id="HeaderMenu-MenuList-{{ forloop.index }}"
               class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list"
@@ -404,7 +386,9 @@
 </{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}>
 
 {%- render 'cart-notification', color_scheme: section.settings.color_scheme -%}
+<div class="body_mask">
 
+</div>
 {% javascript %}
 class StickyHeader extends HTMLElement {
 constructor() {
@@ -472,8 +456,8 @@ requestAnimationFrame(this.hide.bind(this));
     }
 
     closeSearchModal() {
-    this.searchModal = this.searchModal || this.header.querySelector('details-modal');
-    this.searchModal.close(false);
+    //this.searchModal = this.searchModal || this.header.querySelector('details-modal');
+    //this.searchModal.close(false);
     }
     }
 
