@@ -14,11 +14,23 @@ document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
     summary.setAttribute('aria-controls', summary.nextElementSibling.id);
   }
 
-  // summary.addEventListener('click', (event) => {
-  //   event.currentTarget.setAttribute('aria-expanded', !event.currentTarget.closest('details').hasAttribute('open'));
-  // });
+  summary.addEventListener('click', (event) => {
+    event.currentTarget.setAttribute('aria-expanded', !event.currentTarget.closest('details').hasAttribute('open'));
+  });
+
+  if (summary.closest('header-drawer')) return;
+  summary.parentElement.addEventListener('keyup', onKeyUpEscape);
+});
+document.querySelectorAll('nav [id^="Details-"] summary').forEach((summary) => {
+  summary.setAttribute('role', 'button');
+  summary.setAttribute('aria-expanded', 'false');
+
+  if (summary.nextElementSibling.getAttribute('id')) {
+    summary.setAttribute('aria-controls', summary.nextElementSibling.id);
+  }
+
   summary.addEventListener('mouseenter',(event)=>{
-    document.querySelectorAll('[id^="Details-"] summary').forEach((ele) => {
+    document.querySelectorAll('nav [id^="Details-"] summary').forEach((ele) => {
       ele.setAttribute('aria-expanded', 'false');
       ele.parentElement.closest('details').removeAttribute('open');
     })    
@@ -30,7 +42,7 @@ document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
 });
 document.querySelectorAll('li>a.header__menu-item').forEach((ele) => {
   ele.addEventListener('mouseenter',(event)=>{
-    document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
+    document.querySelectorAll('nav [id^="Details-"] summary').forEach((summary) => {
       summary.setAttribute('aria-expanded', 'false');
       summary.parentElement.closest('details').removeAttribute('open');
     })    
