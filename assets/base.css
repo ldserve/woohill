@@ -2853,11 +2853,6 @@ details[open]>.header__icon--menu .icon-hamburger {
   align-items: center;
 }
 
-.accordion-header-top {
-  border-bottom: 1.5px #ccc solid;
-  padding-bottom: 5px;
-}
-
 .accordion__content-icon .icon {
   margin-right: 10px;
 }
