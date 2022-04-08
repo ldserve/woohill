@@ -41,9 +41,12 @@
     display: flex;
     /* flex-wrap: wrap; */
     justify-content: space-between;
-    position: relative;
+    /* position: relative; */
   }
-
+.ny-submenu{
+  display: flex;
+  justify-content: space-between;
+}
 
   .list-menu__item {
     display: flex;
@@ -339,29 +342,30 @@
             <div id="HeaderMenu-MenuList-{{ forloop.index }}"
               class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list"
               tabindex="-1">
-              <div class="sub-menu-left">
-                {{ link.title | escape }}
-                <div><svg t="1649212558569" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2033" width="36" height="36"><path d="M918.6 489.3L646.1 216.8c-12.3-12.3-32.5-12.3-44.8 0l-0.7 0.7c-12.3 12.3-12.3 32.4 0 44.7l218.7 218.7H257.6c-17.3 0-31.5 14.2-31.5 31.5s14.2 31.5 31.5 31.5h560.1L601.2 760.5c-12.5 12.5-12.5 32.9 0 45.4s32.9 12.5 45.4 0l271.1-271.1s0.1-0.1 0.2-0.1l0.7-0.7c12.3-12.3 12.3-32.4 0-44.7z" fill="#515151" p-id="2034"></path><path d="M97.6 512.6a31.8 31.7 0 1 0 63.6 0 31.8 31.7 0 1 0-63.6 0Z" fill="#515151" p-id="2035"></path></svg></div>
-              </div>
-              <div class="sub-menu-right">
-                {%- for childlink in link.links -%}
-                <div>
-                  {%- if childlink.links == blank -%}
-                  <a href="{{ childlink.url }}"
-                    class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
-                    {% if childlink.current %} aria-current="page" {% endif %}>
-                     <img src="{{childlink.object.image | img_url: '260x' }}"  style='float:left;'
-                      loading="lazy"
-                      class="ld-navImage"
-                      alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
-                     >
-                    <p>{{ childlink.title | escape }}</p>
-                  </a>
-                  {%- endif -%}
+              <div class="page-width-900 ny-submenu">
+                <div class="sub-menu-left">
+                  {{ link.title | escape }}
+                  <div><svg t="1649212558569" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2033" width="36" height="36"><path d="M918.6 489.3L646.1 216.8c-12.3-12.3-32.5-12.3-44.8 0l-0.7 0.7c-12.3 12.3-12.3 32.4 0 44.7l218.7 218.7H257.6c-17.3 0-31.5 14.2-31.5 31.5s14.2 31.5 31.5 31.5h560.1L601.2 760.5c-12.5 12.5-12.5 32.9 0 45.4s32.9 12.5 45.4 0l271.1-271.1s0.1-0.1 0.2-0.1l0.7-0.7c12.3-12.3 12.3-32.4 0-44.7z" fill="#515151" p-id="2034"></path><path d="M97.6 512.6a31.8 31.7 0 1 0 63.6 0 31.8 31.7 0 1 0-63.6 0Z" fill="#515151" p-id="2035"></path></svg></div>
                 </div>
-                {%- endfor -%}
+                <div class="sub-menu-right">
+                  {%- for childlink in link.links -%}
+                  <div>
+                    {%- if childlink.links == blank -%}
+                    <a href="{{ childlink.url }}"
+                      class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                      {% if childlink.current %} aria-current="page" {% endif %}>
+                       <img src="{{childlink.object.image | img_url: '260x' }}"  style='float:left;'
+                        loading="lazy"
+                        class="ld-navImage"
+                        alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+                       >
+                      <p>{{ childlink.title | escape }}</p>
+                    </a>
+                    {%- endif -%}
+                  </div>
+                  {%- endfor -%}
+                </div>
               </div>
-              
             </div>
           </details>
         </details-disclosure>
