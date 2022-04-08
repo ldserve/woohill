@@ -58,10 +58,7 @@
         "type": "header",
         "settings": {
           "background": "#1e2d7d",
-          "text": "#000000",
-          "text_hover": "#dbdb55",
           "logo": "shopify:\/\/shop_images\/WPS_c2200e01-d714-45d9-bd45-4921f8db6042.png",
-          "logo_hover": "shopify:\/\/shop_images\/WPS.png",
           "logo_width": 160,
           "logo_position": "middle-left",
           "menu": "main-menu",

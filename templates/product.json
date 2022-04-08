@@ -123,11 +123,24 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "1649399955479bd250": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "heading": "Recently viewed",
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
     "product-recommendations",
-    "1642672039f32ef10d"
+    "1642672039f32ef10d",
+    "1649399955479bd250"
   ]
 }
