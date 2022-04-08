@@ -2654,7 +2654,7 @@ details[open]>.header__icon--menu .icon-hamburger {
     display: flex;
     width: 100%;
     position: fixed;
-    bottom: 40px;
+    bottom: 0px;
     right: 0px;
     z-index: 16;
     box-sizing: border-box;
