@@ -10,30 +10,32 @@ class CartNotification extends HTMLElement {
     this.querySelectorAll('button[type="button"]').forEach((closeButton) =>
       closeButton.addEventListener('click', this.close.bind(this))
     );
+    window.addEventListener('scroll', this.close.bind(this));
   }
 
   open() {
     this.notification.classList.add('animate', 'active');
-
+    document.querySelector(".body_mask").classList.add('active');
     this.notification.addEventListener('transitionend', () => {
       this.notification.focus();
       trapFocus(this.notification);
     }, { once: true });
-
     document.body.addEventListener('click', this.onBodyClick);
   }
 
   close() {
     this.notification.classList.remove('active');
-
+    document.querySelector(".body_mask").classList.remove('active');
     document.body.removeEventListener('click', this.onBodyClick);
-
     removeTrapFocus(this.activeElement);
   }
 
   renderContents(parsedState) {
       this.productId = parsedState.id;
       this.getSectionsToRender().forEach((section => {
+        if(section.id==="cart-icon-bubble"){
+          document.getElementById(section.id).style.display="block"
+        }
         document.getElementById(section.id).innerHTML =
           this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
       }));

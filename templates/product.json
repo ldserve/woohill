@@ -19,7 +19,7 @@
         "3f46a901-dacd-4629-a43c-ac700bb3d255": {
           "type": "shopify:\/\/apps\/product-reviews\/blocks\/star_rating\/bae150af-8da8-48b2-9867-398188115e5f",
           "settings": {
-            "stars_fill_color": "#ed6123",
+            "stars_fill_color": "#121212",
             "star_size": 22,
             "text_align": "flex-start",
             "product": "{{product}}",
@@ -48,8 +48,18 @@
             "show_dynamic_checkout": true
           }
         },
+        "245af18d-3d92-4c00-9984-9096b68bdc1a": {
+          "type": "delivery",
+          "settings": {
+          }
+        },
         "description": {
           "type": "description",
+          "settings": {
+          }
+        },
+        "a852c33f-3c99-4834-abc8-b489b47605da": {
+          "type": "policy",
           "settings": {
           }
         },
@@ -78,7 +88,9 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "245af18d-3d92-4c00-9984-9096b68bdc1a",
         "description",
+        "a852c33f-3c99-4834-abc8-b489b47605da",
         "020b554d-2135-4d5a-ac44-4bd60820a802",
         "32cf2449-4fcf-43de-9af8-bf7754d4d4f2",
         "share"
@@ -111,11 +123,24 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "1649399955479bd250": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "heading": "Recently viewed",
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "main",
     "product-recommendations",
-    "1642672039f32ef10d"
+    "1642672039f32ef10d",
+    "1649399955479bd250"
   ]
 }

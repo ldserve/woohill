@@ -23,7 +23,6 @@ if (!customElements.get('media-gallery')) {
     }
 
     setActiveMedia(mediaAlt, mediaId, prepend) {
-      console.log(mediaId, this, prepend);
       if (mediaAlt) {
         const activeMedia = this.elements.viewer.querySelectorAll(`[data-media-id="${mediaAlt}"]`);
         this.elements.viewer.querySelectorAll('[data-media-id]').forEach((element) => {

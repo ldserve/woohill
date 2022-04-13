@@ -12,13 +12,14 @@
          position: relative;
          width: 100%;
          height: 900px;
+          overflow: hidden;
      }
 
 
      .Slide-{{ section.id }}  .swiper-sider>a {
          position: absolute;
          width: 100%;
-         /* height: 800px; */
+         height: auto;
          transition: opacity 1s linear;
      }
 
@@ -27,19 +28,19 @@
      }
 
 
-     .Slide-{{ section.id }}  .imgop {
+     .Slide-{{ section.id }} .swiper-sider .imgop {
          opacity: 0;
      }
 
 
-     .Slide-{{ section.id }} .imgopshow {
+     .Slide-{{ section.id }} .swiper-sider .imgopshow {
          opacity: 1;
      }
 
 
      .Slide-{{ section.id }} .dian {
          position: absolute;
-         z-index: 99999;
+         z-index: 9;
          bottom: 20px;
          left: 40px;
          height: 13px;
@@ -69,7 +70,7 @@
          width: 100%;
          height: 50px;
          position: absolute;
-         z-index: 999;
+         z-index: 9;
          top: 50%;
          padding: 0 50px;
      }
@@ -114,6 +115,19 @@
        .Slide-{{ section.id }} .dian {
          display: none;
        }
+       .Slide-{{ section.id }}.swiper-lunbo {
+         position: relative;
+         width: 100%;
+         height: 260px;
+         margin: 0px auto;
+     }
+
+
+     .Slide-{{ section.id }} .swiper-sider {
+         position: relative;
+         width: 100%;
+         height: 260px;
+     }
      }
 
      @media (min-width: 768px) {
@@ -179,23 +193,23 @@
      </div>
 
      <script>
-         window.onload = function () {
-             var h = document.querySelector(".Slide-{{ section.id }} .imgop").offsetHeight;
+       window.onload=function(){
+        var h = document.querySelector(".Slide-{{ section.id }} .PC .imgopshow").offsetHeight || document.querySelector(".Slide-{{ section.id }} .mobile .imgopshow").offsetHeight;
              document.querySelector(".Slide-{{ section.id }}.swiper-lunbo").style.height = h + 'px';
              document.querySelector(".Slide-{{ section.id }} .swiper-sider").style.height = h + 'px';
-         }
+        }
          window.onresize = function () {
-             var h = document.querySelector(".Slide-{{ section.id }} .imgop").offsetHeight;
+             h = document.querySelector(".Slide-{{ section.id }} .PC .imgopshow").offsetHeight
+             h= h<50? document.querySelector(".Slide-{{ section.id }} .mobile .imgopshow").offsetHeight:h
              document.querySelector(".Slide-{{ section.id }}.swiper-lunbo").style.height = h + 'px';
              document.querySelector(".Slide-{{ section.id }} .swiper-sider").style.height = h + 'px';
          }
+~(function(){
          var touchDot = 0; //触摸时的原点
          var touchMove = 0;
          var time = 0; //  时间记录，用于滑动时且时间小于1s则执行左右滑动
          var interval = ""; // 记录/清理 时间记录
-         var nth = 0; // 设置活动菜单的index
-         var nthMax = 5; //活动菜单的最大个数
-         var tmpFlag = true; // 判断左右华东超出菜单最大值时不再执行滑动事件
+         var tmpFlag = true; // 判断左右滑动超出菜单最大值时不再执行滑动事件
          var timer; //接收计时器
          var block = document.querySelector(".Slide-{{ section.id }}.swiper-lunbo");
          var dianpar = document.querySelector(".Slide-{{ section.id }} .dian");
@@ -204,10 +218,10 @@
          var aPar = ''
          if (window.screen.availWidth > 750) {
              aPar = document.querySelector(".Slide-{{ section.id }} .PC");
-
          } else {
              aPar = document.querySelector(".Slide-{{ section.id }} .mobile");
          }
+
          var nowbg = dianpar.children[0]; //当前变色的点元素
          var num = aPar.children.length;
          var dragsDot = 0; //触摸时的原点
@@ -265,22 +279,19 @@
              clearInterval(timer);
          };
          block.onmouseleave = function () {
-             showAnimate();
+                showAnimate();
          };
          btnleft.onclick = function () {
+            clearInterval(timer);
              countAnimate(num - 1);
          };
          btnright.onclick = function () {
+            clearInterval(timer);
              countAnimate(1)
          };
-         btnleft.ontouch = function () {
-             countAnimate(num - 1);
-         };
-         btnright.ontouch = function () {
-             countAnimate(1)
-         };
+
          // 触摸开始事件
-         block.addEventListener("touchstart", function (e) {
+         aPar.addEventListener("touchstart", function (e) {
              clearInterval(timer);
              touchDot = e.touches[0].pageX; // 获取触摸时的原点
              // 使用js计时器记录时间    
@@ -289,11 +300,11 @@
              }, 100);
          })
          // 触摸移动事件
-         block.addEventListener("touchmove", function (e) {
+         aPar.addEventListener("touchmove", function (e) {
              touchMove = e.touches[0].pageX;
          })
          // 触摸结束事件
-         block.addEventListener("touchend", function (e) {
+         aPar.ontouchend= function (e) {
              // 向左滑动   
              if (touchMove - touchDot <= -40 && time < 10) {
                  countAnimate(1);
@@ -306,13 +317,13 @@
              time = 0;
              tmpFlag = true; // 回复滑动事件
              showAnimate();
-         })
+         }
          // 拖拽开始事件
-         block.addEventListener("dragstart", function (e) {
+         aPar.addEventListener("dragstart", function (e) {
              dragsDot = e.screenX; // 获取触摸时的原点
          })
          // 拖拽结束事件
-         block.addEventListener("dragend", function (e) {
+         aPar.addEventListener("dragend", function (e) {
              dragsMove = e.screenX
              // 向左滑动   
              if (dragsDot - dragsMove < 0) {
@@ -324,10 +335,11 @@
              }
          })
 
-         //处理浏览器的默认选择
-         document.onselectstart = function () {
-             return false;
-         };
+        //  //处理浏览器的默认选择
+        //  document.onselectstart = function () {
+        //      return false;
+        //  };   
+})()
      </script>
 
      {% schema %}

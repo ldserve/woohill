@@ -23,7 +23,7 @@
             {%- when 'subtotal' -%}
               <div class="js-contents" {{ block.shopify_attributes }}>
                 <div class="totals">
-                  <h3 class="totals__subtotal">{{ 'sections.cart.subtotal' | t }}</h3>
+                  <div class="totals__subtotal">{{ 'sections.cart.subtotal' | t }}</div>
                   <p class="totals__subtotal-value price">
                     <span class="price-item--sale price-item--last">{{ cart.total_price | money_with_currency }}</span>
                     <s class="price-item--regular">{{ cart.original_total_price | money_with_currency }}</s>

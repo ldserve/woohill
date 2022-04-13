@@ -8,6 +8,7 @@ class DetailsModal extends HTMLElement {
       'keyup',
       (event) => event.code.toUpperCase() === 'ESCAPE' && this.close()
     );
+
     this.summaryToggle.addEventListener(
       'click',
       this.onSummaryClick.bind(this)
@@ -36,10 +37,12 @@ class DetailsModal extends HTMLElement {
   }
 
   open(event) {
+    console.log("open");
     this.onBodyClickEvent =
       this.onBodyClickEvent || this.onBodyClick.bind(this);
     event.target.closest('details').setAttribute('open', true);
-    document.body.addEventListener('click', this.onBodyClickEvent);
+    document.body.addEventListener('click', this.onBodyClickEvent);    
+    console.log("open",11111);
     document.body.classList.add('overflow-hidden');
 
     trapFocus(

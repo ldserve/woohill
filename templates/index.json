@@ -1,586 +1,165 @@
 {
   "sections": {
-    "16425792355688d797": {
-      "type": "imageText",
+    "1646275552d33d41a1": {
+      "type": "ld-mask",
       "blocks": {
-        "1642579235ddb88999-0": {
+        "16462755522f6c318e-0": {
           "type": "banner",
           "settings": {
-            "top": 0,
-            "width": 0,
-            "left": 0,
-            "height": 0,
-            "link": "",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "text": "LOVERBOY COLLECTION"
           }
         }
       },
       "block_order": [
-        "1642579235ddb88999-0"
+        "16462755522f6c318e-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__02_1caf8f76-f720-457c-8937-8ea66a22a94f.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__02_3352ddd1-f009-4792-bb5d-3caf0352160f.jpg",
-        "is_show": false,
-        "title": "",
-        "subtitle": "",
-        "button": "",
-        "text_top": 0,
-        "text_left": 0,
-        "title_size": 12,
-        "big_title_size": 22,
+        "image": "shopify:\/\/shop_images\/1080-_00.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/1080-_00.jpg",
+        "link": "shopify:\/\/collections\/lover-boy-1",
+        "title_size": 30,
+        "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "normal",
-        "button_color": "#ed6123",
-        "button_text_color": "#ffffff",
-        "button_color_hover": "#ffffff",
-        "button_text_color_hover": "#000000"
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 45,
+        "title_left": 32,
+        "m_title_top": 42,
+        "m_title_left": 14
       }
     },
-    "1641968209b8bb0cb6": {
-      "type": "imageText",
+    "164627556236be741d": {
+      "type": "ld-mask",
       "blocks": {
-        "16419682091433c6e9-0": {
+        "1646275562be41a3b8-0": {
           "type": "banner",
           "settings": {
-            "top": 0,
-            "width": 100,
-            "left": 0,
-            "height": 100,
-            "link": "shopify:\/\/collections\/hot-sale",
-            "mobile_top": 0,
-            "mobile_width": 100,
-            "mobile_left": 0,
-            "mobile_height": 100
+            "text": "SPRING 2022"
+          }
+        },
+        "75c7645c-684e-4464-827c-8c537d036b69": {
+          "type": "banner",
+          "settings": {
+            "text": "AVAILABLE NOW"
           }
         }
       },
       "block_order": [
-        "16419682091433c6e9-0"
+        "1646275562be41a3b8-0",
+        "75c7645c-684e-4464-827c-8c537d036b69"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__03_41e2a1f7-d315-4b62-8194-79523ab5d763.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__03_a0c2a7d1-ba79-4af7-b40a-c324a930792e.jpg",
-        "is_show": false,
-        "title": "",
-        "subtitle": "",
-        "button": "",
-        "text_top": 43,
-        "text_left": 19,
-        "title_size": 19,
-        "big_title_size": 38,
+        "image": "shopify:\/\/shop_images\/1080-2.0.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/1080-2.0.jpg",
+        "link": "shopify:\/\/collections\/new-in-1",
+        "title_size": 30,
+        "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "normal",
-        "button_color": "#ed6123",
-        "button_text_color": "#ffffff",
-        "button_color_hover": "#ffffff",
-        "button_text_color_hover": "#000000"
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 40,
+        "title_left": 37,
+        "m_title_top": 34,
+        "m_title_left": 27
       }
     },
-    "16425793872eec3e92": {
-      "type": "imageText",
+    "1646275569eec31c8d": {
+      "type": "ld-mask",
       "blocks": {
-        "1642579387d49fb479-0": {
+        "1646275569d5c00844-0": {
           "type": "banner",
           "settings": {
-            "top": 14,
-            "width": 12,
-            "left": 24,
-            "height": 73,
-            "link": "shopify:\/\/collections\/short-sleeve",
-            "mobile_top": 0,
-            "mobile_width": 0,
-            "mobile_left": 0,
-            "mobile_height": 0
-          }
-        },
-        "2bd0c485-1161-4e58-a095-4c7a2a83438d": {
-          "type": "banner",
-          "settings": {
-            "top": 14,
-            "width": 13,
-            "left": 37,
-            "height": 73,
-            "link": "shopify:\/\/collections\/long-sleeve",
-            "mobile_top": 0,
-            "mobile_width": 0,
-            "mobile_left": 0,
-            "mobile_height": 0
-          }
-        },
-        "b6061246-f835-41b5-8112-038b9f13e3ea": {
-          "type": "banner",
-          "settings": {
-            "top": 15,
-            "width": 13,
-            "left": 50,
-            "height": 72,
-            "link": "shopify:\/\/collections\/hoodies-sweatshirts",
-            "mobile_top": 27,
-            "mobile_width": 25,
-            "mobile_left": 38,
-            "mobile_height": 33
-          }
-        },
-        "a66c5ce2-4c0d-45b7-9873-eb7a99c299a1": {
-          "type": "banner",
-          "settings": {
-            "top": 15,
-            "width": 12,
-            "left": 64,
-            "height": 73,
-            "link": "shopify:\/\/collections\/outerwear",
-            "mobile_top": 27,
-            "mobile_width": 27,
-            "mobile_left": 65,
-            "mobile_height": 32
-          }
-        },
-        "f2314d3f-4777-4dd2-b4e3-f9fb7db5ffa5": {
-          "type": "banner",
-          "settings": {
-            "top": 15,
-            "width": 13,
-            "left": 77,
-            "height": 72,
-            "link": "shopify:\/\/collections\/accessories",
-            "mobile_top": 0,
-            "mobile_width": 0,
-            "mobile_left": 0,
-            "mobile_height": 0
-          }
-        },
-        "ef071313-fd7d-4c5f-b1b0-c37bd1fc636e": {
-          "type": "banner",
-          "settings": {
-            "top": 0,
-            "width": 0,
-            "left": 0,
-            "height": 0,
-            "link": "shopify:\/\/collections\/jewelry",
-            "mobile_top": 62,
-            "mobile_width": 25,
-            "mobile_left": 10,
-            "mobile_height": 31
-          }
-        },
-        "6083c6f1-c1cc-470d-a953-a1f67cb99aaa": {
-          "type": "banner",
-          "settings": {
-            "top": 0,
-            "width": 0,
-            "left": 0,
-            "height": 0,
-            "link": "shopify:\/\/collections\/t-shirts",
-            "mobile_top": 27,
-            "mobile_width": 25,
-            "mobile_left": 10,
-            "mobile_height": 31
-          }
-        },
-        "69c0c05d-a763-42f8-bc6e-1c2cacc65f00": {
-          "type": "banner",
-          "settings": {
-            "top": 0,
-            "width": 0,
-            "left": 0,
-            "height": 0,
-            "link": "shopify:\/\/collections\/cap-hat",
-            "mobile_top": 61,
-            "mobile_width": 26,
-            "mobile_left": 37,
-            "mobile_height": 32
-          }
-        },
-        "b4cb84f3-752c-4427-935f-171ef022a912": {
-          "type": "banner",
-          "settings": {
-            "top": 0,
-            "width": 0,
-            "left": 0,
-            "height": 0,
-            "link": "shopify:\/\/collections\/retro-style",
-            "mobile_top": 62,
-            "mobile_width": 26,
-            "mobile_left": 65,
-            "mobile_height": 31
+            "text": "SHIRTS"
           }
         }
       },
       "block_order": [
-        "1642579387d49fb479-0",
-        "2bd0c485-1161-4e58-a095-4c7a2a83438d",
-        "b6061246-f835-41b5-8112-038b9f13e3ea",
-        "a66c5ce2-4c0d-45b7-9873-eb7a99c299a1",
-        "f2314d3f-4777-4dd2-b4e3-f9fb7db5ffa5",
-        "ef071313-fd7d-4c5f-b1b0-c37bd1fc636e",
-        "6083c6f1-c1cc-470d-a953-a1f67cb99aaa",
-        "69c0c05d-a763-42f8-bc6e-1c2cacc65f00",
-        "b4cb84f3-752c-4427-935f-171ef022a912"
+        "1646275569d5c00844-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/2.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__04_7b4fc4f8-1365-4782-9ce2-685c1c8dfa10.jpg",
-        "is_show": false,
-        "title": "",
-        "subtitle": "",
-        "button": "",
-        "text_top": 0,
-        "text_left": 0,
-        "title_size": 12,
-        "big_title_size": 22,
+        "image": "shopify:\/\/shop_images\/1080-_09_c87fad87-d827-4141-a20f-f1edbf8cb782.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/1080-_09_c87fad87-d827-4141-a20f-f1edbf8cb782.jpg",
+        "link": "shopify:\/\/collections\/shirts-1",
+        "title_size": 30,
+        "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "normal",
-        "button_color": "#ed6123",
-        "button_text_color": "#ffffff",
-        "button_color_hover": "#ffffff",
-        "button_text_color_hover": "#000000"
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 45,
+        "title_left": 43,
+        "m_title_top": 38,
+        "m_title_left": 41
       }
     },
-    "1641974007df809541": {
-      "type": "ld-product-tab",
-      "settings": {
-        "title": "",
-        "content": "",
-        "image": "shopify:\/\/shop_images\/PC-__08.jpg",
-        "link": "shopify:\/\/collections\/new-in",
-        "collection": "new-in",
-        "image_two": "shopify:\/\/shop_images\/PC-__10.jpg",
-        "link_two": "shopify:\/\/collections\/hot-sale",
-        "collection_two": "hot-sale",
-        "image_ratio": "adapt",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false,
-        "ld_title": "",
-        "subtitle": "NEW IN",
-        "two_ld_title": "",
-        "two_subtitle": "HOT SALE",
-        "button": "SHOP NOW",
-        "text_top": 52,
-        "text_left": 64,
-        "title_size": 12,
-        "big_title_size": 33,
-        "mobile_text_top": 14,
-        "mobile_text_left": 48,
-        "mobile_title_size": 10,
-        "mobile_big_title_size": 14,
-        "text_color": "#ffffff",
-        "text_style": "normal",
-        "button_color": "#e7b34e",
-        "button_text_color": "#121212",
-        "button_color_hover": "#ffffff",
-        "button_text_color_hover": "#000000"
-      }
-    },
-    "1642579409fa3dafd6": {
-      "type": "imageText",
+    "1646275576578162d2": {
+      "type": "ld-mask",
       "blocks": {
-        "1642579409b14e4668-0": {
+        "16462755767cff8d5f-0": {
           "type": "banner",
           "settings": {
-            "top": 0,
-            "width": 100,
-            "left": 0,
-            "height": 100,
-            "link": "shopify:\/\/collections\/jewelry",
-            "mobile_top": 0,
-            "mobile_width": 100,
-            "mobile_left": 0,
-            "mobile_height": 100
+            "text": "BOTTOMS"
           }
         }
       },
       "block_order": [
-        "1642579409b14e4668-0"
+        "16462755767cff8d5f-0"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-_AB_14.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__13_349392ec-c689-49e6-8053-caaf1f5c35b5.jpg",
-        "is_show": false,
-        "title": "",
-        "subtitle": "",
-        "button": "",
-        "text_top": 0,
-        "text_left": 0,
-        "title_size": 12,
-        "big_title_size": 22,
+        "image": "shopify:\/\/shop_images\/1080-_11_67c97418-52b6-4bfd-9445-fb77e19e13b7.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/1080-_11_67c97418-52b6-4bfd-9445-fb77e19e13b7.jpg",
+        "link": "shopify:\/\/collections\/bottoms",
+        "title_size": 30,
+        "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "normal",
-        "button_color": "#ed6123",
-        "button_text_color": "#ffffff",
-        "button_color_hover": "#ffffff",
-        "button_text_color_hover": "#000000"
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 45,
+        "title_left": 43,
+        "m_title_top": 44,
+        "m_title_left": 34
       }
     },
-    "164198619658c9b25f": {
-      "type": "ld-product-silder",
-      "settings": {
-        "banner": "shopify:\/\/shop_images\/PC-QQQQ__17.jpg",
-        "collection": "hot-sale",
-        "products_to_show": 12,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false
-      }
-    },
-    "1642062280e7be15bf": {
-      "type": "ld-collection-list",
+    "164627558301d8d88f": {
+      "type": "ld-mask",
       "blocks": {
-        "b71c9143-6133-45ba-9152-fbacfcc8fa3b": {
-          "type": "collection_list",
-          "settings": {
-            "title": "T-SHIRT",
-            "collection": "t-shirts",
-            "link": "",
-            "show_view_all": true
-          }
-        },
-        "b21b395b-c5c4-4122-af03-24976c69757f": {
-          "type": "collection_list",
-          "disabled": true,
-          "settings": {
-            "title": "LONG SLEEVE",
-            "collection": "long-sleeve",
-            "link": "",
-            "show_view_all": true
-          }
-        },
-        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a": {
-          "type": "collection_list",
-          "settings": {
-            "title": "HOODIE&SWEATSHIRT",
-            "collection": "hoodies-sweatshirts",
-            "link": "",
-            "show_view_all": true
-          }
-        },
-        "ae7f38f1-b6c1-4e11-b5b0-d94858b09e48": {
-          "type": "collection_list",
-          "settings": {
-            "title": "OUTERWEAR",
-            "collection": "outerwear",
-            "link": "",
-            "show_view_all": true
-          }
-        },
-        "0835e98f-6c40-4fc2-b663-5637aed751d5": {
-          "type": "collection_list",
-          "settings": {
-            "title": "BOTTOMS",
-            "collection": "pant",
-            "link": "",
-            "show_view_all": true
-          }
-        },
-        "164206228050a1dfc8-0": {
-          "type": "collection_list",
-          "settings": {
-            "title": "CAP&HAT",
-            "collection": "cap-hat",
-            "link": "",
-            "show_view_all": true
-          }
-        },
-        "5603ccda-10c5-49a4-9b34-d316896dd966": {
-          "type": "collection_list",
-          "settings": {
-            "title": "JEWELRY",
-            "collection": "jewelry",
-            "link": "",
-            "show_view_all": true
-          }
-        },
-        "eccfd45f-ceb8-4a53-90ed-f10df3cd9a7c": {
-          "type": "collection_list",
-          "settings": {
-            "title": "BELT",
-            "collection": "belt",
-            "link": "",
-            "show_view_all": true
-          }
-        },
-        "688d04e2-646d-4ee2-a43a-591d869ee96a": {
-          "type": "collection_list",
-          "disabled": true,
-          "settings": {
-            "title": "SHORTS",
-            "collection": "shorts",
-            "link": "",
-            "show_view_all": true
-          }
-        }
-      },
-      "block_order": [
-        "b71c9143-6133-45ba-9152-fbacfcc8fa3b",
-        "b21b395b-c5c4-4122-af03-24976c69757f",
-        "2f6cf7e7-457a-4a41-960e-5bc822b62c9a",
-        "ae7f38f1-b6c1-4e11-b5b0-d94858b09e48",
-        "0835e98f-6c40-4fc2-b663-5637aed751d5",
-        "164206228050a1dfc8-0",
-        "5603ccda-10c5-49a4-9b34-d316896dd966",
-        "eccfd45f-ceb8-4a53-90ed-f10df3cd9a7c",
-        "688d04e2-646d-4ee2-a43a-591d869ee96a"
-      ],
-      "settings": {
-        "products_to_show": 4,
-        "image": "shopify:\/\/shop_images\/M__14_b4fa5b01-54a7-443c-ac20-caeff4143419.jpg",
-        "link": "",
-        "image_ratio": "adapt",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false
-      }
-    },
-    "164250101104a505b9": {
-      "type": "imageText",
-      "blocks": {
-        "16425010102ac2f6a5-0": {
+        "1646275583c8c3bab9-0": {
           "type": "banner",
           "settings": {
-            "top": 0,
-            "width": 0,
-            "left": 0,
-            "height": 0,
-            "link": "",
-            "mobile_top": 16,
-            "mobile_width": 16,
-            "mobile_left": 16,
-            "mobile_height": 16
+            "text": "NEW SPRING ESSENTIALS"
+          }
+        },
+        "2b7fd7e2-b1a7-4859-b0c8-83b7817ca44d": {
+          "type": "banner",
+          "settings": {
+            "text": "AVAILABLE NOW"
           }
         }
       },
       "block_order": [
-        "16425010102ac2f6a5-0"
+        "1646275583c8c3bab9-0",
+        "2b7fd7e2-b1a7-4859-b0c8-83b7817ca44d"
       ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/PC-_AB_20.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/M__16_924da617-b913-4f37-baf1-eeade67989ef.jpg",
-        "is_show": false,
-        "title": "",
-        "subtitle": "",
-        "button": "",
-        "text_top": 26,
-        "text_left": 9,
-        "title_size": 12,
-        "big_title_size": 22,
+        "image": "shopify:\/\/shop_images\/1080-_13.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/1080-_13.jpg",
+        "link": "https:\/\/www.woohill.com\/",
+        "title_size": 30,
+        "m_title_size": 20,
         "text_color": "#ffffff",
-        "text_style": "normal",
-        "button_color": "#ed6123",
-        "button_text_color": "#ffffff",
-        "button_color_hover": "#ffffff",
-        "button_text_color_hover": "#000000"
-      }
-    },
-    "featured_products": {
-      "type": "featured-collection",
-      "disabled": true,
-      "settings": {
-        "title": "Featured Products",
-        "collection": "hawaiian-style",
-        "products_to_show": 4,
-        "show_view_all": true,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": true,
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "1641973313e37a8096": {
-      "type": "featured-product-silder",
-      "disabled": true,
-      "settings": {
-        "collection": "hoodies-sweatshirts",
-        "image_ratio": "adapt",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false
-      }
-    },
-    "164250311826bdc728": {
-      "type": "ld-product-silder",
-      "disabled": true,
-      "settings": {
-        "banner": "shopify:\/\/shop_images\/PC-__07.jpg",
-        "collection": "hoodie",
-        "products_to_show": 4,
-        "image_ratio": "adapt",
-        "show_secondary_image": false,
-        "show_vendor": false,
-        "show_rating": false
-      }
-    },
-    "16425031377a5e1b5e": {
-      "type": "image-banner",
-      "disabled": true,
-      "blocks": {
-        "16425031361195d2fe-0": {
-          "type": "heading",
-          "settings": {
-            "heading": "Woohill’s Mission",
-            "heading_size": "medium"
-          }
-        },
-        "16425031361195d2fe-1": {
-          "type": "text",
-          "settings": {
-            "text": "Woohill’s mission is to make all customers better through passion, design and the relentless pursuit of innovation Where we started? It all started with an idea to build a superior Clothes",
-            "text_style": "body"
-          }
-        },
-        "16425031361195d2fe-2": {
-          "type": "buttons",
-          "disabled": true,
-          "settings": {
-            "button_label_1": "",
-            "button_link_1": "",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "16425031361195d2fe-0",
-        "16425031361195d2fe-1",
-        "16425031361195d2fe-2"
-      ],
-      "settings": {
-        "image": "shopify:\/\/shop_images\/PC-__06_6263f2ae-8cb0-4953-b32d-07a4df0cbcf7.jpg",
-        "image_2": "shopify:\/\/shop_images\/PC-__06_6263f2ae-8cb0-4953-b32d-07a4df0cbcf7.jpg",
-        "image_overlay_opacity": 30,
-        "image_height": "medium",
-        "adapt_height_first_image": true,
-        "desktop_content_position": "middle-center",
-        "show_text_box": true,
-        "desktop_content_alignment": "center",
-        "color_scheme": "background-1",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": true,
-        "show_text_below": true
+        "text_style": "bold",
+        "text_align": "center",
+        "title_top": 40,
+        "title_left": 28,
+        "m_title_top": 34,
+        "m_title_left": 14
       }
     }
   },
   "order": [
-    "16425792355688d797",
-    "1641968209b8bb0cb6",
-    "16425793872eec3e92",
-    "1641974007df809541",
-    "1642579409fa3dafd6",
-    "164198619658c9b25f",
-    "1642062280e7be15bf",
-    "164250101104a505b9",
-    "featured_products",
-    "1641973313e37a8096",
-    "164250311826bdc728",
-    "16425031377a5e1b5e"
+    "1646275552d33d41a1",
+    "164627556236be741d",
+    "1646275569eec31c8d",
+    "1646275576578162d2",
+    "164627558301d8d88f"
   ]
 }

@@ -97,7 +97,7 @@
               <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                 {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
               </div>
-              {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+              <!-- {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
                 <div class="product__tax caption rte">
                   {%- if shop.taxes_included -%}
                     {{ 'products.product.include_taxes' | t }}
@@ -106,7 +106,7 @@
                     {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
                   {%- endif -%}
                 </div>
-              {%- endif -%}
+              {%- endif -%} -->
               {%- if product != blank -%}
                 <div {{ block.shopify_attributes }}>
                   {%- form 'product', product -%}
@@ -370,7 +370,11 @@
         </div>
       </div>
     </product-modal>
-  </div>
+  
+<!-- **BEGIN** Hextom USB Integration // Home Featured Product Include - DO NOT MODIFY -->
+    {% render 'hextom_usb_home_featured_prod', product: product %}
+    <!-- **END** Hextom USB Integration // Home Featured Product Include - DO NOT MODIFY -->
+</div>
 </section>
 
 {% javascript %}

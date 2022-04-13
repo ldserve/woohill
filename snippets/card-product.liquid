@@ -82,7 +82,7 @@
             </a>
             </div>
           {%- endif -%}
-          <div class="card__content">        
+          <!-- <div class="card__content">        
             <div class="card__information">
               <div class="card__heading">
                 <span class="full-unstyled-link">
@@ -98,19 +98,19 @@
                 <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}">Save:{{ savings | append: '%'  }}</span>
               {%- endif -%}
             </div>
-          </div>
+          </div> -->
         </div>
-        <div class="card__content">
+         <!-- <div class="card__content"> 
           <div class="card__information">  
-            <div class="card__heading">
+           <div class="card__heading">
               <span class="full-unstyled-link">
                 {{ card_product.title | escape }}
               </span>
                 <div class="quick-view-btn hidden-phone" data-productSpu="{{card_product.handle}}">Quick View</div>
-            </div>
-            <div class="card-information">
-              {%- if show_vendor -%}
-                <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+            </div> 
+             <div class="card-information"> 
+           {%- if show_vendor -%}
+                   <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
                 <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
               {%- endif -%}    
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
@@ -144,8 +144,8 @@
               <div class="right">
                 {% render 'price', product: card_product, price_class: '' %}
               </div>
-              </div>
-              <div class="color-selector" style="float: left;">
+              </div> -->
+              <!-- <div class="color-selector">
                 {%- for color in card_product.options_by_name['Color'].values limit:4 -%}
                   {%- for variant in card_product.variants -%}
                       {%- if variant.option1 == color -%}
@@ -173,6 +173,30 @@
                             data-variant-width="{{ cur_variant.featured_media.width }}"
                             data-variant-height="{{ cur_variant.featured_media.height }}"
                             title="{{color}}">
+                            {%- if card_product.options_by_name['Color'].values.size < 6 -%}
+                            <img class="color-item" 
+                            style="{% render 'color-square' ,color:color %}" 
+                            data-media-id="{{ cur_variant.featured_media.id }}"
+                            data-variant-id="{{cur_variant.id}}"
+                            data-variant-url="{{cur_variant.featured_media | img_url: "533x" }}" 
+                               srcset="{%- if cur_variant.featured_media.width >= 165 -%}{{ cur_variant.featured_media | img_url: "165x" }} 165w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 360 -%}{{ cur_variant.featured_media | img_url: "360x" }} 360w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 533 -%}{{ cur_variant.featured_media | img_url: "533x" }} 533w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 720 -%}{{ cur_variant.featured_media | img_url: "720x" }} 720w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 940 -%}{{ cur_variant.featured_media | img_url: "940x" }} 940w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 1066 -%}{{ cur_variant.featured_media | img_url: "1066x" }} 1066w,{%- endif -%}
+                               {{ cur_variant.featured_media | img_url: "master" }} {{ cur_variant.featured_media.width }}w"
+                               data-variant-srcset="{%- if cur_variant.featured_media.width >= 165 -%}{{ cur_variant.featured_media | img_url: "165x" }} 165w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 360 -%}{{ cur_variant.featured_media | img_url: "360x" }} 360w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 533 -%}{{ cur_variant.featured_media | img_url: "533x" }} 533w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 720 -%}{{ cur_variant.featured_media | img_url: "720x" }} 720w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 940 -%}{{ cur_variant.featured_media | img_url: "940x" }} 940w,{%- endif -%}
+                               {%- if cur_variant.featured_media.width >= 1066 -%}{{ cur_variant.featured_media | img_url: "1066x" }} 1066w,{%- endif -%}
+                               {{ cur_variant.featured_media | img_url: "master" }} {{ cur_variant.featured_media.width }}w"
+                               data-variant-src="{{ cur_variant.featured_media | img_url: "533x" }}"
+                               data-variant-sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                               data-variant-alt="{{ cur_variant.featured_media.alt | escape }}">
+                               {%- endif -%}
                           </span>
                         </div>
                 {% endfor %}
@@ -181,15 +205,10 @@
                     <span class="color-item" title="more">+</span>
                   </div>
                 {%- endif -%}
-              </div>
-              <div class="ld-collect" style="margin-top: 5px;">
-                <svg t="1644375730921" onclick="addCollect(this)" class="icon remove-collect" data-id="{{ card_product.id}}" data-spu="{{ card_product.handle}}" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2024" width="20" height="20"><path d="M752 144c55.6 0 107.8 21.6 147.1 60.9S960 296.4 960 352c0 32.7-6.1 66.4-18.1 100.2-11.4 32-28.3 64.9-50.3 97.8-38.7 57.8-93.4 116.2-162.5 173.6C643 795.1 555.6 847.2 512 871.5c-43.2-24-129.4-75.1-215.2-146-69.6-57.5-124.6-116-163.7-174-22.2-33.1-39.3-66.1-50.8-98.4C70.2 418.9 64 385 64 352c0-55.6 21.6-107.8 60.9-147.1S216.4 144 272 144c76.9 0 147.2 42.2 183.6 110.1l28.2 52.7c12.1 22.5 44.4 22.5 56.4 0l28.2-52.7C604.8 186.2 675.1 144 752 144z m0-64c-101.3 0-189.7 55.4-236.5 137.6-1.5 2.7-5.4 2.7-6.9 0C461.7 135.4 373.3 80 272 80 121.8 80 0 201.8 0 352c0 338 512 592 512 592s512-255 512-592c0-150.2-121.8-272-272-272z" fill="#ccc" p-id="2025"></path></svg>
-                <svg t="1644375855436" onclick="removeCollect(this)" class="icon add-collect" data-id="{{ card_product.id}}" data-spu="{{ card_product.handle}}" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14019" width="20" height="20"><path d="M0 368.64C0 209.92 130.56 79.36 286.72 79.36c89.6 0 171.52 43.52 225.28 112.64 53.76-69.12 135.68-112.64 225.28-112.64C893.44 79.36 1024 209.92 1024 368.64 1024 627.2 709.12 844.8 573.44 926.72c-38.4 23.04-84.48 23.04-122.88 0C314.88 844.8 0 627.2 0 368.64z" fill="#FF3E4C" p-id="14020"></path></svg>
-                <span>13423</span>
-              </div>
-            </div>
-          </div>     
-          <div class="card__badge {{ settings.badge_position }}">
+              </div> 
+          </div>
+        </div>    
+         <div class="card__badge {{ settings.badge_position }}">
             {%- assign savings = card_product.compare_at_price | minus: card_product.price | times: 100.0 | divided_by: card_product.compare_at_price | round -%}
             {%- if card_product.available == false -%}
               <span class="badge badge--bottom-left color-{{ settings.badge_sold_out_color_scheme }}">{{ 'products.product.sold_out' | t }}</span>
@@ -197,7 +216,7 @@
               <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}">{{save | append: '%' }}</span>
             {%- endif -%}
           </div>
-        </div>
+        </div> -->
       </div>
   </product-item>
 {%- else -%}

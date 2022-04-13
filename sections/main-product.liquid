@@ -31,322 +31,15 @@
   }
 {%- endstyle -%}
 <style type="text/css">
-    .size-guide-wrap .size-select {
-        cursor: pointer;
-        text-align: center;
-        font-size: 17px;
-        padding: 0 20px;
-        color: #000;
-        margin-bottom: 10px;
+
+#shopify-product-reviews .spr-summary-actions-newreview {
+      color: var(--color_orange_text);
+      text-decoration: none;
+  }
+  @media (min-width: 768px) {
+    .section-{{ section.id }}-padding .grid--1-col .product__media-item{
+    max-width: 50% !important;
     }
-
-    .size-guide-wrap .size-select.selected {
-        background-color: #000000 !important;
-        color: #fff !important;
-    }
-
-    .size-guide-fixed {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: none;
-        z-index: 99;
-    }
-
-    .sizeGuideBtn {
-        font-size: 13px;
-        display: flex;
-        cursor: pointer;
-        color: rgb(235, 99, 57) !important;
-    }
-
-    .sizeGuideBtn span {
-        text-decoration: underline;
-        text-underline-offset: 0.5rem;
-    }
-
-    .size-guide-wrap .size-detail.selected {
-        display: block;
-    }
-
-    .size-guide-wrap .size-detail tbody tr:nth-child(odd) td {
-        background-color: #eee;
-    }
-
-    .size-guide-wrap .size-tips {
-        display: block;
-        font-size: 12px;
-        font-weight: 700;
-    }
-
-    .size-guide-wrap .size-guide-title {
-        font-size: 20px;
-        font-weight: bold;
-        padding: 5px 15px;
-        text-align: center;
-        background-color: #000;
-        color: #fff;
-    }
-
-    .size-guide-wrap .size-detail thead tr td {
-        color: rgb(235, 99, 57) !important;
-    }
-
-    .size-guide-wrap .size-detail .first-column {
-        font-weight: bold;
-        color: #000;
-    }
-
-    .size-guide-wrap .size-tips {
-        display: block;
-        font-size: 10px;
-        margin-top: 10px;
-    }
-
-    .size-guide-wrap .size-guide-name {
-        font-size: 20px;
-        font-weight: bold;
-        padding: 10px 20px;
-    }
-
-    .size-guide-wrap .size-select {
-        flex: 1;
-        cursor: pointer;
-        text-align: center;
-        font-size: 17px;
-        padding: 0 20px;
-        color: #000;
-        background-color: #eee;
-    }
-
-    .size-guide-wrap .size-content {
-        margin: 10px 20px;
-        border-bottom: 1px #7e7a7a solid;
-        padding-bottom: 30px;
-    }
-
-    @media (min-width: 768px) {
-
-        /*PC样式*/
-        /*尺码样式*/
-        .size-guide-wrap .table-fixed {
-            display: none;
-        }
-
-        .size-guide-wrap {
-            position: absolute;
-            top: 10%;
-            left: 20%;
-            width: 60%;
-            height: 80%;
-            background-color: #fff;
-            padding-bottom: 50px;
-            z-index: 99;
-            border-radius: 5px;
-            overflow-y: scroll;
-        }
-
-        .size-guide-wrap::-webkit-scrollbar {
-            background-color: #fff;
-            width: 6px;
-            height: 6px;
-        }
-
-        .size-guide-wrap::-webkit-scrollbar-thumb {
-            background-color: #ccc;
-            border-radius: 3px;
-        }
-
-
-        .size-guide-wrap .size-close {
-            position: absolute;
-            top: 9px;
-            right: 25px;
-            cursor: pointer;
-        }
-
-        .size-guide-wrap .size-select-wrap {
-            display: flex;
-            color: #b5b0b0;
-        }
-
-        .size-guide-wrap .size-select {
-            flex: 1;
-            cursor: pointer;
-            text-align: center;
-            font-size: 17px;
-            padding: 0 20px;
-            color: #000;
-            background-color: #eee;
-        }
-
-        .size-guide-wrap .size-detail {
-            display: none;
-        }
-
-        .size-guide-wrap .size-detail table {
-            width: 100%;
-            border: 1px solid #b3b3b3;
-            width: 100%;
-            border-collapse: collapse;
-            text-align: center;
-            font-size: 14px;
-            color: #333333;
-            font-family: Roboto-Regular;
-            margin-bottom: 15px;
-            margin-bottom: 10px;
-            margin-top: 5px;
-            table-layout: fixed;
-        }
-
-        .size-guide-wrap .size-detail td,
-        .size-guide-wrap .size-detail th {
-            border: 1px solid #b3b3b3;
-            height: 26px;
-            color: #4d4d4d;
-        }
-
-        .size-guide-wrap .size-detail thead td {
-            font-weight: bold;
-        }
-
-        .size-guide-PC-image img {
-            display: block;
-            width: 100%;
-        }
-
-        .size-guide-M-image {
-            display: none;
-
-        }
-    }
-
-    @media (max-width: 767.98px) {
-
-        /*移动样式*/
-        /*尺码样式*/
-        .size-guide-wrap {
-            position: absolute;
-            top: 1rem;
-            left: 2%;
-            width: 96%;
-            height: 90%;
-            background-color: #fff;
-            padding-bottom: 2.5rem;
-            z-index: 99;
-            overflow-y: scroll;
-            border-radius: 5px;
-        }
-
-        .size-guide-wrap .size-select-wrap {
-            display: flex;
-            padding-right: 1rem;
-        }
-
-        .size-guide-wrap .size-detail-wrap {
-            position: relative;
-        }
-
-        .size-guide-wrap .size-detail {
-            display: none;
-            overflow-x: scroll;
-            margin-right: 0.5rem;
-        }
-
-        .size-guide-wrap .size-detail::-webkit-scrollbar {
-            background-color: #fff;
-            height: 2px;
-        }
-
-        .size-guide-wrap .size-detail::-webkit-scrollbar-thumb {
-            background-color: #333333;
-        }
-
-        .size-guide-wrap .size-detail table {
-            border: 1px solid #b3b3b3;
-            border-collapse: collapse;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #333333;
-            font-family: Roboto-Regular;
-            margin-bottom: 0.75rem;
-            margin-bottom: 0.5rem;
-            margin-top: 0.25rem;
-            /*table-layout:fixed;*/
-            font-size: 1rem;
-        }
-
-        .size-guide-wrap .size-detail td,
-        .size-guide-wrap .size-detail th {
-            border: 1px solid #b3b3b3;
-            height: 4rem;
-            min-width: 5rem;
-            padding: 0.2rem 0;
-            color: #4d4d4d;
-        }
-
-        .size-guide-wrap .size-detail .first-column {
-            font-weight: bold;
-            min-width: 12rem;
-            color: #000;
-        }
-
-        .size-guide-wrap .table-fixed {
-            position: absolute;
-            top: 0;
-            height: 0;
-            z-index: 99;
-            width: 8rem !important;
-            background: #fff;
-        }
-
-        .product-image__thumbs_left .product-image__thumbs-item.slick-current .product-image__thumb:after {
-            box-shadow: inset 0 0 0 1px #999999, inset 0 0 0 3px #fff;
-        }
-
-        .size-guide-wrap .size-tips {
-            display: block;
-            font-size: 0.5rem;
-        }
-
-        .size-guide-wrap .size-close {
-            position: absolute;
-            top: 1.2rem;
-            right: 1.4rem;
-            cursor: pointer;
-        }
-
-        .size-guide-wrap .table-fixed tbody tr:nth-child(even) td {
-            background-color: #eee;
-        }
-
-        .size-guide-wrap .table-fixed tbody tr:nth-child(odd) td {
-            background-color: #fff;
-        }
-
-        .size-guide-wrap .table-fixed tbody tr:first-child td {
-            color: rgb(235, 99, 57) !important;
-        }
-
-        .size-guide-PC-image {
-            display: none;
-        }
-
-        .size-guide-M-image img {
-            display: block;
-            width: 100%;
-        }
-    }
-
-    #shopify-product-reviews {
-    }
-
-    #shopify-product-reviews .spr-summary-actions-newreview {
-        color: var(--color_orange_text);
-        text-decoration: none;
     }
 </style>
 
@@ -545,10 +238,11 @@
               {{ product.title | escape }}
             </h2>
           {%- when 'price' -%}
-            <div class="no-js-hidden" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
-              {%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}
+            <div class="no-js-hidden price_left d-flex jcsb" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+              <span>{%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}</span>
+              <span class="d-flex aic"><svg t="1649398957719" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="25854" width="32" height="32"><path d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z" fill="#FFD81A" p-id="25855"></path></svg>FREE DELIVERY for all products till May 1</span>
             </div>
-            {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
+            <!-- {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
             <div class="product__tax caption rte">
               {%- if shop.taxes_included -%}
                 {{ 'products.product.include_taxes' | t }}
@@ -557,7 +251,7 @@
                 {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
               {%- endif -%}
             </div>
-            {%- endif -%}
+            {%- endif -%} -->
             <div {{ block.shopify_attributes }}>
               {%- form 'product', product, id: 'product-form-installment', class: 'installment caption-large' -%}
                 <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
@@ -567,12 +261,12 @@
           {%- when 'description' -%}
             {%- if product.description != blank -%}
             <div class="product__description rte accordion">
-              <details id="Details-{{ block.id }}-{{ section.id }}" open>
+              <details id="Details-{{ block.id }}-{{ section.id }}">
                 <summary>
                   <div class="summary__title">
-                    <h2 class="accordion__title">
+                    <div class="accordion__title">
                       Features
-                    </h2>
+                    </div>
                   </div>
                   {% render 'icon-caret' %}
                 </summary>
@@ -580,9 +274,50 @@
                   {{ product.description }}
                 </div>
               </details>
-
             </div>
             {%- endif -%}
+            {%- when 'policy' -%}       
+            <div class="product__description rte accordion">
+              <details id="Details-{{ block.id }}-{{ section.id }}">
+                <summary>
+                  <div class="summary__title">
+                    <div class="accordion__title">
+                      Return Policy
+                    </div>
+                  </div>
+                  {% render 'icon-caret' %}
+                </summary>
+                <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                  Exchanges and returns are valid for 30 days from the date you've received all your item(s).
+                </div>
+              </details>
+            </div>           
+            {%- when 'delivery' -%}        
+            <div class="product__description rte accordion">
+              <details id="Details-{{ block.id }}-{{ section.id }}" open>
+                <summary>
+                  <div class="summary__title">
+                    <div class="accordion__title">
+                      Delivery
+                    </div>
+                  </div>
+                  {% render 'icon-caret' %}
+                </summary>
+                <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                 <div class="accordion__content-header"> 
+                    <div class="accordion__content-icon">
+                       <span><svg t="1649389790298" class="icon" viewBox="0 0 1655 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4801" width="28" height="28"><path d="M1116.935887 879.054122H844.096586c-25.578684 0-42.631141-17.052456-42.631141-34.104913 0-25.578684 17.052456-42.631141 34.104913-42.631141h221.681932v-682.098251c0-25.578684-17.052456-42.631141-42.631141-42.631141H375.154038c-25.578684 0-42.631141 17.052456-42.63114 42.631141s-17.052456 42.631141-42.631141 42.631141H187.577019c-25.578684 0-42.631141-17.052456-42.631141-42.631141s17.052456-42.631141 42.631141-42.631141H255.786844c17.052456-51.157369 68.209825-76.736053 119.367194-76.736053h665.045795c68.209825 0 119.367194 51.157369 127.893423 119.367194v724.729392c-8.526228 17.052456-34.104913 34.104913-51.157369 34.104913z m-554.20483 0H375.154038c-68.209825 0-119.367194-51.157369-127.893422-119.367194 0-25.578684 17.052456-42.631141 42.631141-42.631141s42.631141 17.052456 42.631141 42.631141 17.052456 42.631141 42.63114 42.63114h187.577019c25.578684 0 42.631141 17.052456 42.631141 42.631141-8.526228 17.052456-25.578684 34.104913-42.631141 34.104913z" fill="#2c2c2c" p-id="4802"></path><path d="M1568.825978 879.054122h-59.683597c-25.578684 0-42.631141-17.052456-42.63114-34.104913s17.052456-42.631141 34.104912-42.631141h59.683597v-247.260616l-161.998335-230.20816h-255.786844v477.468776h68.209825c25.578684 0 42.631141 17.052456 42.631141 34.104913s-17.052456 42.631141-34.104913 42.631141H1108.409659c-25.578684 0-42.631141-17.052456-42.631141-42.631141v-562.731058c0-25.578684 17.052456-42.631141 42.631141-42.63114h298.417985c25.578684 0 51.157369 17.052456 68.209825 34.104912l161.998334 230.20816c8.526228 17.052456 17.052456 25.578684 17.052457 42.631141v247.260616c0 59.683597-34.104913 93.78851-85.262282 93.78851z m-861.149042 144.945878c-102.314738 0-179.050791-85.262281-179.050791-187.577019 0-102.314738 85.262281-179.050791 187.577019-179.050791 93.78851 0 179.050791 85.262281 179.050791 179.050791-8.526228 110.840966-85.262281 187.577019-187.577019 187.577019z m0-281.365529c-51.157369 0-102.314738 51.157369-93.78851 102.314738 0 51.157369 51.157369 102.314738 102.314738 93.78851 51.157369 0 93.78851-42.631141 93.78851-102.314738 0-51.157369-51.157369-93.78851-102.314738-93.78851z" fill="#2c2c2c" p-id="4803"></path><path d="M1372.722731 1024c-102.314738 0-179.050791-85.262281-179.050791-187.577019 0-102.314738 85.262281-179.050791 187.577019-179.050791 93.78851 0 179.050791 85.262281 179.050791 179.050791 0 110.840966-85.262281 187.577019-187.577019 187.577019z m0-281.365529c-51.157369 0-102.314738 51.157369-93.78851 102.314738 0 51.157369 51.157369 102.314738 102.314738 93.78851 51.157369 0 93.78851-42.631141 93.78851-102.314738 0-51.157369-42.631141-93.78851-102.314738-93.78851zM417.785179 299.270608H230.20816c-25.578684 0-42.631141-17.052456-42.631141-34.104913s17.052456-42.631141 34.104913-42.63114h187.577019c25.578684 0 42.631141 17.052456 42.631141 34.104912s-8.526228 42.631141-34.104913 42.631141c8.526228 0 8.526228 0 0 0z m-85.262281 323.996669H136.41965c-25.578684 0-42.631141-17.052456-42.63114-34.104912s17.052456-42.631141 34.104912-42.631141h187.577019c25.578684 0 42.631141 17.052456 42.631141 34.104913s0 42.631141-25.578684 42.63114z m272.8393-179.050791H42.631141c-25.578684 0-42.631141-17.052456-42.631141-34.104912s17.052456-42.631141 34.104913-42.631141H596.83597c25.578684 0 42.631141 17.052456 42.631141 34.104913s-8.526228 42.631141-34.104913 42.63114z m920.83264 17.052457H1278.934221c-25.578684 0-42.631141-17.052456-42.63114-34.104913s17.052456-42.631141 34.104912-42.631141h247.260616c25.578684 0 42.631141 17.052456 42.631141 34.104913s-8.526228 42.631141-34.104912 42.631141z" fill="#2c2c2c" p-id="4804"></path></svg>FAST SHIPPING</span>
+                       <span><svg t="1649390020340" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="24055" width="28" height="28"><path d="M260.266667 379.733333c59.733333-140.8 209.066667-221.866667 362.666666-192 132.266667 25.6 234.666667 134.4 256 266.666667 29.866667 198.4-123.733333 373.333333-320 373.333333-98.133333 0-192-44.8-251.733333-121.6l-2.133333-2.133333c-6.4-8.533333-19.2-10.666667-29.866667-4.266667l-19.2 10.666667c-10.666667 6.4-12.8 19.2-6.4 29.866667 72.533333 93.866667 185.6 149.333333 305.066667 149.333333 234.666667 0 418.133333-209.066667 381.866666-445.866667-19.2-157.866667-145.066667-288-302.933333-320-183.466667-36.266667-362.666667 59.733333-433.066667 228.266667l59.733334 27.733333z" p-id="24056" fill="#2c2c2c"></path><path d="M192 488.533333l-61.866667-132.266666c-8.533333-14.933333 6.4-34.133333 23.466667-29.866667l172.8 36.266667c17.066667 4.266667 23.466667 25.6 8.533333 36.266666l-110.933333 93.866667c-8.533333 10.666667-25.6 8.533333-32-4.266667" p-id="24057" fill="#2c2c2c"></path></svg>EASY REFUND</span>
+                    </div>
+                  </div>
+                 <ul>
+                   <li>Standard Shipping: US$9.9 </li>
+                   <li>FREE SHIPPING on orders US$69+</li>
+                   <li>Estimated Delivery Time(to US/EU): 12-15 days</li>
+                 </ul>
+                </div>
+              </details>
+            </div>          
           {%- when 'custom_liquid' -%}
             {{ block.settings.custom_liquid }}
           {%- when 'collapsible_tab' -%}
@@ -700,8 +435,13 @@
                   </fieldset>
                 {% else %}
                   <fieldset class="js product-form__input">
-                    <legend class="form__label">{{ option.name }} : <span
-                        class="product-form__selected-value">{{ option.selected_value }}</span></legend>
+                    <div class="ny-size">
+                     <legend class="form__label">{{ option.name }} : <span
+                       class="product-form__selected-value">{{ option.selected_value }}</span></legend>
+                       <div class="sizeGuideBtn">
+                         <span class="icon-box">{%- render 'icon', icon:'size-guide' -%}</span> <span>Size Guide</span>
+                       </div>
+                    </div>
                     {%- for value in option.values -%}
                       <input type="radio" id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
                              name="{{ option.name }}" value="{{ value | escape }}" form="{{ product_form_id }}"
@@ -743,16 +483,13 @@
                 </div>
               {%- endfor -%}
               <script type="application/json">
-            {{ product.variants | json }}  
-
-
+               {{ product.variants | json }}  
               </script>
 
             </variant-selects>
             {%- endif -%}
           {%- endunless -%}
-            <div class="sizeGuideBtn"><span class="icon-box">{%- render 'icon', icon:'size-guide' -%}</span> <span>Size Guide</span>
-            </div>
+           
             <noscript class="product-form__noscript-wrapper-{{ section.id }}">
               <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
                 <label class="form__label"
@@ -821,7 +558,7 @@
        </div>
                     {%- if block.settings.show_dynamic_checkout -%}
                       {{ form | payment_button }}
-                    {%- endif -%}
+                    {%- endif -%} -->
                   </div>
                 {%- endform -%}
               </product-form>
@@ -985,7 +722,6 @@
         variantSwitcher.outerHTML = noScriptInputWrapper.outerHTML;
 
         document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
-            console.log(event.currentTarget.value);
             hiddenInput.value = event.currentTarget.value;
         });
     });
@@ -1044,9 +780,24 @@
     ]
   }
 
-
 </script>
+<script>
+      (() => {
+        let items = JSON.parse(localStorage.getItem('recentlyViewedProducts') || '[]');
 
+        // We check if the current product already exists, and if it does not, we add it at the start
+        if (!items.includes({{ product.id | json }})) {
+            items.unshift({{ product.id | json }});
+        }
+
+        // Then, we save the current product into the local storage, by keeping only the 18 most recent
+        try {
+            localStorage.setItem('recentlyViewedProducts', JSON.stringify(items.slice(0, 18)));
+        } catch (error) {
+            // Do nothing, this may happen in Safari in incognito mode
+        }
+    })();
+</script>
 {% schema %}
   {
   "name": "t:sections.main-product.name",
@@ -1145,6 +896,16 @@
   "name": "t:sections.main-product.blocks.description.name",
   "limit": 1
   },
+  {
+    "type": "policy",
+    "name": "Return Policy",
+    "limit": 1
+    },
+    {
+      "type": "delivery",
+      "name": "Delivery",
+      "limit": 1
+      },
   {
   "type": "share",
   "name": "t:sections.main-product.blocks.share.name",

@@ -48,3 +48,15 @@
 .newsletter-form__button .icon {
   width: 1.5rem;
 }
+
+@media screen and (max-width: 749px) {
+    .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      margin: 20px auto;
+      position: relative;
+    }
+}

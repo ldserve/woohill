@@ -87,6 +87,17 @@
     ]
   },
   {
+    "name": "颜色配置",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "color_config",
+        "label": "颜色配置",
+        "info": "使用规则：变体颜色名:#颜色16进制表示法(Blue:#1d304e)，每一行一条"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.typography.name",
     "settings": [
       {
@@ -96,7 +107,7 @@
       {
         "type": "font_picker",
         "id": "type_header_font",
-        "default": "assistant_n4",
+        "default": "poppins_n7",
         "label": "t:settings_schema.typography.settings.type_header_font.label",
         "info": "t:settings_schema.typography.settings.type_header_font.info"
       },
@@ -143,6 +154,10 @@
           {
             "value": "1200",
             "label": "t:settings_schema.layout.settings.page_width.options__1.label"
+          },
+          {
+            "value": "1400",
+            "label": "1400px"
           },
           {
             "value": "1800",

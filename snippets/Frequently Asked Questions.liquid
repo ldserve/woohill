@@ -1,0 +1,673 @@
+<!-- 代码开始 -->
+<style type="text/css">
+    .rte .help-center ul li::before {
+        position: absolute;
+        content: "";
+        left: -18px;
+        top: 0.8em;
+        height: 0px;
+        width: 0px;
+        border-radius: 100%;
+        background: rgba(var(--text-color-rgb), .4);
+
+    }
+
+    .page_template__title {
+        display: none;
+    }
+
+    .page_container {
+        background-color: #f5f6f8;
+    }
+    
+    .help-center .panel-tool {
+        box-sizing: border-box;
+        padding: 0px 20px 10px;
+        background-color: #fff;
+        border-radius: 4px;
+    }
+
+    .help-center .panel-header {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .help-center .panel-tool .tool-panel-content .list-group {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .help-center .panel-tool .tool-panel-content .list-group .list-item {
+        width: 46%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin-right: 20px;
+        margin-bottom: 10px;
+        height: -webkit-fit-content;
+        height: -moz-fit-content;
+        height: fit-content;
+        position: relative;
+    }
+
+    .help-center .panel-tool .list-item {
+        list-style: none;
+    }
+
+    .help-center .panel-tool .list-item-link {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 16px 16px 16px 80px;
+        border-radius: 4px;
+        -webkit-transition: .3s;
+        transition: .3s;
+    }
+
+    .help-center .panel-tool .tool-panel-content .list-group .list-item-link .sprite-icon {
+        position: absolute;
+        left: 16px;
+        top: 12px;
+    }
+
+    .help-center .panel-tool .tool-panel-content .list-group .list-item-link .text-desc h5 {
+        color: #333;
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 3px;
+    }
+
+    .help-center .panel-tool .tool-panel-content .list-group .list-item:hover h5 {
+        color: #ff6e26;
+    }
+
+    .help-center .panel-tool .tool-panel-content .list-group .list-item-link .text-desc p {
+        font-size: 16px;
+        font-weight: 400;
+        color: #999;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+
+    .answers-tab {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    @font-face {
+        font-family: iconfont;
+        src: url("https://cdn.shopifycdn.net/s/files/1/0595/0691/7535/files/iconfont.ede07cc.woff2?v=1635843162");
+        src: url("https://cdn.shopifycdn.net/s/files/1/0595/0691/7535/files/iconfont.ede07cc.woff2?v=1635843162") format("woff2")
+    }
+
+    .help-center .answers-tab {
+        background-color: #fafafa;
+        padding: 0 15px;
+    }
+
+    .help-center .answers-panel-content .answers-tab .answers-tab-item {
+        text-align: center;
+        position: relative;
+    }
+
+    .help-center .answers-panel-content .answers-tab .answers-tab-item .iconfont {
+        font-family: iconfont !important;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 30px;
+    }
+
+    .help-center .answers-panel-content .answers-tab .answers-tab-item .iconfont.icon-ic_orderquestions:before {
+        content: "\E74C";
+    }
+
+    .help-center .answers-panel-content .answers-tab .answers-tab-item .iconfont.icon-ic_shipped:before {
+        content: "\E74D";
+    }
+
+    .help-center .answers-panel-content .answers-tab .answers-tab-item .iconfont.icon-ic_orderpaymentissues:before {
+        content: "\E74B";
+    }
+
+    .help-center .answers-panel-content .answers-tab .answers-tab-item .iconfont.icon-ic_return:before {
+        content: "\E793";
+    }
+
+    .help-center .answers-tab-item:hover {
+        color: #ff6e26;
+    }
+
+    .help-center .answers-tab-item.clicked {
+        color: #ff6e26;
+        font-weight: bold;
+    }
+
+    .help-center .answers-tab-item p {
+        margin-top: -8px;
+        margin-bottom: 8px;
+    }
+
+    .answers-panel-content .answers-items-content .answers-items-wrap {
+        display: none;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .help-center .answers-tab-item.clicked:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        margin-left: -16px;
+        width: 32px;
+        height: 3px;
+        background-color: #ff6e26;
+    }
+
+    .answers-items-content {
+        margin-top: 20px;
+    }
+
+    .answers-items-content .answers-item {
+        border-bottom: 1px solid #eee;
+        padding: 20px 0;
+        position: relative;
+    }
+
+    .answers-items-content .answers-item:after {
+        content: "";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        border-left: 1px solid #898989;
+        border-top: 1px solid #898989;
+        transform: rotate(135deg);
+        margin-top: -3px;
+    }
+
+    .answers-items-content .answers-item.active:after {
+        transform: rotate(225deg);
+    }
+
+    .answers-items-content .answers-item .answers-title {
+        font-size: 19px;
+    }
+
+    .answers-items-content .answers-item .answers-des {
+        display: none;
+        margin-top: 10px;
+        font-size: 16px;
+        padding-right: 30px;
+    }
+
+    .answers-items-content .answers-item.active .answers-des {
+        display: block;
+    }
+
+
+    @media (min-width: 768px) {
+        .sprite-icon img{
+            width: 45px;
+        }
+
+        .text-desc {
+            margin-top: 20px;
+        }
+
+        .text-desc H5 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+    }
+
+
+    @media (max-width: 767.98px) {
+        .help-center {
+            margin-top: -2rem;
+        }
+        .help-center .panel-tool .tool-panel-content .list-group{
+            margin: 0;
+            padding: 0;
+        }
+        .sprite-icon img{
+            width: 45px;
+        }
+        .page_template {
+            padding: 0.5rem;
+        }
+
+        .help-center .panel-tool {
+            padding: 0.8rem 0.5rem 0.8rem;
+        }
+
+        .help-center .panel-tool .tool-panel-content .list-group .list-item-link .sprite-icon {
+            left: 0;
+        }
+
+        .help-center .panel-tool .tool-panel-content .list-group .list-item {
+            position: relative;
+            margin-right: 0.2rem;
+            width: 48%;
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .help-center .panel-tool .list-item-link {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left: 0%;
+            /* border: 1px #ccc solid; */
+        }
+
+        .rte ol,
+        .rte ul {
+            margin-left: 0px;
+        }
+
+        .help-center .panel-tool .sprite-icon {
+            width: 45px;
+    position: relative;
+    top: 20px;
+        }
+
+        .help-center .panel-tool .list-item-link {
+            padding: 16px 16px 16px 47px;
+        }
+
+        .help-center .panel-tool .tool-panel-content .list-group .list-item-link .text-desc h5 {
+            font-size: 1rem;
+        }
+
+        .help-center .panel-tool .tool-panel-content .list-group .list-item-link .text-desc p {
+            font-size: 0.8rem;
+        }
+
+        .help-center .panel-header {
+            margin-left: 0.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+        }
+
+        .help-center .panel-tool .list-item-link {
+            padding: 0.5rem 0 0.5rem 2.8rem;
+        }
+
+        .help-center .answers-panel-content .answers-tab .answers-tab-item {
+            width: 25%;
+        }
+
+        .help-center .answers-panel-content .answers-tab .answers-tab-item .iconfont {
+            font-size: 2rem;
+        }
+
+        .help-center .answers-tab-item p {
+            font-size: 0.8rem;
+            margin-top: -0.8rem;
+            line-height: 1rem;
+        }
+
+        .answers-panel-content {
+            margin-top: 0.8rem;
+        }
+
+        .answers-items-content .answers-item .answers-title {
+            font-size: 1rem;
+        }
+
+        .answers-items-content .answers-item .answers-des {
+            font-size: 0.8rem;
+        }
+
+        .text-desc {
+            margin-left: 10px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .rte .help-center .text-desc h5 {
+            font-size: 15px;
+            color: #000;
+            text-transform: none;
+        }
+    }
+</style>
+<div class="help-center">
+    <div class="panel-tool">
+        <h4 class="panel-header">Self-service Tool</h4>
+        <div class="tool-panel-content">
+            <ul class="list-group">
+                <li class="list-item">
+                    <div class="sprite-icon sprite-manage_orders"><img
+                            src="https://cdn.shoplazza.com/a58afef95752403e6e4c95809360622b.png" alt="" /></div>
+                    <div class="text-desc">
+                        <h5>Manage Orders</h5>
+                        <p>View and manage orders</p>
+                    </div>
+                    <a class="list-item-link" href="/account"> </a>
+                </li>
+                <li class="list-item">
+                    <div class="sprite-icon sprite-edit_profile"><img
+                            src="https://cdn.shoplazza.com/fc957d4340ab9617e77012458cbc8fc0.png" alt="" /></div>
+                    <div class="text-desc">
+                        <h5>Edit addresses</h5>
+                        <p>Edit or add your addresses</p>
+                    </div>
+                    <a class="list-item-link" href="/account/addresses"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-tool">
+        <h4 class="panel-header">Frequently Asked Questions</h4>
+        <div class="answers-panel-content">
+            <div class="answers-tab">
+                <div class="answers-tab-item" data-tab="orderquestions"><i class="iconfont icon-ic_orderquestions"></i>
+                    <p>Order</p>
+                </div>
+                <div class="answers-tab-item" data-tab="shipped"><i class="iconfont icon-ic_shipped"></i>
+                    <p>Delivery and logistics</p>
+                </div>
+                <div class="answers-tab-item" data-tab="return"><i class="iconfont icon-ic_return"></i>
+                    <p>Return and refund</p>
+                </div>
+                <div class="answers-tab-item" data-tab="orderpaymentissues"><i
+                        class="iconfont icon-ic_orderpaymentissues"></i>
+                    <p>Payment and Promotion</p>
+                </div>
+            </div>
+            <div class="answers-items-content">
+                <div class="answers-items-wrap" data-answers="orderquestions">
+                    <div class="answers-item">
+                        <div class="answers-title">How to choose the size?</div>
+                        <div class="answers-des">Please refer to our "SIZE GUIDE" or contact our customer service
+                            representatives for help. Select the “SIZE GUIDE” tab on our product page to view the sizes
+                            offered.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">How can I correct my shipping address?</div>
+                        <div class="answers-des">&gt; If the order has not been shipped or assigned a tracking number,
+                            please contact our customer service representatives to update the shipping address. We can
+                            arrange delivery to the correct location.<br /><br />&gt; If the order has been shipped, the
+                            address can no longer be changed. Usually, the courier will contact you via phone or text
+                            message if the parcel is unsuccessfully delivered. You can also contact the courier to
+                            change the delivery address.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">How to check my order status?</div>
+                        <div class="answers-des">Please log into your woohill account and visit "My Orders" to check the
+                            order status. <br /><br />Normally, it will take 1-5 business days to process. We will email
+                            you with a tracking number once shipped, which can be tracked here: <a
+                                href="https://www.17track.net/en" target="_blank"
+                                rel="noopener noreferrer">https://www.17track.net/en</a><br /><br />Note: Due to the
+                            influence of the COVID-19 epidemic, there is a shortage of global transport resources. Your
+                            order may be delayed for several days.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Can I cancel my order?</div>
+                        <div class="answers-des">Please contact our customer service representatives before the order is
+                            shipped. <br /><br />Note: Once the order has been shipped, it cannot be canceled.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Can I change or modify my order?</div>
+                        <div class="answers-des">If the order has not been shipped, it can be modified. Please contact
+                            our customer service representatives to update the shipping address or items.
+                            <br /><br />Note: Once the order is shipped, the logistics courier will reject modification
+                            since it will be mixed with various other packages.
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why did I not get a confirmed email about my order?</div>
+                        <div class="answers-des">After your order is successfully placed, an Order Confirmation email
+                            will be sent to the email address associated with your account within 24 hours.
+                            <br /><br />If you did not receive the email: <br />1. Please check you have logged into the
+                            correct email box. We can only contact you through the email address left on the order.
+                            <br />2. Please check your spam emails and if your email address shielded our email.
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">How to add a new shipping address to my account?</div>
+                        <div class="answers-des">A shipping address can be edited or added through "My Address".</div>
+                    </div>
+                </div>
+                <div class="answers-items-wrap" data-answers="shipped">
+                    <div class="answers-item">
+                        <div class="answers-title">How long will the order take to arrive?</div>
+                        <div class="answers-des">It normally takes 1-5 business days to process an order. Shipping time
+                            varies depending on the country you order from and the method you choose. For most
+                            locations, it takes 10-15 business days (Standard Shipping) or 5-9 business days (Expedited
+                            Shipping). <br /><br /> (Notice: Currently, we only support Standard Shipping. An Expedited
+                            Shipping option will be launched soon.)<br /><br /> It may take approximately 10 - 20 days
+                            to receive your purchased items.<br /><br /> Once your order is shipped, you will receive an
+                            email with tracking info for your order. Please track it with the number here: <a
+                                href="https://www.17track.net/en" target="_blank"
+                                rel="noopener noreferrer">https://www.17track.net/en</a><br /><br />Kindly note: Please
+                            don't worry if tracking shows "package is not received at terminal". The package is still in
+                            transit. It will be updated once it reaches the next sort facility.<br /><br />Due to the
+                            influence of the COVID-19 epidemic, your order may be delayed for several days before
+                            delivery. Please be patient.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">How can I correct my shipping address?</div>
+                        <div class="answers-des">&gt; If the order has not been shipped or assigned a tracking number,
+                            please contact our customer service representatives to update the shipping address. We can
+                            arrange delivery to the correct location.<br /><br />&gt; If the order has been shipped, the
+                            address can no longer be changed. Usually, the courier will contact you via phone or text
+                            message if the parcel is unsuccessfully delivered. You can also contact the courier to
+                            change the delivery address.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">How much does it cost to deliver to my country?</div>
+                        <div class="answers-des">Shipping costs depend on the method you choose and the location of your
+                            order. When you enter your specific address and choose the shipping method, you will receive
+                            a quote for shipping.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why didn't I get an email about my order being shipped?</div>
+                        <div class="answers-des">Once your order is dispatched, you will receive a Shipping Confirmation
+                            email with details about the items and the tracking number contained within them.
+                            <br /><br />If you did not receive the email: <br />1. Please visit "My Orders" to check the
+                            order status, it could be still processed. <br />2. Please check you have logged into the
+                            correct email box. The email will be sent to the address you left on the order. <br />3.
+                            Please check your spam emails and whether your email address shielded our email.
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why was my order divided into two or more packages?</div>
+                        <div class="answers-des">We will perform partial shipping for your order in the following
+                            conditions: <br /><br />1) Different preparing times for items. <br />2) Weight limit of
+                            custom or courier, to avoid the extra fee.<br /><br />Note: partial shipping will not charge
+                            you an extra fee.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why there is no tracking update?</div>
+                        <div class="answers-des">Sometimes, the tracking information will not be updated because the
+                            package is in transit. <br /><br />Once the package arrives at a local destination, the
+                            order status will be updated immediately. <br /><br />Note: Due to the influence of the
+                            COVID-19 epidemic, there is a shortage of global transport resources which may delay your
+                            order for several days.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">What happens if I am not at home when my package arrives?</div>
+                        <div class="answers-des">If you are not at home when the shipping company delivers your order,
+                            you can ask your family or friends to sign for it. Otherwise, you can contact the shipping
+                            company to reschedule delivery.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why was my package returned?</div>
+                        <div class="answers-des">Apologies for this inconvenience, it may have been caused by a wrong or
+                            incomplete address, invalid phone number, or other reason.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why does the tracking service show that the package has been
+                            delivered, even though I did not receive anything?</div>
+                        <div class="answers-des">Apologies for this inconvenience, your package might be delivered to
+                            your mailbox. Please check first. <br /><br />If unsuccessful, please contact the shipping
+                            courier to check for more details.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why did I get an "Order Delivered" email, but did not receive
+                            anything?</div>
+                        <div class="answers-des">You will receive an "Order Delivered" email after you select the
+                            "Confirm Delivery" button. Shipping and delivery will not be affected if you click the
+                            "confirm delivery" button in advance.</div>
+                    </div>
+                </div>
+                <div class="answers-items-wrap" data-answers="return">
+                    <div class="answers-item">
+                        <div class="answers-title">What is your return policy?</div>
+                        <div class="answers-des">We accept returns within 30 days of receipt for most items in new
+                            condition. Please check here for more details: Return Policy.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">How can I return items?</div>
+                        <div class="answers-des">We are sorry that the products did not meet your expectation. Please
+                            contact our customer service representatives and tell us which items you wish to return.
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Can I get a full refund for the return?</div>
+                        <div class="answers-des">Yes, we will offer a full refund on the items you returned. The refund
+                            amount is the actual price paid. <br /><br />Kindly Note: <br />The original shipping fee
+                            and insurance are non-refundable</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">How can I find my refund?</div>
+                        <div class="answers-des">Funds will be credited to your original payment account.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">How long does it take for the refund to be processed?</div>
+                        <div class="answers-des">Generally, it depends on the payment method you choose.
+                            <br /><br />Here is the refund processing time: <br />PayPal: 2-7 business days<br />Credit
+                            Card: 3-10 business days<br />If the refund is not available within 2 weeks, please contact
+                            us again.
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why was my refund amount incorrect?</div>
+                        <div class="answers-des">We will issue a refund of the actual price on all items returned.
+                            <br /><br />Note: Original shipping fee and insurance are non-refundable.
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Can I exchange the item I received for a different size?</div>
+                        <div class="answers-des">Yes, we accept exchanges within 30 days of receipt for most items in
+                            new condition. We kindly suggest you contact our customer service representatives for
+                            exchange details if necessary. <br /><br />Note:Item ID and size info are needed. (You can
+                            find the item ID in the description of the item).</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">What if I received the wrong item?</div>
+                        <div class="answers-des">We apologize for any inconvenience and kindly suggest you contact our
+                            customer service representatives with pictures of the wrong item you received.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">What if I received an item not as described?</div>
+                        <div class="answers-des">We apologize for any inconvenience and kindly suggest you contact our
+                            customer service representatives to check for details if necessary. <br /><br />Note: here
+                            is some information that is needed: <br />1. Photos of the different parts of the item.
+                            <br />2. Item ID or item sku. (You can find the sku number in the description of the item).
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">What if I received an item with a craft or fabric issue?</div>
+                        <div class="answers-des">We apologize for any inconvenience and kindly suggest you contact our
+                            customer service representatives to check for details if necessary. <br /><br />Note:
+                            picture and item ID or item sku are needed.</div>
+                    </div>
+                </div>
+                <div class="answers-items-wrap" data-answers="orderpaymentissues">
+                    <div class="answers-item">
+                        <div class="answers-title">Are there any additional fees?</div>
+                        <div class="answers-des">Generally, there is no additional fee. <br /><br />As our prices do not
+                            include taxes or duties, it is not clear whether you will be charged for taxes.
+                            <br /><br />If you were, we suggest you pay taxes first, then send us the receipt, so we can
+                            refund you.
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">What if I was charged any tariffs？</div>
+                        <div class="answers-des">Normally, our customers would be charged no tariffs. However, since
+                            custom inspections have grown increasingly strict, this may happen occasionally.
+                            <br /><br />We have no control over these charges and cannot tell you what the cost would
+                            be, as customs policies and import duties vary widely from country to country. If you were
+                            charged any tariffs, please contact our customer service representatives for help.
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Do you have any promotions now?</div>
+                        <div class="answers-des">For the most up-to-date information on promotions and sales, please
+                            refer to our main home page <a href="http://woohill.com" target="_blank"
+                                rel="noopener noreferrer">woohill.com</a>. <br /><br />Be the first to know about our
+                            sales, giveaways, and more by making sure you can receive emails and push notifications from
+                            woohill.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why has my coupon disappeared？</div>
+                        <div class="answers-des">Please pay attention to the valid coupon period.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">What kind of payment methods do you have?</div>
+                        <div class="answers-des">We support PayPal and Credit/Debit Card.</div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">I was charged twice.</div>
+                        <div class="answers-des">Please check whether you have placed an order more than once.
+                            <br />&gt; Please contact us to cancel your order if there are duplicates.<br />&gt; If you
+                            do not see any duplicate orders, please contact us directly. We may ask for screenshots of
+                            the bank charges along with any account information.
+                        </div>
+                    </div>
+                    <div class="answers-item">
+                        <div class="answers-title">Why was my payment declined?</div>
+                        <div class="answers-des">The reasons might be as follows:<br />1. If the card info is incorrect,
+                            kindly check the expiration date, billing address, and security code (Security code on the
+                            back of your Visa/Master card).<br />2. Card issuer bank declined your payment. <br />3. Not
+                            enough balance on the card. <br /><br />If possible, we advise you to have a try paying by
+                            PayPal.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    // <![CDATA[
+    setTimeout(function (argument) {
+        $(".answers-tab-item").on("click", function () {
+            $(".answers-tab-item").removeClass("clicked");
+            $(".answers-items-wrap").hide();
+            $(this).addClass("clicked");
+            var dataTab = $(this).data("tab");
+            $('.answers-items-wrap[data-answers="' + dataTab + '"]')
+                .show();
+        })
+        $(".answers-tab-item").eq(0).trigger("click");
+        $(".answers-item").on("click", function () {
+            $(this).toggleClass("active");
+        });
+    }, 1000)
+    //  ]]>
+</script>
+<!-- 代码结束 -->

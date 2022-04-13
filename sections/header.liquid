@@ -38,13 +38,15 @@
   }
 
   .list-menu--inline {
-    display: inline-flex;
-    flex-wrap: wrap;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    /* position: relative; */
   }
-
-  summary.list-menu__item {
-    padding-right: 2.7rem;
-  }
+.ny-submenu{
+  display: flex;
+  justify-content: space-between;
+}
 
   .list-menu__item {
     display: flex;
@@ -108,7 +110,7 @@
 <{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}
   class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   <header
-    class="header header--{{ section.settings.logo_position }} page-width{% if section.settings.menu != blank %} header--has-menu{% endif %}">
+    class="header header--{{ section.settings.logo_position }} page-width-900{% if section.settings.menu != blank %} header--has-menu{% endif %}">
     {%- if section.settings.menu != blank -%}
     <header-drawer data-breakpoint="tablet">
       <details id="Details-menu-drawer-container" class="menu-drawer-container">
@@ -127,7 +129,7 @@
                   {%- for link in section.settings.menu.links -%}
                   <li>
                     {%- if link.links != blank -%}
-                    <!-- <details id="Details-menu-drawer-menu-item-{{ forloop.index }}" open >
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}" open >
                             <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
                               {{ link.title | escape }}
                               {% render 'icon-arrow' %}
@@ -175,26 +177,7 @@
                                 </ul>
                               </div>
                             </div> 
-                          </details> -->
-                    <div>
-                      <summary
-                        class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
-                        {{ link.title | escape }}
-                        {% render 'icon-arrow' %}
-                        {% render 'icon-caret' %}
-                      </summary>
-                      <ul class="menu-drawer__menu list-menu ld-submenu" role="list" tabindex="-1">
-                        {%- for childlink in link.links -%}
-                        <li>
-                          <a href="{{ childlink.url }}"
-                            class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"
-                            {% if childlink.current %} aria-current="page" {% endif %}>
-                            {{ childlink.title | escape }}
-                          </a>
-                        </li>
-                        {%- endfor -%}
-                      </ul>
-                    </div>
+                          </details>
                     {%- else -%}
                     <a href="{{ link.url }}"
                       class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
@@ -302,71 +285,6 @@
     </header-drawer>
     {%- endif -%}
 
-    {%- if section.settings.logo_position == 'top-center' or section.settings.menu == blank -%}
-    <details-modal class="header__search">
-      <details>
-        <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
-          aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
-          <span>
-            <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false" role="presentation">
-              <use href="#icon-search">
-            </svg>
-            <svg class="modal__toggle-close icon icon-close" aria-hidden="true" focusable="false" role="presentation">
-              <use href="#icon-close">
-            </svg>
-          </span>
-        </summary>
-        <div class="search-modal modal__content" role="dialog" aria-modal="true"
-          aria-label="{{ 'general.search.search' | t }}">
-          <div class="modal-overlay"></div>
-          <div class="search-modal__content" tabindex="-1">
-            {%- if settings.predictive_search_enabled -%}
-            <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
-              {%- endif -%}
-              <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
-                <div class="field">
-                  <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value=""
-                    placeholder="{{ 'general.search.search' | t }}" {%- if settings.predictive_search_enabled -%}
-                    role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list"
-                    aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list"
-                    autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" {%- endif -%}>
-                  <label class="field__label" for="Search-In-Modal-1">{{ 'general.search.search' | t }}</label>
-                  <input type="hidden" name="options[prefix]" value="last">
-                  <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-                    <svg class="icon icon-search" aria-hidden="true" focusable="false" role="presentation">
-                      <use href="#icon-search">
-                    </svg>
-                  </button>
-                </div>
-
-                {%- if settings.predictive_search_enabled -%}
-                <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
-                  <div class="predictive-search__loading-state">
-                    <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                    </svg>
-                  </div>
-                </div>
-
-                <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-                {%- endif -%}
-              </form>
-              {%- if settings.predictive_search_enabled -%}
-            </predictive-search>
-            {%- endif -%}
-            <button type="button" class="modal__close-button link link--text focus-inset"
-              aria-label="{{ 'accessibility.close' | t }}">
-              <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
-                <use href="#icon-close">
-              </svg>
-            </button>
-          </div>
-        </div>
-      </details>
-    </details-modal>
-    {%- endif -%}
-
     {%- if request.page_type == 'index' -%}
     <h1 class="header__heading">
       {%- endif -%}
@@ -386,127 +304,10 @@
     </h1>
     {%- endif -%}
 
-    {%- if section.settings.menu != blank -%}
-    <nav class="header__inline-menu">
-      <ul class="list-menu list-menu--inline" role="list">
-        {%- for link in section.settings.menu.links -%}
-        <li>
-          {%- if link.links != blank -%}
-          <details-disclosure>
-            <details id="Details-HeaderMenu-{{ forloop.index }}">
-              <summary class="header__menu-item list-menu__item link focus-inset">
-                {% comment %} <a class="link--text" style="text-decoration:none;" href="{{link.url}}"> <span {%- if
-                    link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span></a> {% endcomment %}
-                <span {%- if link.child_active %} class="header__active-menu-item" {% endif %}>{{ link.title | escape
-                  }}</span>
-              </summary>
-              <ul id="HeaderMenu-MenuList-{{ forloop.index }}"
-                class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list"
-                tabindex="-1">
-                <!-- <a class="ld-navBorder" href="{{ link.url }}">                    
-                     <img src="https://cdn.shopify.com/s/files/1/0619/9682/6882/files/b172871dff2137726890cb6b7c6e3299_t_1000x@2x.jpg?v=1641543198"  style='float:left;'
-                      loading="lazy"
-                      class="ld-navImage"
-                      alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
-                     >
-                    </a> -->
-                {%- for childlink in link.links -%}
-                <li>
-                  {%- if childlink.links == blank -%}
-                  <a href="{{ childlink.url }}"
-                    class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
-                    {% if childlink.current %} aria-current="page" {% endif %}>
-                    {{ childlink.title | escape }}
-                  </a>
-                  {%- endif -%}
-                </li>
-                {%- endfor -%}
-              </ul>
-            </details>
-          </details-disclosure>
-          {%- else -%}
-          <a href="{{ link.url }}"
-            class="header__menu-item header__menu-item list-menu__item link link--text focus-inset" {% if link.current
-            %} aria-current="page" {% endif %}>
-            <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
-          </a>
-          {%- endif -%}
-        </li>
-        {%- endfor -%}
-      </ul>
-    </nav>
-    {%- endif -%}
-
     <div class="header__icons">
-      <details-modal class="header__search">
-        <details>
-          <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
-            aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
-            <span>
-              <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false" role="presentation">
-                <use href="#icon-search">
-              </svg>
-              <svg class="modal__toggle-close icon icon-close" aria-hidden="true" focusable="false" role="presentation">
-                <use href="#icon-close">
-              </svg>
-            </span>
-          </summary>
-          <div class="search-modal modal__content" role="dialog" aria-modal="true"
-            aria-label="{{ 'general.search.search' | t }}">
-            <div class="modal-overlay"></div>
-            <div class="search-modal__content" tabindex="-1">
-              {%- if settings.predictive_search_enabled -%}
-              <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
-                {%- endif -%}
-                <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
-                  <div class="field">
-                    <input class="search__input field__input" id="Search-In-Modal" type="search" name="q" value=""
-                      placeholder="{{ 'general.search.search' | t }}" {%- if settings.predictive_search_enabled -%}
-                      role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list"
-                      aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list"
-                      autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" {%- endif -%}>
-                    <label class="field__label" for="Search-In-Modal">{{ 'general.search.search' | t }}</label>
-                    <input type="hidden" name="options[prefix]" value="last">
-                    <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-                      <svg class="icon icon-search" aria-hidden="true" focusable="false" role="presentation">
-                        <use href="#icon-search">
-                      </svg>
-                    </button>
-                  </div>
-
-                  {%- if settings.predictive_search_enabled -%}
-                  <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
-                    <div class="predictive-search__loading-state">
-                      <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                      </svg>
-                    </div>
-                  </div>
-
-                  <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-                  {%- endif -%}
-                </form>
-                {%- if settings.predictive_search_enabled -%}
-              </predictive-search>
-              {%- endif -%}
-              <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset"
-                aria-label="{{ 'accessibility.close' | t }}">
-                <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
-                  <use href="#icon-close">
-                </svg>
-              </button>
-            </div>
-          </div>
-        </details>
-      </details-modal>
-      <a href="{%- if customer -%}/pages/collect{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-      class="ld-header-icon">
-      <svg t="1644375730921"  class="icon"  viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2024" width="20" height="20"><path d="M752 144c55.6 0 107.8 21.6 147.1 60.9S960 296.4 960 352c0 32.7-6.1 66.4-18.1 100.2-11.4 32-28.3 64.9-50.3 97.8-38.7 57.8-93.4 116.2-162.5 173.6C643 795.1 555.6 847.2 512 871.5c-43.2-24-129.4-75.1-215.2-146-69.6-57.5-124.6-116-163.7-174-22.2-33.1-39.3-66.1-50.8-98.4C70.2 418.9 64 385 64 352c0-55.6 21.6-107.8 60.9-147.1S216.4 144 272 144c76.9 0 147.2 42.2 183.6 110.1l28.2 52.7c12.1 22.5 44.4 22.5 56.4 0l28.2-52.7C604.8 186.2 675.1 144 752 144z m0-64c-101.3 0-189.7 55.4-236.5 137.6-1.5 2.7-5.4 2.7-6.9 0C461.7 135.4 373.3 80 272 80 121.8 80 0 201.8 0 352c0 338 512 592 512 592s512-255 512-592c0-150.2-121.8-272-272-272z" p-id="2025"></path></svg>
-    </a>
       {%- if shop.customer_accounts_enabled -%}
       <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-        class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}">
+        class="header__icon header__icon--account link focus-inset">
         {% render 'icon-account' %}
         <span class="visually-hidden">
           {%- liquid
@@ -521,13 +322,7 @@
       {%- endif -%}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        {%- liquid
-        if cart == empty
-        render 'icon-cart-empty'
-        else
-        render 'icon-cart'
-        endif
-        -%}
+        {%render 'icon-cart'%}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
         <div class="cart-count-bubble">
@@ -539,10 +334,67 @@
       </a>
     </div>
   </header>
+  {%- if section.settings.menu != blank -%}
+  <nav class="header__inline-menu page-width-900">
+    <ul class="list-menu list-menu--inline" role="list">
+      {%- for link in section.settings.menu.links -%}
+      <li>
+        {%- if link.links != blank -%}
+        <details-disclosure>
+          <details id="Details-HeaderMenu-{{ forloop.index }}">
+            <summary class="header__menu-item list-menu__item link focus-inset">
+              {% comment %} <a class="link--text" style="text-decoration:none;" href="{{link.url}}"> <span {%- if
+                  link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span></a> {% endcomment %}
+                  <a href="{{ link.url }}"
+                  class="header__menu-item header__menu-item list-menu__item link link--text focus-inset" {% if link.current
+                  %} aria-current="page" {% endif %}>
+                  <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
+                </a>
+            </summary>
+            <div id="HeaderMenu-MenuList-{{ forloop.index }}"
+              class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list"
+              tabindex="-1">
+              <div class="page-width-900 ny-submenu">
+                <div class="sub-menu-left">
+                  {{ link.title | escape }}
+                  <div><svg t="1649212558569" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2033" width="36" height="36"><path d="M918.6 489.3L646.1 216.8c-12.3-12.3-32.5-12.3-44.8 0l-0.7 0.7c-12.3 12.3-12.3 32.4 0 44.7l218.7 218.7H257.6c-17.3 0-31.5 14.2-31.5 31.5s14.2 31.5 31.5 31.5h560.1L601.2 760.5c-12.5 12.5-12.5 32.9 0 45.4s32.9 12.5 45.4 0l271.1-271.1s0.1-0.1 0.2-0.1l0.7-0.7c12.3-12.3 12.3-32.4 0-44.7z" fill="#515151" p-id="2034"></path><path d="M97.6 512.6a31.8 31.7 0 1 0 63.6 0 31.8 31.7 0 1 0-63.6 0Z" fill="#515151" p-id="2035"></path></svg></div>
+                </div>
+                <div class="sub-menu-right">
+                  {%- for childlink in link.links -%}
+                  <div>
+                    {%- if childlink.links == blank -%}
+                    <a href="{{ childlink.url }}"
+                      class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
+                      {% if childlink.current %} aria-current="page" {% endif %}>
+                       <img src="{{childlink.object.image | img_url: '260x' }}"  style='float:left;'
+                        loading="lazy"
+                        class="ld-navImage"
+                        alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+                       >
+                      <p>{{ childlink.title | escape }}</p>
+                    </a>
+                    {%- endif -%}
+                  </div>
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+          </details>
+        </details-disclosure>
+        {%- else -%}
+        <a href="{{ link.url }}"
+          class="header__menu-item header__menu-item list-menu__item link link--text focus-inset" {% if link.current
+          %} aria-current="page" {% endif %}>
+          <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
+        </a>
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+  {%- endif -%}
 </{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}>
-
-{%- render 'cart-notification', color_scheme: section.settings.color_scheme -%}
-
+</div>
 {% javascript %}
 class StickyHeader extends HTMLElement {
 constructor() {
@@ -610,8 +462,8 @@ requestAnimationFrame(this.hide.bind(this));
     }
 
     closeSearchModal() {
-    this.searchModal = this.searchModal || this.header.querySelector('details-modal');
-    this.searchModal.close(false);
+    //this.searchModal = this.searchModal || this.header.querySelector('details-modal');
+    //this.searchModal.close(false);
     }
     }
 
