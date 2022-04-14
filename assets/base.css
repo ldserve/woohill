@@ -3172,3 +3172,58 @@ details[open]>.header__icon--menu .icon-hamburger {
 .aic{
   align-items: center;
 }
+.jcc{
+  justify-content: center;
+}
+a.sign-button {
+  width: 250px;
+  height: 50px;
+  background: #1b1b1b;
+  text-align: center;
+  line-height: 50px;
+  color: #ffe0cc;
+  margin: 30px 0;
+  font-weight: 600;
+  font-size: 20px;
+}
+.collect-body{
+  display: none;
+}
+.ld-collect-icon{
+  display: flex;
+  background: #fff;
+  color: #000;
+  border-radius: 35px;
+  width: 35px;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  transform: scale(.8);
+  transition: transform 1s;
+}
+.ld-collect-icon .icon{
+  margin: 4px;
+}
+.ld-collect .icon{
+  /* display: inline-block; */
+  display: none;
+  cursor: pointer;
+}
+.ld-collect {
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  transition: opacity 1s ease;
+}
+.card__media:hover .ld-collect{
+  opacity: 1;
+}
+
+.ld-collect .ld-collect-icon:hover{
+  transform: scale(1);
+}

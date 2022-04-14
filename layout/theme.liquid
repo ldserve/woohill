@@ -181,6 +181,7 @@
         font-weight: var(--font-body-weight);
       }
       .ld-dialog {
+        display:none;
         width: 60%;
         margin: 12% 20%;
         position: fixed;
@@ -383,7 +384,7 @@
               if (res.success) {
                 item.style.display = 'none'
                 item.previousElementSibling.style.display = "block"
-                item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
+                // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
               }
             });
         } else {
@@ -396,6 +397,7 @@
         }
       }
       function addCollect(item) {
+        console.log(item);
         if ("{{ customer.id}}") {
         const newTime = Date.parse(new Date())
         if (newTime - timer < 2000) {
@@ -412,7 +414,7 @@
             if (res.success) {
               item.style.display = 'none'
               item.nextElementSibling.style.display = "block"
-              item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) + 1
+              // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) + 1
             }
           });
         }else{

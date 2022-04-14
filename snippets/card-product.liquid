@@ -1,88 +1,107 @@
 {% comment %}
-    Renders a product card
+Renders a product card
 
-    Accepts:
-    - card_product: {Object} Product Liquid object (optional)
-    - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
-    - show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
-    - show_vendor: {Boolean} Show the product vendor. Default: false
-    - show_rating: {Boolean} Show the product rating. Default: false
-    - extend_height: {Boolean} Card height extends to available container space. Default: false (optional)
+Accepts:
+- card_product: {Object} Product Liquid object (optional)
+- media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square"
+(optional)
+- show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
+- show_vendor: {Boolean} Show the product vendor. Default: false
+- show_rating: {Boolean} Show the product rating. Default: false
+- extend_height: {Boolean} Card height extends to available container space. Default: false (optional)
 
-    Usage:
-    {% render 'card-product', show_vendor: section.settings.show_vendor %}
+Usage:
+{% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
 
 {%- if card_product and card_product != empty -%}
-  {%- liquid
-    assign ratio = 1
-    if card_product.featured_media and media_aspect_ratio == 'portrait'
-      assign ratio = 0.8
-    elsif card_product.featured_media and media_aspect_ratio == 'adapt'
-      assign ratio = card_product.featured_media.aspect_ratio
-    endif
-    if ratio == 0 or ratio == nil
-      assign ratio = 1
-    endif
-    -%}
-    <product-item class="card-wrapper" id="{{ section.id }}-{{card_product.id}}">
-      <div class="card 
+{%- liquid
+assign ratio = 1
+if card_product.featured_media and media_aspect_ratio == 'portrait'
+assign ratio = 0.8
+elsif card_product.featured_media and media_aspect_ratio == 'adapt'
+assign ratio = card_product.featured_media.aspect_ratio
+endif
+if ratio == 0 or ratio == nil
+assign ratio = 1
+endif
+-%}
+<product-item class="card-wrapper" id="{{ section.id }}-{{card_product.id}}">
+  <div class="card 
         card--{{ settings.card_style }}
         {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }}{% endif %}
         {% if extend_height %} card--extend-height{% endif %}
         {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}"
-        style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-      >
-      {%- assign colorfl = value -%}
-        <div class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }}{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}" style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;">
-          {%- if card_product.featured_media -%}
-            <div class="card__media">
-              <a href="{{ card_product.url | default: '#' }}" data-href="{{ card_product.url | default: '#' }}" data-handle="{{card_product.handle}}">
-              <div class="media media--transparent media--hover-effect">
-                <img
-                  data-media-id="{{ card_product.featured_media.id }}"
-                  srcset="{%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
+    style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;">
+    {%- assign colorfl = value -%}
+    <div
+      class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }}{% endif %}{% if card_product.featured_media or settings.card_style == 'standard' %} ratio{% endif %}"
+      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;">
+      {%- if card_product.featured_media -%}
+      <div class="card__media">
+        <a href="{{ card_product.url | default: '#' }}" data-href="{{ card_product.url | default: '#' }}"
+          data-handle="{{card_product.handle}}">
+          <div class="media media--transparent media--hover-effect">
+            <img data-media-id="{{ card_product.featured_media.id }}" srcset="{%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
                     {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | img_url: '360x' }} 360w,{%- endif -%}
                     {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | img_url: '533x' }} 533w,{%- endif -%}
                     {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | img_url: '720x' }} 720w,{%- endif -%}
                     {%- if card_product.featured_media.width >= 940 -%}{{ card_product.featured_media | img_url: '940x' }} 940w,{%- endif -%}
                     {%- if card_product.featured_media.width >= 1066 -%}{{ card_product.featured_media | img_url: '1066x' }} 1066w,{%- endif -%}
                     {{ card_product.featured_media | img_url: 'master' }} {{ card_product.featured_media.width }}w"
-                  src="{{ card_product.featured_media | img_url: '533x' }}"
-                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                  alt="{{ card_product.featured_media.alt | escape }}"
-                  loading="lazy"
-                  class="motion-reduce"
-                  width="{{ card_product.featured_media.width }}"
-                  height="{{ card_product.featured_media.height }}"
-                >
-                
-                {%- if card_product.media[1] != nil and show_secondary_image -%}
-                  <img
-                    srcset="{%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | img_url: '165x' }} 165w,{%- endif -%}
+              src="{{ card_product.featured_media | img_url: '533x' }}"
+              sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+              alt="{{ card_product.featured_media.alt | escape }}" loading="lazy" class="motion-reduce"
+              width="{{ card_product.featured_media.width }}" height="{{ card_product.featured_media.height }}">
+
+            {%- if card_product.media[1] != nil and show_secondary_image -%}
+            <img srcset="{%- if card_product.media[1].width >= 165 -%}{{ card_product.media[1] | img_url: '165x' }} 165w,{%- endif -%}
                       {%- if card_product.media[1].width >= 360 -%}{{ card_product.media[1] | img_url: '360x' }} 360w,{%- endif -%}
                       {%- if card_product.media[1].width >= 533 -%}{{ card_product.media[1] | img_url: '533x' }} 533w,{%- endif -%}
                       {%- if card_product.media[1].width >= 720 -%}{{ card_product.media[1] | img_url: '720x' }} 720w,{%- endif -%}
                       {%- if card_product.media[1].width >= 940 -%}{{ card_product.media[1] | img_url: '940x' }} 940w,{%- endif -%}
                       {%- if card_product.media[1].width >= 1066 -%}{{ card_product.media[1] | img_url: '1066x' }} 1066w,{%- endif -%}
                       {{ card_product.media[1] | img_url: 'master' }} {{ card_product.media[1].width }}w"
-                    src="{{ card_product.media[1] | img_url: '533x' }}"
-                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
-                    alt="{{ card_product.media[1].alt | escape }}"
-                    loading="lazy"
-                    class="motion-reduce"
-                    width="{{ card_product.media[1].width }}"
-                    height="{{ card_product.media[1].height }}"
-                  >
-                {%- endif -%}
-              </div>
-            </a>
-            </div>
-          {%- endif -%}
-          <!-- <div class="card__content">        
+              src="{{ card_product.media[1] | img_url: '533x' }}"
+              sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+              alt="{{ card_product.media[1].alt | escape }}" loading="lazy" class="motion-reduce"
+              width="{{ card_product.media[1].width }}" height="{{ card_product.media[1].height }}">
+            {%- endif -%}
+          </div>
+        </a>
+        <div class="ld-collect">
+          <div class="ld-collect-icon">
+            <svg t="1649917388618" onclick="addCollect(this)" class="icon remove-collect" data-id="{{ card_product.id}}"
+              data-spu="{{ card_product.handle}}" viewBox="0 0 1448 1024" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" p-id="1157" width="20" height="20" fill="currentColor">
+              <path
+                d="M929.457869 21.36487c-73.607311 0-147.214622 26.061013-206.09703 72.248354-58.882408-46.18734-132.541325-72.248354-206.18304-72.248354-177.421314 0-316.396183 140.1102-316.396184 318.942078 0 190.856068 146.148098 337.46862 352.623572 523.697352 43.176992 38.910899 84.92622 78.681898 124.095149 118.005645 12.179008 12.351028 28.486494 19.145814 45.843301 19.145814 17.287999 0 33.543879-6.760382 45.740088-19.077006 39.547373-39.684989 81.331004-79.455987 124.129553-118.040049 206.475474-186.297541 352.675178-332.910093 352.675178-523.731756 0.017202-178.831877-138.974869-318.942078-316.430587-318.942078z m-82.810375 787.593066c-42.540519 38.377637-84.014514 77.839-123.303857 117.248757-38.996909-39.134525-80.539712-78.61309-123.389867-117.283161-189.497111-170.953366-323.689827-304.371993-323.689827-464.625723 0-139.060879 107.839269-247.983873 245.489585-247.983873 65.401962 0 130.889934 26.267437 179.743583 72.093536l21.846526 20.521973 21.829324-20.521973c48.836447-45.843301 114.324419-72.093536 179.691977-72.093536 137.719124 0 245.558393 108.922994 245.558392 247.983873 0 160.253729-134.22712 293.672356-323.775836 464.660127z"
+                p-id="1158"></path>
+            </svg>
+            <svg t="1649919947529" onclick="removeCollect(this)" class="icon add-collect" data-id="{{ card_product.id}}"
+            data-spu="{{ card_product.handle}}"  viewBox="0 0 1448 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              p-id="3475" width="20" height="20">
+              <path
+                d="M929.90512 21.96694c-73.504099 0-147.008198 26.026609-205.787394 72.12794-58.796398-46.118532-132.334901-72.12794-205.873404-72.12794-177.163285 0-315.914528 139.903776-315.914528 318.477624 0 190.580836 145.924473 336.969762 352.107513 522.923263a3184.4322 3184.4322 0 0 1 123.923128 117.833624c12.161806 12.333826 28.434888 19.11141 45.774493 19.11141 17.253595 0 33.509475-6.760382 45.671281-19.042602 39.495767-39.616181 81.21059-79.335573 123.957532-117.868028 206.18304-186.022309 352.159118-332.428437 352.159119-522.957667-0.017202-178.573848-138.820051-318.477624-316.01774-318.477624z"
+                p-id="3476" fill="#d6204b"></path>
+            </svg>
+            <!-- <span style="display: none;">{{card_product.metafields.ld_site_system.collection_quantity}}</span> -->
+          </div>
+          <div class="ld-collect-icon">
+            <svg t="1649917402939" class="icon-cart" viewBox="0 0 1448 1024" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" p-id="1305" width="20" height="20">
+              <path
+                d="M674.16315 939.899476c0 34.386776-27.867222 62.253998-62.253998 62.253998s-62.2712-27.867222-62.2712-62.253998 27.867222-62.2712 62.2712-62.2712c34.369574 0 62.253998 27.884424 62.253998 62.2712zM1137.275097 939.899476c0 34.386776-27.867222 62.253998-62.253998 62.253998s-62.2712-27.867222-62.2712-62.253998 27.884424-62.2712 62.2712-62.2712c34.369574 0 62.253998 27.884424 62.253998 62.2712zM1085.342293 808.56229H613.130493c-73.899745 0-138.579223-49.937374-157.277785-121.446042L319.440935 165.070286c-8.583793-32.890203-38.308829-55.837656-72.282757-55.837656H155.110335c-24.254804 0-43.93388-19.661873-43.93388-43.93388s19.661873-43.93388 43.93388-43.93388h92.065045c73.934149 0 138.596425 49.954576 157.277785 121.480446l136.394571 522.045962c8.583793 32.855799 38.308829 55.820454 72.282757 55.820454h472.2118c32.666577 0 61.273485-20.917619 71.18183-52.036016l88.968687-279.343099c7.310845-22.947453 3.354388-47.271066-10.871657-66.76092-14.226045-19.45545-36.192985-30.602338-60.292971-30.602338H531.077006c-24.254804 0-43.93388-19.661873-43.93388-43.93388 0-24.254804 19.661873-43.93388 43.93388-43.93388h643.251176c52.448864 0 100.287596 24.289208 131.233974 66.623304 30.946378 42.334095 39.581777 95.299019 23.652734 145.253595l-88.968687 279.360301c-21.571294 67.724231-83.825292 113.223491-154.90391 113.223491z"
+                p-id="1306"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+      {%- endif -%}
+      <!-- <div class="card__content">        
             <div class="card__information">
               <div class="card__heading">
                 <span class="full-unstyled-link">
@@ -99,8 +118,8 @@
               {%- endif -%}
             </div>
           </div> -->
-        </div>
-         <!-- <div class="card__content"> 
+    </div>
+    <!-- <div class="card__content"> 
           <div class="card__information">  
            <div class="card__heading">
               <span class="full-unstyled-link">
@@ -145,7 +164,7 @@
                 {% render 'price', product: card_product, price_class: '' %}
               </div>
               </div> -->
-              <!-- <div class="color-selector">
+    <!-- <div class="color-selector">
                 {%- for color in card_product.options_by_name['Color'].values limit:4 -%}
                   {%- for variant in card_product.variants -%}
                       {%- if variant.option1 == color -%}
@@ -217,45 +236,46 @@
             {%- endif -%}
           </div>
         </div> -->
-      </div>
-  </product-item>
+  </div>
+</product-item>
 {%- else -%}
-  <product-item class="card-wrapper">
-    <div class="card
+<product-item class="card-wrapper">
+  <div class="card
       card--{{ settings.card_style }}
       card--text
       {% if extend_height %} card--extend-height{% endif %}
       {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }}{% endif %}
       {% if card_product.featured_media == nil and settings.card_style == 'card' %} ratio{% endif %}"
-      style="--ratio-percent: 100%;"
-    >
-      <div class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }}{% endif %}{% if settings.card_style == 'standard' %} ratio{% endif %}" style="--ratio-percent: 100%;">
-        <div class="card__content">        
-          <div class="card__information">
-            <h3 class="card__heading">
-              <a href="#" class="full-unstyled-link">
-                {{ 'onboarding.product_title' | t }}
-              </a>
-            </h3>
-          </div>  
-        </div>
-      </div>
+    style="--ratio-percent: 100%;">
+    <div
+      class="card__inner {% if settings.card_style == 'standard' %}color-{{ settings.card_color_scheme }}{% endif %}{% if settings.card_style == 'standard' %} ratio{% endif %}"
+      style="--ratio-percent: 100%;">
       <div class="card__content">
         <div class="card__information">
-          <h3 class="card__heading{% if settings.card_style == 'standard' %} h5{% endif %}">
+          <h3 class="card__heading">
             <a href="#" class="full-unstyled-link">
               {{ 'onboarding.product_title' | t }}
             </a>
           </h3>
-          <div class="card-information">
-            {%- if show_vendor -%}
-              <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
-              <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
-            {%- endif -%}
-            {% render 'price' %}
-          </div>
         </div>
       </div>
     </div>
-  </product-item>
+    <div class="card__content">
+      <div class="card__information">
+        <h3 class="card__heading{% if settings.card_style == 'standard' %} h5{% endif %}">
+          <a href="#" class="full-unstyled-link">
+            {{ 'onboarding.product_title' | t }}
+          </a>
+        </h3>
+        <div class="card-information">
+          {%- if show_vendor -%}
+          <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
+          <div class="caption-with-letter-spacing light">{{ 'products.product.vendor' | t }}</div>
+          {%- endif -%}
+          {% render 'price' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</product-item>
 {%- endif -%}

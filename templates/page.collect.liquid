@@ -1,10 +1,34 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 <div>
-  收藏页
-  <div class="collect">
+  <header>
+    <h1 class="center">MY WISHLIST</h1>
+  </header>
+  <div class="collect page-width">
 
   </div>
+  {%- if customer -%}
+  <div class="collect-body">
+    <div class="center">
+      You currently have nothing saved to your Wishlist.<br />
+      Personalize your shopping experience with your Wishlist.
+    </div>
+    <div class="d-flex aic jcc sign-button">
+      <a href="/collections/shop" class="sign-button">Let's Get Started!</a>
+    </div>
+  </div>
+  {%- else -%}
+  <div>
+    <div class="center">
+      It is empty here. <br />
+      Personalize your shopping experience with your Wishlist.
+    </div>
+    <h3 class="center">Already have items saved?</h3>
+    <div class="d-flex aic jcc sign-button">
+      <a href="{{ routes.account_login_url }}" class="sign-button">SIGN IN / REGISTER</a>
+    </div>
+  </div>
+  {%- endif -%}
 </div>
 <script>
   async function postData(url, data) {
@@ -32,6 +56,11 @@
   function getCollectList() {
     postData("customerCollectionProduct/collectionProductList", collectList)
       .then(res => {
+        // console.log(res.data.records.length);
+        if (res.data.records.length < 1) {
+          document.querySelector('.collect-body').style.display = "block"
+          return
+        }
         var ids = ""
         res.data.records.forEach((item, index) => {
           if (index === 1) {
@@ -47,6 +76,15 @@
             console.log(dom.querySelector(".product-grid"));
             document.querySelector('.collect').appendChild(dom.querySelector(".product-grid"))
             getCollectNode()
+            const removeNodes=document.querySelectorAll(".collect .add-collect")
+            removeNodes.forEach((item,index)=>{
+              item.addEventListener("click", () => {
+                console.log(index);
+                console.log(document.querySelectorAll(`.collect .grid .grid__item`)[index]);
+                document.querySelectorAll(`.collect .grid .grid__item`)[index].style.display="none"; 
+             })
+            })
+
           })
       });
   }

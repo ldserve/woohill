@@ -90,6 +90,7 @@
         const html = responseText;
         document.getElementById('product-grid').innerHTML+=new DOMParser().parseFromString(html, 'text/html').getElementById('product-grid').innerHTML
         document.querySelector(".loadingPage").style.display="none"
+        getCollectNode()
     })
    }
 
