@@ -413,7 +413,6 @@
     });
   }
 {% endjavascript %}
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 {%- if first_3d_model -%}
   <script type="application/json" id="ProductJSON-{{ product.id }}">
     {{ product.media | where: 'media_type', 'model' | json }}
@@ -488,10 +487,6 @@
     });
   });
 </script>
-
-{% if product.media.size > 0 %}
-  <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
-{% endif %}
 
 {% schema %}
 {

@@ -355,11 +355,18 @@
         d="M512 85.333333c235.648 0 426.666667 191.018667 426.666667 426.666667s-191.018667 426.666667-426.666667 426.666667S85.333333 747.648 85.333333 512 276.352 85.333333 512 85.333333z m0 170.666667a42.666667 42.666667 0 0 0-42.666667 42.666667v341.333333a42.666667 42.666667 0 0 0 85.333334 0V298.666667a42.666667 42.666667 0 0 0-42.666667-42.666667z m0 554.666667a42.666667 42.666667 0 1 0 0-85.333334 42.666667 42.666667 0 0 0 0 85.333334z"
         fill="#FAAD14" p-id="2021"></path>
     </svg>
-    未登录请先登录
+    Please log in first
   </div>
   <div class="mask"></div>
   {%- render 'cart-notification'-%}
   <div class="body_mask"></div>
+  <div class="openQuickView">
+    <div class="quickView">
+      <div class="view-inner">
+        
+      </div>
+    </div>
+  </div>
   <script>
     if (location.href.indexOf("account/login") !== -1) {
       document.querySelector("body").removeChild(document.querySelector(".ld-dialog"))

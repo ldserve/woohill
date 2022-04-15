@@ -148,7 +148,24 @@ function removeTrapFocus(elementToFocus = null) {
 
   if (elementToFocus) elementToFocus.focus();
 }
-
+function openQuickView(){
+  const MainContent = document.querySelector("#MainContent");
+  MainContent.onclick = function (e) {
+      e = e || window.event; //这一行及下一行是为兼容IE8及以下版本
+      var target = e.target || e.srcElement;
+      if (target.className.animVal&&target.className.animVal.toLowerCase() === "ny-icon-cart") {
+        fetch("".concat(target.getAttribute('data-product-url'), "?view=quick-view"), {
+          credentials: 'same-origin',
+          method: 'GET'
+      }).then(function (response) {
+        response.text().then(function (content) {
+            document.querySelector('.view-inner').innerHTML = content;
+        });
+    });
+      }
+  }
+}
+openQuickView()
 function onKeyUpEscape(event) {
   if (event.code.toUpperCase() !== 'ESCAPE') return;
 
@@ -1004,4 +1021,289 @@ window.getFormatDate = function getFormatDate() {
   let m = currentDate.getMinutes() < 10 ? ('0' + currentDate.getMinutes()) : currentDate.getMinutes();
   let s = currentDate.getSeconds() < 10 ? ('0' + currentDate.getSeconds()) : currentDate.getSeconds();
   return Y + "-" + M + "-" + D + " " + h + ":" + m + ":" + s;
+}
+if (!customElements.get('pickup-availability')) {
+  customElements.define('pickup-availability', class PickupAvailability extends HTMLElement {
+    constructor() {
+      super();
+
+      if(!this.hasAttribute('available')) return;
+
+      this.errorHtml = this.querySelector('template').content.firstElementChild.cloneNode(true);
+      this.onClickRefreshList = this.onClickRefreshList.bind(this);
+      this.fetchAvailability(this.dataset.variantId);
+    }
+
+    fetchAvailability(variantId) {
+      let rootUrl = this.dataset.rootUrl;
+      if (!rootUrl.endsWith("/")) {
+        rootUrl = rootUrl + "/";
+      }
+      const variantSectionUrl = `${rootUrl}variants/${variantId}/?section_id=pickup-availability`;
+
+      fetch(variantSectionUrl)
+        .then(response => response.text())
+        .then(text => {
+          const sectionInnerHTML = new DOMParser()
+            .parseFromString(text, 'text/html')
+            .querySelector('.shopify-section');
+          this.renderPreview(sectionInnerHTML);
+        })
+        .catch(e => {
+          const button = this.querySelector('button');
+          if (button) button.removeEventListener('click', this.onClickRefreshList);
+          this.renderError();
+        });
+    }
+
+    onClickRefreshList(evt) {
+      this.fetchAvailability(this.dataset.variantId);
+    }
+
+    renderError() {
+      this.innerHTML = '';
+      this.appendChild(this.errorHtml);
+
+      this.querySelector('button').addEventListener('click', this.onClickRefreshList);
+    }
+
+    renderPreview(sectionInnerHTML) {
+      const drawer = document.querySelector('pickup-availability-drawer');
+      if (drawer) drawer.remove();
+      if (!sectionInnerHTML.querySelector('pickup-availability-preview')) {
+        this.innerHTML = "";
+        this.removeAttribute('available');
+        return;
+      }
+
+      this.innerHTML = sectionInnerHTML.querySelector('pickup-availability-preview').outerHTML;
+      this.setAttribute('available', '');
+
+      document.body.appendChild(sectionInnerHTML.querySelector('pickup-availability-drawer'));
+
+      const button = this.querySelector('button');
+      if (button) button.addEventListener('click', (evt) => {
+        document.querySelector('pickup-availability-drawer').show(evt.target);
+      });
+    }
+  });
+}
+
+if (!customElements.get('pickup-availability-drawer')) {
+  customElements.define('pickup-availability-drawer', class PickupAvailabilityDrawer extends HTMLElement {
+    constructor() {
+      super();
+
+      this.onBodyClick = this.handleBodyClick.bind(this);
+
+      this.querySelector('button').addEventListener('click', () => {
+        this.hide();
+      });
+
+      this.addEventListener('keyup', () => {
+        if(event.code.toUpperCase() === 'ESCAPE') this.hide();
+      });
+    }
+
+    handleBodyClick(evt) {
+      const target = evt.target;
+      if (target != this && !target.closest('pickup-availability-drawer') && target.id != 'ShowPickupAvailabilityDrawer') {
+        this.hide();
+      }
+    }
+
+    hide() {
+      this.removeAttribute('open');
+      document.body.removeEventListener('click', this.onBodyClick);
+      document.body.classList.remove('overflow-hidden');
+      removeTrapFocus(this.focusElement);
+    }
+
+    show(focusElement) {
+      this.focusElement = focusElement;
+      this.setAttribute('open', '');
+      document.body.addEventListener('click', this.onBodyClick);
+      document.body.classList.add('overflow-hidden');
+      trapFocus(this);
+    }
+  });
+}
+if (!customElements.get('product-form')) {
+  customElements.define('product-form', class ProductForm extends HTMLElement {
+    constructor() {
+      super();
+
+      this.form = this.querySelector('form');
+      this.form.querySelector('[name=id]').disabled = false;
+      this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
+      this.cartNotification = document.querySelector('cart-notification');
+    }
+
+    onSubmitHandler(evt) {
+      evt.preventDefault();
+      const submitButton = this.querySelector('[type="submit"]');
+      if (submitButton.classList.contains('loading')) return;
+
+      this.handleErrorMessage();
+      this.cartNotification.setActiveElement(document.activeElement);
+
+      submitButton.setAttribute('aria-disabled', true);
+      submitButton.classList.add('loading');
+      this.querySelector('.loading-overlay__spinner').classList.remove('hidden');
+
+      const config = fetchConfig('javascript');
+      config.headers['X-Requested-With'] = 'XMLHttpRequest';
+      delete config.headers['Content-Type'];
+
+      const formData = new FormData(this.form);
+      formData.append('sections', this.cartNotification.getSectionsToRender().map((section) => section.id));
+      formData.append('sections_url', window.location.pathname);
+      config.body = formData;
+
+      fetch(`${routes.cart_add_url}`, config)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.status) {
+            this.handleErrorMessage(response.description);
+            return;
+          }
+
+          this.cartNotification.renderContents(response);
+        })
+        .catch((e) => {
+          console.error(e);
+        })
+        .finally(() => {
+          submitButton.classList.remove('loading');
+          submitButton.removeAttribute('aria-disabled');
+          this.querySelector('.loading-overlay__spinner').classList.add('hidden');
+        });
+    }
+
+    handleErrorMessage(errorMessage = false) {
+      this.errorMessageWrapper = this.errorMessageWrapper || this.querySelector('.product-form__error-message-wrapper');
+      this.errorMessage = this.errorMessage || this.errorMessageWrapper.querySelector('.product-form__error-message');
+
+      this.errorMessageWrapper.toggleAttribute('hidden', !errorMessage);
+
+      if (errorMessage) {
+        this.errorMessage.textContent = errorMessage;
+      }
+    }
+  });
+}
+
+if (!customElements.get('media-gallery')) {
+  customElements.define('media-gallery', class MediaGallery extends HTMLElement {
+    constructor() {
+      super();
+      this.elements = {
+        liveRegion: this.querySelector('[id^="GalleryStatus"]'),
+        viewer: this.querySelector('[id^="GalleryViewer"]'),
+        thumbnails: this.querySelector('[id^="GalleryThumbnails"]')
+      }
+      this.mql = window.matchMedia('(min-width: 750px)');
+      if (!this.elements.thumbnails) return;
+
+      this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
+      this.elements.thumbnails.querySelectorAll('[data-target]').forEach((mediaToSwitch) => {
+        mediaToSwitch.querySelector('button').addEventListener('click', this.setActiveMedia.bind(this, mediaToSwitch.dataset.target, false));
+      });
+      if (this.dataset.desktopLayout !== 'stacked' && this.mql.matches) this.removeListSemantic();
+    }
+
+    onSlideChanged(event) {
+      const thumbnail = this.elements.thumbnails.querySelector(`[data-target="${event.detail.currentElement.dataset.mediaId}"]`);
+      this.setActiveThumbnail(thumbnail);
+    }
+
+    setActiveMedia(mediaAlt, mediaId, prepend) {
+      if (mediaAlt) {
+        const activeMedia = this.elements.viewer.querySelectorAll(`[data-media-id="${mediaAlt}"]`);
+        this.elements.viewer.querySelectorAll('[data-media-id]').forEach((element) => {
+          element.classList.remove('ld-active');
+        });
+        activeMedia.forEach((element) => {
+          element.classList.add('ld-active');
+        });
+      }
+      if (mediaId) {
+        const activeMedia = this.elements.viewer.querySelector(`[data-media-id="${mediaId}"]`);
+        this.elements.viewer.querySelectorAll('[data-media-id]').forEach((element) => {
+          element.classList.remove('is-active');
+        });
+        activeMedia.classList.add('is-active');
+
+        if (prepend) {
+          activeMedia.parentElement.prepend(activeMedia);
+          if (this.elements.thumbnails) {
+            const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
+            activeThumbnail.parentElement.prepend(activeThumbnail);
+          }
+          if (this.elements.viewer.slider) this.elements.viewer.resetPages();
+        }
+
+        this.preventStickyHeader();
+        window.setTimeout(() => {
+          if (this.elements.thumbnails) {
+            activeMedia.parentElement.scrollTo({ left: activeMedia.offsetLeft });
+          }
+          if (!this.elements.thumbnails || this.dataset.desktopLayout === 'stacked') {
+            activeMedia.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+        this.playActiveMedia(activeMedia);
+
+        if (!this.elements.thumbnails) return;
+        const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
+        this.setActiveThumbnail(activeThumbnail);
+        this.announceLiveRegion(activeMedia, activeThumbnail.dataset.mediaPosition);
+      }
+
+    }
+
+    setActiveThumbnail(thumbnail) {
+      if (!this.elements.thumbnails || !thumbnail) return;
+
+      this.elements.thumbnails.querySelectorAll('button').forEach((element) => element.removeAttribute('aria-current'));
+      thumbnail.querySelector('button').setAttribute('aria-current', true);
+      if (this.elements.thumbnails.isSlideVisible(thumbnail, 10)) return;
+
+      this.elements.thumbnails.slider.scrollTo({ left: thumbnail.offsetLeft });
+    }
+
+    announceLiveRegion(activeItem, position) {
+      const image = activeItem.querySelector('.product__modal-opener--image img');
+      if (!image) return;
+      image.onload = () => {
+        this.elements.liveRegion.setAttribute('aria-hidden', false);
+        this.elements.liveRegion.innerHTML = window.accessibilityStrings.imageAvailable.replace(
+          '[index]',
+          position
+        );
+        setTimeout(() => {
+          this.elements.liveRegion.setAttribute('aria-hidden', true);
+        }, 2000);
+      };
+      image.src = image.src;
+    }
+
+    playActiveMedia(activeItem) {
+      window.pauseAllMedia();
+      const deferredMedia = activeItem.querySelector('.deferred-media');
+      if (deferredMedia) deferredMedia.loadContent(false);
+    }
+
+    preventStickyHeader() {
+      this.stickyHeader = this.stickyHeader || document.querySelector('sticky-header');
+      if (!this.stickyHeader) return;
+      this.stickyHeader.dispatchEvent(new Event('preventHeaderReveal'));
+    }
+
+    removeListSemantic() {
+      if (!this.elements.viewer.slider) return;
+      this.elements.viewer.slider.setAttribute('role', 'presentation');
+      this.elements.viewer.sliderItems.forEach(slide => slide.setAttribute('role', 'presentation'));
+    }
+  });
 }
