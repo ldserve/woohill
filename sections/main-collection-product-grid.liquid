@@ -88,16 +88,17 @@
     .then((response) =>  response.text())
     .then((responseText) => {
         const html = responseText;
-        document.getElementById('product-grid').innerHTML+=new DOMParser().parseFromString(html, 'text/html').getElementById('product-grid').innerHTML
+        const text=new DOMParser().parseFromString(html, 'text/html').getElementById('product-grid').innerHTML
+        document.getElementById('product-grid').insertAdjacentHTML('beforeEnd', text);
         document.querySelector(".loadingPage").style.display="none"
         getCollectNode()
     })
    }
 
   window.addEventListener('scroll', function () {
-		var targetRect = document.querySelector('.loadingPage').getBoundingClientRect()
+		var targetRect =document.querySelector('#shopify-section-footer').getBoundingClientRect()
     if( currentPage+1 > pages) return
-    if(targetRect.bottom<600){
+    if(targetRect.top<600){
       document.querySelector(".loadingPage").style.display="flex"
       getCollection()
     }

@@ -56,7 +56,6 @@
             const html = document.createElement('div');
             html.innerHTML = text;
             const recommendations = html.querySelector('product-recommendations');
-            console.log(recommendations)
             if (recommendations && recommendations.innerHTML.trim().length) {
               this.innerHTML = recommendations.innerHTML;
             }

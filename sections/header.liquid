@@ -321,10 +321,10 @@
       </a>
       {%- endif -%}
       <a href="/pages/collect"
-        class="header__icon header__icon--account link focus-inset">
+        class="header__icon header__icon--collect link focus-inset">
         {% render 'icon-collect' %}
         <div class="cart-count-bubble">
-          <span aria-hidden="true">5</span>
+          <span style="display: none;"></span>
         </div>
       </a>
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">

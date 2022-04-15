@@ -48,22 +48,22 @@
     });
     return response.json();
   }
-  var collectList = {
+
+  function getCollectList() {
+    const collectList = {
     current: 1,
     customerId: "{{customer.id}}",
-    size: 20
+    size: 80
   }
-  function getCollectList() {
     postData("customerCollectionProduct/collectionProductList", collectList)
       .then(res => {
-        // console.log(res.data.records.length);
         if (res.data.records.length < 1) {
           document.querySelector('.collect-body').style.display = "block"
           return
         }
         var ids = ""
         res.data.records.forEach((item, index) => {
-          if (index === 1) {
+          if (index === 0) {
             ids = `id:${item.productId}`
           } else {
             ids = ids + " OR " + `id:${item.productId}`
@@ -73,14 +73,11 @@
           .then((rs) => { return rs.text() })
           .then((rs) => {
             let dom = new DOMParser().parseFromString(rs, 'text/html');
-            console.log(dom.querySelector(".product-grid"));
             document.querySelector('.collect').appendChild(dom.querySelector(".product-grid"))
             getCollectNode()
             const removeNodes=document.querySelectorAll(".collect .add-collect")
             removeNodes.forEach((item,index)=>{
               item.addEventListener("click", () => {
-                console.log(index);
-                console.log(document.querySelectorAll(`.collect .grid .grid__item`)[index]);
                 document.querySelectorAll(`.collect .grid .grid__item`)[index].style.display="none"; 
              })
             })
