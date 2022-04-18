@@ -47,7 +47,6 @@ class recentlyViewedProducts extends HTMLElement {
       observer.unobserve(this);
       this.options = JSON.parse(this.getAttribute('data-section-settings'));
       var queryString = this.getSearchQueryString();
-      console.log(queryString)
       fetch(`/search?section_id=${this.getAttribute('data-section-id')}&q=${queryString}&type=product`)
       .then(response => response.text())
       .then(text => {
@@ -72,7 +71,6 @@ class recentlyViewedProducts extends HTMLElement {
               }
               items=items.filter((item,index)=>{ if(index<4) return item})
               return items.map(function (item,index) {
-                  console.log(index)
                   return 'id:' + item;
               }).join(' OR ');
  }

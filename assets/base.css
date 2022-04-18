@@ -243,6 +243,10 @@ span.price-item.price-item--regular {
   font-size: 1.2rem;
 }
 
+ul#product-grid {
+  overflow: hidden;
+}
+
 @media screen and (min-width: 750px) {
   .page-width {
     padding: 0 3.25rem;
@@ -1697,6 +1701,25 @@ details[open]>.share-button__fallback {
   line-height: 1.5;
 }
 
+@media screen and (max-width: 749px) {
+
+  .field__label,
+  .customer .field label {
+    font-size: 1.2rem;
+    top: 0.8rem;
+  }
+
+  .field__input,
+  .select__select,
+  .customer .field input,
+  .customer select {
+    height: 3.5rem;
+  }
+  .footer__blocks-wrapper.grid.grid--1-col.grid--2-col.grid--4-col-tablet {
+    margin-bottom: 0;
+}
+}
+
 .field__input:focus~.field__label,
 .field__input:not(:placeholder-shown)~.field__label,
 .field__input:-webkit-autofill~.field__label,
@@ -1729,19 +1752,21 @@ details[open]>.share-button__fallback {
 
 .field__button {
   align-items: center;
-  background-color: transparent;
   border: 0;
-  color: currentColor;
   cursor: pointer;
   display: flex;
-  height: 4.4rem;
+  /* height: 4.4rem; */
   justify-content: center;
   overflow: hidden;
   padding: 0;
   position: absolute;
   right: 0;
   top: 0;
-  width: 4.4rem;
+  width: 9.4rem;
+  margin: 0;
+  background: #000;
+  color: #fff;
+  height: 100%;
 }
 
 .field__button>svg {
@@ -2543,6 +2568,9 @@ details[open]>.header__icon--menu .icon-hamburger {
   right: 2rem;
 }
 
+.footer-block--menu details[open]>summary .icon-caret {
+  transform: rotate(180deg);
+}
 
 @keyframes animateMenuOpen {
   0% {
@@ -2688,6 +2716,12 @@ details[open]>.header__icon--menu .icon-hamburger {
   border-radius: 0;
   border-left: none;
   border-right: none;
+}
+
+@media screen and (min-width: 750px) {
+  .pc-hidden {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 749px) {
@@ -3166,9 +3200,11 @@ details[open]>.header__icon--menu .icon-hamburger {
     width: 100%;
   }
 }
-.jcsb{
+
+.jcsb {
   justify-content: space-between;
 }
-.aic{
+
+.aic {
   align-items: center;
 }

@@ -323,7 +323,7 @@
     </div>
   </header>
   {%- if section.settings.menu != blank -%}
-  <nav class="header__inline-menu page-width-900">
+  <nav class="header__inline-menu page-width-900 hidden-phone">
     <ul class="list-menu list-menu--inline" role="list">
       {%- for link in section.settings.menu.links -%}
       <li>
@@ -376,6 +376,19 @@
           <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
         </a>
         {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+  <nav class="header__inline-menu page-width-900 pc-hidden">
+    <ul class="list-menu list-menu--inline" role="list">
+      {%- for link in section.settings.menu.links -%}
+      <li>
+        <a href="{{ link.url }}"
+          class="header__menu-item header__menu-item list-menu__item link link--text focus-inset" {% if link.current
+          %} aria-current="page" {% endif %}>
+          <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
+        </a>
       </li>
       {%- endfor -%}
     </ul>

@@ -542,7 +542,7 @@ class SliderComponent extends HTMLElement {
     const resizeObserver = new ResizeObserver(entries => this.initPages());
     resizeObserver.observe(this.slider);
 
-    this.slider.addEventListener('scroll', this.update.bind(this));
+    this.slider.addEventListener('scroll', ()=>{ this.initPages()});
     this.prevButton.addEventListener('click', this.onButtonClick.bind(this));
     this.nextButton.addEventListener('click', this.onButtonClick.bind(this));
   }
@@ -568,7 +568,6 @@ class SliderComponent extends HTMLElement {
       this.currentPageElement.textContent = this.currentPage;
       this.pageTotalElement.textContent = this.totalPages;
     }
-
     if (this.currentPage != previousPage) {
       this.dispatchEvent(new CustomEvent('slideChanged', {
         detail: {

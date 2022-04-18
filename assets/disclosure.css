@@ -27,7 +27,7 @@
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
   position: absolute;
-  bottom: 100%;
+  top: 140%;
   transform: translateY(-1rem);
   z-index: 2;
   background-color: rgb(var(--color-background));
