@@ -458,6 +458,7 @@ h1,
 h2,
 .h2 {
   font-size: calc(var(--font-heading-scale) * 2rem);
+  font-weight: 300;
 }
 
 @media only screen and (min-width: 750px) {
@@ -1771,6 +1772,7 @@ details[open]>.share-button__fallback {
 @media screen and (max-width:749px) {
   .field__button{
     width: 10.4rem;
+    font-size: 12px;
   }
 }
 
