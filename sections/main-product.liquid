@@ -55,6 +55,8 @@
 <section class="page-width section-{{ section.id }}-padding">
   <div
     class="product product--{{ section.settings.media_size }} product--{{ section.settings.gallery_layout }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+    {%- case section.settings.img_group -%}
+    {%-  when 'show'  -%}
     <div class="grid__item product__media-wrapper">
       {%- if template != 'product.quick-view' -%}
       <media-gallery id="MediaGallery-{{ section.id }}" role="region"
@@ -376,6 +378,18 @@ class="slider-buttons no-js-hidden{% if media_count < 2 or section.settings.mobi
 </media-gallery>
       {%- endif -%}
     </div>
+    {%- when 'hidden' -%}
+    <div>
+      <div>
+        <img
+        src="{{ product.featured_image | img_url: '100x100' }}"
+        class="product-img"
+        alt="{{ product.featured_image.alt | default: shop.name | escape }}"
+        loading="lazy"
+      >
+      </div>
+    </div>
+    {%-   endcase -%}
     <div class="product__info-wrapper grid__item">
       <div id="ProductInfo-{{ section.id }}"
            class="product__info-container{% if section.settings.enable_sticky_info %} product__info-container--sticky{% endif %}">
@@ -1263,6 +1277,22 @@ class="slider-buttons no-js-hidden{% if media_count < 2 or section.settings.mobi
   }
   ],
   "settings": [
+  {
+    "type": "select",
+    "id": "img_group",
+    "options": [
+      {
+        "value": "show",
+        "label": "显示图片组"
+      },
+      {
+        "value": "hidden",
+        "label": "显示单张"
+      }
+    ],
+    "default": "show",
+    "label": "详情页图片展示方式"
+  },
   {
   "type": "checkbox",
   "id": "enable_sticky_info",

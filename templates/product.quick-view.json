@@ -12,13 +12,11 @@
         },
         "variant_picker": {
           "type": "variant_picker",
-          "settings": {
-          } 
+          "settings": {}
         },
         "buy_buttons": {
           "type": "buy_buttons",
-          "settings": {
-          }
+          "settings": {}
         }
       },
       "block_order": [
@@ -28,6 +26,7 @@
         "buy_buttons"
       ],
       "settings": {
+        "img_group": "hidden"
       }
     }
   },

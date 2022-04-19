@@ -819,6 +819,10 @@ class VariantSelects extends HTMLElement {
       document.querySelectorAll(".product-form__selected-value")[1].innerText = this.currentVariant.option2
     }
     if (this.currentVariant.featured_media.alt) {
+      console.log(this.currentVariant.featured_media.preview_image.src,mediaGallery);
+      if(!mediaGallery){
+        
+      }
       mediaGallery.setActiveMedia(`${this.dataset.section}-${this.currentVariant.featured_media.alt}`, null, true);
     } else {
       mediaGallery.setActiveMedia(null, `${this.dataset.section}-${this.currentVariant.featured_media.id}`, true);
