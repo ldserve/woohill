@@ -238,9 +238,9 @@
               {{ product.title | escape }}
             </h2>
           {%- when 'price' -%}
-            <div class="no-js-hidden price_left d-flex jcsb" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+            <div class="no-js-hidden price_left" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
               <span>{%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}</span>
-              <span class="d-flex aic"><svg t="1649398957719" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="25854" width="32" height="32"><path d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z" fill="#FFD81A" p-id="25855"></path></svg>FREE DELIVERY for all products till May 1</span>
+              <span class="d-flex aic fz-12" style="margin-left: -8px;"><svg t="1649398957719" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="25854" width="32" height="32"><path d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z" fill="#FFD81A" p-id="25855"></path></svg>FREE DELIVERY for all products till May 1</span>
             </div>
             <!-- {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
             <div class="product__tax caption rte">

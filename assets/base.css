@@ -215,7 +215,7 @@ html.no-js .no-js-hidden {
 }
 
 span.price-item.price-item--regular {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .page-width {
@@ -464,7 +464,7 @@ h2,
 
   h2,
   .h2 {
-    font-size: calc(var(--font-heading-scale) * 2.4rem);
+    font-size: 20px;
   }
 }
 
@@ -1762,11 +1762,16 @@ details[open]>.share-button__fallback {
   position: absolute;
   right: 0;
   top: 0;
-  width: 9.4rem;
+  width: 14.4rem;
   margin: 0;
   background: #000;
   color: #fff;
   height: 100%;
+}
+@media screen and (max-width:749px) {
+  .field__button{
+    width: 10.4rem;
+  }
 }
 
 .field__button>svg {
@@ -2481,7 +2486,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 .header__menu-item {
   /* padding: 1.2rem; */
   text-decoration: none;
-  color: rgba(var(--color-foreground), 0.75);
+  color: rgba(var(--color-foreground));
 }
 
 .header__menu-item:hover {
@@ -2490,8 +2495,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 
 .header__menu-item span {
   transition: text-decoration var(--duration-short) ease;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 20px;
 }
 
 .header__menu-item:hover span {
@@ -2552,8 +2556,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 
 .sub-menu-left {
   font-size: 20px;
-  font-weight: 700;
-  color: #1b1b1bc4;
+  color: #1b1b1b;
 }
 
 .header__submenu .header__submenu .header__menu-item {
@@ -2812,7 +2815,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 }
 
 .ld-mask {
-  margin: 10px;
+  margin: 10px 0px;
 }
 
 .mask-link {
@@ -2852,7 +2855,9 @@ details[open]>.header__icon--menu .icon-hamburger {
   .ld-mask .mobile {
     display: block;
   }
-
+  .ld-mask {
+    margin: 10px;
+  }
   .ny-mask-box {
     width: 100%;
   }
@@ -2988,7 +2993,7 @@ details[open]>.header__icon--menu .icon-hamburger {
   padding-bottom: 30px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 750px) {
 
   /*PC样式*/
   /*尺码样式*/
@@ -3082,9 +3087,19 @@ details[open]>.header__icon--menu .icon-hamburger {
     display: none;
 
   }
+  .footer-logo {
+    position: relative;
+    top: 10px;
+    width: 180px;
+  }
+  .share {
+    position: relative;
+    top: 17px;
+  }
+
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 749px) {
 
   /*移动样式*/
   /*尺码样式*/
@@ -3199,6 +3214,13 @@ details[open]>.header__icon--menu .icon-hamburger {
     display: block;
     width: 100%;
   }
+  .share-item .icon{
+    width: 28px;
+    height: 28px;
+  }
+  .footer-logo{
+    width: 120px;
+  }
 }
 
 .jcsb {
@@ -3207,4 +3229,20 @@ details[open]>.header__icon--menu .icon-hamburger {
 
 .aic {
   align-items: center;
+}
+
+a.link.link--text.disclosure__link.caption-large.focus-inset {
+  font-size: 12px;
+}
+.fz-12{
+  font-size: 12px;
+}
+
+.payment-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+svg.payment-list__item {
+  margin: 2px;
 }

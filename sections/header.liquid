@@ -59,17 +59,9 @@
 }
   .list-menu__item--link {
     text-decoration: none;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
     line-height: calc(1 + 0.8 / var(--font-body-scale));
   }
 
-  @media screen and (min-width: 750px) {
-    .list-menu__item--link {
-      padding-bottom: 0.5rem;
-      padding-top: 0.5rem;
-    }
-  }
 
   @media screen and (max-width: 749px) {
     .list-menu.ld-submenu {
@@ -376,19 +368,6 @@
           <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
         </a>
         {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
-  </nav>
-  <nav class="header__inline-menu page-width-900 pc-hidden">
-    <ul class="list-menu list-menu--inline" role="list">
-      {%- for link in section.settings.menu.links -%}
-      <li>
-        <a href="{{ link.url }}"
-          class="header__menu-item header__menu-item list-menu__item link link--text focus-inset" {% if link.current
-          %} aria-current="page" {% endif %}>
-          <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
-        </a>
       </li>
       {%- endfor -%}
     </ul>
