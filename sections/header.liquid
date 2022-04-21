@@ -61,8 +61,6 @@
 
   .list-menu__item--link {
     text-decoration: none;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
     line-height: calc(1 + 0.8 / var(--font-body-scale));
   }
 
@@ -341,7 +339,7 @@
     </div>
   </header>
   {%- if section.settings.menu != blank -%}
-  <nav class="header__inline-menu page-width-900">
+  <nav class="header__inline-menu page-width-900 hidden-phone">
     <ul class="list-menu list-menu--inline" role="list">
       {%- for link in section.settings.menu.links -%}
       <li>

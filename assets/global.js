@@ -148,18 +148,6 @@ function removeTrapFocus(elementToFocus = null) {
 
   if (elementToFocus) elementToFocus.focus();
 }
-
-function quickView() {
-  const cartNodes = document.querySelectorAll(".ny-icon")
-
-  cartNodes.forEach((target) => {
-    target.onclick = () => {
-      document.querySelector('.view-inner').style.animation = "myOpacity0 .3s"
-      openQuickView(target)
-    }
-  })
-}
-
 document.querySelector(".openQuickView").addEventListener("click", (e) => {
   e = e || window.event;
   var target = e.target;
@@ -173,20 +161,6 @@ document.querySelector(".openQuickView").addEventListener("click", (e) => {
   }
 })
 
-function openQuickView(target) {
-  const url = target.getAttribute('data-product-url').split("?")[0];
-  fetch("".concat(url, "?view=quick-view"), {
-    credentials: 'same-origin',
-    method: 'GET'
-  }).then(function (response) {
-    response.text().then(function (content) {
-      document.querySelector('.view-inner').innerHTML = content
-      document.querySelector(".openQuickView").style.display = "block"
-      bodyScroll()
-    });
-  });
-}
-quickView()
 function bodyScroll() {
   const nodeStyle = document.querySelector("body").style.overflow
   if (nodeStyle == "hidden") {
@@ -587,7 +561,7 @@ class SliderComponent extends HTMLElement {
     const resizeObserver = new ResizeObserver(entries => this.initPages());
     resizeObserver.observe(this.slider);
 
-    this.slider.addEventListener('scroll', this.update.bind(this));
+    this.slider.addEventListener('scroll', () => { this.initPages() });
     this.prevButton.addEventListener('click', this.onButtonClick.bind(this));
     this.nextButton.addEventListener('click', this.onButtonClick.bind(this));
   }
@@ -613,7 +587,6 @@ class SliderComponent extends HTMLElement {
       this.currentPageElement.textContent = this.currentPage;
       this.pageTotalElement.textContent = this.totalPages;
     }
-
     if (this.currentPage != previousPage) {
       this.dispatchEvent(new CustomEvent('slideChanged', {
         detail: {
@@ -848,7 +821,7 @@ class VariantSelects extends HTMLElement {
       document.querySelectorAll(".product-form__selected-value")[1].innerText = this.currentVariant.option2
     }
     if (this.currentVariant.featured_media.alt) {
-      console.log(this.currentVariant.featured_media.preview_image.src, mediaGallery);
+
       if (!mediaGallery) {
         document.querySelector(".ny-product-img").src = this.currentVariant.featured_media.preview_image.src
         return
@@ -972,20 +945,173 @@ class VariantRadios extends VariantSelects {
 }
 
 customElements.define('variant-radios', VariantRadios);
+class ProductDetail extends HTMLElement {
+  constructor() {
+    super()
+    this.timer = 0
+    this.elements = {
+      addColleNode: this.querySelector('.add-collect'),
+      removeColleNode: this.querySelector('.remove-collect')
+    }
+    this.setupEventListeners()
+    this.onload()
+  }
+  setupEventListeners() {
+    this.elements.addColleNode && this.elements.addColleNode.addEventListener('click', this.handleRemove)
+    this.elements.removeColleNode && this.elements.removeColleNode.addEventListener('click', this.handleAdd)
+  }
+  onload() {
+    const id=this.elements.removeColleNode.getAttribute("data-id")
+    var searchData = {
+      customerId: customerId,
+      productIds: [id]
+    }
 
+    if (customerId) {
+      postData("customerCollectionProduct/selectProductIsCollection", searchData)
+        .then(res => {
+          if (res.success) {
+            console.log(res.data);
+            this.elements.addColleNode.parentElement.style.display = 'flex'
+              if (res.data[0].isCollection) { 
+                  this.elements.addColleNode.style.display = 'none'
+                  this.elements.removeColleNode.style.display = "block"
+              } else {
+                this.elements.addColleNode.style.display = 'block'
+                this.elements.removeColleNode.style.display = "none"
+              }
+          }
+        });
+    } else {
+        this.elements.removeColleNode.style.display = 'block'
+        this.elements.removeColleNode.parentElement.style.display = 'flex'
+    }
+  }
+
+  handleRemove() {
+    if (customerId) {
+      const newTime = Date.parse(new Date())
+      if (newTime - this.timer < 2000) {
+        return
+      }
+      this.timer = newTime
+      var collectData = {
+        customerId: customerId,
+        productId: this.getAttribute('data-id'),
+        productSpu: this.getAttribute('data-spu')
+      }
+      postData("customerCollectionProduct/collectionProduct", collectData)
+        .then(res => {
+          if (res.success) {
+            this.style.display = 'none'
+            this.previousElementSibling.style.display = "block"
+            // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
+            const text = document.querySelector(".header__icon--collect span").innerText
+            if (+(text) - 1 === 0) {
+              document.querySelector(".header__icon--collect span").innerText = ""
+              document.querySelector(".header__icon--collect span").style.display = "none"
+              return
+            }
+            document.querySelector(".header__icon--collect span").innerText = +(text) - 1
+          }
+        });
+    } else {
+      document.querySelector(".ld-dialog").style.display = "block"
+      document.querySelector(".mask").style.display = "block"
+      document.querySelector(".ld-hint").style.display = "block"
+      setTimeout(() => {
+        document.querySelector(".ld-hint").style.display = "none"
+      }, 2000)
+    }
+  }
+
+  handleAdd() {
+    if (customerId) {
+      const newTime = Date.parse(new Date())
+      if (newTime - this.timer < 2000) {
+        return
+      }
+      this.timer = newTime
+      var collectData = {
+        customerId: customerId,
+        productId: this.getAttribute('data-id'),
+        productSpu: this.getAttribute('data-spu')
+      }
+
+      postData("customerCollectionProduct/collectionProduct", collectData)
+        .then(res => {
+          if (res.success) {
+            this.style.display = 'none'
+            this.nextElementSibling.style.display = "block"
+            // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) + 1
+            const text = document.querySelector(".header__icon--collect span").innerText
+            if (!text) {
+              document.querySelector(".header__icon--collect span").innerText = 1
+              document.querySelector(".header__icon--collect span").style.display = "flex"
+              return
+            }
+            document.querySelector(".header__icon--collect span").innerText = +(text) + 1
+          }
+        });
+    } else {
+      document.querySelector(".ld-dialog").style.display = "block"
+      document.querySelector(".mask").style.display = "block"
+      document.querySelector(".ld-hint").style.display = "block"
+      setTimeout(() => {
+        document.querySelector(".ld-hint").style.display = "none"
+      }, 2000)
+    }
+  }
+}
+customElements.define('product-detail', ProductDetail)
 class ProductItem extends HTMLElement {
   constructor() {
     super()
+    this.timer = 0
     this.elements = {
       colorSelector: this.querySelector('.color-selector'),
       cardMedia: this.querySelector('.card__media'),
+      cartNode: this.querySelector('.ny-icon-cart'),
+      addColleNode: this.querySelector('.add-collect'),
+      removeColleNode: this.querySelector('.remove-collect')
     }
-    // this.setupEventListeners()
+    this.setupEventListeners()
     // this.handleColorActive()
+    this.onload()
   }
 
   setupEventListeners() {
     this.elements.colorSelector && this.elements.colorSelector.addEventListener('click', this.handleColorSelector)
+    this.elements.cartNode && this.elements.cartNode.addEventListener('click', this.handleQuickView)
+    this.elements.addColleNode && this.elements.addColleNode.addEventListener('click', this.handleRemove)
+    this.elements.removeColleNode && this.elements.removeColleNode.addEventListener('click', this.handleAdd)
+  }
+  onload() {
+    const id=this.elements.removeColleNode.getAttribute("data-id")
+    var searchData = {
+      customerId: customerId,
+      productIds: [id]
+    }
+
+    if (customerId) {
+      postData("customerCollectionProduct/selectProductIsCollection", searchData)
+        .then(res => {
+          if (res.success) {
+            console.log(res.data);
+            this.elements.addColleNode.parentElement.style.display = 'flex'
+              if (res.data[0].isCollection) { 
+                  this.elements.addColleNode.style.display = 'none'
+                  this.elements.removeColleNode.style.display = "block"
+              } else {
+                this.elements.addColleNode.style.display = 'block'
+                this.elements.removeColleNode.style.display = "none"
+              }
+          }
+        });
+    } else {
+        this.elements.removeColleNode.style.display = 'block'
+        this.elements.removeColleNode.parentElement.style.display = 'flex'
+    }
   }
 
   handleColorSelector = (e) => {
@@ -1015,6 +1141,7 @@ class ProductItem extends HTMLElement {
       // }
     }
   }
+
   handleColorActive() {
     let activeEl = this.elements.colorSelector && this.elements.colorSelector.querySelector('.color--active')
     activeEl && activeEl.classList.remove('color--active')
@@ -1029,6 +1156,95 @@ class ProductItem extends HTMLElement {
         imgList[i].parentElement.classList.add('color--active')
         return true
       }
+    }
+  }
+  handleQuickView() {
+    document.querySelector('.view-inner').style.animation = "myOpacity0 .3s"
+    const url = this.getAttribute('data-product-url').split("?")[0];
+    fetch("".concat(url, "?view=quick-view"), {
+      credentials: 'same-origin',
+      method: 'GET'
+    }).then(function (response) {
+      response.text().then(function (content) {
+        document.querySelector('.view-inner').insertAdjacentHTML('beforeEnd', content);
+        document.querySelector(".openQuickView").style.display = "block"
+        bodyScroll()
+      });
+    });
+  }
+
+  handleRemove() {
+    if (customerId) {
+      const newTime = Date.parse(new Date())
+      if (newTime - this.timer < 2000) {
+        return
+      }
+      this.timer = newTime
+      var collectData = {
+        customerId: customerId,
+        productId: this.getAttribute('data-id'),
+        productSpu: this.getAttribute('data-spu')
+      }
+      postData("customerCollectionProduct/collectionProduct", collectData)
+        .then(res => {
+          if (res.success) {
+            this.style.display = 'none'
+            this.previousElementSibling.style.display = "block"
+            // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
+            const text = document.querySelector(".header__icon--collect span").innerText
+            if (+(text) - 1 === 0) {
+              document.querySelector(".header__icon--collect span").innerText = ""
+              document.querySelector(".header__icon--collect span").style.display = "none"
+              return
+            }
+            document.querySelector(".header__icon--collect span").innerText = +(text) - 1
+          }
+        });
+    } else {
+      document.querySelector(".ld-dialog").style.display = "block"
+      document.querySelector(".mask").style.display = "block"
+      document.querySelector(".ld-hint").style.display = "block"
+      setTimeout(() => {
+        document.querySelector(".ld-hint").style.display = "none"
+      }, 2000)
+    }
+  }
+
+  handleAdd() {
+    if (customerId) {
+      const newTime = Date.parse(new Date())
+      if (newTime - this.timer < 2000) {
+        return
+      }
+      this.timer = newTime
+      var collectData = {
+        customerId: customerId,
+        productId: this.getAttribute('data-id'),
+        productSpu: this.getAttribute('data-spu')
+      }
+
+      postData("customerCollectionProduct/collectionProduct", collectData)
+        .then(res => {
+          if (res.success) {
+            this.style.display = 'none'
+            this.nextElementSibling.style.display = "block"
+            // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) + 1
+            const text = document.querySelector(".header__icon--collect span").innerText
+            if (!text) {
+              document.querySelector(".header__icon--collect span").innerText = 1
+              document.querySelector(".header__icon--collect span").style.display = "flex"
+              return
+            }
+            document.querySelector(".header__icon--collect span").innerText = +(text) + 1
+          }
+        });
+    } else {
+      document.querySelector(".ld-dialog").style.display = "block"
+      document.querySelector(".mask").style.display = "block"
+      document.querySelector(".ld-hint").style.display = "block"
+      setTimeout(() => {
+        document.querySelector(".ld-hint").style.display = "none"
+      }, 2000)
     }
   }
 }

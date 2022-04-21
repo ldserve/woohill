@@ -361,6 +361,7 @@
     </div>
   </div>
   <script>
+    let customerId= "{{ customer.id}}" 
     if (location.href.indexOf("account/login") !== -1) {
       document.querySelector("body").removeChild(document.querySelector(".ld-dialog"))
     }
@@ -385,126 +386,126 @@
       });
       return response.json();
     }
-    var timer = 0
-    function removeCollect(item) {
-      if ("{{ customer.id}}") {
-        const newTime = Date.parse(new Date())
-        if (newTime - timer < 2000) {
-          return
-        }
-        timer = newTime
-        var collectData = {
-          customerId: "{{ customer.id}}",
-          productId: item.getAttribute('data-id'),
-          productSpu: item.getAttribute('data-spu')
-        }
-        postData("customerCollectionProduct/collectionProduct", collectData)
-          .then(res => {
-            if (res.success) {
-              item.style.display = 'none'
-              item.previousElementSibling.style.display = "block"
-              // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
-              const text = document.querySelector(".header__icon--collect span").innerText
-              if (+(text) - 1 === 0) {
-                document.querySelector(".header__icon--collect span").innerText = ""
-                document.querySelector(".header__icon--collect span").style.display = "none"
-                return
-              }
-              document.querySelector(".header__icon--collect span").innerText = +(text) - 1
-            }
-          });
-      } else {
-        document.querySelector(".ld-dialog").style.display = "block"
-        document.querySelector(".mask").style.display = "block"
-        document.querySelector(".ld-hint").style.display = "block"
-        setTimeout(() => {
-          document.querySelector(".ld-hint").style.display = "none"
-        }, 2000)
-      }
-    }
-    function addCollect(item) {
-      if ("{{ customer.id}}") {
-        const newTime = Date.parse(new Date())
-        if (newTime - timer < 2000) {
-          return
-        }
-        timer = newTime
-        var collectData = {
-          customerId: "{{ customer.id}}",
-          productId: item.getAttribute('data-id'),
-          productSpu: item.getAttribute('data-spu')
-        }
+    // var timer = 0
+    // function removeCollect(item) {
+    //   if ("{{ customer.id}}") {
+    //     const newTime = Date.parse(new Date())
+    //     if (newTime - timer < 2000) {
+    //       return
+    //     }
+    //     timer = newTime
+    //     var collectData = {
+    //       customerId: "{{ customer.id}}",
+    //       productId: item.getAttribute('data-id'),
+    //       productSpu: item.getAttribute('data-spu')
+    //     }
+    //     postData("customerCollectionProduct/collectionProduct", collectData)
+    //       .then(res => {
+    //         if (res.success) {
+    //           item.style.display = 'none'
+    //           item.previousElementSibling.style.display = "block"
+    //           // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
+    //           const text = document.querySelector(".header__icon--collect span").innerText
+    //           if (+(text) - 1 === 0) {
+    //             document.querySelector(".header__icon--collect span").innerText = ""
+    //             document.querySelector(".header__icon--collect span").style.display = "none"
+    //             return
+    //           }
+    //           document.querySelector(".header__icon--collect span").innerText = +(text) - 1
+    //         }
+    //       });
+    //   } else {
+    //     document.querySelector(".ld-dialog").style.display = "block"
+    //     document.querySelector(".mask").style.display = "block"
+    //     document.querySelector(".ld-hint").style.display = "block"
+    //     setTimeout(() => {
+    //       document.querySelector(".ld-hint").style.display = "none"
+    //     }, 2000)
+    //   }
+    // }
+    // function addCollect(item) {
+    //   if ("{{ customer.id}}") {
+    //     const newTime = Date.parse(new Date())
+    //     if (newTime - timer < 2000) {
+    //       return
+    //     }
+    //     timer = newTime
+    //     var collectData = {
+    //       customerId: "{{ customer.id}}",
+    //       productId: item.getAttribute('data-id'),
+    //       productSpu: item.getAttribute('data-spu')
+    //     }
 
-        postData("customerCollectionProduct/collectionProduct", collectData)
-          .then(res => {
-            if (res.success) {
-              item.style.display = 'none'
-              item.nextElementSibling.style.display = "block"
-              // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) + 1
-              const text = document.querySelector(".header__icon--collect span").innerText
-              if (!text) {
-                document.querySelector(".header__icon--collect span").innerText = 1
-                document.querySelector(".header__icon--collect span").style.display = "flex"
-                return
-              }
-              document.querySelector(".header__icon--collect span").innerText = +(text) + 1
-            }
-          });
-      } else {
-        document.querySelector(".ld-dialog").style.display = "block"
-        document.querySelector(".mask").style.display = "block"
-        document.querySelector(".ld-hint").style.display = "block"
-        setTimeout(() => {
-          document.querySelector(".ld-hint").style.display = "none"
-        }, 2000)
-      }
-    }
-    function getCollectNode() {
-      var addNodes = document.querySelectorAll('.remove-collect')
-      var removeNodes = document.querySelectorAll('.add-collect')
-      var ids = []
-      removeNodes.forEach(item => {
-        ids.push(item.getAttribute("data-id"))
-      })
-      var searchData = {
-        customerId: "{{ customer.id}}",
-        productIds: ids
-      }
+    //     postData("customerCollectionProduct/collectionProduct", collectData)
+    //       .then(res => {
+    //         if (res.success) {
+    //           item.style.display = 'none'
+    //           item.nextElementSibling.style.display = "block"
+    //           // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) + 1
+    //           const text = document.querySelector(".header__icon--collect span").innerText
+    //           if (!text) {
+    //             document.querySelector(".header__icon--collect span").innerText = 1
+    //             document.querySelector(".header__icon--collect span").style.display = "flex"
+    //             return
+    //           }
+    //           document.querySelector(".header__icon--collect span").innerText = +(text) + 1
+    //         }
+    //       });
+    //   } else {
+    //     document.querySelector(".ld-dialog").style.display = "block"
+    //     document.querySelector(".mask").style.display = "block"
+    //     document.querySelector(".ld-hint").style.display = "block"
+    //     setTimeout(() => {
+    //       document.querySelector(".ld-hint").style.display = "none"
+    //     }, 2000)
+    //   }
+    // }
+    // function getCollectNode() {
+    //   var addNodes = document.querySelectorAll('.remove-collect')
+    //   var removeNodes = document.querySelectorAll('.add-collect')
+    //   var ids = []
+    //   removeNodes.forEach(item => {
+    //     ids.push(item.getAttribute("data-id"))
+    //   })
+    //   var searchData = {
+    //     customerId: "{{ customer.id}}",
+    //     productIds: ids
+    //   }
 
-      if ("{{ customer.id}}") {
-        postData("customerCollectionProduct/selectProductIsCollection", searchData)
-          .then(res => {
-            if (res.success) {
-              res.data.forEach(i => {
-                if (i.isCollection) {
-                  addNodes.forEach(item => {
-                    var id = item.getAttribute("data-id")
-                    item.parentElement.style.display = 'flex'
-                    if (id === i.productId) {
-                      item.style.display = 'none'
-                      item.nextElementSibling.style.display = "block"
-                    }
-                  })
-                } else {
-                  removeNodes.forEach(item => {
-                    item.parentElement.style.display = 'flex'
-                    var id = item.getAttribute("data-id")
-                    if (id === i.productId) {
-                      item.style.display = 'none'
-                      item.previousElementSibling.style.display = "block"
-                    }
-                  })
-                }
-              })
-            }
-          });
-      } else {
-        addNodes.forEach(i => {
-          i.style.display = 'block'
-          i.parentElement.style.display = 'flex'
-        })
-      }
-    }
+    //   if ("{{ customer.id}}") {
+    //     postData("customerCollectionProduct/selectProductIsCollection", searchData)
+    //       .then(res => {
+    //         if (res.success) {
+    //           res.data.forEach(i => {
+    //             if (i.isCollection) {
+    //               addNodes.forEach(item => {
+    //                 var id = item.getAttribute("data-id")
+    //                 item.parentElement.style.display = 'flex'
+    //                 if (id === i.productId) {
+    //                   item.style.display = 'none'
+    //                   item.nextElementSibling.style.display = "block"
+    //                 }
+    //               })
+    //             } else {
+    //               removeNodes.forEach(item => {
+    //                 item.parentElement.style.display = 'flex'
+    //                 var id = item.getAttribute("data-id")
+    //                 if (id === i.productId) {
+    //                   item.style.display = 'none'
+    //                   item.previousElementSibling.style.display = "block"
+    //                 }
+    //               })
+    //             }
+    //           })
+    //         }
+    //       });
+    //   } else {
+    //     addNodes.forEach(i => {
+    //       i.style.display = 'block'
+    //       i.parentElement.style.display = 'flex'
+    //     })
+    //   }
+    // }
 
     function getCollectNumber() {
       const collectList = {
@@ -522,9 +523,7 @@
     if ("{{ customer.id}}") {
       getCollectNumber()
     }
-    window.onload = () => {
-      getCollectNode()
-    }
+
     var dialogNav = document.querySelector(".dialog-header-nav")
     var dialogLogin = document.querySelector(".ld-dialog .customer.login")
     var dialogRegister = document.querySelector(".ld-dialog .customer.register")

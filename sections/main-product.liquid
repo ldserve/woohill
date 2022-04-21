@@ -222,7 +222,7 @@
       </media-gallery>
     </div>
   {%- endif -%}
-    <div class="product__info-wrapper grid__item">
+    <product-detail class="product__info-wrapper grid__item">
       <div id="ProductInfo-{{ section.id }}"
            class="product__info-container{% if section.settings.enable_sticky_info %} product__info-container--sticky{% endif %}">
         {%- assign product_form_id = 'product-form-' | append: section.id -%}
@@ -657,7 +657,7 @@
         </a>
       </div>
       {%- endif -%}
-    </div>
+    </product-detail>
   </div>
 
   <product-modal id="ProductModal-{{ section.id }}" class="aaa product-media-modal media-modal">

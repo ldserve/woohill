@@ -37,12 +37,10 @@ class DetailsModal extends HTMLElement {
   }
 
   open(event) {
-    console.log("open");
     this.onBodyClickEvent =
       this.onBodyClickEvent || this.onBodyClick.bind(this);
     event.target.closest('details').setAttribute('open', true);
     document.body.addEventListener('click', this.onBodyClickEvent);    
-    console.log("open",11111);
     document.body.classList.add('overflow-hidden');
 
     trapFocus(
