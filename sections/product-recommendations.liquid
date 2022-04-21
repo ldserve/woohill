@@ -59,6 +59,7 @@
             if (recommendations && recommendations.innerHTML.trim().length) {
               this.innerHTML = recommendations.innerHTML;
             }
+            quickView()
           })
           .catch(e => {
             console.error(e);

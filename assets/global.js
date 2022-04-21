@@ -28,11 +28,11 @@ document.querySelectorAll('nav [id^="Details-"] summary').forEach((summary) => {
     summary.setAttribute('aria-controls', summary.nextElementSibling.id);
   }
 
-  summary.addEventListener('mouseenter',(event)=>{
+  summary.addEventListener('mouseenter', (event) => {
     document.querySelectorAll('nav [id^="Details-"] summary').forEach((ele) => {
       ele.setAttribute('aria-expanded', 'false');
       ele.parentElement.closest('details').removeAttribute('open');
-    })    
+    })
     event.currentTarget.setAttribute('aria-expanded', true);
     event.currentTarget.closest('details').setAttribute('open', true);
   })
@@ -40,11 +40,11 @@ document.querySelectorAll('nav [id^="Details-"] summary').forEach((summary) => {
   summary.parentElement.addEventListener('keyup', onKeyUpEscape);
 });
 document.querySelectorAll('li>a.header__menu-item').forEach((ele) => {
-  ele.addEventListener('mouseenter',(event)=>{
+  ele.addEventListener('mouseenter', (event) => {
     document.querySelectorAll('nav [id^="Details-"] summary').forEach((summary) => {
       summary.setAttribute('aria-expanded', 'false');
       summary.parentElement.closest('details').removeAttribute('open');
-    })    
+    })
   })
 })
 const trapFocusHandlers = {};
@@ -148,24 +148,53 @@ function removeTrapFocus(elementToFocus = null) {
 
   if (elementToFocus) elementToFocus.focus();
 }
-function openQuickView(){
-  const MainContent = document.querySelector("#MainContent");
-  MainContent.onclick = function (e) {
-      e = e || window.event; //这一行及下一行是为兼容IE8及以下版本
-      var target = e.target || e.srcElement;
-      if (target.className.animVal&&target.className.animVal.toLowerCase() === "ny-icon-cart") {
-        fetch("".concat(target.getAttribute('data-product-url'), "?view=quick-view"), {
-          credentials: 'same-origin',
-          method: 'GET'
-      }).then(function (response) {
-        response.text().then(function (content) {
-            document.querySelector('.view-inner').innerHTML = content;
-        });
+
+function quickView() {
+  const cartNodes = document.querySelectorAll(".ny-icon")
+
+  cartNodes.forEach((target) => {
+    target.onclick = () => {
+      document.querySelector('.view-inner').style.animation = "myOpacity0 .3s"
+      openQuickView(target)
+    }
+  })
+}
+
+document.querySelector(".openQuickView").addEventListener("click", (e) => {
+  e = e || window.event;
+  var target = e.target;
+  if (target.className === "quickView" || target.className === "openQuickView" || target.className.animVal === "closeQuickView") {
+    document.querySelector('.view-inner').style.animation = "myOpacity1 .3s"
+    setTimeout(() => {
+      document.querySelector(".openQuickView").style.display = "none"
+      document.querySelector('.view-inner').innerHTML = ""
+      bodyScroll()
+    }, 300)
+  }
+})
+
+function openQuickView(target) {
+  const url = target.getAttribute('data-product-url').split("?")[0];
+  fetch("".concat(url, "?view=quick-view"), {
+    credentials: 'same-origin',
+    method: 'GET'
+  }).then(function (response) {
+    response.text().then(function (content) {
+      document.querySelector('.view-inner').innerHTML = content
+      document.querySelector(".openQuickView").style.display = "block"
+      bodyScroll()
     });
-      }
+  });
+}
+quickView()
+function bodyScroll() {
+  const nodeStyle = document.querySelector("body").style.overflow
+  if (nodeStyle == "hidden") {
+    document.querySelector("body").style.overflow = "auto"
+  } else {
+    document.querySelector("body").style.overflow = "hidden"
   }
 }
-openQuickView()
 function onKeyUpEscape(event) {
   if (event.code.toUpperCase() !== 'ESCAPE') return;
 
@@ -819,9 +848,10 @@ class VariantSelects extends HTMLElement {
       document.querySelectorAll(".product-form__selected-value")[1].innerText = this.currentVariant.option2
     }
     if (this.currentVariant.featured_media.alt) {
-      console.log(this.currentVariant.featured_media.preview_image.src,mediaGallery);
-      if(!mediaGallery){
-        
+      console.log(this.currentVariant.featured_media.preview_image.src, mediaGallery);
+      if (!mediaGallery) {
+        document.querySelector(".ny-product-img").src = this.currentVariant.featured_media.preview_image.src
+        return
       }
       mediaGallery.setActiveMedia(`${this.dataset.section}-${this.currentVariant.featured_media.alt}`, null, true);
     } else {
@@ -1031,7 +1061,7 @@ if (!customElements.get('pickup-availability')) {
     constructor() {
       super();
 
-      if(!this.hasAttribute('available')) return;
+      if (!this.hasAttribute('available')) return;
 
       this.errorHtml = this.querySelector('template').content.firstElementChild.cloneNode(true);
       this.onClickRefreshList = this.onClickRefreshList.bind(this);
@@ -1105,7 +1135,7 @@ if (!customElements.get('pickup-availability-drawer')) {
       });
 
       this.addEventListener('keyup', () => {
-        if(event.code.toUpperCase() === 'ESCAPE') this.hide();
+        if (event.code.toUpperCase() === 'ESCAPE') this.hide();
       });
     }
 

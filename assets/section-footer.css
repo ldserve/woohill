@@ -431,6 +431,7 @@ noscript .localization-selector.link {
 
   .footer-block__details-content>li:not(:last-child) {
     margin-right: 1.5rem;
+    box-shadow: 0cm ;
   }
 }
 

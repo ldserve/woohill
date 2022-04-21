@@ -189,14 +189,11 @@
     font-weight: var(--font-body-weight);
     }
     .ld-dialog {
-    display:none;
-    width: 60%;
-    margin: 12% 20%;
-    position: fixed;
-    z-index: 99;
     background: #fff;
-    box-shadow:0 4px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
-    border-radius:5px;
+    margin: 0 auto;
+    animation:myOpacity0 .5s;
+    -webkit-animation:myOpacity0 .5s;
+    width: 900px;
     }
     .ld-dialog-body{
     display: flex;
@@ -228,15 +225,7 @@
     top: 5px;
     right: 8px;
     }
-    .mask{
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(0,0,0,0.5);
-    z-index:98;
-    }
+
     .ld-dialog .create_account{
     display:none;
     }
@@ -327,27 +316,7 @@
   <ul hidden>
     <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
   </ul>
-  <div class="ld-dialog">
-    <div class="ld-dialog-off" onclick="ldClose()">
-      <svg t="1644921460319" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-        p-id="4679" width="32" height="32">
-        <path
-          d="M550.848 502.496l308.64-308.896a31.968 31.968 0 1 0-45.248-45.248l-308.608 308.896-308.64-308.928a31.968 31.968 0 1 0-45.248 45.248l308.64 308.896-308.64 308.896a31.968 31.968 0 1 0 45.248 45.248l308.64-308.896 308.608 308.896a31.968 31.968 0 1 0 45.248-45.248l-308.64-308.864z"
-          fill="#ccc" p-id="4680"></path>
-      </svg>
-    </div>
-    <div class="ld-dialog-header">
-      <h1 class="dialog-header-title">WOOHILL</h1>
-      <div class="dialog-header-nav">
-        <div class="dialog-active" onclick="toggleDialog('login')">LOGIN</div>
-        <div onclick="toggleDialog('greate')">GREATE ACCOUNT</div>
-      </div>
-    </div>
-    <div class="ld-dialog-body">
-      {% render 'login' %}
-      {% render 'register' %}
-    </div>
-  </div>
+
   <div class="ld-hint">
     <svg t="1645077288608" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
       p-id="2020" width="20" height="20">
@@ -357,13 +326,37 @@
     </svg>
     Please log in first
   </div>
-  <div class="mask"></div>
   {%- render 'cart-notification'-%}
   <div class="body_mask"></div>
   <div class="openQuickView">
     <div class="quickView">
       <div class="view-inner">
-        
+
+      </div>
+    </div>
+  </div>
+  <div class="mask">
+    <div class="mask-inner">
+      <div class="ld-dialog">
+        <div class="ld-dialog-off" onclick="ldClose()">
+          <svg t="1644921460319" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+            p-id="4679" width="32" height="32">
+            <path
+              d="M550.848 502.496l308.64-308.896a31.968 31.968 0 1 0-45.248-45.248l-308.608 308.896-308.64-308.928a31.968 31.968 0 1 0-45.248 45.248l308.64 308.896-308.64 308.896a31.968 31.968 0 1 0 45.248 45.248l308.64-308.896 308.608 308.896a31.968 31.968 0 1 0 45.248-45.248l-308.64-308.864z"
+              fill="#ccc" p-id="4680"></path>
+          </svg>
+        </div>
+        <div class="ld-dialog-header">
+          <h1 class="dialog-header-title">WOOHILL</h1>
+          <div class="dialog-header-nav">
+            <div class="dialog-active" onclick="toggleDialog('login')">LOGIN</div>
+            <div onclick="toggleDialog('greate')">GREATE ACCOUNT</div>
+          </div>
+        </div>
+        <div class="ld-dialog-body">
+          {% render 'login' %}
+          {% render 'register' %}
+        </div>
       </div>
     </div>
   </div>
@@ -412,11 +405,12 @@
               item.previousElementSibling.style.display = "block"
               // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
               const text = document.querySelector(".header__icon--collect span").innerText
-              if (+(text)-1===0) {
-                document.querySelector(".header__icon--collect span").innerText=""
-                document.querySelector(".header__icon--collect span").style.display="none"
+              if (+(text) - 1 === 0) {
+                document.querySelector(".header__icon--collect span").innerText = ""
+                document.querySelector(".header__icon--collect span").style.display = "none"
                 return
               }
+              document.querySelector(".header__icon--collect span").innerText = +(text) - 1
             }
           });
       } else {
@@ -449,8 +443,8 @@
               // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) + 1
               const text = document.querySelector(".header__icon--collect span").innerText
               if (!text) {
-                document.querySelector(".header__icon--collect span").innerText=1
-                document.querySelector(".header__icon--collect span").style.display="flex"
+                document.querySelector(".header__icon--collect span").innerText = 1
+                document.querySelector(".header__icon--collect span").style.display = "flex"
                 return
               }
               document.querySelector(".header__icon--collect span").innerText = +(text) + 1
