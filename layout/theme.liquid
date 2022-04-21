@@ -194,6 +194,7 @@
     animation:myOpacity0 .5s;
     -webkit-animation:myOpacity0 .5s;
     width: 900px;
+    position: relative;
     }
     .ld-dialog-body{
     display: flex;
@@ -338,13 +339,8 @@
   <div class="mask">
     <div class="mask-inner">
       <div class="ld-dialog">
-        <div class="ld-dialog-off" onclick="ldClose()">
-          <svg t="1644921460319" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-            p-id="4679" width="32" height="32">
-            <path
-              d="M550.848 502.496l308.64-308.896a31.968 31.968 0 1 0-45.248-45.248l-308.608 308.896-308.64-308.928a31.968 31.968 0 1 0-45.248 45.248l308.64 308.896-308.64 308.896a31.968 31.968 0 1 0 45.248 45.248l308.64-308.896 308.608 308.896a31.968 31.968 0 1 0 45.248-45.248l-308.64-308.864z"
-              fill="#ccc" p-id="4680"></path>
-          </svg>
+        <div class="ld-dialog-off">
+          {%- render 'icon-off' -%}
         </div>
         <div class="ld-dialog-header">
           <h1 class="dialog-header-title">WOOHILL</h1>
@@ -361,14 +357,11 @@
     </div>
   </div>
   <script>
-    let customerId= "{{ customer.id}}" 
+    const customerId= "{{ customer.id}}" 
     if (location.href.indexOf("account/login") !== -1) {
       document.querySelector("body").removeChild(document.querySelector(".ld-dialog"))
     }
-    function ldClose() {
-      document.querySelector(".ld-dialog").style.display = "none"
-      document.querySelector(".mask").style.display = "none"
-    }
+
     async function postData(url, data) {
       const response = await fetch(`https://api-dev.leandow-technology.com/api/${url}`, {
         method: 'POST',
@@ -386,126 +379,6 @@
       });
       return response.json();
     }
-    // var timer = 0
-    // function removeCollect(item) {
-    //   if ("{{ customer.id}}") {
-    //     const newTime = Date.parse(new Date())
-    //     if (newTime - timer < 2000) {
-    //       return
-    //     }
-    //     timer = newTime
-    //     var collectData = {
-    //       customerId: "{{ customer.id}}",
-    //       productId: item.getAttribute('data-id'),
-    //       productSpu: item.getAttribute('data-spu')
-    //     }
-    //     postData("customerCollectionProduct/collectionProduct", collectData)
-    //       .then(res => {
-    //         if (res.success) {
-    //           item.style.display = 'none'
-    //           item.previousElementSibling.style.display = "block"
-    //           // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
-    //           const text = document.querySelector(".header__icon--collect span").innerText
-    //           if (+(text) - 1 === 0) {
-    //             document.querySelector(".header__icon--collect span").innerText = ""
-    //             document.querySelector(".header__icon--collect span").style.display = "none"
-    //             return
-    //           }
-    //           document.querySelector(".header__icon--collect span").innerText = +(text) - 1
-    //         }
-    //       });
-    //   } else {
-    //     document.querySelector(".ld-dialog").style.display = "block"
-    //     document.querySelector(".mask").style.display = "block"
-    //     document.querySelector(".ld-hint").style.display = "block"
-    //     setTimeout(() => {
-    //       document.querySelector(".ld-hint").style.display = "none"
-    //     }, 2000)
-    //   }
-    // }
-    // function addCollect(item) {
-    //   if ("{{ customer.id}}") {
-    //     const newTime = Date.parse(new Date())
-    //     if (newTime - timer < 2000) {
-    //       return
-    //     }
-    //     timer = newTime
-    //     var collectData = {
-    //       customerId: "{{ customer.id}}",
-    //       productId: item.getAttribute('data-id'),
-    //       productSpu: item.getAttribute('data-spu')
-    //     }
-
-    //     postData("customerCollectionProduct/collectionProduct", collectData)
-    //       .then(res => {
-    //         if (res.success) {
-    //           item.style.display = 'none'
-    //           item.nextElementSibling.style.display = "block"
-    //           // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) + 1
-    //           const text = document.querySelector(".header__icon--collect span").innerText
-    //           if (!text) {
-    //             document.querySelector(".header__icon--collect span").innerText = 1
-    //             document.querySelector(".header__icon--collect span").style.display = "flex"
-    //             return
-    //           }
-    //           document.querySelector(".header__icon--collect span").innerText = +(text) + 1
-    //         }
-    //       });
-    //   } else {
-    //     document.querySelector(".ld-dialog").style.display = "block"
-    //     document.querySelector(".mask").style.display = "block"
-    //     document.querySelector(".ld-hint").style.display = "block"
-    //     setTimeout(() => {
-    //       document.querySelector(".ld-hint").style.display = "none"
-    //     }, 2000)
-    //   }
-    // }
-    // function getCollectNode() {
-    //   var addNodes = document.querySelectorAll('.remove-collect')
-    //   var removeNodes = document.querySelectorAll('.add-collect')
-    //   var ids = []
-    //   removeNodes.forEach(item => {
-    //     ids.push(item.getAttribute("data-id"))
-    //   })
-    //   var searchData = {
-    //     customerId: "{{ customer.id}}",
-    //     productIds: ids
-    //   }
-
-    //   if ("{{ customer.id}}") {
-    //     postData("customerCollectionProduct/selectProductIsCollection", searchData)
-    //       .then(res => {
-    //         if (res.success) {
-    //           res.data.forEach(i => {
-    //             if (i.isCollection) {
-    //               addNodes.forEach(item => {
-    //                 var id = item.getAttribute("data-id")
-    //                 item.parentElement.style.display = 'flex'
-    //                 if (id === i.productId) {
-    //                   item.style.display = 'none'
-    //                   item.nextElementSibling.style.display = "block"
-    //                 }
-    //               })
-    //             } else {
-    //               removeNodes.forEach(item => {
-    //                 item.parentElement.style.display = 'flex'
-    //                 var id = item.getAttribute("data-id")
-    //                 if (id === i.productId) {
-    //                   item.style.display = 'none'
-    //                   item.previousElementSibling.style.display = "block"
-    //                 }
-    //               })
-    //             }
-    //           })
-    //         }
-    //       });
-    //   } else {
-    //     addNodes.forEach(i => {
-    //       i.style.display = 'block'
-    //       i.parentElement.style.display = 'flex'
-    //     })
-    //   }
-    // }
 
     function getCollectNumber() {
       const collectList = {

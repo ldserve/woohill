@@ -14,6 +14,7 @@ class CartNotification extends HTMLElement {
   }
 
   open() {
+    document.querySelector("body").style.overflow = "hidden"
     this.notification.classList.add('animate', 'active');
     document.querySelector(".body_mask").classList.add('active');
     this.notification.addEventListener('transitionend', () => {
@@ -24,6 +25,7 @@ class CartNotification extends HTMLElement {
   }
 
   close() {
+    document.querySelector("body").style.overflow = "auto"
     this.notification.classList.remove('active');
     document.querySelector(".body_mask").classList.remove('active');
     document.body.removeEventListener('click', this.onBodyClick);

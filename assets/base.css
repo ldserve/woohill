@@ -3321,6 +3321,7 @@ a.sign-button {
   width: 500px;
   background: #fff;
   margin: 0 auto;
+  height: 520px;
 }
 
 @keyframes myOpacity0 {

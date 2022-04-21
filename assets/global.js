@@ -148,6 +148,7 @@ function removeTrapFocus(elementToFocus = null) {
 
   if (elementToFocus) elementToFocus.focus();
 }
+
 document.querySelector(".openQuickView").addEventListener("click", (e) => {
   e = e || window.event;
   var target = e.target;
@@ -156,6 +157,18 @@ document.querySelector(".openQuickView").addEventListener("click", (e) => {
     setTimeout(() => {
       document.querySelector(".openQuickView").style.display = "none"
       document.querySelector('.view-inner').innerHTML = ""
+      bodyScroll()
+    }, 300)
+  }
+})
+
+document.querySelector(".mask").addEventListener("click", (e) => {
+  e = e || window.event;
+  var target = e.target;
+  if (target.className === "mask" || target.className === "mask-inner" || target.className.animVal === "closeQuickView") {
+    document.querySelector('.ld-dialog').style.animation = "myOpacity1 .3s"
+    setTimeout(() => {
+      document.querySelector(".mask").style.display = "none"
       bodyScroll()
     }, 300)
   }
@@ -961,7 +974,7 @@ class ProductDetail extends HTMLElement {
     this.elements.removeColleNode && this.elements.removeColleNode.addEventListener('click', this.handleAdd)
   }
   onload() {
-    const id=this.elements.removeColleNode.getAttribute("data-id")
+    const id = this.elements.removeColleNode.getAttribute("data-id")
     var searchData = {
       customerId: customerId,
       productIds: [id]
@@ -971,58 +984,48 @@ class ProductDetail extends HTMLElement {
       postData("customerCollectionProduct/selectProductIsCollection", searchData)
         .then(res => {
           if (res.success) {
-            console.log(res.data);
             this.elements.addColleNode.parentElement.style.display = 'flex'
-              if (res.data[0].isCollection) { 
-                  this.elements.addColleNode.style.display = 'none'
-                  this.elements.removeColleNode.style.display = "block"
-              } else {
-                this.elements.addColleNode.style.display = 'block'
-                this.elements.removeColleNode.style.display = "none"
-              }
+            if (res.data[0].isCollection) {
+              this.elements.addColleNode.style.display = 'block'
+              this.elements.removeColleNode.style.display = "none"
+            } else {
+              this.elements.addColleNode.style.display = 'none'
+              this.elements.removeColleNode.style.display = "block"
+            }
           }
         });
     } else {
-        this.elements.removeColleNode.style.display = 'block'
-        this.elements.removeColleNode.parentElement.style.display = 'flex'
+      this.elements.removeColleNode.style.display = 'block'
+      this.elements.removeColleNode.parentElement.style.display = 'flex'
     }
   }
 
   handleRemove() {
-    if (customerId) {
-      const newTime = Date.parse(new Date())
-      if (newTime - this.timer < 2000) {
-        return
-      }
-      this.timer = newTime
-      var collectData = {
-        customerId: customerId,
-        productId: this.getAttribute('data-id'),
-        productSpu: this.getAttribute('data-spu')
-      }
-      postData("customerCollectionProduct/collectionProduct", collectData)
-        .then(res => {
-          if (res.success) {
-            this.style.display = 'none'
-            this.previousElementSibling.style.display = "block"
-            // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
-            const text = document.querySelector(".header__icon--collect span").innerText
-            if (+(text) - 1 === 0) {
-              document.querySelector(".header__icon--collect span").innerText = ""
-              document.querySelector(".header__icon--collect span").style.display = "none"
-              return
-            }
-            document.querySelector(".header__icon--collect span").innerText = +(text) - 1
-          }
-        });
-    } else {
-      document.querySelector(".ld-dialog").style.display = "block"
-      document.querySelector(".mask").style.display = "block"
-      document.querySelector(".ld-hint").style.display = "block"
-      setTimeout(() => {
-        document.querySelector(".ld-hint").style.display = "none"
-      }, 2000)
+    const newTime = Date.parse(new Date())
+    if (newTime - this.timer < 2000) {
+      return
     }
+    this.timer = newTime
+    var collectData = {
+      customerId: customerId,
+      productId: this.getAttribute('data-id'),
+      productSpu: this.getAttribute('data-spu')
+    }
+    postData("customerCollectionProduct/collectionProduct", collectData)
+      .then(res => {
+        if (res.success) {
+          this.style.display = 'none'
+          this.previousElementSibling.style.display = "block"
+          // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
+          const text = document.querySelector(".header__icon--collect span").innerText
+          if (+(text) - 1 === 0) {
+            document.querySelector(".header__icon--collect span").innerText = ""
+            document.querySelector(".header__icon--collect span").style.display = "none"
+            return
+          }
+          document.querySelector(".header__icon--collect span").innerText = +(text) - 1
+        }
+      });
   }
 
   handleAdd() {
@@ -1054,9 +1057,10 @@ class ProductDetail extends HTMLElement {
           }
         });
     } else {
-      document.querySelector(".ld-dialog").style.display = "block"
+      document.querySelector('.ld-dialog').style.animation = "myOpacity0 .3s"
       document.querySelector(".mask").style.display = "block"
       document.querySelector(".ld-hint").style.display = "block"
+      bodyScroll()
       setTimeout(() => {
         document.querySelector(".ld-hint").style.display = "none"
       }, 2000)
@@ -1087,7 +1091,7 @@ class ProductItem extends HTMLElement {
     this.elements.removeColleNode && this.elements.removeColleNode.addEventListener('click', this.handleAdd)
   }
   onload() {
-    const id=this.elements.removeColleNode.getAttribute("data-id")
+    const id = this.elements.removeColleNode.getAttribute("data-id")
     var searchData = {
       customerId: customerId,
       productIds: [id]
@@ -1097,20 +1101,19 @@ class ProductItem extends HTMLElement {
       postData("customerCollectionProduct/selectProductIsCollection", searchData)
         .then(res => {
           if (res.success) {
-            console.log(res.data);
             this.elements.addColleNode.parentElement.style.display = 'flex'
-              if (res.data[0].isCollection) { 
-                  this.elements.addColleNode.style.display = 'none'
-                  this.elements.removeColleNode.style.display = "block"
-              } else {
-                this.elements.addColleNode.style.display = 'block'
-                this.elements.removeColleNode.style.display = "none"
-              }
+            if (res.data[0].isCollection) {
+              this.elements.addColleNode.style.display = 'block'
+              this.elements.removeColleNode.style.display = "none"
+            } else {
+              this.elements.addColleNode.style.display = 'none'
+              this.elements.removeColleNode.style.display = "block"
+            }
           }
         });
     } else {
-        this.elements.removeColleNode.style.display = 'block'
-        this.elements.removeColleNode.parentElement.style.display = 'flex'
+      this.elements.removeColleNode.style.display = 'block'
+      this.elements.removeColleNode.parentElement.style.display = 'flex'
     }
   }
 
@@ -1174,40 +1177,31 @@ class ProductItem extends HTMLElement {
   }
 
   handleRemove() {
-    if (customerId) {
-      const newTime = Date.parse(new Date())
-      if (newTime - this.timer < 2000) {
-        return
-      }
-      this.timer = newTime
-      var collectData = {
-        customerId: customerId,
-        productId: this.getAttribute('data-id'),
-        productSpu: this.getAttribute('data-spu')
-      }
-      postData("customerCollectionProduct/collectionProduct", collectData)
-        .then(res => {
-          if (res.success) {
-            this.style.display = 'none'
-            this.previousElementSibling.style.display = "block"
-            // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
-            const text = document.querySelector(".header__icon--collect span").innerText
-            if (+(text) - 1 === 0) {
-              document.querySelector(".header__icon--collect span").innerText = ""
-              document.querySelector(".header__icon--collect span").style.display = "none"
-              return
-            }
-            document.querySelector(".header__icon--collect span").innerText = +(text) - 1
-          }
-        });
-    } else {
-      document.querySelector(".ld-dialog").style.display = "block"
-      document.querySelector(".mask").style.display = "block"
-      document.querySelector(".ld-hint").style.display = "block"
-      setTimeout(() => {
-        document.querySelector(".ld-hint").style.display = "none"
-      }, 2000)
+    const newTime = Date.parse(new Date())
+    if (newTime - this.timer < 2000) {
+      return
     }
+    this.timer = newTime
+    var collectData = {
+      customerId: customerId,
+      productId: this.getAttribute('data-id'),
+      productSpu: this.getAttribute('data-spu')
+    }
+    postData("customerCollectionProduct/collectionProduct", collectData)
+      .then(res => {
+        if (res.success) {
+          this.style.display = 'none'
+          this.previousElementSibling.style.display = "block"
+          // item.parentElement.lastElementChild.innerText = +(item.parentElement.lastElementChild.innerText) - 1
+          const text = document.querySelector(".header__icon--collect span").innerText
+          if (+(text) - 1 === 0) {
+            document.querySelector(".header__icon--collect span").innerText = ""
+            document.querySelector(".header__icon--collect span").style.display = "none"
+            return
+          }
+          document.querySelector(".header__icon--collect span").innerText = +(text) - 1
+        }
+      });
   }
 
   handleAdd() {
@@ -1239,9 +1233,10 @@ class ProductItem extends HTMLElement {
           }
         });
     } else {
-      document.querySelector(".ld-dialog").style.display = "block"
+      document.querySelector('.ld-dialog').style.animation = "myOpacity0 .3s"
       document.querySelector(".mask").style.display = "block"
       document.querySelector(".ld-hint").style.display = "block"
+      bodyScroll()
       setTimeout(() => {
         document.querySelector(".ld-hint").style.display = "none"
       }, 2000)

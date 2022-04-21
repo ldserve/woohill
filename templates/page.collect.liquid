@@ -74,7 +74,6 @@
           .then((rs) => {
             let dom = new DOMParser().parseFromString(rs, 'text/html');
             document.querySelector('.collect').appendChild(dom.querySelector(".product-grid"))
-            getCollectNode()
             const removeNodes=document.querySelectorAll(".collect .add-collect")
             removeNodes.forEach((item,index)=>{
               item.addEventListener("click", () => {
