@@ -242,9 +242,9 @@
              <h2 class="product__title" {{ block.shopify_attributes }}>
                {{ product.title | escape }}
              </h2>
-             <div class="no-js-hidden price_left d-flex jcsb" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+             <div class="no-js-hidden price_left" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                <span>{%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}</span>
-               <span class="d-flex aic"><svg t="1649398957719" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="25854" width="32" height="32"><path d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z" fill="#FFD81A" p-id="25855"></path></svg>FREE DELIVERY for all products till May 1</span>
+               <span class="d-flex aic fz-12"><svg t="1649398957719" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="25854" width="32" height="32"><path d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z" fill="#FFD81A" p-id="25855"></path></svg>FREE DELIVERY for all products till May 1</span>
              </div>
              {% else %}
              <div class="quick-product-top d-flex">
@@ -261,9 +261,9 @@
                    {{ product.title | escape }}
                  </h2>
                
-                 <div class="no-js-hidden price_left d-flex jcsb" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                 <div class="no-js-hidden price_left" id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                    <span>{%- render 'price', product: product, use_variant: true, show_badges: true, price_class: 'price--large' -%}</span>
-                   <span class="d-flex aic"><svg t="1649398957719" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="25854" width="32" height="32"><path d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z" fill="#FFD81A" p-id="25855"></path></svg>FREE DELIVERY for all products till May 1</span>
+                   <span class="d-flex aic fz-12"><svg t="1649398957719" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="25854" width="32" height="32"><path d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z" fill="#FFD81A" p-id="25855"></path></svg>FREE DELIVERY for all products till May 1</span>
                  </div>
                </div>
              </div>
@@ -653,7 +653,18 @@
       <div>
         <a href="{{ product.url }}" class="viewfulldetails">
           View full details
-          <svg t="1649917569346" class="icon" style="margin-left: 10px;" viewBox="0 0 1448 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3169" width="26" height="26"><path d="M219.841419 471.024862h1143.760247v86.164763H219.841419zM19.45545 471.024862h121.790082v86.164763h-121.790082z" p-id="3170"></path><path d="M876.824943 84.594221l60.913963-60.913963 491.030775 491.030775-60.915683 60.912243z" p-id="3171"></path><path d="M876.79914 943.65467l491.041097-491.041097 60.915683 60.913964-491.042817 491.042816z" p-id="3172"></path></svg>
+          <svg t="1650878769039" class="icon" style="margin-left: 10px;" viewBox="0 0 1024 1024" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" p-id="10964" width="24" height="24">
+            <path
+              d="M913.408 506.294857a31.346939 31.346939 0 0 1 2.15249 41.963102l-2.15249 2.382368-292.571429 292.571428a31.346939 31.346939 0 0 1-46.477061-41.963102l2.15249-2.382367 292.571429-292.571429a31.346939 31.346939 0 0 1 44.324571 0z"
+              fill="#1b1b1b" p-id="10965"></path>
+            <path
+              d="M913.408 507.820408a31.346939 31.346939 0 0 1-41.942204 46.497959l-2.382367-2.152489-292.571429-292.571429a31.346939 31.346939 0 0 1 41.942204-46.477061l2.382367 2.15249 292.571429 292.571428z"
+              fill="#1b1b1b" p-id="10966"></path>
+            <path
+              d="M922.582204 528.049633a31.346939 31.346939 0 0 1-27.898775 31.576816l-3.030205 0.188082-752.32653 10.03102a31.346939 31.346939 0 0 1-3.845225-62.505796l3.009307-0.188082 752.32653-10.03102a31.346939 31.346939 0 0 1 31.764898 30.92898z"
+              fill="#1b1b1b" p-id="10967"></path>
+          </svg>        
         </a>
       </div>
       {%- endif -%}

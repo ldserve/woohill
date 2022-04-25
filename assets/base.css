@@ -2211,7 +2211,7 @@ input[type='checkbox'] {
   display: grid;
   grid-template-areas: 'left-icon heading icons';
   grid-template-columns: 1fr 2fr 1fr;
-  align-items: center;
+  align-items: end;
   padding: 10px 20px;
 }
 
@@ -2282,7 +2282,6 @@ input[type='checkbox'] {
 }
 
 .header__icon--cart {
-  position: relative;
   margin-right: 5px;
 }
 
@@ -2673,6 +2672,12 @@ details[open]>.header__icon--menu .icon-hamburger {
 }
 
 @media screen and (max-width: 749px) {
+  .header__icons{
+    margin-right: -1.2rem;
+  }
+  .header__icon{
+    margin-left: 0px;
+  }
   .content-container--full-width-mobile {
     border-left: none;
     border-right: none;
@@ -2704,9 +2709,6 @@ details[open]>.header__icon--menu .icon-hamburger {
   }
 
   .header__icon--cart {
-    position: relative;
-    top: 3px;
-    right: 0;
     justify-self: end;
   }
 
@@ -2764,10 +2766,6 @@ details[open]>.header__icon--menu .icon-hamburger {
     top: 0;
   }
 
-  .header__icon--account {
-    top: 3px;
-    position: relative;
-  }
 }
 
 .d-flex {
@@ -3283,9 +3281,7 @@ a.sign-button {
   transition: opacity 1s ease;
 }
 
-.card__media:hover .ld-collect {
-  opacity: 1;
-}
+
 
 .ld-collect .ld-collect-icon:hover {
   transform: scale(1);
@@ -3293,7 +3289,6 @@ a.sign-button {
 
 .ld-add-cart {
   display: flex;
-  justify-content: space-between;
 }
 
 .ld-add-cart .ld-collect {
@@ -3321,7 +3316,8 @@ a.sign-button {
   width: 500px;
   background: #fff;
   margin: 0 auto;
-  height: 520px;
+  /* height: 560px; */
+  border-radius: 5px;
 }
 
 @keyframes myOpacity0 {
@@ -3388,6 +3384,7 @@ a.sign-button {
   align-items: center;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
 }
 
 a.link.link--text.disclosure__link.caption-large.focus-inset {
@@ -3404,3 +3401,36 @@ a.link.link--text.disclosure__link.caption-large.focus-inset {
 svg.payment-list__item {
   margin: 2px;
 } 
+.view-inner .ld-collect {
+  margin-left: 20px;
+}
+@media screen and (min-width: 750px) {
+  .card__media:hover .ld-collect {
+    opacity: 1;
+  }
+  .ld-add-cart {
+    justify-content: space-between;
+  }
+  
+}
+
+@media screen and (max-width: 749px) {
+  .ld-collect {
+    opacity: 1;
+  }
+
+  .view-inner{
+    width: 100%;
+    margin: 10px;
+  }
+  .view-inner .button--full-width {
+    position: relative;
+    margin-right: 10px;
+  }
+  .view-inner .product__title{
+    margin-bottom: 0;
+  }
+  .view-inner .price--large{
+    font-size: 2rem !important;
+  }
+}
