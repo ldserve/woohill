@@ -85,6 +85,7 @@
         <form action="{{ routes.search_url }}" method="get" role="search" class="search">
           <div class="field">
             <input
+              style="border-radius:5px;"
               class="search__input field__input"
               id="Search-In-Template"
               type="search"
@@ -119,7 +120,7 @@
               <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span> 
             {%- endif -%}
                 
-            <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+            <button type="submit" class="search__button field__button" style="border-radius:5px;"  aria-label="{{ 'general.search.search' | t }}">
               <svg class="icon icon-search">
                 <use xlink:href="#icon-search">
               </svg>
@@ -146,7 +147,7 @@
     {%- if search.performed -%}
       {%- if search.filters != empty -%}
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-          <div  id="main-collection-filters" class="page-width-right" data-id="{{ section.id }}">
+          <div  id="main-collection-filters" class="page-width-right" data-id="{{ section.id }}" style="display:none;">
             {% render 'facets', results: search, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, collapse_on_larger_devices: section.settings.collapse_on_larger_devices %}
           </div>
         {%- endif -%}
