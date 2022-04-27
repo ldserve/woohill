@@ -157,7 +157,7 @@ document.querySelector(".openQuickView").addEventListener("click", (e) => {
     setTimeout(() => {
       document.querySelector(".openQuickView").style.display = "none"
       document.querySelector('.view-inner').innerHTML = ""
-      bodyScroll()
+      document.body.classList.remove('overflow-hidden');
     }, 300)
   }
 })
@@ -169,19 +169,11 @@ document.querySelector(".mask").addEventListener("click", (e) => {
     document.querySelector('.ld-dialog').style.animation = "myOpacity1 .3s"
     setTimeout(() => {
       document.querySelector(".mask").style.display = "none"
-      bodyScroll()
+      document.body.classList.remove('overflow-hidden');
     }, 300)
   }
 })
 
-function bodyScroll() {
-  const nodeStyle = document.querySelector("body").style.overflow
-  if (nodeStyle == "hidden") {
-    document.querySelector("body").style.overflow = "auto"
-  } else {
-    document.querySelector("body").style.overflow = "hidden"
-  }
-}
 function onKeyUpEscape(event) {
   if (event.code.toUpperCase() !== 'ESCAPE') return;
 
@@ -1060,7 +1052,7 @@ class ProductDetail extends HTMLElement {
       document.querySelector('.ld-dialog').style.animation = "myOpacity0 .3s"
       document.querySelector(".mask").style.display = "block"
       document.querySelector(".ld-hint").style.display = "block"
-      bodyScroll()
+      document.body.classList.add('overflow-hidden');
       setTimeout(() => {
         document.querySelector(".ld-hint").style.display = "none"
       }, 2000)
@@ -1171,7 +1163,7 @@ class ProductItem extends HTMLElement {
       response.text().then(function (content) {
         document.querySelector('.view-inner').insertAdjacentHTML('beforeEnd', content);
         document.querySelector(".openQuickView").style.display = "block"
-        bodyScroll()
+        document.body.classList.add('overflow-hidden');
       });
     });
   }
@@ -1236,7 +1228,7 @@ class ProductItem extends HTMLElement {
       document.querySelector('.ld-dialog').style.animation = "myOpacity0 .3s"
       document.querySelector(".mask").style.display = "block"
       document.querySelector(".ld-hint").style.display = "block"
-      bodyScroll()
+      document.body.classList.add('overflow-hidden');
       setTimeout(() => {
         document.querySelector(".ld-hint").style.display = "none"
       }, 2000)
