@@ -1,5 +1,57 @@
 {
   "sections": {
+    "165113456745539531": {
+      "type": "ld-mask",
+      "blocks": {
+        "165113456734ba5f11-0": {
+          "type": "banner",
+          "settings": {
+            "text": "CYBER BASKETBALL"
+          }
+        },
+        "8d1c74d2-eb3c-464b-8f9b-2d93c2304f27": {
+          "type": "banner",
+          "settings": {
+            "text": "COLLECTION"
+          }
+        }
+      },
+      "block_order": [
+        "165113456734ba5f11-0",
+        "8d1c74d2-eb3c-464b-8f9b-2d93c2304f27"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/cyber-_03.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/cyber-_03.jpg",
+        "link": "shopify:\/\/collections\/cyber-basketball"
+      }
+    },
+    "1651134555a7322bc0": {
+      "type": "ld-mask",
+      "blocks": {
+        "16511345558400cf12-0": {
+          "type": "banner",
+          "settings": {
+            "text": "SPRING 2022"
+          }
+        },
+        "cbad7500-1a1c-4775-84af-446ecf44166d": {
+          "type": "banner",
+          "settings": {
+            "text": "AVAILABLE NOW"
+          }
+        }
+      },
+      "block_order": [
+        "16511345558400cf12-0",
+        "cbad7500-1a1c-4775-84af-446ecf44166d"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/cyber-_06.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/cyber-_06.jpg",
+        "link": "https:\/\/www.woohill.com\/collections\/shop"
+      }
+    },
     "1646275552d33d41a1": {
       "type": "ld-mask",
       "blocks": {
@@ -16,16 +68,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-_00.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-_00.jpg",
-        "link": "shopify:\/\/collections\/lover-boy-1",
-        "title_size": 30,
-        "m_title_size": 20,
-        "text_color": "#ffffff",
-        "text_style": "bold",
-        "text_align": "center",
-        "title_top": 45,
-        "title_left": 32,
-        "m_title_top": 42,
-        "m_title_left": 14
+        "link": "shopify:\/\/collections\/lover-boy-1"
       }
     },
     "164627556236be741d": {
@@ -51,16 +94,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-2.0.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-2.0.jpg",
-        "link": "shopify:\/\/collections\/new-in-1",
-        "title_size": 30,
-        "m_title_size": 20,
-        "text_color": "#ffffff",
-        "text_style": "bold",
-        "text_align": "center",
-        "title_top": 40,
-        "title_left": 37,
-        "m_title_top": 34,
-        "m_title_left": 27
+        "link": "shopify:\/\/collections\/new-in-1"
       }
     },
     "1646275569eec31c8d": {
@@ -79,16 +113,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-_09_c87fad87-d827-4141-a20f-f1edbf8cb782.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-_09_c87fad87-d827-4141-a20f-f1edbf8cb782.jpg",
-        "link": "shopify:\/\/collections\/shirts-1",
-        "title_size": 30,
-        "m_title_size": 20,
-        "text_color": "#ffffff",
-        "text_style": "bold",
-        "text_align": "center",
-        "title_top": 45,
-        "title_left": 43,
-        "m_title_top": 38,
-        "m_title_left": 41
+        "link": "shopify:\/\/collections\/shirts-1"
       }
     },
     "1646275576578162d2": {
@@ -107,16 +132,7 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-_11_67c97418-52b6-4bfd-9445-fb77e19e13b7.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-_11_67c97418-52b6-4bfd-9445-fb77e19e13b7.jpg",
-        "link": "shopify:\/\/collections\/bottoms",
-        "title_size": 30,
-        "m_title_size": 20,
-        "text_color": "#ffffff",
-        "text_style": "bold",
-        "text_align": "center",
-        "title_top": 45,
-        "title_left": 43,
-        "m_title_top": 44,
-        "m_title_left": 34
+        "link": "shopify:\/\/collections\/bottoms"
       }
     },
     "164627558301d8d88f": {
@@ -142,20 +158,13 @@
       "settings": {
         "image": "shopify:\/\/shop_images\/1080-_13.jpg",
         "mobile_image": "shopify:\/\/shop_images\/1080-_13.jpg",
-        "link": "https:\/\/www.woohill.com\/",
-        "title_size": 30,
-        "m_title_size": 20,
-        "text_color": "#ffffff",
-        "text_style": "bold",
-        "text_align": "center",
-        "title_top": 40,
-        "title_left": 28,
-        "m_title_top": 34,
-        "m_title_left": 14
+        "link": "https:\/\/www.woohill.com\/"
       }
     }
   },
   "order": [
+    "165113456745539531",
+    "1651134555a7322bc0",
     "1646275552d33d41a1",
     "164627556236be741d",
     "1646275569eec31c8d",
