@@ -3399,6 +3399,10 @@ svg.payment-list__item {
 .view-inner .ld-collect {
   margin-left: 20px;
 }
+
+.ld-add-cart .ld-collect{
+  left: -20px;
+}
 @media screen and (min-width: 750px) {
   .card__media:hover .ld-collect {
     opacity: 1;
@@ -3413,7 +3417,9 @@ svg.payment-list__item {
   .ld-collect {
     opacity: 1;
   }
-
+  .ld-add-cart .ld-collect{
+    left: 20px;
+  }
   .view-inner{
     width: 100%;
     margin: 10px;
@@ -3428,9 +3434,7 @@ svg.payment-list__item {
   .view-inner .price--large{
     font-size: 2rem !important;
   }
-  .ld-add-cart .ld-collect{
-    left: 20px;
-  }
+
   .ld-add-cart {
     display: flex;
     position: fixed;
