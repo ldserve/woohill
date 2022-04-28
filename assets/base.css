@@ -3438,7 +3438,7 @@ svg.payment-list__item {
     width: 100%;
     left: 0;
     background-color: #fff;
-    z-index: 16;
+    z-index: 9;
     /* justify-content: space-between; */
 }
 }
