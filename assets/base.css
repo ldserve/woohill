@@ -2696,11 +2696,6 @@ details[open]>.header__icon--menu .icon-hamburger {
 
   .button--full-width {
     display: flex;
-    width: 100%;
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    z-index: 16;
     box-sizing: border-box;
   }
 
@@ -3410,6 +3405,10 @@ svg.payment-list__item {
 .view-inner .ld-collect {
   margin-left: 20px;
 }
+
+.ld-add-cart .ld-collect{
+  left: -20px;
+}
 @media screen and (min-width: 750px) {
   .card__media:hover .ld-collect {
     opacity: 1;
@@ -3424,7 +3423,9 @@ svg.payment-list__item {
   .ld-collect {
     opacity: 1;
   }
-
+  .ld-add-cart .ld-collect{
+    left: 20px;
+  }
   .view-inner{
     width: 100%;
     margin: 10px;
@@ -3439,4 +3440,15 @@ svg.payment-list__item {
   .view-inner .price--large{
     font-size: 2rem !important;
   }
+
+  .ld-add-cart {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    background-color: #fff;
+    z-index: 9;
+    /* justify-content: space-between; */
+}
 }
