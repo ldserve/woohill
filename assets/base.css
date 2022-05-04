@@ -3453,12 +3453,19 @@ svg.payment-list__item {
 }
 }
 @media screen and (max-width:990px){
-  .search__model{
-    display: none;
-  }
-}
-@media screen and (min-width:990px){
   .header__search-none{
     display: none;
   }
+  .header-flexbox{
+    display: flex;
+  }
+}
+.header-flexbox .search__model{
+  margin-left: 3rem;
+}
+@media screen and (min-width:990px){
+  .search__model{
+    display: none;
+  };
+ 
 }
