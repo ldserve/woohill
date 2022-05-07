@@ -25,14 +25,8 @@
                 <div class="totals">
                   <div class="totals__subtotal">{{ 'sections.cart.subtotal' | t }}</div>
                   <p class="totals__subtotal-value price">
-                    
-<span class="saso-cart-original-total"><span class="price-item--sale price-item--last">{{ cart.total_price | money_with_currency }}</span></span>
-<span class="saso-cart-total"></span>
-
-                    
-<span class="saso-cart-original-total"><s class="price-item--regular">{{ cart.original_total_price | money_with_currency }}</s></span>
-<span class="saso-cart-total"></span>
-
+                    <span class="price-item--sale price-item--last">{{ cart.total_price | money_with_currency }}</span>
+                    <s class="price-item--regular">{{ cart.original_total_price | money_with_currency }}</s>
                   </p>
                 </div>
 
