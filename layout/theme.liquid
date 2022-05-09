@@ -32,6 +32,26 @@
 
   <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'jquery-3.6.0.min.js' | asset_url }}" defer="defer"></script>
+
+  <script>
+    // This allows to expose several variables to the global scope, to be used in scripts
+    window.theme = {
+      pageType: {{ request.page_type | json }},
+      cartCount: {{ cart.item_count | json }},
+      moneyFormat: {{ shop.money_format | json }},
+      moneyWithCurrencyFormat: {{ shop.money_with_currency_format | json }},
+      currencyCodeEnabled: {{ settings.currency_code_enabled | json }},
+      showDiscount: {{ settings.show_discount | json }},
+      discountMode: {{ settings.discount_mode | json }},
+      searchMode: {{ settings.search_mode | json }},
+      searchUnavailableProducts: {{ settings.search_unavailable_products | json }},
+      cartType: {{ settings.cart_type | json }}
+    };
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+  </script>
+  <script src="{{ 'shencesdk.js' | asset_url }}"></script>
+  <script src="{{ 'shenceTrackExposure.js' | asset_url }}"></script>
+
   {{ content_for_header }}
 
   {%- liquid
