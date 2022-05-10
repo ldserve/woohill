@@ -1,7 +1,23 @@
 <div class="card-{{section.id}} ny-mask-box">
   <div class="ld-mask">
     <div class="PC">
-     <a href="{{section.settings.link.url}}" class="mask-link shence_commodityView"  data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" data-scdata='{"mkt_type":"banner","first_mkt_name":"","first_mkt_id":"{{ section.id }}","second_mkt_rank":"{{ menuindex }}","third_mkt_rank":"{{ forloop.index }}","mkt_material_url":"","mkt_material_name":"","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}' >
+     <a href="{{section.settings.link.url}}" class="mask-link shence_commodityView"  
+     data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
+     data-scdata='{"mkt_type":"banner",
+     "first_mkt_name":"",
+     "first_mkt_id":" {{ section.id}}",
+     "second_mkt_rank":"",
+     "third_mkt_rank":"",
+     "mkt_material_url":"",
+     "mkt_material_name":"",
+     "commodity_spuid":"",
+     "commodity_skuid":"",
+     "commodity_name":"",
+     "original_price":"",
+     "current_price":"",
+     "currency_unit":"",
+     "mkt_tag":[]}'
+     >
       <img class="lazyload img_item" srcset="{%- if section.settings.image.width >= 550 -%}{{ section.settings.image | img_url: '550x' }} 550w,{%- endif -%}
       {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
       {%- if section.settings.image.width >= 990 -%}{{ section.settings.image | img_url: '990x' }} 990w,{%- endif -%}

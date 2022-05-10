@@ -43,7 +43,25 @@ endif
       {%- if card_product.featured_media -%}
       <div class="card__media">
         <a href="{{ card_product.url | default: '#' }}" data-href="{{ card_product.url | default: '#' }}"
-          data-handle="{{card_product.handle}}">
+          data-handle="{{card_product.handle}}"
+          class="shence_commodityView"
+          data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
+          data-scdata='{"mkt_type":"product",
+          "first_mkt_name":"",
+          "first_mkt_id":" {{ section.id}}",
+          "second_mkt_rank":"{{ index }}",
+          "third_mkt_rank":"",
+          "mkt_material_url":"",
+          "mkt_material_name":"{{ mkt_material_name }}",
+          "commodity_spuid":"{{ product.handle }}",
+          "commodity_skuid":"{{ product.selected_or_first_available_variant.sku }}",
+          "commodity_name":"{{ product.title| handleize }}",
+          "original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}",
+          "current_price":"{{ product.selected_or_first_available_variant.price }}",
+          "currency_unit":"USD",
+          "mkt_tag":[]}'
+          
+          >
           <div class="media media--transparent media--hover-effect">
             <img data-media-id="{{ card_product.featured_media.id }}" srcset="{%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
                     {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | img_url: '360x' }} 360w,{%- endif -%}
