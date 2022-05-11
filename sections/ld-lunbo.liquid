@@ -1,0 +1,405 @@
+ <style>
+
+     .Slide-{{ section.id }}.swiper-lunbo {
+         position: relative;
+         width: 100%;
+         height: 900px;
+         margin: 0px auto;
+     }
+
+
+     .Slide-{{ section.id }} .swiper-sider {
+         position: relative;
+         width: 100%;
+         height: 900px;
+          overflow: hidden;
+     }
+
+
+     .Slide-{{ section.id }}  .swiper-sider>a {
+         position: absolute;
+         width: 100%;
+         height: auto;
+         transition: opacity 1s linear;
+     }
+
+     .Slide-{{ section.id }}  .swiper-sider>a img {
+        vertical-align: middle;
+     }
+
+
+     .Slide-{{ section.id }} .swiper-sider .imgop {
+         opacity: 0;
+     }
+
+
+     .Slide-{{ section.id }} .swiper-sider .imgopshow {
+         opacity: 1;
+     }
+
+
+     .Slide-{{ section.id }} .dian {
+         position: absolute;
+         z-index: 9;
+         bottom: 20px;
+         left: 40px;
+         height: 13px;
+     }
+
+
+     .Slide-{{ section.id }} .dian>div {
+         width: 13px;
+         height: 13px;
+         border: 1px solid white;
+         background-color: transparent;
+         box-sizing: border-box;
+         float: left;
+         margin: 0 3px;
+         border-radius: 50%;
+         transition: background-color 1s linear;
+         display: block
+     }
+
+
+     .Slide-{{ section.id }} .dbg {
+         background-color:#fff !important;
+     }
+
+
+     .Slide-{{ section.id }} .btn {
+         width: 100%;
+         height: 50px;
+         position: absolute;
+         z-index: 9;
+         top: 50%;
+         padding: 0 50px;
+     }
+
+   .btnleft, 
+   .btnright {
+         border-radius: 50%;
+         width: 50px;
+         height: 50px;
+         background-color: rgba(192, 192, 192, 0.719);
+         color: white;
+         cursor: pointer;
+         display: block;
+         font-size: 20px;
+         text-align: center;
+         line-height: 50px;
+     }
+
+     .Slide-{{ section.id }} .btnleft .icon,
+     .Slide-{{ section.id }} .btnright .icon {
+         margin-top: 8px;
+     }
+
+
+     .Slide-{{ section.id }} .btnleft {
+         float: left;
+     }
+
+     .Slide-{{ section.id }} .btnright {
+         float: right;
+     }
+
+     @media (max-width: 767.98px) {
+
+        .Slide-{{ section.id }} .swiper-sider.PC {
+             display: none;
+         }
+         .Slide-{{ section.id }} .btn {
+         display: none;
+       }
+
+       .Slide-{{ section.id }} .dian {
+         display: none;
+       }
+       .Slide-{{ section.id }}.swiper-lunbo {
+         position: relative;
+         width: 100%;
+         height: 260px;
+         margin: 0px auto;
+     }
+
+
+     .Slide-{{ section.id }} .swiper-sider {
+         position: relative;
+         width: 100%;
+         height: 260px;
+     }
+     }
+
+     @media (min-width: 768px) {
+         /*PC样式*/
+         .Slide-{{ section.id }} .swiper-sider.mobile {
+             display: none;
+         }
+     }
+    </style>
+
+     <div class="Slide-{{ section.id }} swiper-lunbo">
+         <div class="btn">
+             <span class="btnleft">
+                 <svg t="1641793222373" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg" p-id="3429" width="32" height="32">
+                     <path
+                         d="M617.38 873.7L289.61 545.94c-18.72-18.72-18.72-49.16 0-67.88L617.38 150.3c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L346.17 512l316.45 316.45c12.5 12.5 12.5 32.75 0 45.25-6.25 6.25-14.44 9.38-22.62 9.38s-16.38-3.13-22.62-9.38zM334.55 523.31h0.31-0.31z"
+                         p-id="3430" fill="#ffffff"></path>
+                 </svg></span>
+             <span class="btnright"><svg t="1641793248539" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg" p-id="3711" width="32" height="32">
+                     <path
+                         d="M384 883.08c-8.19 0-16.38-3.12-22.62-9.38-12.5-12.5-12.5-32.75 0-45.25L677.83 512 361.38 195.55c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L734.4 478.07c18.72 18.72 18.72 49.16 0 67.88L406.62 873.7c-6.24 6.25-14.43 9.38-22.62 9.38z m305.14-359.77h0.31-0.31z"
+                         p-id="3712" fill="#ffffff"></path>
+                 </svg></path>
+                 </svg>
+             </span>
+         </div>
+         <div class="swiper-sider PC">
+             {% for block in section.blocks %}
+             <a href="{{block.settings.link.url}}" class="{%- if forloop.index == 1 -%} imgopshow {%- else -%} imgop {%- endif -%}">
+             <img  srcset="{%- if block.settings.image.width >= 550 -%}{{ block.settings.image | img_url: '550x' }} 550w,{%- endif -%}
+                      {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+                      {%- if block.settings.image.width >= 990 -%}{{ block.settings.image | img_url: '990x' }} 990w,{%- endif -%}
+                      {%- if block.settings.image.width >= 1100 -%}{{ block.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
+                      {%- if block.settings.image.width >= 1500 -%}{{ block.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}
+                      {%- if block.settings.image.width >= 2200 -%}{{ block.settings.image | img_url: '2200x' }} 2200w,{%- endif -%}
+                      {%- if block.settings.image.width >= 3000 -%}{{ block.settings.image | img_url: '3000x' }} 3000w,{%- endif -%}
+                      {{ block.settings.image | img_url: 'master' }} {{ block.settings.image.width }}w"
+                 src="{{ block.settings.image | img_url: '1500x' }}" data-sizes="auto" /></a>
+             {% endfor %}
+         </div>
+         <div class="swiper-sider mobile">
+            {% for block in section.blocks %}
+            <a href="{{block.settings.link.url}}" class="{%- if forloop.index == 1 -%} imgopshow {%- else -%} imgop {%- endif -%}">
+            <img  srcset="{%- if block.settings.mobile_image.width >= 550 -%}{{ block.settings.mobile_image | img_url: '550x' }} 550w,{%- endif -%}
+                     {%- if block.settings.mobile_image.width >= 720 -%}{{ block.settings.mobile_image | img_url: '720x' }} 720w,{%- endif -%}
+                     {%- if block.settings.mobile_image.width >= 990 -%}{{ block.settings.mobile_image | img_url: '990x' }} 990w,{%- endif -%}
+                     {%- if block.settings.mobile_image.width >= 1100 -%}{{ block.settings.mobile_image | img_url: '1100x' }} 1100w,{%- endif -%}
+                     {%- if block.settings.mobile_image.width >= 1500 -%}{{ block.settings.mobile_image | img_url: '1500x' }} 1500w,{%- endif -%}
+                     {%- if block.settings.mobile_image.width >= 2200 -%}{{ block.settings.mobile_image | img_url: '2200x' }} 2200w,{%- endif -%}
+                     {%- if block.settings.mobile_image.width >= 3000 -%}{{ block.settings.mobile_image | img_url: '3000x' }} 3000w,{%- endif -%}
+                     {{ block.settings.mobile_image | img_url: 'master' }} {{ block.settings.mobile_image.width }}w"
+                src="{{ block.settings.mobile_image | img_url: '1500x' }}" data-sizes="auto" />
+            </a>
+            {% endfor %}
+        </div>
+         <div class="dian">
+             {% for block in section.blocks %}
+             <div class="{% if forloop.index == 1 %} dbg {% endif %}"></div>
+             {% endfor %}
+         </div>
+     </div>
+
+     <script>
+       window.onload=function(){
+        var h = document.querySelector(".Slide-{{ section.id }} .PC .imgopshow").offsetHeight || document.querySelector(".Slide-{{ section.id }} .mobile .imgopshow").offsetHeight;
+             document.querySelector(".Slide-{{ section.id }}.swiper-lunbo").style.height = h + 'px';
+             document.querySelector(".Slide-{{ section.id }} .swiper-sider").style.height = h + 'px';
+        }
+         window.onresize = function () {
+             h = document.querySelector(".Slide-{{ section.id }} .PC .imgopshow").offsetHeight
+             h= h<50? document.querySelector(".Slide-{{ section.id }} .mobile .imgopshow").offsetHeight:h
+             document.querySelector(".Slide-{{ section.id }}.swiper-lunbo").style.height = h + 'px';
+             document.querySelector(".Slide-{{ section.id }} .swiper-sider").style.height = h + 'px';
+         }
+~(function(){
+         var touchDot = 0; //触摸时的原点
+         var touchMove = 0;
+         var time = 0; //  时间记录，用于滑动时且时间小于1s则执行左右滑动
+         var interval = ""; // 记录/清理 时间记录
+         var tmpFlag = true; // 判断左右滑动超出菜单最大值时不再执行滑动事件
+         var timer; //接收计时器
+         var block = document.querySelector(".Slide-{{ section.id }}.swiper-lunbo");
+         var dianpar = document.querySelector(".Slide-{{ section.id }} .dian");
+         var btnleft = document.querySelector(".Slide-{{ section.id }} .btnleft");
+         var btnright = document.querySelector(".Slide-{{ section.id }} .btnright");
+         var aPar = ''
+         if (window.screen.availWidth > 750) {
+             aPar = document.querySelector(".Slide-{{ section.id }} .PC");
+         } else {
+             aPar = document.querySelector(".Slide-{{ section.id }} .mobile");
+         }
+
+         var nowbg = dianpar.children[0]; //当前变色的点元素
+         var num = aPar.children.length;
+         var dragsDot = 0; //触摸时的原点
+         var dragsMove = 0;
+         var AnimateTime={{section.settings.animateTime}};
+         //调整图片的顺序
+         for (var i = 0; i < aPar.children.length; i++) {
+             aPar.children[i].style.zIndex = aPar.children.length - i - 1;
+         }
+
+         showAnimate();
+
+         function showAnimate() {
+             timer = setInterval(function () {
+                 countAnimate(1)
+             }, AnimateTime)
+         }
+
+         function countAnimate(num) {
+             for (var k = 0; k < num; k++) {
+                 for (var i = 0; i < aPar.children.length; i++) {
+                     var index = aPar.children[i].style.zIndex;
+                     index++;
+                     if (index == aPar.children.length) {
+                         index = 0;
+                         aPar.children[i].className = "imgop";
+                         dianpar.children[i].className = "";
+                     }
+                     if (index == aPar.children.length - 1) {
+                         dianpar.children[i].className = "dbg";
+                         nowbg = dianpar.children[i];
+                         aPar.children[i].className = "imgopshow";
+                     }
+                     aPar.children[i].style.zIndex = index;
+                 }
+             }
+
+         }
+         for (var i = 0; i < dianpar.children.length; i++) {
+             dianpar.children[i].index = i;
+             dianpar.children[i].onmouseenter = function () {
+                 nowbg.className = "";
+                 this.className = "dbg";
+                 var num = 0;
+                 if (this.index - nowbg.index > 0) {
+                     num = this.index - nowbg.index;
+                 } else {
+                     num = dianpar.children.length - Math.abs(this.index - nowbg.index);
+                 }
+                 countAnimate(num);
+                 nowbg = this;
+             }
+         }
+         block.onmouseenter = function () {
+             clearInterval(timer);
+         };
+         block.onmouseleave = function () {
+                showAnimate();
+         };
+         btnleft.onclick = function () {
+            clearInterval(timer);
+             countAnimate(num - 1);
+         };
+         btnright.onclick = function () {
+            clearInterval(timer);
+             countAnimate(1)
+         };
+
+         // 触摸开始事件
+         aPar.addEventListener("touchstart", function (e) {
+             clearInterval(timer);
+             touchDot = e.touches[0].pageX; // 获取触摸时的原点
+             // 使用js计时器记录时间    
+             interval = setInterval(function () {
+                 time++;
+             }, 100);
+         })
+         // 触摸移动事件
+         aPar.addEventListener("touchmove", function (e) {
+             touchMove = e.touches[0].pageX;
+         })
+         // 触摸结束事件
+         aPar.ontouchend= function (e) {
+             // 向左滑动   
+             if (touchMove - touchDot <= -40 && time < 10) {
+                 countAnimate(1);
+             }
+             // 向右滑动
+             if (touchMove - touchDot >= 40 && time < 10) {
+                 countAnimate(num - 1);
+             }
+             clearInterval(interval); // 清除setInterval
+             time = 0;
+             tmpFlag = true; // 回复滑动事件
+             showAnimate();
+         }
+         // 拖拽开始事件
+         aPar.addEventListener("dragstart", function (e) {
+             dragsDot = e.screenX; // 获取触摸时的原点
+         })
+         // 拖拽结束事件
+         aPar.addEventListener("dragend", function (e) {
+             dragsMove = e.screenX
+             // 向左滑动   
+             if (dragsDot - dragsMove < 0) {
+                 countAnimate(1);
+             }
+             // 向右滑动
+             if (dragsDot - dragsMove > 0) {
+                 countAnimate(num - 1);
+             }
+         })
+
+        //  //处理浏览器的默认选择
+        //  document.onselectstart = function () {
+        //      return false;
+        //  };   
+})()
+     </script>
+
+     {% schema %}
+     {
+     "name": "轮播图",
+     "settings":[
+     {
+        "type": "select",
+        "id": "animateTime",
+        "options": [
+        {
+        "value": "2000",
+        "label": "二秒"
+        },
+        {
+        "value": "5000",
+        "label": "五秒"
+        },
+        {
+            "value": "8000",
+            "label": "八秒"
+        }
+        
+        ],
+        "default": "2000",
+         "label": "自动轮播时间"
+     }
+     ],
+     "blocks": [
+     {
+     "type": "banner",
+     "name":"图片",
+     "settings": [
+     {
+     "type": "image_picker",
+     "id": "image",
+     "label": "上传PC图片"
+     },
+     {
+     "type": "image_picker",
+     "id": "mobile_image",
+     "label": "上传mobile图片"
+     },
+     {
+     "type": "url",
+     "id": "link",
+     "label":"链接"
+     }
+     ]
+     }
+     ],
+     "presets": [
+     {
+     "name": "轮播图",
+     "blocks": [
+     {
+     "type": "banner"
+     }
+     ]
+     }
+     ]
+     }
+     {% endschema %}

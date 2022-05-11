@@ -1,0 +1,756 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<style>
+    img{
+        vertical-align: middle;
+    }
+    .Slide-{{ section.id }} .tab-banner-item:first-child {
+   margin-right: 10px;
+  }
+  .Slide-{{ section.id }} .tab-banner-item:last-child {
+   margin-left: 10px;
+  }
+    .Slide-{{ section.id }} .swiper-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        display: flex;
+        transition-property: transform;
+        box-sizing: border-box;
+        transition-duration: 300ms;
+        transform: translate3d(0px, 0px, 0px);
+    }
+    .Slide-{{ section.id }} .tab-banner{
+        width: 100%;
+        display: flex;
+        margin-bottom: 10px;
+    }
+    .Slide-{{ section.id }} .tab-banner-item{
+       width: 50%;
+       overflow: hidden;
+       position: relative;
+    }
+    .Slide-{{ section.id }} .tab-banner-item img{
+       width: 100%;
+       transition: .8s;
+    }
+    .Slide-{{ section.id }} .tab-banner-item:hover img{
+        transform: scale(1.08);
+    }
+    .Slide-{{ section.id }} .collection-two{
+        display: none;
+    }
+    #shopify-section-{{ section.id }}  .title {
+    position: absolute;
+    font-family: Cambria, Cochin,"MV Boli","MingLiU_HKSCS-ExtB", "MingLiU-ExtB","Georgia","Candara","黑体",serif;
+    top: {{section.settings.text_top}}%;
+    left: {{section.settings.text_left}}%;
+  }
+
+  #shopify-section-{{ section.id }}  .title .btn {
+    width: 180px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: {{section.settings.button_color}};
+    color:{{section.settings.button_text_color}};
+  }
+
+  #shopify-section-{{ section.id }} .title .title-item {
+    font-size: {{section.settings.title_size}}px;
+    color: {{section.settings.text_color}};
+    font-weight: {{section.settings.text_style}};
+  }
+
+  #shopify-section-{{ section.id }}  .title .title-big-title {
+    font-size: {{section.settings.big_title_size}}px;
+    color: {{section.settings.text_color}};
+    font-weight: {{section.settings.text_style}};
+    padding: 10px 0px;
+  }
+
+  #shopify-section-{{ section.id }}  .title .btn:hover {
+    background-color: {{section.settings.button_color_hover}};
+    color:{{section.settings.button_text_color_hover}};
+  }
+    @media screen and (max-width: 749px) {
+        .Slide-{{ section.id }} .swiper {
+            width: 100%;
+            /* height: 200px; */
+            margin: 0 auto;
+            position: relative;
+            overflow-x: scroll;
+            list-style: none;
+            padding: 0;
+            z-index: 1;
+        }
+        .Slide-{{ section.id }}.swiper-tab{
+            width: 100%;
+            margin: 0 auto;
+            background-color: #eee;
+            box-sizing: border-box;
+            padding:20px 0px;
+            
+        }
+        .Slide-{{ section.id }} .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            /* Center slide text vertically */
+            width: 50%;
+            flex-shrink: 0;
+            height: 100%;
+            position: relative;
+            padding-top: 10px;
+        }
+
+        .Slide-{{ section.id }} .swiper-button-prev,
+        .Slide-{{ section.id }} .swiper-button-next {
+            display: none;
+        }
+        .Slide-{{ section.id }} .swiper-header{
+            width:100%;
+            text-align: center;
+        }
+        .Slide-{{ section.id }} .swiper-title{
+            /* display: none; */
+            border-bottom: 1.5px solid red;
+            font-size: 38px;
+            font-weight: 900;
+        }
+        .Slide-{{ section.id }} .swiper-content{
+            font-size: 18px;
+        }
+        #shopify-section-{{ section.id }}  .title.mobile {
+          display: block;
+          top: {{section.settings.mobile_text_top}}%;
+    left: {{section.settings.mobile_text_left}}%;
+       }
+       #shopify-section-{{ section.id }}  .title.pc {
+          display: none;
+       }
+      #shopify-section-{{ section.id }}  .title.mobile .btn {
+        width: 80px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 12px;
+    }
+
+  #shopify-section-{{ section.id }} .title.mobile .title-item {
+    font-size: {{section.settings.title_size}}px;
+  }
+  .Slide-{{ section.id }} .tab-banner-item:first-child {
+   margin-right: 5px;
+  }
+  .Slide-{{ section.id }} .tab-banner-item:last-child {
+   margin-left: 5px;
+  }
+  #shopify-section-{{ section.id }}  .title.mobile .title-big-title {
+    font-size: {{section.settings.mobile_big_title_size}}px;
+    padding: 10px 0px;
+  }
+    }
+
+    @media screen and (min-width: 750px) {
+        .Slide-{{ section.id }}.swiper-tab{
+            max-width: 1500px;
+            margin: 0 auto;
+            background-color: #eee;
+            box-sizing: border-box;
+            padding: 40px 20px;
+        }
+        .Slide-{{ section.id }} .swiper {
+            width: 100%;
+            /* height: 200px; */
+            position: relative;
+            overflow: hidden;
+            list-style: none;
+            padding: 0;
+            z-index: 1;
+            background-color: #eee;
+        }
+
+        .Slide-{{ section.id }} .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background-color: #eee;
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            width: 25%;
+            flex-shrink: 0;
+            height: 100%;
+            position: relative;
+            transition-property: transform;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .Slide-{{ section.id }} .swiper-button-prev,
+        .Slide-{{ section.id }} .swiper-button-next {
+            position: absolute;
+            top: 36%;
+            width: calc(var(--swiper-navigation-size)/ 44 * 27);
+            height: var(--swiper-navigation-size);
+            margin-top: calc(0px - (var(--swiper-navigation-size)/ 2));
+            z-index: 10;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--swiper-navigation-color, var(--swiper-theme-color));
+        }
+
+        .Slide-{{ section.id }} .swiper-button-next {
+            right: 0px;
+            left: auto;
+        }
+
+        .Slide-{{ section.id }} .swiper-button-prev {
+            display: none;
+        }
+
+        .Slide-{{ section.id }} .swiper-title{
+            display: none;
+        }
+        .Slide-{{ section.id }} .swiper-content{
+            display: none;
+        }
+        #shopify-section-{{ section.id }}  .title.mobile {
+          display: none;
+       }
+       #shopify-section-{{ section.id }}  .title.pc {
+          display: block;
+       }
+    }
+    #shopify-section-{{ section.id }}  .title {
+         z-index: 9;
+       }
+</style>
+<div class="swiper-tab Slide-{{ section.id }}">
+    <div class="swiper-header">
+       <span class="swiper-title">{{section.settings.title}}</span>
+       <p class="swiper-content">{{section.settings.content}}</p>
+    </div>
+    <div class="tab-banner ">
+        <div class="tab-banner-item">
+            <a href="{{section.settings.link.url}}">
+                <div class="title pc">
+                    {% if section.settings.title %}
+                    <div class="title-item">{{section.settings.ld_title}}</div>
+                    {% endif %}
+                    {% if section.settings.subtitle %}
+                    <div class="title-big-title">{{section.settings.subtitle}}</div>
+                    {% endif %}
+                    {% if section.settings.button %}
+                    <div class="btn">{{section.settings.button}}</div>
+                    {% endif %}
+                </div>
+                <div class="title mobile">
+                    {% if section.settings.title %}
+                    <div class="title-item">{{section.settings.ld_title}}</div>
+                    {% endif %}
+                    {% if section.settings.subtitle %}
+                    <div class="title-big-title">{{section.settings.subtitle}}</div>
+                    {% endif %}
+                    {% if section.settings.button %}
+                    <div class="btn">{{section.settings.button}}</div>
+                    {% endif %}
+                </div>
+                <img class="lazyload img_item" srcset="{%- if section.settings.image.width >= 550 -%}{{ section.settings.image | img_url: '550x' }} 550w,{%- endif -%}
+                          {%- if section.settings.image.width >= 720 -%}{{ section.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+                          {%- if section.settings.image.width >= 990 -%}{{ section.settings.image | img_url: '990x' }} 990w,{%- endif -%}
+                          {%- if section.settings.image.width >= 1100 -%}{{ section.settings.image | img_url: '1100x' }} 1100w,{%- endif -%}
+                          {%- if section.settings.image.width >= 1500 -%}{{ section.settings.image | img_url: '1500x' }} 1500w,{%- endif -%}
+                          {%- if section.settings.image.width >= 2200 -%}{{ section.settings.image | img_url: '2200x' }} 2200w,{%- endif -%}
+                          {%- if section.settings.image.width >= 3000 -%}{{ section.settings.image | img_url: '3000x' }} 3000w,{%- endif -%}
+                          {{ section.settings.image | img_url: 'master' }} {{ section.settings.image.width }}w"
+                    src="{{ section.settings.image | img_url: '1500x' }}" data-sizes="auto" />
+            </a>
+           
+        </div>
+        <div class="tab-banner-item">
+            <a href="{{section.settings.link_two.url}}">
+                <div class="title pc">
+                    {% if section.settings.title %}
+                    <div class="title-item">{{section.settings.two_ld_title}}</div>
+                    {% endif %}
+                    {% if section.settings.subtitle %}
+                    <div class="title-big-title">{{section.settings.two_subtitle}}</div>
+                    {% endif %}
+                    {% if section.settings.button %}
+                    <div class="btn">{{section.settings.button}}</div>
+                    {% endif %}
+                </div>
+                <div class="title mobile">
+                    {% if section.settings.title %}
+                    <div class="title-item">{{section.settings.two_ld_title}}</div>
+                    {% endif %}
+                    {% if section.settings.subtitle %}
+                    <div class="title-big-title">{{section.settings.two_subtitle}}</div>
+                    {% endif %}
+                    {% if section.settings.button %}
+                    <div class="btn">{{section.settings.button}}</div>
+                    {% endif %}
+                </div>
+                <img class="lazyload img_item" srcset="{%- if section.settings.image_two.width >= 550 -%}{{ section.settings.image_two | img_url: '550x' }} 550w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 720 -%}{{ section.settings.image_two | img_url: '720x' }} 720w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 990 -%}{{ section.settings.image_two | img_url: '990x' }} 990w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 1100 -%}{{ section.settings.image_two | img_url: '1100x' }} 1100w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 1500 -%}{{ section.settings.image_two | img_url: '1500x' }} 1500w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 2200 -%}{{ section.settings.image_two | img_url: '2200x' }} 2200w,{%- endif -%}
+            {%- if section.settings.image_two.width >= 3000 -%}{{ section.settings.image_two | img_url: '3000x' }} 3000w,{%- endif -%}
+            {{ section.settings.image_two | img_url: 'master' }} {{ section.settings.image_two.width }}w"
+                    src="{{ section.settings.image_two | img_url: '1500x' }}" data-sizes="auto" />
+            </a>
+           
+        </div>
+    </div>
+    <div class="swiper">
+        <div class="swiper-wrapper collection">
+            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+            <div id="Slide-{{ section.id }}-{{ forloop.index }}"
+                class="swiper-slide grid__item{% if section.settings.collection.all_products_count > 2 and section.settings.swipe_on_mobile and section.settings.products_to_show > 2 %} slider__slide{% endif %}">
+                {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating
+                  %}
+            </div>
+            {%- else -%}
+            {%- for i in (1..8) -%}
+            <div class="swiper-slide grid__item">
+                {% render 'card-product', show_vendor: section.settings.show_vendor %}
+            </div>
+            {%- endfor -%}
+            {%- endfor -%}
+        </div>
+        <div class="swiper-wrapper collection-two">
+    
+            {%- for product in section.settings.collection_two.products  -%}
+            <div id="Slide-{{ section.id }}-{{ forloop.index }}"
+                class="swiper-slide grid__item{% if section.settings.collection_two.all_products_count > 2 and section.settings.swipe_on_mobile and section.settings.products_to_show > 2 %} slider__slide{% endif %}">
+                {% render 'card-product',
+                    card_product: product,
+                    media_aspect_ratio: section.settings.image_ratio,
+                    show_secondary_image: section.settings.show_secondary_image,
+                    show_vendor: section.settings.show_vendor,
+                    show_rating: section.settings.show_rating
+                  %}
+            </div>
+            {%- else -%}
+            {%- for i in (1..8) -%}
+            <div class="swiper-slide grid__item">
+                {% render 'card-product', show_vendor: section.settings.show_vendor %}
+            </div>
+            {%- endfor -%}
+            {%- endfor -%}
+        </div>
+        <div class="swiper-button-prev"><svg t="1641625574019" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="4164" width="48" height="48">
+                <path
+                    d="M617.38 873.7L289.61 545.94c-18.72-18.72-18.72-49.16 0-67.88L617.38 150.3c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L346.17 512l316.45 316.45c12.5 12.5 12.5 32.75 0 45.25-6.25 6.25-14.44 9.38-22.62 9.38s-16.38-3.13-22.62-9.38zM334.55 523.31h0.31-0.31z"
+                    p-id="4165"></path>
+            </svg></div>
+        <div class="swiper-button-next"><svg t="1641625601816" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="4484" width="48" height="48">
+                <path
+                    d="M384 883.08c-8.19 0-16.38-3.12-22.62-9.38-12.5-12.5-12.5-32.75 0-45.25L677.83 512 361.38 195.55c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L734.4 478.07c18.72 18.72 18.72 49.16 0 67.88L406.62 873.7c-6.24 6.25-14.43 9.38-22.62 9.38z m305.14-359.77h0.31-0.31z"
+                    p-id="4485"></path>
+            </svg></div>
+    </div>
+</div>
+<script>
+    var currentID = 4
+    var temp = 0
+    var childNodes = document.querySelectorAll('.Slide-{{ section.id }} .tab-banner-item')
+    const width = document.querySelector('.Slide-{{ section.id }} .swiper').offsetWidth
+    var children = document.querySelector('.Slide-{{ section.id }} .collection').children
+        .length
+    const windowWidth=window.screen.availWidth
+    var clickNum=''
+    childNodes.forEach((item, index) => {
+        if(windowWidth>750){
+            item.onmouseenter = () => {
+            temp = index
+            currentID = 4
+
+            if (temp === 0) {
+                document.querySelector('.Slide-{{ section.id }} .collection').style.display = "flex"
+                document.querySelector('.Slide-{{ section.id }} .collection-two').style.display = "none"
+                document.querySelector('.Slide-{{ section.id }} .collection').style.transform =
+                    `translate3d(0px, 0px,0px)`
+                    children = document.querySelector('.Slide-{{ section.id }} .collection').children
+        .length
+            } else {
+                document.querySelector('.Slide-{{ section.id }} .collection-two').style.display = "flex"
+                document.querySelector('.Slide-{{ section.id }} .collection').style.display = "none"
+                document.querySelector('.Slide-{{ section.id }} .collection-two').style.transform =
+                    `translate3d(0px, 0px,0px)`
+                    children = document.querySelector('.Slide-{{ section.id }} .collection-two').children
+        .length
+            }
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "none"
+            if (currentID >= children) {
+                document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "none"
+           }else{
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "block"
+           }
+        }
+        }else{
+            item.onclick = (e) => {
+            if(index===temp){
+              return
+            }else{
+                e.preventDefault();
+                temp = index
+            }
+            if (temp === 0) {
+                document.querySelector('.Slide-{{ section.id }} .collection').style.display = "flex"
+                document.querySelector('.Slide-{{ section.id }} .collection-two').style.display = "none"
+                children = document.querySelector('.Slide-{{ section.id }} .collection').children
+        .length
+            } else {
+                document.querySelector('.Slide-{{ section.id }} .collection-two').style.display = "flex"
+                document.querySelector('.Slide-{{ section.id }} .collection').style.display = "none"
+                children = document.querySelector('.Slide-{{ section.id }} .collection-two').children
+        .length
+            }
+            document.querySelector('.Slide-{{ section.id }} .swiper').scrollLeft=0
+          }
+       }
+    })
+
+    document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').onclick = () => {
+        left()
+    }
+    document.querySelector('.Slide-{{ section.id }} .swiper-button-next').onclick = () => {
+        right()
+    }
+
+    function right() {
+        currentID += 4
+        if (currentID >= children) {
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "none"
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display =
+                "block"
+        } else {
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display =
+                "block"
+        }
+        if (temp === 0) {
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.Slide-{{ section.id }} .collection'), null)
+                .transform
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = -width + translateX
+            document.querySelector('.Slide-{{ section.id }} .collection').style.transform =
+                `translate3d(${translateX}px, 0px,0px)`
+        } else {
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.Slide-{{ section.id }} .collection-two'), null)
+                .transform
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = -width + translateX
+            document.querySelector('.Slide-{{ section.id }} .collection-two').style.transform =
+                `translate3d(${translateX}px, 0px,0px)`
+        }
+    }
+
+    function left() {
+        currentID -= 4
+        if (currentID === 4) {
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-prev').style.display = "none"
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "block"
+        } else {
+            document.querySelector('.Slide-{{ section.id }} .swiper-button-next').style.display = "block"
+        }
+        if (temp === 0) {
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.Slide-{{ section.id }} .collection'), null)
+                .transform;
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = width + translateX
+            document.querySelector('.Slide-{{ section.id }} .collection').style.transform =
+                `translate3d(${translateX}px, 0px,0px)`
+        } else {
+            let translates = document.defaultView.getComputedStyle(document.querySelector(
+                    '.Slide-{{ section.id }} .collection-two'), null)
+                .transform;
+            let translateX = parseFloat(translates.substring(6).split(',')[4]);
+            translateX = width + translateX
+            document.querySelector('.Slide-{{ section.id }} .collection-two').style.transform =
+                `translate3d(${translateX}px, 0px,0px)`
+        }
+    }
+</script> 
+
+
+</html>
+{% schema %}
+{
+"name": "商品tab切换",
+"settings": [
+{
+    "type": "text",
+    "id": "title",
+    "default": "title",
+    "label": "标题"
+  },
+  {
+    "type": "text",
+    "id": "content",
+    "default": "content",
+    "label": "内容"
+  },
+{
+"type": "image_picker",
+"id": "image",
+"label": "上传图片"
+},
+{
+"type": "url",
+"id": "link",
+"label":"图片链接"
+},
+{
+"type": "collection",
+"id": "collection",
+"label": "选择产品集合"
+},
+{
+"type": "image_picker",
+"id": "image_two",
+"label": "上传图片"
+},
+{
+"type": "url",
+"id": "link_two",
+"label":"图片链接"
+},
+{
+"type": "collection",
+"id": "collection_two",
+"label": "选择产品集合"
+},
+{
+"type": "select",
+"id": "image_ratio",
+"options": [
+{
+"value": "adapt",
+"label": "t:sections.featured-collection.settings.image_ratio.options__1.label"
+},
+{
+"value": "portrait",
+"label": "t:sections.featured-collection.settings.image_ratio.options__2.label"
+},
+{
+"value": "square",
+"label": "t:sections.featured-collection.settings.image_ratio.options__3.label"
+}
+],
+"default": "adapt",
+"label": "t:sections.featured-collection.settings.image_ratio.label"
+},
+{
+"type": "checkbox",
+"id": "show_secondary_image",
+"default": false,
+"label": "t:sections.featured-collection.settings.show_secondary_image.label"
+},
+{
+"type": "checkbox",
+"id": "show_vendor",
+"default": false,
+"label": "t:sections.featured-collection.settings.show_vendor.label"
+},
+{
+"type": "checkbox",
+"id": "show_rating",
+"default": false,
+"label": "t:sections.featured-collection.settings.show_rating.label",
+"info": "t:sections.featured-collection.settings.show_rating.info"
+},
+{
+    "type": "text",
+    "id": "ld_title",
+    "default": "Text",
+    "label": "标题1"
+    },
+    {
+    "type": "text",
+    "id": "subtitle",
+    "default": "Text block",
+    "label": "主标题1"
+    },
+    {
+        "type": "text",
+        "id": "two_ld_title",
+        "default": "Text",
+        "label": "标题2"
+        },
+        {
+        "type": "text",
+        "id": "two_subtitle",
+        "default": "Text block",
+        "label": "主标题2"
+        },
+    {
+    "type": "text",
+    "id": "button",
+    "default": "SHOP NOW",
+    "label": "按钮"
+    },
+    {
+    "type": "range",
+    "id": "text_top",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "%",
+    "label": "文字布局top",
+    "default": 0
+    }, {
+    "type": "range",
+    "id": "text_left",
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "unit": "%",
+    "label": "文字布局left",
+    "default": 0
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "小标题文字大小",
+      "default": 12
+      }, {
+      "type": "range",
+      "id": "big_title_size",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "大标题文字大小",
+      "default": 22
+      },
+      {
+        "type": "range",
+        "id": "mobile_text_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "手机端文字布局top",
+        "default": 0
+        }, {
+        "type": "range",
+        "id": "mobile_text_left",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "手机端文字布局left",
+        "default": 0
+        },
+        {
+          "type": "range",
+          "id": "mobile_title_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "手机端小标题文字大小",
+          "default": 12
+          }, {
+          "type": "range",
+          "id": "mobile_big_title_size",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "px",
+          "label": "手机端大标题文字大小",
+          "default": 22
+          },
+      {
+        "type": "color",
+        "id": "text_color",
+        "default": "#fff",
+        "label": "标题字体色"
+      },
+      {
+        "type": "select",
+        "id": "text_style",
+        "options": [
+          {
+            "value": "lighter",
+            "label": "细"
+          },
+          {
+            "value": "normal",
+            "label": "常规"
+          },
+          {
+            "value": "bold",
+            "label": "粗体"
+          },
+          {
+            "value": "bolder",
+            "label": "加粗"
+          }
+        ],
+        "default": "normal",
+        "label": "标题文字粗细"
+      },
+    {
+      "type": "color",
+      "id": "button_color",
+      "default": "#ed6123",
+      "label": "按钮背景色"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "default": "#fff",
+      "label": "按钮字体色"
+    },
+    {
+      "type": "color",
+      "id": "button_color_hover",
+      "default": "#fff",
+      "label": "按钮交互背景色"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color_hover",
+      "default": "#000",
+      "label": "按钮交互字体色"
+    }
+],
+"presets": [
+{
+"name": "商品tab切换"
+}
+]
+}
+{% endschema %}

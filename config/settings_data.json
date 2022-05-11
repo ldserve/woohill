@@ -1,0 +1,228 @@
+{
+  "current": {
+    "colors_solid_button_labels": "#FFFFFF",
+    "colors_accent_1": "#dbdb55",
+    "colors_accent_2": "#121212",
+    "colors_text": "#121212",
+    "colors_outline_button_labels": "#121212",
+    "colors_background_1": "#FFFFFF",
+    "colors_background_2": "#F3F3F3",
+    "type_header_font": "poppins_n7",
+    "type_body_font": "poppins_n4",
+    "page_width": "1400",
+    "spacing_grid_horizontal": 8,
+    "spacing_grid_vertical": 8,
+    "favicon": "shopify:\/\/shop_images\/1_b37294eb-64e7-47d0-ace0-cfa48cb61fee.jpg",
+    "checkout_accent_color": "#121212",
+    "checkout_button_color": "#121212",
+    "color_orange_text": "#ed6124",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "blocks": {
+          "693d9cb3-c404-468e-ad50-bd8fcea6b105": {
+            "type": "announcement",
+            "settings": {
+              "text": "$5 OFF ON ORDER $49",
+              "link": ""
+            }
+          },
+          "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9": {
+            "type": "announcement",
+            "settings": {
+              "text": "$10 OFF ON ORDER $69",
+              "link": ""
+            }
+          },
+          "0fc2d0ff-c749-49d2-a29a-4c19e02fe1f9": {
+            "type": "announcement",
+            "settings": {
+              "text": "$20 OFF ON ORDER $119",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "693d9cb3-c404-468e-ad50-bd8fcea6b105",
+          "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9",
+          "0fc2d0ff-c749-49d2-a29a-4c19e02fe1f9"
+        ],
+        "settings": {
+          "show": false,
+          "color_text": "#ffffff",
+          "color_bg": "#967f5d",
+          "time": 10
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "background": "#1e2d7d",
+          "logo": "shopify:\/\/shop_images\/WPS_c2200e01-d714-45d9-bd45-4921f8db6042.png",
+          "logo_width": 160,
+          "logo_position": "middle-left",
+          "menu": "main-menu",
+          "show_line_separator": true,
+          "enable_sticky_header": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "link_list",
+            "settings": {
+              "heading": "ABOUT WOOHILL",
+              "menu": "footer"
+            }
+          },
+          "51d47bdb-2bb0-4fe7-9058-9eee23a70433": {
+            "type": "link_list",
+            "settings": {
+              "heading": "HELP CENTER",
+              "menu": "help-center"
+            }
+          },
+          "51d178a5-989f-438b-a594-0d2619a5c746": {
+            "type": "link_list",
+            "settings": {
+              "heading": "FOLLOW US",
+              "menu": "follow-us"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "51d47bdb-2bb0-4fe7-9058-9eee23a70433",
+          "51d178a5-989f-438b-a594-0d2619a5c746"
+        ],
+        "settings": {
+          "color_scheme": "background-1",
+          "newsletter_enable": true,
+          "newsletter_heading": "Subscribe to our emails",
+          "show_social": false,
+          "enable_country_selector": true,
+          "enable_language_selector": true,
+          "payment_enable": true
+        }
+      },
+      "foot-navbar": {
+        "type": "foot-navbar",
+        "blocks": {
+          "45b2e1aa-d6d0-45a5-add7-50dcc4ee2c2f": {
+            "type": "footer-nav",
+            "settings": {
+              "title": "Home",
+              "link": "\/",
+              "icon": "home"
+            }
+          },
+          "ca3ce4c9-6a00-471a-b2d8-61d5884c44d5": {
+            "type": "footer-nav",
+            "settings": {
+              "title": "Category",
+              "link": "shopify:\/\/collections\/new-in",
+              "icon": "category"
+            }
+          },
+          "2aba1ea8-9624-48b8-b482-f1e8e9eb18be": {
+            "type": "footer-nav",
+            "settings": {
+              "title": "Cart",
+              "link": "\/cart",
+              "icon": "cart"
+            }
+          },
+          "f27f09a4-2361-444e-a107-857a9f85b687": {
+            "type": "footer-nav",
+            "settings": {
+              "title": "Me",
+              "link": "\/account",
+              "icon": "account"
+            }
+          }
+        },
+        "block_order": [
+          "45b2e1aa-d6d0-45a5-add7-50dcc4ee2c2f",
+          "ca3ce4c9-6a00-471a-b2d8-61d5884c44d5",
+          "2aba1ea8-9624-48b8-b482-f1e8e9eb18be",
+          "f27f09a4-2361-444e-a107-857a9f85b687"
+        ],
+        "settings": {
+          "navbar_bgcolor": "#ffffff",
+          "navbar_color": "#cccccc",
+          "navbar_active_color": "#000000"
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  },
+  "presets": {
+    "Default": {
+      "colors_solid_button_labels": "#FFFFFF",
+      "colors_accent_1": "#ed6124",
+      "colors_accent_2": "#ed6124",
+      "colors_text": "#121212",
+      "color_orange_text": "#ed6124",
+      "colors_outline_button_labels": "#121212",
+      "colors_background_1": "#FFFFFF",
+      "colors_background_2": "#F3F3F3",
+      "type_header_font": "poppins_n7",
+      "type_body_font": "poppins_n4",
+      "sections": {
+        "announcement-bar": {
+          "type": "announcement-bar",
+          "blocks": {
+            "announcement-bar-0": {
+              "type": "announcement",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "announcement-bar-0"
+          ],
+          "settings": {
+          }
+        }
+      }
+    },
+    "Craft": {
+      "colors_solid_button_labels": "#EFECEC",
+      "colors_accent_1": "#2A332F",
+      "colors_accent_2": "#476154",
+      "colors_text": "#1C1A1A",
+      "colors_outline_button_labels": "#7B8382",
+      "colors_background_1": "#EFECEC",
+      "colors_background_2": "#C1BCAE",
+      "type_header_font": "poppins_n7",
+      "type_body_font": "poppins_n4",
+      "sections": {
+        "footer": {
+          "type": "footer",
+          "blocks": {
+            "menu": {
+              "type": "link_list",
+              "settings": {
+              }
+            },
+            "text": {
+              "type": "text",
+              "settings": {
+              }
+            }
+          },
+          "block_order": [
+            "menu",
+            "text"
+          ],
+          "settings": {
+            "color_scheme": "accent-1"
+          }
+        }
+      }
+    }
+  }
+}

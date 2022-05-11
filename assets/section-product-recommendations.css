@@ -1,0 +1,21 @@
+.product-recommendations {
+  display: block;
+}
+
+.product-recommendations__heading {
+  margin: 0;
+  margin-bottom: 3rem;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.recently-viewed-products {
+  display: block;
+}
+
+.recently-viewed-products__heading {
+  margin: 0;
+  margin-bottom: 3rem;
+  font-size: 20px;
+  font-weight: 300;
+}

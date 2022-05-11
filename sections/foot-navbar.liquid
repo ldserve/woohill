@@ -1,0 +1,125 @@
+<style>
+	#footer-navbar.footer-navbar-box{
+		height: 50px;
+	}
+	#footer-navbar .footer-navbar{
+		height: 50px;
+		width: 100vw;
+		z-index: 30;
+		background-color: {{ section.settings.navbar_bgcolor }};
+		box-shadow: 0 -1px 8px 2px rgba(0, 0, 0, 0.1);
+	}
+	#footer-navbar .footer-navbar .nav-item{
+		color: {{ section.settings.navbar_color }};
+	}
+	#footer-navbar .footer-navbar ul{
+		flex: 1;
+		line-height: 1;
+	}
+	#footer-navbar .footer-navbar ul li{
+		padding-top: 4px;
+	}
+	#footer-navbar .icon{
+		width: 2rem;
+		height: 2rem;
+	}
+	#footer-navbar .navbar-title{
+		line-height: 1.4;
+	}
+	{%- assign current = '1' -%}
+	{%- for block in section.blocks -%}
+		{%- if block.settings.link != '/' -%}
+			{%- if canonical_url contains block.settings.link -%}
+				{%- assign current = forloop.index -%}
+			{%- endif -%}
+		{%- endif -%}
+	{%- endfor -%}
+	#footer-navbar .footer-navbar li:nth-of-type({{- current -}}) .nav-item {
+		color: {{ section.settings.navbar_active_color }};
+	}
+</style>
+
+	<!-- <div id="footer-navbar" class="footer-navbar-box large-up-hide">
+		<div class="footer-navbar d-flex justify-content-center position-fixed bottom-0 large-up-hide">
+			<ul class="list-unstyled d-flex ">
+				{%- for block in section.blocks -%}
+					<li class="shop flex-10">
+						{%- assign link_d  = block.settings.link |downcase -%}
+						<a href="{{ block.settings.link }}" class="nav-item d-block center h-100 ">
+							{%- render 'icon', icon: block.settings.icon -%}<br/>
+							<span class="navbar-title">{{ block.settings.title }}</span>
+						</a>
+					</li>
+				{%- endfor -%}
+			</ul>
+		</div>
+	</div> -->
+
+{% schema %}
+{
+	"name": "底部悬浮导航",
+	"class":"box",
+	"settings": [{
+			"type": "color",
+			"id": "navbar_bgcolor",
+			"label": "背景颜色",
+			"default": "#ffffff"
+		},{
+			"type": "color",
+			"id": "navbar_color",
+			"label": "字体颜色",
+			"default": "#cccccc"
+		},{
+			"type": "color",
+			"id": "navbar_active_color",
+			"label": "激活颜色",
+			"default": "#000000"
+		}
+	],
+	"blocks":[
+		{
+			"type": "footer-nav",
+			"name": "导航菜单项",
+			"settings": [
+				{
+					"type": "text",
+					"id": "title",
+					"default": "Home",
+					"label": "文本"
+				},
+				{
+					"type": "url",
+					"id": "link",
+					"label": "链接"
+				},
+				{
+					"type": "select",
+					"id": "icon",
+					"options": [
+						{
+							"value": "home",
+							"label": "小房子"
+						},
+						{
+							"value": "category",
+							"label": "放大镜"
+						},
+						{
+							"value": "cart",
+							"label": "背包"
+						},
+						{
+							"value": "account",
+							"label": "账户"
+						}
+					],
+					"default": "home",
+					"label": "图标"
+				}
+			]
+		}
+	]
+}
+{% endschema %}
+
+

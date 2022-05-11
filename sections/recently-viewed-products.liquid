@@ -1,0 +1,170 @@
+{%- capture section_settings -%}
+{
+  "currentProductId": {{ product.id | json }}
+}
+{%- endcapture -%}
+
+<recently-viewed-products class="section" data-section-id="{{ section.id }}" data-section-type="." data-section-settings='{{ section_settings }}'>
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+        <h2 class="recently-viewed-products__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <div class="recently-viewed-products-placeholder pb-80">
+      {%- if request.page_type == 'search' -%}
+            <div class="product-list product-list--vertical product-list--scrollable">
+              {%- assign parsed_terms = search.terms | split: ' OR ' -%}
+              <ul class="grid grid--2-col product-grid grid--4-col-desktop grid--quarter-max" role="list">
+              {%- for parsed_term in parsed_terms -%}
+                {%- assign id = parsed_term | split: 'id:' | last | times: 1 -%}
+
+                {%- for product in search.results -%}
+                  {%- if product.id == id -%}
+                  <li class="grid__item">
+                    {% render 'card-product',
+                      card_product: product,
+                      media_aspect_ratio: section.settings.image_ratio,
+                      show_secondary_image: section.settings.show_secondary_image,
+                      show_vendor: section.settings.show_vendor,
+                      show_rating: section.settings.show_rating
+                    %}
+                  </li>
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
+              </ul>
+            </div>
+      {%- endif -%}
+    </div>
+  </div>
+</recently-viewed-products>
+{% javascript %}
+class recentlyViewedProducts extends HTMLElement {
+  constructor() {
+    super();
+    const handleIntersection = (entries, observer) => {
+      if (!entries[0].isIntersecting) return;
+      observer.unobserve(this);
+      this.options = JSON.parse(this.getAttribute('data-section-settings'));
+      var queryString = this.getSearchQueryString();
+      fetch(`/search?section_id=${this.getAttribute('data-section-id')}&q=${queryString}&type=product`)
+      .then(response => response.text())
+      .then(text => {
+        const html = document.createElement('div');
+        html.innerHTML = text;
+        const viewed = html.querySelector('recently-viewed-products');
+        if (viewed && viewed.innerHTML.trim().length) {
+          this.innerHTML = viewed.innerHTML;
+         }
+      })
+      .catch(e => {
+        console.error(e);
+      });
+    }
+    new IntersectionObserver(handleIntersection.bind(this), {rootMargin: '0px 0px 200px 0px'}).observe(this);
+  }
+  getSearchQueryString() {
+              var items = JSON.parse(localStorage.getItem('recentlyViewedProducts') || '[]'); // If we are on a product template, we make sure to remove the main product from the related product
+
+              if (items.includes(this.options['currentProductId'])) {
+                  items.splice(items.indexOf(this.options['currentProductId']), 1);
+              }
+              items=items.filter((item,index)=>{ if(index<4) return item})
+              return items.map(function (item,index) {
+                  return 'id:' + item;
+              }).join(' OR ');
+ }
+}
+
+customElements.define('recently-viewed-products', recentlyViewedProducts);
+{% endjavascript %}
+{% schema %}
+{
+  "name": "Recently viewed products",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.product-recommendations.settings.paragraph__1.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Recently viewed",
+      "label": "Recently viewed"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.product-recommendations.settings.header__2.content"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.product-recommendations.settings.image_ratio.options__1.label"
+        },
+        {
+          "value": "portrait",
+          "label": "t:sections.product-recommendations.settings.image_ratio.options__2.label"
+        },
+        {
+          "value": "square",
+          "label": "t:sections.product-recommendations.settings.image_ratio.options__3.label"
+        }
+      ],
+      "default": "adapt",
+      "label": "t:sections.product-recommendations.settings.image_ratio.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "t:sections.product-recommendations.settings.show_secondary_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "t:sections.product-recommendations.settings.show_vendor.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "t:sections.product-recommendations.settings.show_rating.label",
+      "info": "t:sections.product-recommendations.settings.show_rating.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "category": "Product",
+      "name": "Recently viewed products"
+    }
+  ]
+}
+{% endschema %}

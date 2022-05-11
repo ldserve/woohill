@@ -1,0 +1,90 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+<div>
+  <header>
+    <h1 class="center">MY WISHLIST</h1>
+  </header>
+  <div class="collect page-width">
+
+  </div>
+  {%- if customer -%}
+  <div class="collect-body">
+    <div class="center">
+      You currently have nothing saved to your Wishlist.<br />
+      Personalize your shopping experience with your Wishlist.
+    </div>
+    <div class="d-flex aic jcc sign-button">
+      <a href="/collections/shop" class="sign-button">Let's Get Started!</a>
+    </div>
+  </div>
+  {%- else -%}
+  <div>
+    <div class="center">
+      It is empty here. <br />
+      Personalize your shopping experience with your Wishlist.
+    </div>
+    <h3 class="center">Already have items saved?</h3>
+    <div class="d-flex aic jcc sign-button">
+      <a href="{{ routes.account_login_url }}" class="sign-button">SIGN IN / REGISTER</a>
+    </div>
+  </div>
+  {%- endif -%}
+</div>
+<script>
+  async function postData(url, data) {
+    const response = await fetch(`https://api-dev.leandow-technology.com/api/${url}`, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        "siteValue": "leandowTest",
+        "Access-Control-Allow-Origin": "*"
+      },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data)
+    });
+    return response.json();
+  }
+
+  function getCollectList() {
+    const collectList = {
+    current: 1,
+    customerId: "{{customer.id}}",
+    size: 80
+  }
+    postData("customerCollectionProduct/collectionProductList", collectList)
+      .then(res => {
+        if (res.data.records.length < 1) {
+          document.querySelector('.collect-body').style.display = "block"
+          return
+        }
+        var ids = ""
+        res.data.records.forEach((item, index) => {
+          if (index === 0) {
+            ids = `id:${item.productId}`
+          } else {
+            ids = ids + " OR " + `id:${item.productId}`
+          }
+        });
+        fetch(`/search?q=${ids}&type=product`)
+          .then((rs) => { return rs.text() })
+          .then((rs) => {
+            let dom = new DOMParser().parseFromString(rs, 'text/html');
+            document.querySelector('.collect').appendChild(dom.querySelector(".product-grid"))
+            const removeNodes=document.querySelectorAll(".collect .add-collect")
+            removeNodes.forEach((item,index)=>{
+              item.addEventListener("click", () => {
+                document.querySelectorAll(`.collect .grid .grid__item`)[index].style.display="none"; 
+             })
+            })
+
+          })
+      });
+  }
+  if ("{{ customer.id}}") {
+    getCollectList()
+  }
+</script>
