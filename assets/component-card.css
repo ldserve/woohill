@@ -315,7 +315,7 @@ width: 100%;
     display: block;
   }
   .grade-and-price > div {
-    text-align: left;
+    text-align: center;
   }
   .color-selector .color-item {
     display: block;
