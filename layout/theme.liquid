@@ -32,7 +32,7 @@
 
   <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'jquery-3.6.0.min.js' | asset_url }}" defer="defer"></script>
-
+{%- comment -%}
   <script>
     // This allows to expose several variables to the global scope, to be used in scripts
     window.theme = {
@@ -87,7 +87,7 @@
   </script>
   <script src="{{ 'shencesdk.js' | asset_url }}"></script>
   <script src="{{ 'shenceTrackExposure.js' | asset_url }}"></script>
-
+{%- endcomment -%}
   {{ content_for_header }}
 
   {%- liquid
