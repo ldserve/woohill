@@ -55,13 +55,13 @@
 .card__media,
 .card .media {
   bottom: 0;
-  /* position: absolute; */
+  position: absolute;
   top: 0;
 }
 
 .card .media {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .card__media {
@@ -127,12 +127,13 @@
 .card__heading {
   margin-top: 0;
   position: relative;
-  min-height: 3.4rem;
+  min-height: 3.9rem;
 }
 
 .card__heading span{
   padding-top: 0.5rem;
   line-height: 1.7rem;
+  text-align: center;
 }
 .quick-view-btn{
   position: absolute;
@@ -276,7 +277,7 @@
 .grade-and-price {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 .color-selector {
   display: flex;
