@@ -53,8 +53,8 @@ class CartItems extends HTMLElement {
         selector: '.js-contents',
       },
       {
-        id: 'main-cart-footer',
-        section: document.getElementById('main-cart-footer').dataset.id,
+        id: 'main-cart-items__id',
+        section: document.getElementById('main-cart-items__id').dataset.id,
         selector: '.shipping'
       }
     ];
@@ -78,7 +78,6 @@ class CartItems extends HTMLElement {
         const parsedState = JSON.parse(state);
         this.classList.toggle('is-empty', parsedState.item_count === 0);
         const cartFooter = document.getElementById('main-cart-footer');
-
         if (cartFooter) cartFooter.classList.toggle('is-empty', parsedState.item_count === 0);
 
         this.getSectionsToRender().forEach((section => {
