@@ -2768,7 +2768,9 @@ details[open]>.header__icon--menu .icon-hamburger {
   }
 
 }
-
+.d-none{
+  display: none;
+}
 .d-flex {
   display: flex;
 }

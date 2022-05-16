@@ -51,13 +51,18 @@ class CartItems extends HTMLElement {
         id: 'main-cart-footer',
         section: document.getElementById('main-cart-footer').dataset.id,
         selector: '.js-contents',
+      },
+      {
+        id: 'main-cart-footer',
+        section: document.getElementById('main-cart-footer').dataset.id,
+        selector: '.shipping'
       }
     ];
   }
 
   updateQuantity(line, quantity, name) {
-    this.enableLoading(line);
 
+    this.enableLoading(line);
     const body = JSON.stringify({
       line,
       quantity,
@@ -79,10 +84,11 @@ class CartItems extends HTMLElement {
         this.getSectionsToRender().forEach((section => {
           const elementToReplace =
             document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-
+          
           elementToReplace.innerHTML =
             this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
         }));
+        
 
         this.updateLiveRegions(line, parsedState.item_count);
         const lineItem =  document.getElementById(`CartItem-${line}`);
