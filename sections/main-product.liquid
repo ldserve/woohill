@@ -252,7 +252,7 @@
 																									xmlns="http://www.w3.org/2000/svg" p-id="25854" width="32"
 																									height="32"><path
 										d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z"
-										fill="#EA8243" p-id="25855"></path></svg>Free Standard Shipping on Orders US$55+</span>
+										fill="#EA8243" p-id="25855"></path></svg>{{ section.settings.sandian | escape}}{{ block.settings.sandian | escape}}</span>
 						</div>
 						{% else %}
 						<div class="quick-product-top d-flex">
@@ -531,7 +531,15 @@
 										<li>FREE SHIPPING on orders US$55+</li>
 										<li>Estimated Delivery Time(to US/EU): 12-15 days</li>
 									</ul> -->
-									<p id="header">{{ section.settings.header | escape}}{{ block.settings.header | escape}}</p>
+									{%- liquid 
+										assign a = block.settings.header | split: '/'
+									-%}
+									<!-- <p id="header">{{ section.settings.header | escape}}{{ block.settings.header | escape}}</p> -->
+									<ul>
+										{% for post in a %}
+											<li>{{post}}</li>
+										{% endfor %}
+									</ul>
 									<div class="return">
 										Return Policy
 									</div>
@@ -1092,7 +1100,15 @@
 	{
 	"type": "title",
 	"name": "t:sections.main-product.blocks.title.name",
-	"limit": 1
+	"limit": 1,
+	"settings":[
+		{
+			"id":"sandian",
+			"type":"text",
+			"label":"header",
+			"default":"test"
+		}
+	]
 	},
 	{
 	"type": "price",
@@ -1159,8 +1175,8 @@
 		{
 			"id":"header",
 			"type":"text",
-			"label":"Header",
-			"default":"Hello world"
+			"label":"Delivery（已 / 为分隔符）",
+			"default":"test/test"
 		}
 	]
 	},
