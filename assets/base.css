@@ -218,6 +218,14 @@ span.price-item.price-item--regular {
   font-size: 14px;
 }
 
+.card--media .price-item--regular {
+  font-size: 12px !important;
+}
+
+.card--media  .price-item--sale{
+  font-size: 12px !important;
+}
+
 .page-width {
   max-width: var(--page-width);
   margin: 0 auto;
@@ -703,12 +711,17 @@ hr {
   }
 }
 
+.card--media .full-unstyled-link {
+  font-size: 12px;
+  font-weight: 500 !important; 
+}
+
 .full-unstyled-link {
   text-decoration: none;
   color: rgb(var(--color-foreground));
   overflow: hidden;
   text-overflow: ellipsis;
-  font-weight: 600;
+  font-weight: 600; 
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
