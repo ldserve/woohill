@@ -252,7 +252,7 @@
 																									xmlns="http://www.w3.org/2000/svg" p-id="25854" width="32"
 																									height="32"><path
 										d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z"
-										fill="#EA8243" p-id="25855"></path></svg>{{ section.settings.logistics | escape}}{{ block.settings.logistics | escape}}</span>
+										fill="#EA8243" p-id="25855"></path></svg>Free Standard Shipping on Orders US{{settings.cart_free_shipping_threshold | times: 100 |money}}+</span>
 						</div>
 						{% else %}
 						<div class="quick-product-top d-flex">
@@ -275,7 +275,7 @@
 																											version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="25854"
 																											width="32" height="32"><path
 												d="M754.4 490.2l-194.7-40.4 83.2-283.1-373.3 367.1 194.7 40.4-83.2 283.1 373.3-367.1z"
-												fill="#FFD81A" p-id="25855"></path></svg>Free Standard Shipping on Orders US$55+</span>
+												fill="#FFD81A" p-id="25855"></path></svg>Free Standard Shipping on Orders US{{settings.cart_free_shipping_threshold | times: 100 |money}}+</span>
 								</div>
 							</div>
 						</div>
@@ -526,19 +526,10 @@
 														p-id="24057" fill="#2c2c2c"></path></svg>EASY REFUND</span>
 										</div>
 									</div>
-									<!-- <ul>
-										<li>Standard Shipping: US$7.9</li>
-										<li>FREE SHIPPING on orders US$55+</li>
-										<li>Estimated Delivery Time(to US/EU): 12-15 days</li>
-									</ul> -->
-									{%- liquid 
-										assign a = block.settings.header | split: '/'
-									-%}
-									<!-- <p id="header">{{ section.settings.header | escape}}{{ block.settings.header | escape}}</p> -->
 									<ul>
-										{% for post in a %}
-											<li>{{post}}</li>
-										{% endfor %}
+										<li>Standard Shipping: US$7.9</li>
+										<li>FREE SHIPPING on orders US{{settings.cart_free_shipping_threshold | times: 100 |money}}+</li>
+										<li>Estimated Delivery Time(to US/EU): 12-15 days</li>
 									</ul>
 									<div class="return">
 										Return Policy
@@ -1100,15 +1091,7 @@
 	{
 	"type": "title",
 	"name": "t:sections.main-product.blocks.title.name",
-	"limit": 1,
-	"settings":[
-		{
-			"id":"logistics",
-			"type":"text",
-			"label":"包邮信息",
-			"default":"Free Standard Shipping on Orders US$55+"
-		}
-	]
+	"limit": 1
 	},
 	{
 	"type": "price",
@@ -1170,15 +1153,7 @@
 	{
 	"type": "delivery",
 	"name": "Delivery",
-	"limit": 1,
-	"settings":[
-		{
-			"id":"header",
-			"type":"text",
-			"label":"Delivery（已 / 为分隔符）",
-			"default":"Standard Shipping: US$7.9/FREE SHIPPING on orders US$55+/Estimated Delivery Time(to US-EU): 12-15 days"
-		}
-	]
+	"limit": 1
 	},
 	{
 	"type": "share",
