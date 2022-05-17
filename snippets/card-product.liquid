@@ -43,7 +43,25 @@ endif
       {%- if card_product.featured_media -%}
       <div class="card__media">
         <a href="{{ card_product.url | default: '#' }}" data-href="{{ card_product.url | default: '#' }}"
-          data-handle="{{card_product.handle}}">
+          data-handle="{{card_product.handle}}"
+          class="shence_commodityView"
+          data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
+          data-scdata='{"mkt_type":"product",
+          "first_mkt_name":"",
+          "first_mkt_id":" {{ section.id}}",
+          "second_mkt_rank":"{{ index }}",
+          "third_mkt_rank":"",
+          "mkt_material_url":"",
+          "mkt_material_name":"{{ mkt_material_name }}",
+          "commodity_spuid":"{{ product.handle }}",
+          "commodity_skuid":"{{ product.selected_or_first_available_variant.sku }}",
+          "commodity_name":"{{ product.title| handleize }}",
+          "original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}",
+          "current_price":"{{ product.selected_or_first_available_variant.price }}",
+          "currency_unit":"USD",
+          "mkt_tag":[]}'
+          
+          >
           <div class="media media--transparent media--hover-effect">
             <img data-media-id="{{ card_product.featured_media.id }}" srcset="{%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
                     {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | img_url: '360x' }} 360w,{%- endif -%}
@@ -104,7 +122,7 @@ endif
         </div>
       </div>
       {%- endif -%}
-      <!-- <div class="card__content">        
+      <div class="card__content">        
             <div class="card__information">
               <div class="card__heading">
                 <span class="full-unstyled-link">
@@ -120,9 +138,9 @@ endif
                 <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}">Save:{{ savings | append: '%'  }}</span>
               {%- endif -%}
             </div>
-          </div> -->
+          </div>
     </div>
-    <!-- <div class="card__content"> 
+     <div class="card__content"> 
           <div class="card__information">  
            <div class="card__heading">
               <span class="full-unstyled-link">
@@ -137,6 +155,8 @@ endif
               {%- endif -%}    
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
               <div class="grade-and-price">
+                   {%- comment -%}评分{%- endcomment -%} 
+                  {%- comment -%}
                 <div>
                   {% liquid
                     assign rating_decimal = 0 
@@ -148,14 +168,17 @@ endif
                     endif 
                     assign computed_rating = card_product.metafields.reviews.rating.value.rating | floor 
                   %}
+               
                   <div class="rating" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: card_product.metafields.reviews.rating.value, rating_max: card_product.metafields.reviews.rating.value.scale_max }}">
                     <span aria-hidden="true" class="rating-star color-icon-{{ settings.accent_icons }}" style="--rating: {{computed_rating}}; --rating-max: 5; --rating-decimal: {{ rating_decimal }};"></span>
                   </div>
+                  {%- endcomment -%}
+
                   {%- comment -%}
                     <p class="rating-text caption">
                       <span aria-hidden="true">{{ card_product.metafields.reviews.rating.value }} / {{ card_product.metafields.reviews.rating.value.scale_max }}</span>
                     </p>
-                  {%- endcomment -%}
+               
                   {%- if card_product.metafields.reviews.rating.value.rating != blank -%}
                     <p class="rating-count caption">
                       <span aria-hidden="true">({{ card_product.metafields.reviews.rating_count }})</span>
@@ -163,11 +186,13 @@ endif
                     </p>
                   {%- endif -%}
               </div>
+   {%- endcomment -%}
               <div class="right">
                 {% render 'price', product: card_product, price_class: '' %}
               </div>
-              </div> -->
-    <!-- <div class="color-selector">
+              </div>
+              {%- comment -%}
+    <div class="color-selector">
                 {%- for color in card_product.options_by_name['Color'].values limit:4 -%}
                   {%- for variant in card_product.variants -%}
                       {%- if variant.option1 == color -%}
@@ -228,6 +253,7 @@ endif
                   </div>
                 {%- endif -%}
               </div> 
+              {%- endcomment -%}
           </div>
         </div>    
          <div class="card__badge {{ settings.badge_position }}">
@@ -238,7 +264,7 @@ endif
               <span class="badge badge--bottom-left color-{{ settings.badge_sale_color_scheme }}">{{save | append: '%' }}</span>
             {%- endif -%}
           </div>
-        </div> -->
+        </div>
   </div>
 </product-item>
 {%- else -%}

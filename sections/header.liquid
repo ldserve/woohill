@@ -357,7 +357,23 @@
     {%- if request.page_type == 'index' -%}
     <h1 class="header__heading">
       {%- endif -%}
-      <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+      <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset shence_commodityView"
+      data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
+      data-scdata='{"mkt_type":"bar",
+      "first_mkt_name":"顶部导航",
+      "first_mkt_id":" {{ section.id}}",
+      "second_mkt_rank":"",
+      "third_mkt_rank":"",
+      "mkt_material_url":"",
+      "mkt_material_name":"",
+      "commodity_spuid":"",
+      "commodity_skuid":"",
+      "commodity_name":"",
+      "original_price":"",
+      "current_price":"",
+      "currency_unit":"",
+      "mkt_tag":[]}'
+      >
         {%- if section.settings.logo != blank -%}
         {%- assign image_size = section.settings.logo_width | append: 'x' -%}
         <img
@@ -483,8 +499,25 @@
               {% comment %} <a class="link--text" style="text-decoration:none;" href="{{link.url}}"> <span {%- if
                   link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span></a> {% endcomment %}
                   <a href="{{ link.url }}"
-                  class="header__menu-item header__menu-item list-menu__item link link--text focus-inset" {% if link.current
-                  %} aria-current="page" {% endif %}>
+                  class="header__menu-item header__menu-item list-menu__item link link--text focus-inset shence_commodityView" {% if link.current
+                  %} aria-current="page" {% endif %}
+                  data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
+                  data-scdata='{"mkt_type":"bar",
+                  "first_mkt_name":"顶部导航",
+                  "first_mkt_id":" {{ section.id}}",
+                  "second_mkt_rank":"{{ forloop.index }}",
+                  "third_mkt_rank":"",
+                  "mkt_material_url":"",
+                  "mkt_material_name":"",
+                  "commodity_spuid":"",
+                  "commodity_skuid":"",
+                  "commodity_name":"",
+                  "original_price":"",
+                  "current_price":"",
+                  "currency_unit":"",
+                  "mkt_tag":[]}'
+                  >
+              
                   <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
                 </a>
             </summary>
@@ -514,8 +547,24 @@
                   <div>
                     {%- if childlink.links == blank -%}
                     <a href="{{ childlink.url }}"
-                      class="header__menu-item list-menu__item link link--text focus-inset caption-large{% if childlink.current %} list-menu__item--active{% endif %}"
-                      {% if childlink.current %} aria-current="page" {% endif %}>
+                      class="header__menu-item list-menu__item link link--text focus-inset caption-large shence_commodityView{% if childlink.current %} list-menu__item--active{% endif %}"
+                      {% if childlink.current %} aria-current="page" {% endif %}
+                      data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
+                  data-scdata='{"mkt_type":"bar",
+                  "first_mkt_name":"",
+                  "first_mkt_id":" {{ section.id}}",
+                  "second_mkt_rank":"",
+                  "third_mkt_rank":"{{ forloop.index }}",
+                  "mkt_material_url":"{{childlink.object.image | img_url: '260x' }}",
+                  "mkt_material_name":"",
+                  "commodity_spuid":"",
+                  "commodity_skuid":"",
+                  "commodity_name":"",
+                  "original_price":"",
+                  "current_price":"",
+                  "currency_unit":"",
+                  "mkt_tag":[]}'
+                      >
                        <img src="{{childlink.object.image | img_url: '260x' }}"  style='float:left;'
                         loading="lazy"
                         class="ld-navImage"
@@ -533,8 +582,24 @@
         </details-disclosure>
         {%- else -%}
         <a href="{{ link.url }}"
-          class="header__menu-item header__menu-item list-menu__item link link--text focus-inset" {% if link.current
-          %} aria-current="page" {% endif %}>
+          class="header__menu-item header__menu-item list-menu__item link link--text focus-inset shence_commodityView" {% if link.current
+          %} aria-current="page" {% endif %}
+          data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
+          data-scdata='{"mkt_type":"bar",
+          "first_mkt_name":"顶部导航",
+          "first_mkt_id":" {{ section.id}}",
+          "second_mkt_rank":"{{ forloop.index }}",
+          "third_mkt_rank":"",
+          "mkt_material_url":"",
+          "mkt_material_name":"",
+          "commodity_spuid":"",
+          "commodity_skuid":"",
+          "commodity_name":"",
+          "original_price":"",
+          "current_price":"",
+          "currency_unit":"",
+          "mkt_tag":[]}'
+          >
           <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
         </a>
         {%- endif -%}
