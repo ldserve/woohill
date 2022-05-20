@@ -34,16 +34,16 @@
     
     {%- case quantity -%}
     {%- when 1 -%}
-    <span class="shipping-information cart-discount">{%- render 'icon',icon:'floret',class:'floret cart-shipping-icon' -%}<span class="shipping-text">Buy 1 more to get 10% off on your order</span> </span>
+    <span class="shipping-information cart-discount shipping-message">{%- render 'icon',icon:'floret',class:'floret cart-shipping-icon' -%}<span class="shipping-text">Buy 1 more to get 10% off on your order</span> </span>
     {%- when 2 -%}
-    <span class="shipping-information cart-discount">{%- render 'icon',icon:'floret',class:'floret cart-shipping-icon' -%}<span class="shipping-text"> Buy 2 more to get 15% off on your order</span></span>
+    <span class="shipping-information cart-discount shipping-message">{%- render 'icon',icon:'floret',class:'floret cart-shipping-icon' -%}<span class="shipping-text"> Buy 2 more to get 15% off on your order</span></span>
     {%- when 3 -%}
-    <span class="shipping-information cart-discount">{%- render 'icon',icon:'floret',class:'floret cart-shipping-icon' -%}<span class="shipping-text"> Buy 1 more to get 15% off on your order</span></span>
+    <span class="shipping-information cart-discount shipping-message">{%- render 'icon',icon:'floret',class:'floret cart-shipping-icon' -%}<span class="shipping-text"> Buy 1 more to get 15% off on your order</span></span>
     {%- endcase -%}
     {%- if cart.total_price >= threshold_in_cents -%}
-    <span class="shipping-information shipping-message" >{%- render'icon',icon:'truck' , class:'truck cart-shipping-icon' -%}<span  class="shipping-text"> Awesome! You scored FREE shipping!!</span></span>
+    <span class="shipping-information " >{%- render'icon',icon:'truck' , class:'truck cart-shipping-icon' -%}<span  class="shipping-text">Awesome! You scored <strong>FREE shipping!!</strong></span></span>
     {%- else -%}
-    <span class="shipping-information">{%- render'icon',icon:'truck' , class:'truck cart-shipping-icon'  -%} <span class="shipping-text"> You're US<strong>{{cart.total_price  | minus: threshold_in_cents | abs | money}}</strong> away from <strong>FREE shipping</strong></span> </span>
+    <span class="shipping-information shipping-message">{%- render'icon',icon:'truck' , class:'truck cart-shipping-icon'  -%} <span class="shipping-text"> You're US{{cart.total_price  | minus: threshold_in_cents | abs | money}} away from FREE shipping</span> </span>
     {%- endif -%}
   </div> 
   {% endif %}

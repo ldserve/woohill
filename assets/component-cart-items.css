@@ -11,6 +11,9 @@
   padding: 2rem 0;
   
   }
+  .shipping-message{
+    font-weight: 600;
+  }
   .cart-shipping-icon{
     width: 2rem;
     height: 2rem;
