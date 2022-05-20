@@ -14,7 +14,7 @@ class CartNotification extends HTMLElement {
   }
 
   open() {
-   var url = "/cart";
+   var url = "/products";
   fetch(url, {
     credentials: 'same-origin',
     method: 'GET',

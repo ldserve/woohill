@@ -2,15 +2,7 @@
   position: relative;
   display: block;
 }
-.shipping{
-margin-bottom: 2rem;
-}
 
-.shipping-information{
-  display: inline-block;
-  width: 100%;
-  text-align: left;
-}
 .cart__empty-text,
 .is-empty .cart__contents,
 cart-items.is-empty .title-wrapper-with-link,
