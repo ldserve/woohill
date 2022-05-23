@@ -33,11 +33,19 @@
               "text": "First Order Get Extra 10% OFF✨CODE: WH2022",
               "link": ""
             }
+          },
+          "274cc943-7874-4c98-bb2a-f35b08bcce9f": {
+            "type": "announcement",
+            "settings": {
+              "text": "Buy 2+ Get 10% OFF｜Buy 4+ Get 15% OFF",
+              "link": "shopify:\/\/collections\/ss2022-match"
+            }
           }
         },
         "block_order": [
           "693d9cb3-c404-468e-ad50-bd8fcea6b105",
-          "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9"
+          "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9",
+          "274cc943-7874-4c98-bb2a-f35b08bcce9f"
         ],
         "settings": {
           "show": true,
