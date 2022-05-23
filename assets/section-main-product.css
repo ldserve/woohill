@@ -345,9 +345,17 @@ fieldset.product-img__input .form__label {
   display: flex;
 }
 
+.icon-box2>* {
+  margin-right: .5rem;
+  margin-top: .5rem;
+  position: relative;
+  top: -8px;
+}
 .icon-box>* {
   margin-right: .5rem;
   margin-top: .5rem;
+  /* position: relative; */
+  /* top: -8px; */
 }
 
 .product__text {

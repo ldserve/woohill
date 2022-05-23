@@ -14,6 +14,21 @@ class CartNotification extends HTMLElement {
   }
 
   open() {
+   var url = "/products";
+  fetch(url, {
+    credentials: 'same-origin',
+    method: 'GET',
+    headers: {
+        'Cache-Control': 'no-cache'
+    }
+    }).then(function (content) {
+      return content.text()
+  })
+  .then( (state)=> {
+    document.querySelector('.shipping').innerHTML=this.getSectionInnerHTML(state,'.shipping')
+
+  })
+
     document.body.classList.add('overflow-hidden');
     this.notification.classList.add('animate', 'active');
     document.querySelector(".body_mask").classList.add('active');
@@ -41,7 +56,6 @@ class CartNotification extends HTMLElement {
         document.getElementById(section.id).innerHTML =
           this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
       }));
-
       if (this.header) this.header.reveal();
       this.open();
   }
