@@ -27,6 +27,7 @@
     <a href="{{ routes.all_products_collection_url }}" class="underlined-link">{{ 'general.continue_shopping' | t }}</a>
   </div>
 
+<div class="cart-shipping-box">
   {% if cart.items.size >0 %}
   <div class="shipping d-flex" >
     {%- assign quantity = cart.item_count  -%}
@@ -40,6 +41,7 @@
     {%- when 3 -%}
     <span class="shipping-information cart-discount shipping-message">{%- render 'icon',icon:'floret',class:'floret cart-shipping-icon' -%}<span class="shipping-text"> Buy 1 more to get 15% off on your order</span></span>
     {%- endcase -%}
+
     {%- if cart.total_price >= threshold_in_cents -%}
     <span class="shipping-information " >{%- render'icon',icon:'truck' , class:'truck cart-shipping-icon' -%}<span  class="shipping-text">Awesome! You scored <strong>FREE shipping!!</strong></span></span>
     {%- else -%}
@@ -47,7 +49,7 @@
     {%- endif -%}
   </div> 
   {% endif %}
-
+</div>
   <div class="cart__warnings">
     <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
     <a href="{{ routes.all_products_collection_url }}" class="button">

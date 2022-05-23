@@ -55,13 +55,12 @@ class CartItems extends HTMLElement {
       {
         id: 'main-cart-items__id',
         section: document.getElementById('main-cart-items__id').dataset.id,
-        selector: '.shipping'
+        selector: '.cart-shipping-box'
       }
     ];
   }
 
   updateQuantity(line, quantity, name) {
-
     this.enableLoading(line);
     const body = JSON.stringify({
       line,

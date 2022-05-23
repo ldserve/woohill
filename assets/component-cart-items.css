@@ -17,6 +17,7 @@
   .cart-shipping-icon{
     width: 2rem;
     height: 2rem;
+    margin-left:2rem ;
   }
   
   .shipping-information{
@@ -236,7 +237,7 @@ cart-remove-button .icon-remove {
     width: 100%;
   }
 
-  .shipping{
+  cart-items .shipping{
     background-color: #98805c;
     position: fixed;
     bottom: 2.6rem;
