@@ -23,35 +23,35 @@
           "693d9cb3-c404-468e-ad50-bd8fcea6b105": {
             "type": "announcement",
             "settings": {
-              "text": "$5 OFF ON ORDER $49",
+              "text": "FREE Shipping On Orders Over $55",
               "link": ""
+            }
+          },
+          "274cc943-7874-4c98-bb2a-f35b08bcce9f": {
+            "type": "announcement",
+            "settings": {
+              "text": "Buy 2+ Get 10% OFF｜Buy 4+ Get 15% OFF",
+              "link": "shopify:\/\/collections\/ss2022-match"
             }
           },
           "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9": {
             "type": "announcement",
             "settings": {
-              "text": "$10 OFF ON ORDER $69",
-              "link": ""
-            }
-          },
-          "0fc2d0ff-c749-49d2-a29a-4c19e02fe1f9": {
-            "type": "announcement",
-            "settings": {
-              "text": "$20 OFF ON ORDER $119",
+              "text": "First Order Get Extra 10% OFF✨CODE: WH2022",
               "link": ""
             }
           }
         },
         "block_order": [
           "693d9cb3-c404-468e-ad50-bd8fcea6b105",
-          "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9",
-          "0fc2d0ff-c749-49d2-a29a-4c19e02fe1f9"
+          "274cc943-7874-4c98-bb2a-f35b08bcce9f",
+          "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9"
         ],
         "settings": {
-          "show": false,
+          "show": true,
           "color_text": "#ffffff",
           "color_bg": "#967f5d",
-          "time": 10
+          "time": 5
         }
       },
       "header": {

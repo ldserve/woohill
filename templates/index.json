@@ -1,5 +1,25 @@
 {
   "sections": {
+    "1653031442b0efa174": {
+      "type": "ld-mask",
+      "blocks": {
+        "1653031442e87d8c65-0": {
+          "type": "banner",
+          "disabled": true,
+          "settings": {
+            "text": "Text"
+          }
+        }
+      },
+      "block_order": [
+        "1653031442e87d8c65-0"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/cyber-_03_42f6bb3b-4a58-4551-af0b-e8d3f5958b1f.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/cyber-_03_42f6bb3b-4a58-4551-af0b-e8d3f5958b1f.jpg",
+        "link": "shopify:\/\/collections\/best-seller"
+      }
+    },
     "165113456745539531": {
       "type": "ld-mask",
       "blocks": {
@@ -163,6 +183,7 @@
     }
   },
   "order": [
+    "1653031442b0efa174",
     "165113456745539531",
     "1651134555a7322bc0",
     "1646275552d33d41a1",

@@ -981,7 +981,7 @@ product-item {
 
   .title,
   .title-wrapper-with-link {
-    margin: 5rem 0 3rem;
+    margin: 3rem 0 2rem;
   }
 
   .title--primary {
@@ -1472,7 +1472,7 @@ button.shopify-payment-button__button--unbranded {
 
 .button--full-width {
   display: flex;
-  width: 80%;
+  width: 100%;
   background-color: #000;
   color: #fff;
 }
@@ -2561,7 +2561,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 }
 
 .header__submenu .header__menu-item {
-  /* padding: 0.95rem 3.5rem 0.95rem 2rem; */
+  padding: 0.95rem 3.5rem 0.95rem 2rem;
   display: flex;
   flex-direction: column;
 }
@@ -2570,9 +2570,9 @@ details[open]>.header__icon--menu .icon-hamburger {
   display: flex;
 }
 
-.sub-menu-right div:first-child {
+/* .sub-menu-right div:first-child {
   margin-right: 20px;
-}
+} */
 
 .sub-menu-left {
   font-size: 20px;
@@ -2781,7 +2781,9 @@ details[open]>.header__icon--menu .icon-hamburger {
   }
 
 }
-
+.d-none{
+  display: none;
+}
 .d-flex {
   display: flex;
 }
@@ -2889,21 +2891,23 @@ details[open]>.header__icon--menu .icon-hamburger {
 }
 
 .accordion__content-header {
-  background-color: #eee;
-  padding: 10px;
+  /* background-color: #eee; */
+  /* padding: 10px; */
 }
 
 .accordion__content-icon {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   font-weight: 700;
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
 
 .accordion__content-icon span {
   display: flex;
   align-items: center;
+  margin-right: 30px;
+  color: #333333;
 }
 
 .accordion__content-icon .icon {
