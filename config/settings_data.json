@@ -50,7 +50,7 @@
         "settings": {
           "show": true,
           "color_text": "#ffffff",
-          "color_bg": "#967f5d",
+          "color_bg": "#dbdb55",
           "time": 5
         }
       },
