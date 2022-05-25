@@ -12,6 +12,7 @@
     "page_width": "1400",
     "spacing_grid_horizontal": 8,
     "spacing_grid_vertical": 8,
+    "social_facebook_link": "https:\/\/www.facebook.com\/Woohillofficial\/",
     "favicon": "shopify:\/\/shop_images\/1_b37294eb-64e7-47d0-ace0-cfa48cb61fee.jpg",
     "checkout_accent_color": "#121212",
     "checkout_button_color": "#121212",
@@ -30,7 +31,7 @@
           "274cc943-7874-4c98-bb2a-f35b08bcce9f": {
             "type": "announcement",
             "settings": {
-              "text": "Buy 2+ Get 10% OFF｜Buy 4+ Get 15% OFF",
+              "text": "Buy 2+ Get 10% OFF｜Buy 3+ Get 15% OFF",
               "link": "shopify:\/\/collections\/ss2022-match"
             }
           },
@@ -50,7 +51,7 @@
         "settings": {
           "show": true,
           "color_text": "#ffffff",
-          "color_bg": "#967f5d",
+          "color_bg": "#dbdb55",
           "time": 5
         }
       },
