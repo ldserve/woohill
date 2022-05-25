@@ -39,6 +39,32 @@
             {% if collection.products_count < 4 %} grid--{{ collection.products_count }}-col-tablet{% else %}
               {% if collection.products_count == 4 %} grid--4-col-desktop{% else %} grid--4-col-tablet grid--one-third-max grid--4-col-desktop grid--quarter-max{% endif %}
             {% endif %}">
+
+            {% if collection.sort_by and collection.sort_by != empty %}
+            {% assign sort_by_list = collection.sort_by | split: ","%}
+            {% for item in sort_by_list %}
+            {% if all_products[item].featured_media and all_products[item].featured_media != empty %}
+            <style>
+              #{{item}}{
+                display:none
+              }
+         </style>
+            <li class="grid__item" id="{{item}}" style="display:block !important;">
+              {% render 'card-product',
+                card_product: all_products[item],
+                media_aspect_ratio: section.settings.image_ratio,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                product:product,
+                index:forloop.index
+              %}
+            </li>
+            {% endif %}
+            {% endfor %}
+          
+            {% endif %}
+         
             {%- for product in collection.products -%}
               <li class="grid__item" id="{{product.handle}}">
                 {% render 'card-product',

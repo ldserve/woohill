@@ -2568,8 +2568,21 @@ details[open]>.header__icon--menu .icon-hamburger {
 
 .sub-menu-right {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  flex-grow:1;
+}
+.sub-menu-right div{
+   width: 25%;
+   /* flex-grow:1 */
+}
+.ld-navImage{
+  width: 100%;
 }
 
+.afterFive{
+   max-width: 25%;
+}
 /* .sub-menu-right div:first-child {
   margin-right: 20px;
 } */
@@ -2577,6 +2590,7 @@ details[open]>.header__icon--menu .icon-hamburger {
 .sub-menu-left {
   font-size: 20px;
   color: #1b1b1b;
+  min-width: 125px;
 }
 
 .header__submenu .header__submenu .header__menu-item {
