@@ -29,7 +29,7 @@ assign ratio = 1
 endif
 -%}
 <product-item class="card-wrapper" id="{{ section.id }}-{{card_product.id}}">
-  <div class="card 
+  <div class="card
         card--{{ settings.card_style }}
         {% if card_product.featured_media %} card--media{% else %} card--text{% endif %}
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }}{% endif %}
@@ -45,7 +45,7 @@ endif
         <a href="{{ card_product.url | default: '#' }}" data-href="{{ card_product.url | default: '#' }}"
           data-handle="{{card_product.handle}}"
           class="shence_commodityView"
-          data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
+          data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick"
           data-scdata='{"mkt_type":"product",
           "first_mkt_name":"",
           "first_mkt_id":" {{ section.id}}",
@@ -60,7 +60,7 @@ endif
           "current_price":"{{ product.selected_or_first_available_variant.price }}",
           "currency_unit":"USD",
           "mkt_tag":[]}'
-          
+
           >
           <div class="media media--transparent media--hover-effect">
             <img data-media-id="{{ card_product.featured_media.id }}" srcset="{%- if card_product.featured_media.width >= 165 -%}{{ card_product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
@@ -122,15 +122,15 @@ endif
         </div>
       </div>
       {%- endif -%}
-      <div class="card__content">        
+      <div class="card__content">
             <div class="card__information">
               <div class="card__heading">
                 <span class="full-unstyled-link">
                   {{ card_product.title | escape }}
                 </span>
               </div>
-            </div>      
-            <div class="card__badge {{ settings.badge_position }}"> 
+            </div>
+            <div class="card__badge {{ settings.badge_position }}">
               {%- assign savings = card_product.compare_at_price | minus: card_product.price | times: 100.0 | divided_by: card_product.compare_at_price | round -%}
               {%- if card_product.available == false -%}
                 <span class="badge badge--bottom-left color-{{ settings.badge_sold_out_color_scheme }}">{{ 'products.product.sold_out' | t }}</span>
@@ -140,35 +140,35 @@ endif
             </div>
           </div>
     </div>
-     <div class="card__content"> 
-          <div class="card__information">  
+     <div class="card__content">
+          <div class="card__information">
            <div class="card__heading">
               <span class="full-unstyled-link">
                 {{ card_product.title | escape }}
               </span>
                 <div class="quick-view-btn hidden-phone" data-productSpu="{{card_product.handle}}">Quick View</div>
-            </div> 
-             <div class="card-information"> 
+            </div>
+             <div class="card-information">
            {%- if show_vendor -%}
                    <span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>
                 <div class="caption-with-letter-spacing light">{{ card_product.vendor }}</div>
-              {%- endif -%}    
+              {%- endif -%}
               <span class="caption-large light">{{ block.settings.description | escape }}</span>
               <div class="grade-and-price">
-                   {%- comment -%}评分{%- endcomment -%} 
+                   {%- comment -%}评分{%- endcomment -%}
                   {%- comment -%}
                 <div>
                   {% liquid
-                    assign rating_decimal = 0 
-                    assign decimal = card_product.metafields.reviews.rating.value.rating | modulo: 1 
+                    assign rating_decimal = 0
+                    assign decimal = card_product.metafields.reviews.rating.value.rating | modulo: 1
                     if decimal >= 0.3 and decimal <= 0.7
                       assign rating_decimal = 0.5
                     elsif decimal > 0.7
                       assign rating_decimal = 1
-                    endif 
-                    assign computed_rating = card_product.metafields.reviews.rating.value.rating | floor 
+                    endif
+                    assign computed_rating = card_product.metafields.reviews.rating.value.rating | floor
                   %}
-               
+
                   <div class="rating" role="img" aria-label="{{ 'accessibility.star_reviews_info' | t: rating_value: card_product.metafields.reviews.rating.value, rating_max: card_product.metafields.reviews.rating.value.scale_max }}">
                     <span aria-hidden="true" class="rating-star color-icon-{{ settings.accent_icons }}" style="--rating: {{computed_rating}}; --rating-max: 5; --rating-decimal: {{ rating_decimal }};"></span>
                   </div>
@@ -178,7 +178,7 @@ endif
                     <p class="rating-text caption">
                       <span aria-hidden="true">{{ card_product.metafields.reviews.rating.value }} / {{ card_product.metafields.reviews.rating.value.scale_max }}</span>
                     </p>
-               
+
                   {%- if card_product.metafields.reviews.rating.value.rating != blank -%}
                     <p class="rating-count caption">
                       <span aria-hidden="true">({{ card_product.metafields.reviews.rating_count }})</span>
@@ -191,7 +191,6 @@ endif
                 {% render 'price', product: card_product, price_class: '' %}
               </div>
               </div>
-              {%- comment -%}
     <div class="color-selector">
                 {%- for color in card_product.options_by_name['Color'].values limit:4 -%}
                   {%- for variant in card_product.variants -%}
@@ -201,12 +200,12 @@ endif
                       {%- endif -%}
                   {%- endfor -%}
                         <div>
-                          <span 
-                            class="color-item" 
-                            style="{% render 'color-square' ,color:color %}" 
+                          <span
+                            class="color-item"
+                            style="{% render 'color-square' ,color:color %}"
                             data-media-id="{{ cur_variant.featured_media.id }}"
                             data-variant-id="{{cur_variant.id}}"
-                            data-variant-url="{{cur_variant.featured_media | img_url: "533x" }}" 
+                            data-variant-url="{{cur_variant.featured_media | img_url: "533x" }}"
                             data-variant-srcset="{%- if cur_variant.featured_media.width >= 165 -%}{{ cur_variant.featured_media | img_url: "165x" }} 165w,{%- endif -%}
                             {%- if cur_variant.featured_media.width >= 360 -%}{{ cur_variant.featured_media | img_url: "360x" }} 360w,{%- endif -%}
                             {%- if cur_variant.featured_media.width >= 533 -%}{{ cur_variant.featured_media | img_url: "533x" }} 533w,{%- endif -%}
@@ -221,11 +220,11 @@ endif
                             data-variant-height="{{ cur_variant.featured_media.height }}"
                             title="{{color}}">
                             {%- if card_product.options_by_name['Color'].values.size < 6 -%}
-                            <img class="color-item" 
-                            style="{% render 'color-square' ,color:color %}" 
+                            <img class="color-item"
+                            style="{% render 'color-square' ,color:color %}"
                             data-media-id="{{ cur_variant.featured_media.id }}"
                             data-variant-id="{{cur_variant.id}}"
-                            data-variant-url="{{cur_variant.featured_media | img_url: "533x" }}" 
+                            data-variant-url="{{cur_variant.featured_media | img_url: "533x" }}"
                                srcset="{%- if cur_variant.featured_media.width >= 165 -%}{{ cur_variant.featured_media | img_url: "165x" }} 165w,{%- endif -%}
                                {%- if cur_variant.featured_media.width >= 360 -%}{{ cur_variant.featured_media | img_url: "360x" }} 360w,{%- endif -%}
                                {%- if cur_variant.featured_media.width >= 533 -%}{{ cur_variant.featured_media | img_url: "533x" }} 533w,{%- endif -%}
@@ -252,10 +251,9 @@ endif
                     <span class="color-item" title="more">+</span>
                   </div>
                 {%- endif -%}
-              </div> 
-              {%- endcomment -%}
+              </div>
           </div>
-        </div>    
+        </div>
          <div class="card__badge {{ settings.badge_position }}">
             {%- assign savings = card_product.compare_at_price | minus: card_product.price | times: 100.0 | divided_by: card_product.compare_at_price | round -%}
             {%- if card_product.available == false -%}
