@@ -38,6 +38,7 @@
           },
           "bd00b539-0b07-45cb-b82d-e6bfe5acdcc9": {
             "type": "announcement",
+            "disabled": true,
             "settings": {
               "text": "First Order Get Extra 10% OFF✨CODE: WH2022",
               "link": ""
@@ -51,9 +52,9 @@
         ],
         "settings": {
           "show": true,
-          "color_text": "#ffffff",
-          "color_bg": "#dbdb55",
-          "time": 5
+          "color_text": "#3f33ce",
+          "color_bg": "#ecec20",
+          "time": 6
         }
       },
       "header": {
