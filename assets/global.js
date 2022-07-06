@@ -1112,9 +1112,9 @@ class ProductItem extends HTMLElement {
   handleColorSelector = (e) => {
     if (e.target.className.indexOf('color-item') > -1) {
       let newHref = window.location.origin + '/products/' + this.elements.cardMedia.querySelector('a').dataset.handle
-      // if (e.target.title === 'more') {
-      //   window.location.href = newHref
-      // } else {
+      if (e.target.title === 'more') {
+        window.location.href = newHref
+      } else {
       let variantObj = e.target.dataset
       this.elements.cardMedia.querySelector('a').href = newHref + `?variant=${variantObj.variantId}`
       let img = this.elements.cardMedia.querySelector('img')
@@ -1133,7 +1133,7 @@ class ProductItem extends HTMLElement {
           img.style.opacity = 1
         }
       }
-      // }
+      }
     }
   }
 

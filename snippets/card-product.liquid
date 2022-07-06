@@ -199,9 +199,12 @@ endif
                       {%- break -%}
                       {%- endif -%}
                   {%- endfor -%}
-                        <div>
+									{% assign cur_color = card_product.featured_media.alt | split: '#' %}
+									{% assign cur_color1 = cur_color[1] | split: '_'%}
+									{% assign cur_color2 = cur_color1[1]%}
+									<div>
                           <span
-                            class="color-item"
+                            class="color-item  {% if cur_color2 == color %} color--active{% endif %}"
                             style="{% render 'color-square' ,color:color %}"
                             data-media-id="{{ cur_variant.featured_media.id }}"
                             data-variant-id="{{cur_variant.id}}"
@@ -219,7 +222,6 @@ endif
                             data-variant-width="{{ cur_variant.featured_media.width }}"
                             data-variant-height="{{ cur_variant.featured_media.height }}"
                             title="{{color}}">
-                            {%- if card_product.options_by_name['Color'].values.size < 6 -%}
                             <img class="color-item"
                             style="{% render 'color-square' ,color:color %}"
                             data-media-id="{{ cur_variant.featured_media.id }}"
@@ -242,7 +244,6 @@ endif
                                data-variant-src="{{ cur_variant.featured_media | img_url: "533x" }}"
                                data-variant-sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
                                data-variant-alt="{{ cur_variant.featured_media.alt | escape }}">
-                               {%- endif -%}
                           </span>
                         </div>
                 {% endfor %}

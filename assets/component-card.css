@@ -15,7 +15,7 @@
 }
 
 .card--card,
-.card--standard .card__inner { 
+.card--standard .card__inner {
   position: relative;
   box-sizing: border-box;
 }
@@ -294,7 +294,7 @@
   margin: .5rem .5rem 0 0;
 }
 .color-selector .color--active {
- border-color: #000;
+  border: 1px solid #000;
 }
 .color-selector .color-item {
   display: block;
@@ -307,8 +307,8 @@
 width: 100%;
 }
 .color-selector .more {
-  border: 1px solid #000;
   font-size: 3rem;
+  line-height: 4rem;
 }
 @media screen and (max-width: 749px) {
   .grade-and-price {
