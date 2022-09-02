@@ -8,12 +8,6 @@
   <meta name="theme-color" content="">
   <link rel="canonical" href="{{ canonical_url }}">
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-  {%- comment -%}ip解析{%- endcomment -%}
-  <script>
-    var r = new XMLHttpRequest();r.onreadystatechange = function () {if (4 === this.readyState && 200 === this.status) {var data = JSON.parse(this.responseText);if (data.country_code2 === 'CN' || data.country_code3 === 'CHN') { window.location.href = "https://www.baidu.com";}}};r.withCredentials = true;r.open('GET', 'https://api.ipgeolocation.io/ipgeo?apiKey=d400738c899c4fbdbb138b7ad40b79d0', false);r.setRequestHeader('Accept', 'application/json');r.setRequestHeader('Accept', 'application/json');r.send();
-  </script>
-  
-{%- comment -%} END{%- endcomment -%}
   {%- if settings.favicon != blank -%}
   <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
   {%- endif -%}
