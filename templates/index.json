@@ -132,7 +132,7 @@
           "type": "link",
           "settings": {
             "title": "NEW IN",
-            "link": "https:\/\/www.hyfol.com\/collections\/new-in-1",
+            "link": "https:\/\/www.woohill.com\/collections\/new-in-1",
             "show_hot": true
           }
         },
@@ -140,7 +140,7 @@
           "type": "link",
           "settings": {
             "title": "St.Patrick's Day",
-            "link": "https:\/\/www.hyfol.com\/collections\/st-patricks-day",
+            "link": "https:\/\/www.woohill.com\/collections\/st-patricks-day",
             "show_hot": true
           }
         },
@@ -148,7 +148,7 @@
           "type": "link",
           "settings": {
             "title": "FLASH SALE",
-            "link": "https:\/\/www.hyfol.com\/collections\/flash-sale-1",
+            "link": "https:\/\/www.woohill.com\/collections\/flash-sale-1",
             "show_hot": true
           }
         },
@@ -156,7 +156,7 @@
           "type": "link",
           "settings": {
             "title": "HOODIES",
-            "link": "https:\/\/www.hyfol.com\/collections\/hoodies-1",
+            "link": "https:\/\/www.woohill.com\/collections\/hoodies-1",
             "show_hot": true
           }
         },
@@ -164,12 +164,13 @@
           "type": "link",
           "settings": {
             "title": "SWEATSHIRTS",
-            "link": "https:\/\/www.hyfol.com\/collections\/sweatshirts-12-13",
+            "link": "https:\/\/www.woohill.com\/collections\/sweatshirts-12-13",
             "show_hot": true
           }
         },
         "aff387be-367a-4214-bd63-f4f19057e000": {
           "type": "link",
+          "disabled": true,
           "settings": {
             "title": "JACKETS",
             "link": "",
@@ -180,7 +181,7 @@
           "type": "link",
           "settings": {
             "title": "CARGO PANTS",
-            "link": "https:\/\/www.hyfol.com\/collections\/cargo-pants",
+            "link": "https:\/\/www.woohill.com\/collections\/cargo-pants",
             "show_hot": true
           }
         },
@@ -188,7 +189,7 @@
           "type": "link",
           "settings": {
             "title": "POLO SHIRTS",
-            "link": "https:\/\/www.hyfol.com\/collections\/polo-shirts",
+            "link": "https:\/\/www.woohill.com\/collections\/polo-shirts",
             "show_hot": true
           }
         }
