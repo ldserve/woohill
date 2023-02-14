@@ -104,11 +104,9 @@
             "disabled": true,
             "settings": {
               "menu_item": "Thits",
-              "image_1": "shopify:\/\/shop_images\/gxl_60a56557-6540-4aaf-a258-2723ac110003.jpg",
               "image_1_heading": "Your image",
               "image_1_text": "Tell your story",
               "image_1_link": "shopify:\/\/collections\/bottoms",
-              "image_2": "shopify:\/\/shop_images\/gxl_60a56558-a284-4aa7-b9cf-04abac110006.jpg",
               "image_2_heading": "Your image",
               "image_2_text": "Tell your story",
               "image_2_link": "shopify:\/\/collections\/bottoms"
@@ -118,7 +116,6 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "MEN",
-              "image_1": "shopify:\/\/shop_images\/1_7f36ea00-0c19-4d22-9611-d1276d336751.jpg",
               "image_1_heading": "",
               "image_1_text": "",
               "image_1_link": "",
@@ -131,7 +128,6 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "WOMEN",
-              "image_1": "shopify:\/\/shop_images\/33.jpg",
               "image_1_heading": "",
               "image_1_text": "",
               "image_1_link": "",
@@ -144,7 +140,6 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "ACCESSORIES",
-              "image_1": "shopify:\/\/shop_images\/accessories_d5816af4-4ce6-43a5-a741-c0c273e7ad2e.jpg",
               "image_1_heading": "",
               "image_1_text": "",
               "image_1_link": "",
@@ -157,7 +152,6 @@
             "type": "mega_menu",
             "settings": {
               "menu_item": "SALE",
-              "image_1": "shopify:\/\/shop_images\/3_b069e7ac-a441-429f-bc8a-31f6980026e6.jpg",
               "image_1_heading": "",
               "image_1_text": "",
               "image_1_link": "",
@@ -176,12 +170,12 @@
         ],
         "settings": {
           "enable_sticky_header": true,
-          "logo": "shopify:\/\/shop_images\/hyfol_2.0_1.png",
+          "logo": "shopify:\/\/shop_images\/WPS_c2200e01-d714-45d9-bd45-4921f8db6042.png",
           "logo_max_width": 85,
           "mobile_logo_max_width": 70,
           "show_locale_selector": false,
           "show_currency_selector": false,
-          "navigation_menu": "pc",
+          "navigation_menu": "",
           "navigation_mobile_menu": "main-menu",
           "desktop_navigation_layout": "inline",
           "desktop_navigation_open_trigger": "hover",
@@ -227,7 +221,7 @@
           "244b3e68-04f8-41ec-acf1-bff4665fe23c": {
             "type": "links",
             "settings": {
-              "menu": "b2b-business"
+              "menu": ""
             }
           }
         },
@@ -410,11 +404,7 @@
         "type": "surprise",
         "settings": {
           "show": false,
-          "lucky": 99,
-          "lucky_bg": "shopify:\/\/shop_images\/8767edd33eb57464b0c10b2bc28117ba_cc599104-bed1-420b-ac12-1c7b1e005647.png",
-          "lucky_bg2": "shopify:\/\/shop_images\/e851266b7a170850464990cf43256c9b.png",
-          "lucky_point": "shopify:\/\/shop_images\/2aad61e1adf5f8c21c0c20ce09c71f70_74f2bea5-a8c1-4c36-b1aa-843beaa036d9.png",
-          "lucky_plate": "shopify:\/\/shop_images\/13b0c41eaaf08cceb8029b36ad05954b.png"
+          "lucky": 99
         }
       }
     },
