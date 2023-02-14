@@ -141,7 +141,7 @@ const MutationObservercallback = function(mutationsList, observer) {
 };
 
 // 创建一个观察器实例并传入回调函数
-if(location.pathname.split('/').reverse().shift()=='hot-sale-hyfol-3'){
+if(location.pathname.split('/').reverse().shift()=='hot-sale-woohill-3'){
   setTimeout(()=>{
     const targetEl=document.querySelector('.product-list.product-list--collection')
     const obs= new MutationObserver((mutationsList,observer)=>{

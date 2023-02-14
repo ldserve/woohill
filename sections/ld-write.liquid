@@ -1,96 +1,152 @@
-
 <section class="product-review-section" data-action="product-review">
   {%- comment -%}
   <div class="product-block-list__item product-block-list__item--reviews container">
-    <span id="product-reviews" class="anchor"></span>
-    <div class="card">
-      <div class="card__section">
-        {%- assign reviews_count = product.metafields.spr.reviews | split: '
-        <meta itemprop="reviewCount" content="' | last | split: '">' | first | times: 1 -%}
-        <div id="shopify-product-reviews"
-          class="spr-reviews {% if reviews_count > 0 %}spr-reviews--has-reviews{% endif %}" data-id="{{ product.id }}">
-          {{ product.metafields.spr.reviews }}</div>
-      </div>
-    </div>
+  <span id="product-reviews" class="anchor"></span>
+  <div class="card">
+  <div class="card__section">
+  {%- assign reviews_count = product.metafields.spr.reviews | split: '
+  <meta itemprop="reviewCount" content="' | last | split: '">' | first | times: 1 -%}
+  <div id="shopify-product-reviews"
+  class="spr-reviews {% if reviews_count > 0 %}spr-reviews--has-reviews{% endif %}" data-id="{{ product.id }}">
+  {{ product.metafields.spr.reviews }}</div>
   </div>
-  {%- endcomment -%}
-
-  <div class="product-block-list__item product-block-list__item--reviews container">
+  </div>
+  </div>
+  {%- endcomment -%}<div class="product-block-list__item product-block-list__item--reviews container">
     <span id="product-reviews" class="anchor"></span>
     <div class="card">
       <div class="card__section">
         <div id="shopify-product-reviews" class="spr-reviews ">
           {%- comment -%} reviews {%- endcomment -%}
           <div class="spr-content">
-            <div class="spr-form" id="form_review_add" style="display: none" aria-hidden="true">
-              <form method="post" id="new-review-form" class="new-review-form">
+            <div
+              class="spr-form"
+              id="form_review_add"
+              style="display: none"
+              aria-hidden="true">
+              <form
+                method="post"
+                id="new-review-form"
+                class="new-review-form">
                 <input type="hidden" name="rating">
-                <input type="hidden" name="spuCode" value="{{product.handle}}">
+                <input
+                  type="hidden"
+                  name="spuCode"
+                  value="{{product.handle}}">
                 <h3 class="spr-form-title">Write a review</h3>
                 <div class="spr-form-message spr-form-message-error" style="display: none;">Not all the fields have been filled out correctly!</div>
                 <fieldset class="spr-form-contact">
                   <div class="spr-form-contact-name">
-                    <label class="spr-form-label" for="review_author " >Name</label>
-                    <input class="spr-form-input spr-form-input-text " id="review_author " type="text"
-                      name="author" value="" placeholder="Enter your name">
+                    <label class="spr-form-label" for="review_author ">Name</label>
+                    <input
+                      class="spr-form-input spr-form-input-text "
+                      id="review_author "
+                      type="text"
+                      name="author"
+                      value=""
+                      placeholder="Enter your name">
                   </div>
                   <div class="spr-form-contact-email">
                     <label class="spr-form-label" for="review_email ">Email</label>
-                    <input class="spr-form-input spr-form-input-email " id="review_email " type="email"
-                      name="email" value="" placeholder="john.smith@example.com">
+                    <input
+                      class="spr-form-input spr-form-input-email "
+                      id="review_email "
+                      type="email"
+                      name="email"
+                      value=""
+                      placeholder="john.smith@example.com">
                   </div>
                 </fieldset>
                 <fieldset class="spr-form-review">
                   <div class="spr-form-review-rating">
                     <label class="spr-form-label" for="review[rating]">Rating</label>
                     <div class="spr-form-input spr-starrating ">
-                      <a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="1" data-action="changeRating"
+                      <a
+                        href="#"
+                        class="spr-icon spr-icon-star spr-icon-star-empty"
+                        data-value="1"
+                        data-action="changeRating"
                         aria-label="1 of 5 stars">&nbsp;</a>
-                      <a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="2" data-action="changeRating"
+                      <a
+                        href="#"
+                        class="spr-icon spr-icon-star spr-icon-star-empty"
+                        data-value="2"
+                        data-action="changeRating"
                         aria-label="2 of 5 stars">&nbsp;</a>
-                      <a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="3" data-action="changeRating"
+                      <a
+                        href="#"
+                        class="spr-icon spr-icon-star spr-icon-star-empty"
+                        data-value="3"
+                        data-action="changeRating"
                         aria-label="3 of 5 stars">&nbsp;</a>
-                      <a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="4" data-action="changeRating"
+                      <a
+                        href="#"
+                        class="spr-icon spr-icon-star spr-icon-star-empty"
+                        data-value="4"
+                        data-action="changeRating"
                         aria-label="4 of 5 stars">&nbsp;</a>
-                      <a href="#" class="spr-icon spr-icon-star spr-icon-star-empty" data-value="5" data-action="changeRating"
+                      <a
+                        href="#"
+                        class="spr-icon spr-icon-star spr-icon-star-empty"
+                        data-value="5"
+                        data-action="changeRating"
                         aria-label="5 of 5 stars">&nbsp;</a>
                     </div>
                   </div>
 
                   <div class="spr-form-review-title">
                     <label class="spr-form-label" for="review_title ">Review Title</label>
-                    <input class="spr-form-input spr-form-input-text " id="review_title " type="text"
-                      name="title" value="" placeholder="Give your review a title">
+                    <input
+                      class="spr-form-input spr-form-input-text "
+                      id="review_title "
+                      type="text"
+                      name="title"
+                      value=""
+                      placeholder="Give your review a title">
                   </div>
 
                   <div class="spr-form-review-body">
                     <label class="spr-form-label" for="review_body ">
                       Body of Review
-                      <span role="status" aria-live="polite" aria-atomic="true">
+                      <span
+                        role="status"
+                        aria-live="polite"
+                        aria-atomic="true">
                         <span class="spr-form-review-body-charactersremaining">(1500)</span>
                         <span class="visuallyhidden">characters remaining</span>
                       </span>
                     </label>
                     <div class="spr-form-input">
-                      <textarea class="spr-form-input spr-form-input-textarea " id="review_body "
-                        data-product-id="7701733671127" name="body" rows="10"
+                      <textarea
+                        class="spr-form-input spr-form-input-textarea "
+                        id="review_body "
+                        data-product-id="7701733671127"
+                        name="body"
+                        rows="10"
                         placeholder="Write your comments here"></textarea>
                     </div>
                   </div>
                   <div class="upload-img d-flex">
                     <div class="upload-img_views"></div>
-                    <input type="file" name="imgList" id="review-img-upload" style="display: none;" multiple="multiple">
+                    <input
+                      type="file"
+                      name="imgList"
+                      id="review-img-upload"
+                      style="display: none;"
+                      multiple="multiple">
                     <label for="review-img-upload" class="upload-img_label">
-                      <span>{%- render 'icon',icon:"upload" -%}</span>
+                      <span>{%- render 'icon', icon: "upload" -%}</span>
                     </label>
                     <span class="upload_info">Select uploaded pictures</span>
                   </div>
-                  
+
                 </fieldset>
 
                 <fieldset class="spr-form-actions">
-                  <button type="submitForm" class="spr-button spr-button-primary button button-primary btn btn-primary"
-                    data-action="submitReview" >Submit Review</button>
+                  <button
+                    type="submitForm"
+                    class="spr-button spr-button-primary button button-primary btn btn-primary"
+                    data-action="submitReview">Submit Review</button>
                 </fieldset>
               </form>
             </div>
@@ -102,7 +158,7 @@
   </div>
 
   <script>
-    ~function () {
+    ~ function() {
 
       let defaultData = {
         "commentPage": {
@@ -116,7 +172,7 @@
           "countId": null,
           "maxLimit": null,
           "searchCount": true,
-          "pages": 0,
+          "pages": 0
         },
         "evgRating": "0",
         "fiveNum": 0,
@@ -133,27 +189,33 @@
       }
 
       async function login() {
-        const body = { email: "{{customer.email}}", id: "{{customer.id}}" }
-        if (!body.id) {
-          window.location.href = "https://www.hyfol.com/account/login"
+        const body = {
+          email: "{{customer.email}}",
+          id: "{{customer.id}}"
+        }
+        if (! body.id) {
+          window.location.href = "https://www.woohill.com/account/login"
           return
         }
-        const { data } = await fetch("http://api.leandow-technology.com/api/customerAccount/login", {
+        const {data} = await fetch("http://api.leandow-technology.com/api/customerAccount/login", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
-            "siteValue": "hyfol"
+            "siteValue": "woohill"
           },
           body: JSON.stringify(body)
         }).then(response => response.json())
         return data
       }
 
-      /* RENDERN TEMPLATE */
-      function getRatingSvg(className, fillName = 'full') {//fillName='half'
+/* RENDERN TEMPLATE */
+      function getRatingSvg(className, fillName = 'full') { // fillName='half'
         let fillItem
-        if (fillName == 'full') fillItem = 'currentColor';
-        else if (fillName == "half") fillItem = 'url(#rating-star-gradient-half)';
+        if (fillName == 'full') 
+          fillItem = 'currentColor';
+         else if (fillName == "half") 
+          fillItem = 'url(#rating-star-gradient-half)';
+        
         return `<svg fill="none" focusable="false" role="presentation" class="icon rating__star ${className}" viewBox="0 0 896 832">
                 	      <path d="M896 320l-313.5-40.781L448 0 313.469 279.219 0 320l230.469 208.875L171 831.938l277-148.812 277.062 148.812L665.5 528.875z"
                 	      fill-rule="nonzero" fill="${fillItem}"></path>
@@ -190,8 +252,20 @@
         let reviewsBar = ''
         let i = 5
         const total = data.commentPage.total
-        const { fiveNum, fourNum, oneNum, threeNum, twoNum } = data
-        const countRating = { fiveNum, fourNum, oneNum, threeNum, twoNum }
+        const {
+          fiveNum,
+          fourNum,
+          oneNum,
+          threeNum,
+          twoNum
+        } = data
+        const countRating = {
+          fiveNum,
+          fourNum,
+          oneNum,
+          threeNum,
+          twoNum
+        }
         for (const key in countRating) {
           let rating = countRating[key]
           let count = Math.round(rating / total * 100) || 0
@@ -205,7 +279,9 @@
       }
 
       function renderImg(imgList) {
-        if (!Array.isArray(imgList)) return ''
+        if (!Array.isArray(imgList)) 
+          return ''
+        
         let l = imgList.length
         let imgStr = ''
         let i = 0
@@ -218,12 +294,20 @@
       }
 
       function renderReview(data) {
-        let { commentPage } = data
+        let {commentPage} = data
         let rating = parseFloat(data.evgRating)
         let strTemplate = renderRating(rating)
 
         let reviews = commentPage.records.map(item => {
-          let { createTime, rating, body, title, author, imgList, id } = item
+          let {
+            createTime,
+            rating,
+            body,
+            title,
+            author,
+            imgList,
+            id
+          } = item
           createTime = createTime.split(" ")[0]
           let ratings = renderRating(rating)
           let imgs = renderImg(imgList)
@@ -239,12 +323,16 @@
         }).join('')
 
         let reviewBar = renderReviewBar(data)
-        if (!reviews.length) reviews = 'No reviews yet'
+        if (! reviews.length) 
+          reviews = 'No reviews yet'
+        
         let reviewTemplate = `<div class="spr-header">
                                               <h2 class="spr-header-title">Customer Reviews</h2>
                                               <div class="spr-summary rte">
                                                 <span class="spr-starrating spr-summary-starrating" aria-label="${rating} of 5 stars" role="img" >${strTemplate}</span>
-                                                <span class="spr-summary-caption"><span class="spr-summary-actions-togglereviews">Based on ${commentPage.total} reviews</span></span>
+                                                <span class="spr-summary-caption"><span class="spr-summary-actions-togglereviews">Based on ${
+          commentPage.total
+        } reviews</span></span>
                                                 <span class="spr-summary-actions">
                                                   <a href="#" class="spr-summary-actions-newreview" data-action="open-madal" aria-controls="form_review_add">Write a Review</a>
                                                 </span>
@@ -259,19 +347,27 @@
         const newReview = document.querySelector('.spr-content')
         const totalReviewsCount = document.querySelector('.product-meta__reviews-badge')
         totalReviewsCount.innerHTML = `<div class="rating"><div class="rating__stars" role="img" aria-label="${rating} of 5.0 stars">${strTemplate}</div>
-                      <span class="rating__caption">(${commentPage.total})</span></div>`
+                      <span class="rating__caption">(${
+          commentPage.total
+        })</span></div>`
         document.getElementById('shopify-product-reviews').insertBefore(reviewContent, newReview)
       }
 
-      /* EVENTS */
+/* EVENTS */
       let root = document.querySelector('.product-review-section')
       let reviews = document.getElementById('reviews')
       const form = document.getElementById('new-review-form')
-      const formContainer=document.getElementById('form_review_add')
+      const formContainer = document.getElementById('form_review_add')
       const uploadFileView = root.querySelector('.upload-img_views')
       const uinfo = root.querySelector('.upload_info')
       const errorInfor = root.querySelector('.spr-form-message-error')
-      const exSuffix = ['png', 'jpg', 'jpeg', 'gif', 'webp']
+      const exSuffix = [
+        'png',
+        'jpg',
+        'jpeg',
+        'gif',
+        'webp'
+      ]
       let listenerMap = [{}, {}]
       let ratings = []
       let token;
@@ -279,74 +375,92 @@
       const fileList = []
       let changeRating = 0
       let isOpen = false
-      let subimit=false
+      let subimit = false
 
       function handle(ev) {
         let type = ev.type
-        let i, l, listener, target;
-        let phase = ev.eventPhase || (ev.target !== ev.currentTarget ? 3 : 2);
-        let listenerList = [];
-        target = ev.target
-        if (target.nodeType == 3) {
-          target = target.parentNode
-        }
-
-        if (phase == 1) listenerList = listenerMap[1][type];
-        else if (phase == 3) listenerList = listenerMap[0][type];
-        l = listenerList.length;
-        while (target && l) {
-          for (i = 0; i < l; i++) {
-            listener = listenerList[i];
-            if (!listener) break;
-            if (target.tagName && ["button", "input", "select", "textarea"].indexOf(target.tagName.toLowerCase()) > -1 && target.hasAttribute("disabled")) {
-            }
-            else if (target.matches(listener.selector)) {
-              listener.handler.call(target, event, target)
-            }
+          let i,
+            l,
+            listener,
+            target;
+          let phase = ev.eventPhase || (
+            ev.target !== ev.currentTarget
+              ? 3
+              : 2
+          );
+          let listenerList = [];
+          target = ev.target
+          if (target.nodeType == 3) {
+            target = target.parentNode
           }
-          if (target === root) break;
+
+          if (phase == 1) 
+            listenerList = listenerMap[1][type];
+           else if (phase == 3) 
+            listenerList = listenerMap[0][type];
+          
           l = listenerList.length;
-          target = target.parentElement || target.parentNode;
+          while (target && l) {
+            for (i = 0; i < l; i++) {
+              listener = listenerList[i];
+              if (! listener) 
+                break;
+              
+              if (target.tagName && ["button", "input", "select", "textarea"].indexOf(target.tagName.toLowerCase()) > -1 && target.hasAttribute("disabled")) {} else if (target.matches(listener.selector)) {
+                listener.handler.call(target, event, target)
+              }
+            }
+            if (target === root) 
+              break;
+            
+            l = listenerList.length;
+            target = target.parentElement || target.parentNode;
+          }
         }
-      }
 
-      function bindEvent(eventType, selector, handler, useCapture) {
-        let eventMap = listenerMap[useCapture ? 1 : 0];
-        if (!eventMap[eventType]) {
-          root && root.addEventListener(eventType, handle, useCapture);
-          eventMap[eventType] = [];
+        function bindEvent(eventType, selector, handler, useCapture) {
+          let eventMap = listenerMap[
+            useCapture
+              ? 1
+              : 0
+          ];
+          if (! eventMap[eventType]) {
+            root && root.addEventListener(eventType, handle, useCapture);
+            eventMap[eventType] = [];
+          }
+          eventMap[eventType].push({selector: selector, handler: handler});
         }
-        eventMap[eventType].push({
-          selector: selector,
-          handler: handler
-        });
-      }
 
-      function open(ev, target) {
-        ev.preventDefault()
-        !reviews && (reviews = document.getElementById('reviews'))
-        let modalName = target.getAttribute("aria-controls")
-        let modal = root.querySelector('#'.concat(modalName))
-        if (!modal) return;
-        if (isOpen) {
-          reviews.style.display = 'block'
-          modal.style.display = 'none'
-          modal.setAttribute('aria-hidden', true)
-          isOpen = false
-          return
+        function open(ev, target) {
+          ev.preventDefault()
+          ! reviews && (reviews = document.getElementById('reviews'))
+          let modalName = target.getAttribute("aria-controls")
+          let modal = root.querySelector('#'.concat(modalName))
+          if (! modal) 
+            return;
+          
+          if (isOpen) {
+            reviews.style.display = 'block'
+            modal.style.display = 'none'
+            modal.setAttribute('aria-hidden', true)
+            isOpen = false
+            return
+          }
+          modal.style.display = 'block'
+          reviews.style.display = 'none'
+          modal.setAttribute('aria-hidden', false)
+          isOpen = true
         }
-        modal.style.display = 'block'
-        reviews.style.display = 'none'
-        modal.setAttribute('aria-hidden', false)
-        isOpen = true
-      }
 
-      function renderUploadImg() {
-        let i = 0, j = filesList.length
-        let imgList = ''
+        function renderUploadImg() {
+          let i = 0,
+            j = filesList.length
+          let imgList = ''
         for (; i < j; i++) {
           let file = filesList[i]
-          imgList += `<div class="file_item"><img src="${file.result}" alt="upload" ><span class="close-img" data-action="close-img" data-id="${i}">X</span></div>`
+          imgList += `<div class="file_item"><img src="${
+            file.result
+          }" alt="upload" ><span class="close-img" data-action="close-img" data-id="${i}">X</span></div>`
         }
         uploadFileView.innerHTML = imgList
       }
@@ -354,7 +468,9 @@
       function selectRating(ev, target) {
         ev.preventDefault()
         ev.stopPropagation()
-        ratings = ratings.length ? ratings : root.querySelectorAll('[data-action="changeRating"]')
+        ratings = ratings.length
+          ? ratings
+          : root.querySelectorAll('[data-action="changeRating"]')
         let currentRating = changeRating = target.dataset.value
         for (let i = 0; i < ratings.length; i++) {
           const element = ratings[i];
@@ -363,129 +479,149 @@
       }
 
       function uploadImg(ev, target) {
-        ev.preventDefault()
-        ev.stopPropagation()
-        uinfo.style.display = 'none'
+        ev
+          .preventDefault()
+          ev
+          .stopPropagation()
+          uinfo
+          .style
+          .display = 'none'
         let files = target.files
-        let i = 0, j = files.length;
-        for (; i < j; i++) {
-          let file = files[i]
-          let suffix = file.name.split('.').reverse().shift()
-          if (exSuffix.includes(suffix)) {
-            let reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function (result) {
-              result.id = Date.now()
-              filesList.push(result.target)
-              fileList.push(file)
-              renderUploadImg()
+          let i = 0,
+            j = files.length;
+          for (; i < j; i++) {
+            let file = files[i]
+            let suffix = file
+              .name
+              .split('.')
+              .reverse()
+              .shift()
+            if (exSuffix.includes(suffix)) {
+              let reader = new FileReader();
+              reader.readAsDataURL(file);
+              reader.onload = function(result) {
+                result.id = Date.now()
+                filesList.push(result.target)
+                fileList.push(file)
+                renderUploadImg()
+              }
             }
           }
         }
-      }
 
-      function closeImg(ev, target) {
-        ev.preventDefault()
-        let idx = target.getAttribute('dataa-id') * 1
-        filesList.splice(idx, 1)
-        fileList.splice(idx, 1)
-        renderUploadImg()
-      }
-
-      async function submitForm(ev, target) {
-        ev.preventDefault()
-        ev.stopPropagation()
-        if (subimit) return;
-        subimit = true
-        if (!token) token = await login();
-        const elements = []
-        const dataObj = {"location": "","rating": 0,"repliedAt": "","reply": "","state": "published"}
-        form.elements&&form.elements.forEach(item => {
-          let tag = item.tagName.toLowerCase()
-          if (['input', 'textarea'].includes(tag)) {
-            elements.push(item)
-            dataObj[item.name] = item.value
-          }
-        });
-        target.setAttribute('disabled', '')
-        dataObj.rating = changeRating
-        dataObj.imgList = []
-        if (!token) token = await login();
-        if (fileList.length) {
-          const formData = new FormData()
-          fileList.forEach(i => {
-            formData.append('files', i, i.name)
-          })
-          const data = await fetch('http://api.leandow-technology.com/api/customerAccount/uploads', {
-            method: "POST",
-            body: formData
-          }).then(response => response.json()).catch(reason => {
-
-          })
-          data.success && (dataObj.imgList = data.data)
+        function closeImg(ev, target) {
+          ev.preventDefault()
+          let idx = target.getAttribute('dataa-id') * 1
+          filesList.splice(idx, 1)
+          fileList.splice(idx, 1)
+          renderUploadImg()
         }
 
-        if (dataObj.body && dataObj.email && dataObj.rating && dataObj.author) {
-          const data = await fetch('http://api.leandow-technology.com/api/customerAccount/addComment', {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-              siteValue: 'hyfol',
-              Authorization: token
-            },
-            body: JSON.stringify(dataObj)
-          }).then(respone => respone.json())
-            .catch(reason => {
+        async function submitForm(ev, target) {
+          ev.preventDefault()
+          ev.stopPropagation()
+          if (subimit) 
+            return;
+          
+          subimit = true
+          if (! token) 
+            token = await login();
+          
+          const elements = []
+          const dataObj = {
+            "location": "",
+            "rating": 0,
+            "repliedAt": "",
+            "reply": "",
+            "state": "published"
+          }
+          form.elements && form.elements.forEach(item => {
+            let tag = item.tagName.toLowerCase()
+            if (['input', 'textarea'].includes(tag)) {
+              elements.push(item)
+              dataObj[item.name] = item.value
+            }
+          });
+          target.setAttribute('disabled', '')
+          dataObj.rating = changeRating
+          dataObj.imgList = []
+          if (! token) 
+            token = await login();
+          
+          if (fileList.length) {
+            const formData = new FormData()
+            fileList.forEach(i => {
+              formData.append('files', i, i.name)
+            })
+            const data = await fetch('http://api.leandow-technology.com/api/customerAccount/uploads', {
+              method: "POST",
+              body: formData
+            }).then(response => response.json()).catch(reason => {})
+            data.success && (dataObj.imgList = data.data)
+          }
+
+          if (dataObj.body && dataObj.email && dataObj.rating && dataObj.author) {
+            const data = await fetch('http://api.leandow-technology.com/api/customerAccount/addComment', {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+                siteValue: 'woohill',
+                Authorization: token
+              },
+              body: JSON.stringify(dataObj)
+            }).then(respone => respone.json()).catch(reason => {
               subimit = false
               target.removeAttribute('disabled')
               Message.error('Submitted successfully')
             })
-          formContainer && (formContainer.style.display="none")
-          // console.log('data', data)
-          Message.success('Submission failed.')
-          subimit = false
-          target.removeAttribute('disabled')
-        } else {
-          errorInfor.style.display = 'block'
-          Message.error('Not all the fields have been filled out correctly!')
-          target.removeAttribute('disabled')
-          subimit = false
+            formContainer && (formContainer.style.display = "none")
+
+// console.log('data', data)
+            Message.success('Submission failed.')
+            subimit = false
+            target.removeAttribute('disabled')
+          } else {
+            errorInfor.style.display = 'block'
+            Message.error('Not all the fields have been filled out correctly!')
+            target.removeAttribute('disabled')
+            subimit = false
+          }
         }
-      }
 
-      bindEvent('click', '[data-action="open-madal"]', open)
-      bindEvent('click', '[data-action="submitReview"]', submitForm)
-      bindEvent('click', '[data-action="changeRating"]', selectRating)
-      bindEvent('change', '#review-img-upload', uploadImg, true)
-      bindEvent('click', '[data-action="close-img"]', closeImg)
+        bindEvent('click', '[data-action="open-madal"]', open)
+        bindEvent('click', '[data-action="submitReview"]', submitForm)
+        bindEvent('click', '[data-action="changeRating"]', selectRating)
+        bindEvent('change', '#review-img-upload', uploadImg, true)
+        bindEvent('click', '[data-action="close-img"]', closeImg)
 
-      fetch('http://api.leandow-technology.com/api/customerAccount/getCommentListBySpu', {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          "siteValue": "hyfol"
-        },
-        body: JSON.stringify(resBody)
-      }).then(response =>
-        response.json().then(({ data, success }) => {
-          if (success) renderReview(data);
-          else renderReview(defaultData);
-        }))
-        .catch(error => {
+        fetch('http://api.leandow-technology.com/api/customerAccount/getCommentListBySpu', {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+            "siteValue": "woohill"
+          },
+          body: JSON.stringify(resBody)
+        }).then(response => response.json().then(({data, success}) => {
+          if (success) 
+            renderReview(data);
+           else 
+            renderReview(defaultData);
+          
+        })).catch(error => {
           renderReview(defaultData);
         })
 
-    }();
+      }();
   </script>
 </section>
 {% schema %}
-{
-"name": "评论组件",
-"settings": [],
-"presets": [
-{
-"name": "评论组件"
-}
-]
-}
+  {
+    "name": "评论组件",
+    "settings": [],
+    "presets": [
+      {
+        "name": "评论组件"
+      }
+    ]
+  }
 {% endschema %}

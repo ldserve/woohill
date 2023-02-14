@@ -1,20 +1,29 @@
 <section data-section-id="{{ section.id }}" data-section-type="login">
   <style>
-    .form--main{
+    .form--main {
       margin-top: 2rem;
     }
-    .switchBtn{
+    .switchBtn {
       font-size: 1.2rem;
     }
-    .switchBtn[aria-active="true"]{
+    .switchBtn[aria-active="true"] {
       text-decoration: underline;
       text-underline-offset: 6px;
     }
-    .form__floating-label{
-      opacity:0.6
+    .form__floating-label {
+      opacity: 0.6
     }
   </style>
-  <div class="switchBtnList" style="max-width: 350px;margin: 0 auto;display: flex;justify-content: space-between;align-items: center;margin-top: 4rem;"><a href="#login" class="button switchBtn" aria-active="true">LOGIN</a><a class="button switchBtn" href="#register" aria-active="false">REGISTER</a></div>
+  <div class="switchBtnList" style="max-width: 350px;margin: 0 auto;display: flex;justify-content: space-between;align-items: center;margin-top: 4rem;">
+    <a
+      href="#login"
+      class="button switchBtn"
+      aria-active="true">LOGIN</a>
+    <a
+      class="button switchBtn"
+      href="#register"
+      aria-active="false">REGISTER</a>
+  </div>
   {%- assign is_recover_active = false -%}
 
   {%- form 'recover_customer_password' -%}
@@ -36,12 +45,12 @@
       {%- assign login_default_visibility = 'display: block' -%}
     {%- endif -%}
 
-    {%- form 'customer_login', name: 'login', class: 'form form--main', id: 'customer_login', style: login_default_visibility,return_to: routes.account_url -%}
+    {%- form 'customer_login', name: 'login', class: 'form form--main', id: 'customer_login', style: login_default_visibility, return_to: routes.account_url -%}
       {%- comment -%}
       <header class="form__header">
-          <h1 class="form__title heading h1">{{ 'customer.login.login' | t }}</h1>
-          <p class="form__legend">{{ 'customer.login.description' | t }}</p>
-        </header>
+      <h1 class="form__title heading h1">{{ 'customer.login.login' | t }}</h1>
+      <p class="form__legend">{{ 'customer.login.description' | t }}</p>
+      </header>
       {%- endcomment -%}
 
       {%- if form.errors -%}
@@ -49,12 +58,25 @@
       {%- endif -%}
 
       <div class="form__input-wrapper form__input-wrapper--labelled">
-        <input type="email" id="customer[email]" class="form__field form__field--text" name="customer[email]" required="required" {% if form.errors %}aria-invalid="true" aria-describedby="login-form-error"{% endif %}>
+        <input
+          type="email"
+          id="customer[email]"
+          class="form__field form__field--text"
+          name="customer[email]"
+          required="required"
+          {% if form.errors %}aria-invalid="true"aria-describedby="login-form-error"{% endif %}>
         <label for="customer[email]" class="form__floating-label">{{ 'customer.login.email' | t }}</label>
       </div>
 
       <div class="form__input-wrapper form__input-wrapper--labelled">
-        <input type="password" id="customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="current-password" {% if form.errors %}aria-invalid="true" aria-describedby="login-form-error"{% endif %}>
+        <input
+          type="password"
+          id="customer[password]"
+          class="form__field form__field--text"
+          name="customer[password]"
+          required="required"
+          autocomplete="current-password"
+          {% if form.errors %}aria-invalid="true"aria-describedby="login-form-error"{% endif %}>
         <label for="customer[password]" class="form__floating-label">{{ 'customer.login.password' | t }}</label>
       </div>
 
@@ -63,7 +85,12 @@
       <small class="form__spam-disclaimer">{{- 'shopify.online_store.spam_detection.disclaimer_html' | t -}}</small>
 
       <div class="form__secondary-action">
-        <p>{{ 'customer.login.lost_password' | t }} <button type="button" data-action="toggle-login-form" class="link link--accented">{{ 'customer.login.recover_password' | t }}</button></p>
+        <p>{{ 'customer.login.lost_password' | t }}
+          <button
+            type="button"
+            data-action="toggle-login-form"
+            class="link link--accented">{{ 'customer.login.recover_password' | t }}</button>
+        </p>
       </div>
     {%- endform -%}
 
@@ -82,9 +109,9 @@
     {%- form 'recover_customer_password', name: 'recover', class: 'form form--main', id: 'recover_customer_password', style: recover_default_visibility -%}
       {%- comment -%}
       <header class="form__header">
-          <h1 class="form__title heading h1">{{ 'customer.recover_password.recover_password' | t }}</h1>
-          <p class="form__legend">{{ 'customer.recover_password.description' | t }}</p>
-        </header>
+      <h1 class="form__title heading h1">{{ 'customer.recover_password.recover_password' | t }}</h1>
+      <p class="form__legend">{{ 'customer.recover_password.description' | t }}</p>
+      </header>
       {%- endcomment -%}
 
       {%- if form.errors -%}
@@ -95,7 +122,13 @@
         <p class="alert alert--center alert--success">{{ 'customer.recover_password.success' | t }}</p>
       {%- else -%}
         <div class="form__input-wrapper form__input-wrapper--labelled">
-          <input type="email" id="customer[recover_email]" class="form__field form__field--text" name="email" required="required" {% if form.errors %}aria-invalid="true" aria-describedby="recovery-form-error"{% endif %}>
+          <input
+            type="email"
+            id="customer[recover_email]"
+            class="form__field form__field--text"
+            name="email"
+            required="required"
+            {% if form.errors %}aria-invalid="true"aria-describedby="recovery-form-error"{% endif %}>
           <label for="customer[recover_email]" class="form__floating-label">{{ 'customer.recover_password.email' | t }}</label>
         </div>
 
@@ -103,76 +136,116 @@
       {%- endif -%}
 
       <div class="form__secondary-action">
-        <p>{{ 'customer.recover_password.remembered_your_password' | t }} <button type="button" data-action="toggle-login-form" class="link link--accented">{{ 'customer.recover_password.back_to_login' | t }}</button></p>
+        <p>{{ 'customer.recover_password.remembered_your_password' | t }}
+          <button
+            type="button"
+            data-action="toggle-login-form"
+            class="link link--accented">{{ 'customer.recover_password.back_to_login' | t }}</button>
+        </p>
       </div>
     {%- endform -%}
   </div>
-{%- comment -%}
-    --------------------------------------------------------------------------------------------------------------------
-    CUSTOMER REGISTER FORM
-    --------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}
+  {%- comment -%}
+  --------------------------------------------------------------------------------------------------------------------
+  CUSTOMER REGISTER FORM
+  --------------------------------------------------------------------------------------------------------------------
+  {%- endcomment -%}{%- form 'create_customer', name: 'create', class: 'form form--main', id: 'create_customer', style: "display:none" -%}
+    {%- comment -%}
+    <header class="form__header">
+    <h1 class="form__title heading h1">{{ 'customer.register.create_account' | t }}</h1>
+    <p class="form__legend">{{ 'customer.register.description' | t }}</p>
+    </header>
+    {%- endcomment -%}
 
-    {%- form 'create_customer', name: 'create', class: 'form form--main', id: 'create_customer',style:"display:none" -%}
-     {%- comment -%}
-     <header class="form__header">
-         <h1 class="form__title heading h1">{{ 'customer.register.create_account' | t }}</h1>
-         <p class="form__legend">{{ 'customer.register.description' | t }}</p>
-       </header>
-     {%- endcomment -%}
+    {%- if form.errors -%}
+      <div class="alert alert--error" id="register-form-error">
+        <ul class="alert__error-list" role="list">
+          {%- for field in form.errors -%}
+            {%- if field == 'form' -%}
+              <li class="alert__error-item">{{ form.errors.messages[field] }}</li>
+            {%- else -%}
+              <li class="alert__error-item">
+                <strong>{{ form.errors.translated_fields[field] }}</strong>
+                {{ form.errors.messages[field] }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
 
-      {%- if form.errors -%}
-        <div class="alert alert--error" id="register-form-error">
-          <ul class="alert__error-list" role="list">
-            {%- for field in form.errors -%}
-              {%- if field == 'form' -%}
-                <li class="alert__error-item">{{ form.errors.messages[field] }}</li>
-              {%- else -%}
-                <li class="alert__error-item"><strong>{{ form.errors.translated_fields[field] }}</strong> {{ form.errors.messages[field] }}</li>
-              {%- endif -%}
-            {%- endfor -%}
-          </ul>
-        </div>
-      {%- endif -%}
-
-      {%- if request.locale.iso_code == 'ja' -%}
-        <div class="form__input-wrapper form__input-wrapper--labelled">
-          <input type="text" id="customer[last_name]" class="form__field form__field--text" name="customer[last_name]" autocomplete="family-name" >
-          <label for="customer[last_name]" class="form__floating-label">{{ 'customer.register.last_name' | t }}</label>
-        </div>
-        
-        <div class="form__input-wrapper form__input-wrapper--labelled">
-          <input type="text" id="customer[first_name]" class="form__field form__field--text" name="customer[first_name]" autocomplete="given-name" required="required">
-          <label for="customer[first_name]" class="form__floating-label">{{ 'customer.register.first_name' | t }}</label>
-        </div>
-      {%- else -%}
-        <div class="form__input-wrapper form__input-wrapper--labelled">
-          <input type="text" id="customer[first_name]" class="form__field form__field--text" name="customer[first_name]" autocomplete="given-name" required="required">
-          <label for="customer[first_name]" class="form__floating-label">{{ 'customer.register.first_name' | t }}</label>
-        </div>
-
-        <div class="form__input-wrapper form__input-wrapper--labelled">
-          <input type="text" id="customer[last_name]" class="form__field form__field--text" name="customer[last_name]" autocomplete="family-name" >
-          <label for="customer[last_name]" class="form__floating-label">{{ 'customer.register.last_name' | t }}</label>
-        </div>
-      {%- endif -%}
-
+    {%- if request.locale.iso_code == 'ja' -%}
       <div class="form__input-wrapper form__input-wrapper--labelled">
-        <input type="email" id="customer[email]2" class="form__field form__field--text" name="customer[email]" required="required" {% if form.errors contains 'email' %}aria-invalid="true" aria-describedby="register-form-error"{% endif %}>
-        <label for="customer[email]2" class="form__floating-label">{{ 'customer.register.email' | t }}</label>
+        <input
+          type="text"
+          id="customer[last_name]"
+          class="form__field form__field--text"
+          name="customer[last_name]"
+          autocomplete="family-name">
+        <label for="customer[last_name]" class="form__floating-label">{{ 'customer.register.last_name' | t }}</label>
       </div>
 
       <div class="form__input-wrapper form__input-wrapper--labelled">
-        <input type="password" id="customer[password]2" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="new-password" {% if form.errors contains 'password' %}aria-invalid="true" aria-describedby="register-form-error"{% endif %}>
-        <label for="customer[password]2" class="form__floating-label">{{ 'customer.register.password' | t }}</label>
+        <input
+          type="text"
+          id="customer[first_name]"
+          class="form__field form__field--text"
+          name="customer[first_name]"
+          autocomplete="given-name"
+          required="required">
+        <label for="customer[first_name]" class="form__floating-label">{{ 'customer.register.first_name' | t }}</label>
+      </div>
+    {%- else -%}
+      <div class="form__input-wrapper form__input-wrapper--labelled">
+        <input
+          type="text"
+          id="customer[first_name]"
+          class="form__field form__field--text"
+          name="customer[first_name]"
+          autocomplete="given-name"
+          required="required">
+        <label for="customer[first_name]" class="form__floating-label">{{ 'customer.register.first_name' | t }}</label>
       </div>
 
-      <button type="submit" class="form__submit button button--primary button--full">{{ 'customer.register.submit' | t }}</button>
+      <div class="form__input-wrapper form__input-wrapper--labelled">
+        <input
+          type="text"
+          id="customer[last_name]"
+          class="form__field form__field--text"
+          name="customer[last_name]"
+          autocomplete="family-name">
+        <label for="customer[last_name]" class="form__floating-label">{{ 'customer.register.last_name' | t }}</label>
+      </div>
+    {%- endif -%}
 
-    {%- endform -%}
+    <div class="form__input-wrapper form__input-wrapper--labelled">
+      <input
+        type="email"
+        id="customer[email]2"
+        class="form__field form__field--text"
+        name="customer[email]"
+        required="required"
+        {% if form.errors contains 'email' %}aria-invalid="true"aria-describedby="register-form-error"{% endif %}>
+      <label for="customer[email]2" class="form__floating-label">{{ 'customer.register.email' | t }}</label>
+    </div>
+
+    <div class="form__input-wrapper form__input-wrapper--labelled">
+      <input
+        type="password"
+        id="customer[password]2"
+        class="form__field form__field--text"
+        name="customer[password]"
+        required="required"
+        autocomplete="new-password"
+        {% if form.errors contains 'password' %}aria-invalid="true"aria-describedby="register-form-error"{% endif %}>
+      <label for="customer[password]2" class="form__floating-label">{{ 'customer.register.password' | t }}</label>
+    </div>
+
+    <button type="submit" class="form__submit button button--primary button--full">{{ 'customer.register.submit' | t }}</button>
+
+  {%- endform -%}
 
   <script>
-    ~function () {
+    ~ function() {
       const navBox = document.querySelector('.switchBtnList')
       const navs = document.querySelectorAll('.switchBtn')
       const L = document.getElementById('customer_login')
@@ -183,38 +256,56 @@
         R.style.display = 'block';
       }
       if (window.location.hash == "#register") {
-        document.querySelector('.switchBtn[href="#register"]').setAttribute("aria-active", true)
-        document.querySelector('.switchBtn[href="#login"]').setAttribute("aria-active", false)
-        L.style.display = "none"
-        R.style.display = "none"
-        C.style.display = "block"
-      }
+        document
+          .querySelector('.switchBtn[href="#register"]')
+          .setAttribute("aria-active", true)
+          document
+          .querySelector('.switchBtn[href="#login"]')
+          .setAttribute("aria-active", false)
+        L
+        .style
+        .display = "none"
+      R.style.display = "none"
+      C.style.display = "block"
+    }
 
-      navBox && navBox.addEventListener('click', ev => {
-        let target = ev.target
-        while (target && !target.hasAttribute('aria-active') && target != navBox) {
-          target = target.parentElement
-        }
-        if (target == navBox) return;
-        L.style.display = "none"
-        R.style.display = "none"
-        C.style.display = "none"
-        navs.forEach(i => i.setAttribute('aria-active', false))
-        const h = target.getAttribute('href')
-        h == "#login" && (L.style.display = "block")
-        h == "#register" && (C.style.display = "block")
-        target.setAttribute('aria-active', true)
-      })
-      const B = L.querySelector('.form__submit')
-{% comment %}       B && B.addEventListener('click', ev => {
+    navBox && navBox.addEventListener('click', ev => {
+      let target = ev.target
+      while (target && ! target.hasAttribute('aria-active') && target != navBox) {
+        target = target.parentElement
+      }
+      if (target == navBox) 
+        return;
+      
+      L.style.display = "none"
+      R.style.display = "none"
+      C.style.display = "none"
+      navs.forEach(i => i.setAttribute('aria-active', false))
+      const h = target.getAttribute('href')
+      h == "#login" && (L.style.display = "block")
+      h == "#register" && (C.style.display = "block")
+      target.setAttribute('aria-active', true)
+    })
+    const B = L.querySelector('.form__submit'){% comment %}B && B.addEventListener('click', ev => {
         const F = new FormData(L)
-        if (!F.get('customer[email]')) return;
-        if (!F.get('customer[password]')) return;
-        fetch('https://hyfol.myshopify.com/api/2022-10/graphql.json', {
-          method: "POST", headers: {
-            "Content-Type": "application/graphql", "X-Shopify-Storefront-Access-Token": "1d2374d2668239da8efd20c84e848d0d"
-          }, body: `mutation customerAccessTokenCreate {
-        	    customerAccessTokenCreate(input: {email: "${F.get('customer[email]')}", password: "${F.get('customer[password]')}"}) {
+        if (! F.get('customer[email]')) 
+          return;
+        
+        if (! F.get('customer[password]')) 
+          return;
+        
+        fetch('https://woohill.myshopify.com/api/2022-10/graphql.json', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/graphql",
+            "X-Shopify-Storefront-Access-Token": "1d2374d2668239da8efd20c84e848d0d"
+          },
+          body: `mutation customerAccessTokenCreate {
+        	    customerAccessTokenCreate(input: {email: "${
+            F.get('customer[email]')
+          }", password: "${
+            F.get('customer[password]')
+          }"}) {
             customerAccessToken {
               accessToken
             }
@@ -222,14 +313,18 @@
               message
             }
           }
-        }`}).then(response => response.json()).then(({ data }) => { const access = data.customerAccessTokenCreate.customerAccessToken; access && localStorage.setItem('accessToken', access.accessToken) })
-      }) {% endcomment %}
-    }();
+        }`
+        }).then(response => response.json()).then(({data}) => {
+          const access = data.customerAccessTokenCreate.customerAccessToken;
+          access && localStorage.setItem('accessToken', access.accessToken)
+        })
+      }){% endcomment %}
+  }();
   </script>
 </section>
 
 {% schema %}
-{
-  "name": "Login"
-}
+  {
+    "name": "Login"
+  }
 {% endschema %}

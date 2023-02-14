@@ -526,7 +526,7 @@
         const spu = '{{product.handle}}'//'SP220902NSUL'
         fetch('http://api.leandow-technology.com/api/customerAccount/getModelInfoBySpu'.concat('?spu=', spu), {
           method: "GET",
-          headers: { "siteValue": 'hyfol' }
+          headers: { "siteValue": 'woohill' }
         }).then(response => response.json()).then(message => {
           if (!message.success || !message.data.length) return;
           let datas = message.data

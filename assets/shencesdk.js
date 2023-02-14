@@ -51,7 +51,7 @@ getDevice_type();
   platform_type: "web",
    site_id:"000002",
   vip_level: "",
-  site_name: "hyfol",
+  site_name: "woohill",
   site_type: "shopify",
   device_type: device_type
 });

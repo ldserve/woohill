@@ -24,7 +24,7 @@ function ajax_method(url,data,method,success) {
 
         // 需要设置请求报文
         ajax.setRequestHeader("Content-type","application/json");
-        ajax.setRequestHeader("siteValue","hyfol");
+        ajax.setRequestHeader("siteValue","woohill");
         // 判断data send发送数据
         if (data) {
             // 如果有值 从send发送

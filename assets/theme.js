@@ -2427,7 +2427,7 @@
                 if (customerId) {
                     fetch('https://api.leandow-technology.com/api/customerCollectionProduct/selectProductIsCollection', {
                         method: "POST",
-                        headers: { 'Content-Type': 'application/json' ,"siteValue": "hyfol"},
+                        headers: { 'Content-Type': 'application/json' ,"siteValue": "woohill"},
                         body: JSON.stringify(searchData)
                     }).then(res => {
                         res.json().then(({data,code,success}) => {
@@ -2446,7 +2446,7 @@
             key: "selectItem",
             value: function (ev, target) {
                 var _this=this
-                if(!customerId){window.location.href="https://www.hyfol.com/account/login"; return }
+                if(!customerId){window.location.href="https://www.woohill.com/account/login"; return }
                 var sendData={
                     "customerId":customerId,
                     "productId": target.getAttribute("data-id"),
@@ -2454,7 +2454,7 @@
                 }
                 fetch('https://api.leandow-technology.com/api/customerCollectionProduct/collectionProduct',{
                     method:"POST",
-                    headers:{ 'Content-Type': 'application/json' ,"siteValue": "hyfol"},
+                    headers:{ 'Content-Type': 'application/json' ,"siteValue": "woohill"},
                     body:JSON.stringify(sendData)
                 }).then(res=>{res.json()
                     .then(({data,code,success})=>{
