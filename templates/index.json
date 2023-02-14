@@ -5,8 +5,6 @@
       "disabled": true,
       "settings": {
         "sensorsName": "fallforyou",
-        "bg_image": "shopify:\/\/shop_images\/pc_banner.jpg",
-        "web_bg_image": "shopify:\/\/shop_images\/e315c28ce1022609c3d8f849b842e7f2.jpg",
         "link": "https:\/\/www.hyfol.com\/collections\/fall-for-you",
         "shadow": false
       }
@@ -18,8 +16,6 @@
           "type": "image",
           "settings": {
             "sensorsName": "bestseller",
-            "image": "shopify:\/\/shop_images\/hyfol_banner_9eed8adc-46f0-45bb-b893-6c46a0803833.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/skamx.jpg",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -42,8 +38,6 @@
           "type": "image",
           "settings": {
             "sensorsName": "best",
-            "image": "shopify:\/\/shop_images\/banner_0a863e6a-69fe-4073-ae76-97dc39a732a2.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/4b9fe6e86a77769c6b5af802a2b87853.jpg",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -67,8 +61,6 @@
           "disabled": true,
           "settings": {
             "sensorsName": "facebook",
-            "image": "shopify:\/\/shop_images\/banner_4596ca7a-b93b-418b-b305-c0be966efe70.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/2_85247143-1510-4ef8-8544-33320a60d0b1.jpg",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -92,8 +84,6 @@
           "disabled": true,
           "settings": {
             "sensorsName": "for75",
-            "image": "shopify:\/\/shop_images\/f7c1c3cca76deb010f8152d95db6e7da_a6d9be2e-273d-43da-85d9-800b741377eb.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/0e5ec6f5767c7c299ef643a472227be5.jpg",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -134,7 +124,7 @@
           "type": "link",
           "settings": {
             "title": "BEST SELLER",
-            "link": "https:\/\/www.hyfol.com\/collections\/hyfol-best-seller-1",
+            "link": "https:\/\/www.woohill.com\/collections\/hyfol-best-seller-1",
             "show_hot": true
           }
         },
@@ -252,8 +242,6 @@
           "type": "image",
           "settings": {
             "sensorsName": "hallwmas",
-            "image": "shopify:\/\/shop_images\/hyfol_fee58686-19f7-4a56-9130-cd68f48586e8.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/hyfol_037d0430-e1df-4049-981a-eb3e75c50e66.jpg",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -276,8 +264,6 @@
           "type": "image",
           "settings": {
             "sensorsName": "plaid",
-            "image": "shopify:\/\/shop_images\/hyfol_f965727c-763d-4cd0-a123-9012f835bc6a.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/hyfol_b5fdcd4b-f37e-4ce3-bac0-dd409fbd9c7b.jpg",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -300,8 +286,6 @@
           "type": "image",
           "settings": {
             "sensorsName": "cargopants",
-            "image": "shopify:\/\/shop_images\/0f719d71e9a8a2dbb649b4f3475ebf96_b6b82f81-316c-415d-ac01-bb7be652511b.jpg",
-            "mobile_image": "shopify:\/\/shop_images\/2b2d82fd0d6a0f6a7e255749be197780_65229656-f644-4c7c-9c57-6981082667e4.jpg",
             "show_overlay": false,
             "overlay_opacity": 30,
             "text_color": "#ffffff",
@@ -477,7 +461,6 @@
         "sensorsName": "pc分类导流区",
         "hidWeb": true,
         "line": false,
-        "image": "shopify:\/\/shop_images\/05_3e752fe6-8acf-4572-a62f-c9125c736a34.jpg",
         "tpadding": 13,
         "rpadding": 0,
         "bpadding": 0,
@@ -614,7 +597,6 @@
         "sensorsName": "mobile分类导流区",
         "hidWeb": false,
         "line": false,
-        "image": "shopify:\/\/shop_images\/05_d806e429-7b04-4e4a-aa44-06c63e75c4ea.jpg",
         "tpadding": 0,
         "rpadding": 0,
         "bpadding": 0,
@@ -717,7 +699,6 @@
         "sensorsName": "pc分类导流区",
         "hidWeb": true,
         "line": false,
-        "image": "shopify:\/\/shop_images\/hyfol_290b25fc-c279-40c2-942a-cbf11bffd026.jpg",
         "tpadding": 0,
         "rpadding": 0,
         "bpadding": 40,
@@ -803,7 +784,6 @@
         "sensorsName": "mobile分类导流区",
         "hidWeb": false,
         "line": false,
-        "image": "shopify:\/\/shop_images\/hyfol_40c295fd-1dc7-477d-a78d-1c785a749dbf.jpg",
         "tpadding": 0,
         "rpadding": 0,
         "bpadding": 0,
@@ -892,7 +872,6 @@
         "sensorsName": "pc分类导流区",
         "hidWeb": true,
         "line": false,
-        "image": "shopify:\/\/shop_images\/hyfol__06.jpg",
         "tpadding": 0,
         "rpadding": 0,
         "bpadding": 0,
@@ -964,7 +943,6 @@
         "sensorsName": "mobile分类导流区",
         "hidWeb": false,
         "line": false,
-        "image": "shopify:\/\/shop_images\/12_e8fd0328-6479-4248-b0d7-7713c58f8c50.jpg",
         "tpadding": 5,
         "rpadding": 0,
         "bpadding": 0,
@@ -977,7 +955,6 @@
         "86facf0d-8986-4ac5-9098-70c6d9b77f79": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/2_c2648947-a1c9-4092-a15c-4bd03ee22b9f.jpg",
             "pro": "sp220917prqf",
             "textBottom": "<p>Christmas morning they'll be happier with a Hyfol sweater!!<br\/>.<br\/>.<\/p><p>.<br\/>#hyfol #outdoors #influencer #hyfolclothes #hyfolcostumes #sweater #christmas #joy #santa #menstyle #mensfashion <\/p><p><\/p><p><\/p><p><\/p>",
             "dateString": "2021\/12\/02"
@@ -986,7 +963,6 @@
         "b80d75ad-e9f2-4fe5-b7bf-b9b01a42edf5": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/57.jpg",
             "pro": "sp211117pygk",
             "textBottom": "<p>FREEDOM MUST BE BOON NOT CURSE❗️\u000bLIBERTY IS THE FUNDAMENTAL ACHIEVEMENT other achievements are surplus❗️\u000bDon’t let your FREEDOM to be Compromised! In the name of culture\/country\/creed\/etc…❗️\u000bso, STAND AGAINST ALL ODDS❗️\u000bBe LOYAL TO FREEDOM, even if you are BETRAYED❗️<\/p><p>\u000b.<\/p><p>\u000b.<\/p><p>\u000b.<\/p><p>\u000b<\/p><p>#hyfol\u000b#influencer #bemotivated #adventure #menstyle #mensfashion #armystyle #freedom #rambostyle #attitude #usa #shirts #americanflag #veteransday #route66 #modelinglifestyle #badass #lifestyleblogger #personaldevelopment #likeforlikes #dappermen #understandingfreedom<\/p>",
             "dateString": "2012\/12\/13"
@@ -995,7 +971,6 @@
         "9bf31d7f-3fb1-4d0e-b11e-c6596da950ca": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/4_4d9c7beb-4e85-418c-a2fc-47ea4fcc08ec.jpg",
             "pro": "t11611521sb",
             "textBottom": "<p>fashion is my language!<\/p><p>.<br\/>.<br\/>.<br\/>#Hyfol #influencer #fashion<\/p>",
             "dateString": "2021\/11\/24"
@@ -1004,7 +979,6 @@
         "06ffecf1-9bd3-426b-888e-78b127d6541d": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/6_79a38abf-e4c8-45b8-b19d-dbb1f77cb77d.jpg",
             "pro": "sp220720qess",
             "textBottom": "<p>GOD, FAMILY, COUNTRY<br\/>Those what we are trust!<\/p><p>.<br\/>.<br\/>.<br\/>#hyfol #outdoors #influencer #hyfolclothes #hyfolcostumes #jacket #christmas #god #family #country #menstyle #mensfashion<\/p>",
             "dateString": ""
@@ -1013,7 +987,6 @@
         "8c78d780-3e9c-4eb7-baf6-e5b2b8193e26": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/67.jpg",
             "pro": "sp220819wtmn",
             "textBottom": "<p>Until you’re fighting, you’re the winner. @hyfol_official thank you for a collab 📸🇺🇸🔥🔥<\/p><p>.<br\/>.<br\/>.<br\/>#hyfol #bodybuilding #influencer #outdoors #adventure #menstyle #mensfashion #army #family #country #freedom #trust #attitude #usa #american #americanflag #gym #fitness #abs #fitnessmodel #gymmotivation #body #photography #classicphysique #poznan #poland #gymlife #photooftheday #fit #gymlover<\/p>",
             "dateString": "2021\/12\/20"
@@ -1022,7 +995,6 @@
         "ff8bd3a4-f479-4f1d-b6c3-21e683b575ee": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/89.jpg",
             "pro": "sp220827qypa",
             "textBottom": "<p>Fashion can be purchased but styling is all upon you.<br\/>.\u000b<\/p><p>.\u000b<\/p><p>.\u000b<\/p><p>#hyfol #influencer <\/p>",
             "dateString": "2021\/11\/20"
@@ -1031,7 +1003,6 @@
         "5b40460b-b748-4e3c-b9f8-e9c975ff2028": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/3_3fc76f10-69bf-475b-b891-3e9a818ed0f7.jpg",
             "pro": "t11611521ek",
             "textBottom": "<p>Good morning, America!<br\/>What a amazing USA hoodiestyle!<\/p><p>.<br\/>.<\/p><p>.<br\/>#hyfol #outdoors #influencer #hyfolclothes #hyfolcostumes #hunting #hiking #adventure #usa #american #americanflag #halloween #hoodie #route66 #menstyle #mensfashion <\/p>",
             "dateString": "2021\/12\/20"
@@ -1040,7 +1011,6 @@
         "5e61e2fc-71f1-4708-a703-8381e514b09a": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/12_2ea503a9-4489-457e-bdeb-df404b47c6f7.jpg",
             "pro": "t11861820mo",
             "textBottom": "<p>Isn’t the American flag and Route 66 a perfect match?<\/p><p>.\u000b<\/p><p>.\u000b<\/p><p>.\u000b<\/p><p>#hyfol #influencer #giveaway #hyfolcostumes #hyfolinfluencer #outdoor #hikingadventures #usa #uk #kol #menstyle #mensfashion #americanflag<\/p>",
             "dateString": "2021\/11\/10"
@@ -1049,7 +1019,6 @@
         "5e7e1760-3e06-4252-93d6-914ab33bf1c7": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/8.jpg",
             "pro": "t11611521de",
             "textBottom": "<p>@s.primarium for @Hyfol_official @Hyfol_uk @Hyfol_men<br\/>.<br\/>.<br\/>.<br\/>#streetoftones #killergramsi #photographerscreatives #fatalframes10k #lens_army #wizardoftones#Hyfol #Hyfolinfluencer #Hyfolclothes #outdoor #menstyle #mensfashion<\/p>",
             "dateString": "2021\/12\/01"
@@ -1058,7 +1027,6 @@
         "a7f27193-dc59-4595-97af-f1d896b9dd4e": {
           "type": "link",
           "settings": {
-            "image": "shopify:\/\/shop_images\/5_9381159f-1767-4f15-a136-a9db5c71a5a5.jpg",
             "pro": "t11611521ur",
             "textBottom": "<p>It was a really amazing experience to wear the same and best clothes with my love.<\/p><p>.<br\/>.<\/p><p>.<br\/>#hyfol #influencer #giveaway #hyfolcostumes #hyfolinfluencer #outdoor #hikingadventures #usa #uk #kol #menstyle #mensfashion #americanflag<\/p>",
             "dateString": "2021\/12\/21"
@@ -1068,7 +1036,6 @@
           "type": "link",
           "disabled": true,
           "settings": {
-            "image": "shopify:\/\/shop_images\/14_fdfda8be-9ded-4502-92ee-4a530520970d.jpg",
             "pro": "t11611521ji",
             "textBottom": "<p>I found love and then decay, I found comfort in the rain<\/p><p>.<br\/>.<br\/>.<br\/>#grungeoutfit #grungetheme #grungesociety #grungegirl #grungeblog #grunge #grungestyle #grungefashion #grungeasthetic #grungeaesthetics #grungey #softgrunge #traffy #styleinspo #style #instastyle #outfit #styleblogger #outfitoftheday #fashionstyle #fashion #fashiongram #photooftheday #ootd #fashionstyle #fashionpost #fashioninspo #fashionista #fashionaddict #instafashion<\/p>",
             "dateString": "2021\/10\/01"
@@ -1097,8 +1064,6 @@
       "type": "ld-imageText",
       "settings": {
         "noMargin": false,
-        "image": "shopify:\/\/shop_images\/1_9676f991-31fa-4200-94a6-b9004e4ae599.jpg",
-        "mobile_image": "shopify:\/\/shop_images\/1_fd9a4fcc-bcec-4b9b-8454-0bbbf06df181.jpg",
         "link": "",
         "title_align": "row",
         "title_tb": "column-reverse",
