@@ -27,7 +27,7 @@
     {%- endif -%}
 
     {%- comment -%}Few prefech to increase performance on commonly used third-parties{%- endcomment -%}
-    <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
+    <link rel="preload" as="style" href="{{ 'theme.min.css' | asset_url }}">
     <link rel="preload" as="script" href="{{ 'theme.js' | asset_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com">
     <link rel="preconnect" href="https://fonts.shopifycdn.com">
@@ -41,7 +41,7 @@
 
     {{ content_for_header }}
 
-    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'theme.min.css' | asset_url }}">
 
     {% render 'microdata-schema' %}
 
@@ -110,7 +110,8 @@
         };
       })();
     </script>
-  </head>
+ 
+</head>
 
   <body class="warehouse--v1 {% if settings.animation_image_zoom %}features--animate-zoom{% endif%} template-{{ request.page_type | handle }} {% if request.page_type contains '/' %}template-{{ request.page_type | split: '/' | last | handle }}{% endif %}" data-instant-intensity="viewport">
     {{ content_for_layout }}
@@ -118,5 +119,6 @@
     <ul hidden>
       <li id="a11y-new-window-message">{{ 'general.accessibility.new_window' | t }}</li>
     </ul>
-  </body>
+ 
+</body>
 </html>

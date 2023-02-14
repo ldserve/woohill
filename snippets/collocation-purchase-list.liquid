@@ -1,0 +1,142 @@
+{%- assign selected_variant = product.selected_or_first_available_variant -%}
+{% assign categoryList = product.metafields.my_fields.category %}
+
+{% for tag in product.tags %}
+{%- if forloop.index == 1 -%}
+{%- assign tags = tag | handleize -%}
+{%- else -%}
+{%- assign tagtitlie = tag | handleize -%}
+{%- assign tags = tags | append: "," | append: tagtitlie -%}
+{%- endif -%}
+{% endfor %}
+
+{%- assign tags = tags | split: ',' -%}
+
+{%- assign product_form_id = 'product_form_' | append: section.id | append: product.id -%}
+
+<div class="exhibition-left">
+    {%- for variant in product.variants -%}
+    {%- if variant['option1'] == product.options_with_values[0].selected_value -%}
+    {%- assign variant_for_value = variant -%}
+    {%- break -%}
+    {%- endif -%}
+    {%- endfor -%}
+    {%- assign primary_media = variant_for_value.featured_media -%}
+    {% if primary_media == blank %}
+    {%- assign primary_media = product.media[0] -%}
+    {% endif %}
+    <a href="{{ product.url }}"
+        class="product-item__image-wrapper product-item_mktClick shence_commodityView  product-item__image-wrapper--with-secondary "
+        data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick"
+        data-scdata='{"mkt_type":"product","first_mkt_name":"{{ first_mkt_name }}","first_mkt_id":"{{ section.id }}","second_mkt_rank":"{{ forloop.index }}","third_mkt_rank":"","mkt_material_url":"","mkt_material_name":"{{ mkt_material_name }}","commodity_spuid":"{{ product.handle }}","commodity_skuid":"{{ product.selected_or_first_available_variant.sku }}","commodity_name":"{{ product.title| handleize }}","original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}","current_price":"{{ product.selected_or_first_available_variant.price }}","currency_unit":"USD","mkt_tag":[]}'>
+        {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,500,600,700,800',
+        image: primary_media.preview_image -%}{%- endcapture -%}
+        {%- assign image_url = primary_media | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <div class="aspect-ratio "
+            style=" padding-bottom: {{ 100.0 | divided_by: primary_media.preview_image.aspect_ratio }}%; background-color: #fff;">
+            <img class="product-item__primary-image lazyload image--fade-in " data-media-id="{{ primary_media.id }}"
+                data-src="{{ image_url }}" data-sizes="auto" data-widths="[{{ supported_sizes }}]"
+                alt="{{ primary_media.alt | escape }}">
+            {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,500,600,700,800',
+            image: product.media[1].preview_image -%}{%- endcapture -%}
+            {%- assign image_url = product.media[1] | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <img class="product-item__secondary-image lazyload image--fade-in  444" data-src="{{ image_url }}"
+                data-sizes="auto" data-widths="[{{ supported_sizes }}]" alt="{{ product.media[1].alt | escape }}">
+            <noscript>
+                <img src="{{ primary_media | img_url: '600x' }}" alt="{{ primary_media.alt | escape }}">
+            </noscript>
+        </div>
+    </a>
+</div>
+
+<div class="exhibition-right" style="flex:1;">
+    <h1 class=" heading collocation-pro">{{ product.title }}</h1>
+
+    <div class="exhibition-right_price d-flex " style="border: none;">
+        <div class="price-list">
+
+            {%- if selected_variant.compare_at_price > selected_variant.price -%}
+            <span class="price price--highlight">
+                <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+                {%- if settings.currency_code_enabled -%}
+                {{- selected_variant.price | money_with_currency -}}
+                {%- else -%}
+                {{- selected_variant.price | money -}}
+                {%- endif -%}
+            </span>
+            <span class="price price--compare original-price-bottom price--original">
+                <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+
+                {%- if settings.currency_code_enabled -%}
+                {{- selected_variant.compare_at_price | money_with_currency -}}
+                {%- else -%}
+                {{- selected_variant.compare_at_price | money -}}
+                {%- endif -%}
+            </span>
+            {%- else -%}
+            <span class="price collocation-price">
+                <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+                {%- if settings.currency_code_enabled -%}
+                {{- selected_variant.price | money_with_currency -}}
+                {%- else -%}
+                {{- selected_variant.price | money -}}
+                {%- endif -%}
+            </span>
+            {%- endif -%}
+        </div>
+
+    </div>
+
+    <div class="margin-0 border-0 ">
+        {%- assign bonus_amount = 0 -%}
+        {% assign bonus_name = '' %}
+        {%- for line_item in cart.items -%}
+        {%- if forloop.index == 1 -%}
+        {%- assign cartSkuId = line_item.sku -%}
+        {%- else -%}
+        {%- assign cartSkuId = cartSkuId | append: "," | append: line_item.sku -%}
+        {%- endif -%}
+
+        {% if line_item.sku == product.selected_or_first_available_variant.sku %}
+        {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+        {% assign bonus_amount = discount_allocation.amount %}
+        {% assign bonus_name = discount_allocation.discount_application.title %}
+        {%- endfor -%}
+        {% endif %}
+        {%- endfor -%}
+        {%- if product.selected_or_first_available_variant.available -%}
+        <button type="submit" class="button button--primary mini-cart-add__button" data-scenable="1"
+            data-sctype="quickView" data-productid="{{product.id}}" 
+            data-scdata='{"is_quick_view":0,
+            "commodity_spuid": "{{product.handle}}",
+            "commodity_skuid":"{{ product.selected_or_first_available_variant.sku }}",
+            "commodity_name": "{{product.title | handleize }}",
+            "currency_unit":"USD",
+            "commodity_size":"",
+            "commodity_color":"",
+            "commodity_image_quantity":"{{product.images.size}}",
+            "commodity_description_text":["{{product.description | handleize }}"],
+            "commodity_description_image":["{{ product.featured_image | image_url | split: "?" | first  }}"],
+            "commodity_tag":{{ tags |json}},
+            "commodity_type":"{{product.type | handleize}}",
+            "original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}",
+            "current_price":"{{ product.selected_or_first_available_variant.price }}",
+            "discount_price":"{{variant_for_value.compare_at_price}}",
+            "compliment_commodities":{{ cartSkuId | split: ' ,' | json}}, 
+            "commodity_quantity" :1, "bonus_name" :"{{bonus_name}}", "bonus_amount":{{bonus_amount}}, 
+            "first_commodity" :"{{categoryList.first_commodity }}", 
+            "second_commodity" :"{{ categoryList.second_commodity }}", 
+            "third_commodity" :"{{ categoryList.third_commodity}}", 
+            "is_collocation_used" :{%- if collocationLocation=="mini-cart-collcation" -%}0{%- else -%}1{%- endif -%}, 
+            "collocation_spuid" :"", 
+            "entrance" :{%- if collocationLocation=="mini-cart-collcation" -%} "MiniCartPage_recommend_AddToCart" {%- else -%}"CommodityDetailPage_AddToCart" {%- endif -%}}'
+            data-product-url="{{product.url}}" aria-controls="modal-quick-view-header"
+            data-secondary-action="open-quick-view"
+            data-action="open-modal"
+            data-purchase>{{'product.form.add_to_cart' | t }}</button>
+        {%- else -%}
+        <button type="submit" class="product-form__add-button button button--disabled" disabled
+            data-action="add-to-cart">{{ 'product.form.sold_out' | t }}</button>
+        {%- endif -%}
+    </div>
+</div>

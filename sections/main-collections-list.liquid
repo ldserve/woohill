@@ -126,7 +126,7 @@
         {%- if section.settings.collections_to_show == 'all' -%}
           {%- render 'pagination', paginate: paginate -%}
         {%- endif -%}
-      {%- endpaginate -%}
+      {% assign dm_paginate_by = paginate.page_size %}{%- endpaginate -%}
     {%- endif -%}
 
     {%- if has_brand_collections -%}

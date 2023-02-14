@@ -1,5 +1,92 @@
-<section class="section {% unless section.settings.show_desktop %}hidden-lap-and-up{% endunless %}" data-section-id="{{ section.id }}" data-section-type="quick-links">
-  <div class="container">
+<style>
+  [data-type="quick-links"] {
+    background: {{section.settings.slid_bg}};
+    padding: {{section.settings.slid_padding}};
+  }
+
+  .quick-links {
+    font-size: calc(var(--default-text-font-size) + 1px);
+  }
+
+  .quick_container {
+    padding: 20px 0px;
+    position: relative;
+  }
+
+  .quick-links__link {
+    display: inline-block;
+    padding: 0.3rem 0.5rem;
+    background: {{ section.settings.slid_item_bg}};
+    border-radius: {{section.settings.link_radius }}px;
+    margin:10px;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    text-transform: none;
+    transition: color 0.2s ease-in-out;
+    font-size:12px;
+  }
+.quick-links.hidden-phone{
+text-align: center;
+}
+  .quick-links__link:hover {
+    color: var(--accent-color);
+  }
+
+  .quick-links__link--grow {
+    display: inline-flex;
+    width: fit-content;
+    white-space: nowrap;
+    align-items: center;
+  }
+
+  .quick-links.hidden-lap-and-up {
+    overflow-x: auto;
+  }
+
+  .quick-links__image-ie-fix {
+    margin: 0 auto;
+    transition: transform 0.3s ease-in-out;
+  }
+  .quick-hot{
+  width: 30px;
+  height: 30px;
+  max-width:initial;
+}
+  @media screen and (any-hover: hover) {
+    .features--animate-zoom .quick-links__link:hover .quick-links__image-ie-fix {
+      transform: scale(1.05);
+    }
+  }
+ @media screen and (min-width: 1000px) {
+   .quick-links__link{
+     font-size:14px;
+   }
+ }
+ @media screen and (max-width: 640px) {
+   .quick-links__link{
+    line-height: 30px;
+    padding: 0px  0 0 0.5rem;
+    margin: 5px;
+   }
+   .quick-hot{
+    width: 20px;
+    height: 20px;
+   }
+   .quick_container{
+    padding: 10px 0;
+   }
+ }
+  .phone-quick_links::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+</style>
+<section class="section {% unless section.settings.show_desktop %}hidden-lap-and-up{% endunless %}" data-section-id="{{ section.id }}" data-type="quick-links">
+  <div class="quick_container">
     {%- if section.settings.title != blank -%}
       <header class="section__header">
         <h2 class="section__title heading h3">{{ section.settings.title | escape }}</h2>
@@ -10,13 +97,35 @@
       </header>
     {%- endif -%}
 
-    <div class="quick-links">
+    <div class="quick-links hidden-phone">
       {%- for block in section.blocks -%}
         <a href="{{ block.settings.link }}" class="quick-links__link {% if section.settings.expand_items %}quick-links__link--grow{% endif %} heading" {{ block.shopify_attributes }}>
-          {{- block.settings.title | escape -}}
+          <span>{{- block.settings.title | upcase -}}</span> {%- if block.settings.show_hot -%}<img src="https://cdn.shopify.com/s/files/1/0559/6237/0127/files/hot.png?v=1666868523" class="quick-hot"> {%- endif -%}
         </a>
       {%- endfor -%}
     </div>
+
+    {%- assign item_count = section.settings.link_items -%}
+    {%- assign total_item = section.blocks.size | times: 1.0 | divided_by: item_count | ceil  -%}
+    <div class="quick-links hidden-lap-and-up phone-quick_links">
+      {%- for i in (1..total_item) -%}
+      <div class="quick-items d-flex">
+        {%- assign ofset_item = item_count | times: forloop.index0 -%}
+       {%- for block in section.blocks offset: ofset_item limit: item_count -%}
+         <a href="{{ block.settings.link }}" class="quick-links__link {% if section.settings.expand_items %}quick-links__link--grow{% endif %} heading" {{ block.shopify_attributes }}>
+          <span>{{- block.settings.title | upcase -}}</span>{%- if block.settings.show_hot -%}
+          <img src="https://cdn.shopify.com/s/files/1/0559/6237/0127/files/hot.png?v=1666868523" class="quick-hot">
+          {%- endif -%}
+         </a>
+       {%- endfor -%}
+     </div>
+      {%- endfor -%}
+    </div>
+    <div class="dot hidden-lap-and-up">
+      {%- for i in (1..total_item) -%}
+      <span class="dot-item {% if i==1 %}is-selected{%endif%}"></span>
+    {%- endfor -%}
+  </div>
   </div>
 </section>
 
@@ -52,6 +161,50 @@
       "type": "url",
       "id": "link",
       "label": "Link"
+    },{
+      "type":"color",
+      "id":"slid_bg",
+      "label":"背景颜色",
+      "default":"#a50102"
+    },{
+      "type":"color",
+      "id":"slid_item_bg",
+      "label":"按钮颜色",
+      "default":"#ffffff"
+    },{
+
+      "type":"color",
+      "id":"link_color",
+      "label":"字体颜色",
+      "default":"#000000"
+    },
+    {
+      "type":"range",
+      "id":"link_radius",
+      "label":"按钮形状",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },{
+      "type":"range",
+      "id":"slid_padding",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label":"内填充",
+      "default": 10
+    },{
+      "type":"range",
+      "id":"link_items",
+      "min": 4,
+      "max": 10,
+      "step": 1,
+      "unit": "个",
+      "label":"每行显示个数",
+      "default": 4
     }
   ],
   "blocks": [
@@ -69,6 +222,11 @@
           "type": "url",
           "id": "link",
           "label": "Link"
+        },{
+          "type":"checkbox",
+          "id":"show_hot",
+          "label":"显示热销图标",
+          "default":true
         }
       ]
     }

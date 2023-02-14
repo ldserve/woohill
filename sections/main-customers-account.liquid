@@ -1,117 +1,2712 @@
-<section data-section-id="{{ section.id }}" data-section-type="account">
-  <div class="container container--flush">
-    <div class="page__sub-header">
-      <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
-        <ol class="breadcrumb__list" role="list">
-          <li class="breadcrumb__item">
-            <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> {%- render 'icon', icon: 'arrow-right' -%}
-          </li>
 
-          <li class="breadcrumb__item">
-            <a class="breadcrumb__link link" href="{{ routes.account_url }}">{{ 'general.breadcrumb.account' | t }}</a> {%- render 'icon', icon: 'arrow-right' -%}
-          </li>
+<section data-section-id="{{ section.id }}" data-section-type="account" id="account">
+	
 
-          <li class="breadcrumb__item">
-            <span class="breadcrumb__link" aria-current="page">{{ 'customer.general.orders' | t }}</span>
-          </li>
-        </ol>
-      </nav>
-    </div>
+	{%- comment -%}------------------------------- desktop crumbs---------------------------{%- endcomment -%}
+	<div class="page__sub-header hidden-tablet">
+		<nav data-change="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
+			<ol class="breadcrumb__list" role="list">
+				<li class="breadcrumb__item">
+					<a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t
+						}}</a>
+					{%- render 'icon', icon: 'arrow-right' -%}
+				</li>
+				<li class="breadcrumb__item">
+					<a class="breadcrumb__link link" href="{{ routes.account_url }}">{{ 'general.breadcrumb.account' | t
+						}}</a>
+					{%- render 'icon', icon: 'arrow-right' -%}
+				</li>
 
-    <div class="layout">
-      <div class="layout__section layout__section--secondary">
-        <div class="card card--sticky hidden-pocket">
-          <div class="card__section card__section--tight">
-            <div class="card__linklist">
-              <a href="{{ routes.account_url }}" class="card__linklist-item link text--strong">{{ 'customer.general.orders' | t }}</a>
-              <a href="{{ routes.account_addresses_url }}" class="card__linklist-item link">{{ 'customer.general.addresses' | t }}</a>
-              <a href="{{ routes.account_logout_url }}" class="card__linklist-item link" data-no-instant>{{ 'customer.general.logout' | t }}</a>
-            </div>
-          </div>
-        </div>
+				<li class="breadcrumb__item">
+					<span class="breadcrumb__link" aria-current="page">Account Overview</span>
+				</li>
+			</ol>
+		</nav>
+	</div>
 
-        <div class="value-picker-wrapper hidden-tablet-and-up">
-          <button class="value-picker-button value-picker-button--pill" aria-haspopup="true" aria-expanded="false" aria-controls="account-selector" data-action="open-value-picker">
-            {{- 'customer.general.orders' | t -}} {%- render 'icon', icon: 'arrow-bottom' -%}
-          </button>
+	{%- comment -%}-----------------------------------------container-------------------{%- endcomment -%}
+	<div class="container container--flush">
+		<div class="layout">
+			
 
-          <div id="account-selector" class="value-picker" aria-hidden="true">
-            <div class="value-picker__inner">
-              <header class="value-picker__header">
-                <span class="value-picker__title text--strong">{{ 'customer.general.my_account' | t }}</span>
-                <button class="value-picker__close" data-action="close-value-picker" aria-controls="account-selector" aria-label="{{ 'general.accessibility.close' | t }}">{% render 'icon', icon: 'close' %}</button>
-              </header>
+			{%- comment -%}------------------------Desktop Nav ----------------------{%- endcomment -%}
+			<div class="layout__section layout__section--secondary hidden-phone">
+				<div class="card card--sticky hidden-pocket">
+					<div class="card__section card__section--tight">
+						<div class="card__linklist table-left-nav">
+							<div class="render_nav_list ">
+								{% comment %} <div class="card__linklist-item link text--stronger" data-right="my_overview"
+									data-action="left-nav" data-change="My Account">
+									{%- render 'icon', icon: 'account-text' -%}
+									<span>My Account</span>
+								</div> {% endcomment %}
+								<div class="card__linklist-item link" data-right="my_profile" data-action="left-nav"
+									data-change="Profile">
+									{%- render 'icon', icon: 'account-my' -%}
+									<span> Profile</span>
+								</div>
+								<div class="card__linklist-item link" data-right="my_coupons" data-action="left-nav"
+									data-change="Coupons">
+									{%- render 'icon', icon: 'coupon' -%}
+									<span> Coupons</span>
+								</div>
+								<div class="card__linklist-item link" data-right="my_orders" data-action="left-nav"
+									data-change="Orders">
+									{%- render 'icon', icon: 'account-cart' -%}
+									<span> Orders</span>
+								</div>
+								{% comment %} <div class="card__linklist-item link" data-right="wish_list" data-action="left-nav"
+									data-change="My Wishlist">
+									{%- render 'icon', icon: 'account-collect' -%}
+									<span>My Wishlist</span>
+								</div> {% endcomment %}
+								{% comment %} <div class="card__linklist-item link" data-right="my_addresses" data-action="left-nav"
+									data-change="My Addresses">
+									{%- render 'icon', icon: 'account-location' -%}
+									<span>My Addresses</span>
+								</div> {% endcomment %}
+								<div class="card__linklist-item link" data-right="recommend" data-action="left-nav" data-change="recommend">
+									<svg t="1672199086461" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3920" width="32" height="32"><path d="M256 960a128 128 0 0 1-128-128V466.645333A85.376 85.376 0 0 1 64 384v-106.666667a85.333333 85.333333 0 0 1 85.333333-85.333333h290.901334l-68.629334-68.629333a8.533333 8.533333 0 0 1 0-12.074667l33.194667-33.173333a8.533333 8.533333 0 0 1 12.053333 0l84.48 84.48 84.48-84.48a8.533333 8.533333 0 0 1 12.053334 0l33.194666 33.173333a8.533333 8.533333 0 0 1 0 12.074667l-68.650666 68.608L874.666667 192a85.333333 85.333333 0 0 1 85.333333 85.333333v106.666667a85.376 85.376 0 0 1-64 82.645333V832a128 128 0 0 1-128 128H256z m213.333333-490.666667H192v362.666667a64 64 0 0 0 60.245333 63.893333L256 896h213.333333V469.333333z m362.666667 0H533.333333v426.666667h234.666667a64 64 0 0 0 63.893333-60.245333L832 832V469.333333zM469.333333 256H149.333333a21.333333 21.333333 0 0 0-21.184 18.837333L128 277.333333v106.666667a21.333333 21.333333 0 0 0 18.837333 21.184L149.333333 405.333333h320v-149.333333z m405.333334 0H533.333333v149.333333h341.333334a21.333333 21.333333 0 0 0 21.184-18.837333L896 384v-106.666667a21.333333 21.333333 0 0 0-18.837333-21.184L874.666667 256z" fill="#333333" p-id="3921"></path></svg>
+									<span>Refer a Friend</span>
+								</div>
+								<div class="card__linklist-item link" data-right="redemptions" data-action="left-nav"
+								data-change="redemptions">
+								<svg t="1672224750449" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2724" width="32" height="32"><path d="M982.528 472.064c-2.56-59.392-62.464-97.792-140.288-117.76V196.096c0-1.536-0.512-2.56-1.024-4.096 0-2.56 1.024-4.608 1.024-6.656 0-125.952-251.392-159.232-400.384-159.232S41.472 59.392 41.472 184.832c0 2.56 0.512 4.608 1.024 6.656 0 1.536-1.024 2.56-1.024 4.096v600.576c0 0.512 0.512 1.536 0.512 2.048 0 1.024-0.512 1.536-0.512 2.048 0 125.952 251.904 159.232 400.384 159.232 12.8 0 26.624-0.512 40.448-1.024 73.216 35.84 186.88 38.4 218.112 38.4 47.104 0 282.624-6.144 282.624-122.88 0-0.512-0.512-1.024-0.512-1.536 0-0.512 0.512-1.024 0.512-1.536V474.112c-0.512-0.512-0.512-1.536-0.512-2.048zM841.728 460.8c14.336 5.12 25.6 10.24 32.256 14.848-6.656 4.608-17.92 9.728-32.256 14.848-24.064 8.704-58.368 16.384-102.4 19.968-8.192 0.512-16.896 1.024-25.6 1.024-4.608 0-9.216 0.512-13.824 0.512-92.672 0-152.576-22.016-174.08-36.352 21.504-14.336 81.408-36.352 174.08-36.352 13.824 0 27.136 0.512 39.424 1.536 30.208 2.048 55.808 6.656 76.8 11.776 9.728 3.072 17.92 5.632 25.6 8.192zM441.344 128c166.4 0 266.24 36.352 292.864 56.832-26.624 20.992-126.464 56.832-292.864 56.832s-265.728-35.84-292.864-56.832c27.136-20.48 126.464-56.832 292.864-56.832z m-24.064 729.6c-164.352-3.584-258.048-42.496-273.92-60.928v-89.088c78.848 32.256 188.416 45.056 273.92 47.104v102.912z m0-205.312c-164.352-3.584-258.048-42.496-273.92-60.928V502.272c78.848 32.256 188.416 45.056 273.92 47.104v102.912z m5.632-205.312c-167.424-3.072-263.168-41.984-279.04-60.928V296.96c86.528 35.328 209.92 47.616 297.984 47.616 88.064 0 211.456-11.776 297.984-47.616v41.984c-13.312-1.024-26.112-1.536-39.424-1.536-121.856 0-250.88 34.816-277.504 109.568z m457.216 416.768c-13.312 8.704-46.08 19.968-96.256 26.624-24.064 3.072-52.224 5.632-83.968 5.632-97.28 0-160.768-18.944-180.224-32.256v-90.112c69.632 21.504 154.112 23.552 180.224 23.552 8.192 0 22.016 0 39.424-1.024h0.512c27.136-1.536 62.976-4.608 98.816-11.776 1.024 0 2.048-0.512 3.584-0.512 12.8-2.56 26.112-6.144 38.4-9.728v89.6z m0-200.704c-7.168 4.608-19.968 10.24-38.4 15.36-17.408 4.608-39.936 9.216-66.56 12.288-11.264 1.536-23.04 2.56-35.84 3.072-12.288 0.512-25.6 1.024-39.424 1.024-97.28 0-160.768-18.944-180.224-31.744v-77.312c51.2 19.456 115.2 28.672 177.664 28.672h2.56c13.312 0 26.112-0.512 39.424-1.536 35.328-2.048 70.144-7.168 102.4-15.36v-2.048 1.536c13.312-3.584 26.112-7.68 38.4-12.288v78.336z" fill="" p-id="2725" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path></svg>
+								<span>Redeem Coupons</span>
+								</div>
+								<div class="card__linklist-item link" data-right="my_postsale" data-action="left-nav"
+									data-change="Customer Services">
+									{%- render 'icon', icon: 'cjj_post_sale' -%}
+									<span>Customer Services</span>
+								</div>
+								{% comment %} <a href="{{ routes.account_logout_url }}" class="card__linklist-item link"
+									data-no-instant>{% render 'icon', icon :"account-logout" %} {{
+									'customer.general.logout' | t }}</a> {% endcomment %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="layout__section ">
+			
+			{%- comment -%}------------------------------ Mobile Nav--------------------------{%- endcomment -%}
+			<div class="hidden-lap-and-up account">
+				<div class="header-me container">
+					{%- if customer -%}
+	
+					<div class="account-box">
+						<div class="card__linklist ">
+							<div class="render_nav_list  mobile-account__nav">
+	
+								{% comment %} <div class="card__linklist-item link text--stronger" data-right="my_overview"
+									data-action="left-nav" data-change="My Account">
+									{%- render 'icon', icon: 'account-text' -%}
+									<span>My Account</span>
+								</div> {% endcomment %}
+								<div class="card__linklist-item link" data-right="my_profile" data-action="left-nav"
+									data-change="Profile">
+									{%- render 'icon', icon: 'account-my' -%}
+									<span>Profile</span>
+								</div>
+								<div class="card__linklist-item link" data-right="my_coupons" data-action="left-nav"
+									data-change="Coupons">
+									{%- render 'icon', icon: 'coupon' -%}
+									<span>Coupons</span>
+								</div>
+								<div class="card__linklist-item link" data-right="my_orders" data-action="left-nav"
+									data-change="Orders">
+									{%- render 'icon', icon: 'account-cart' -%}
+									<span>Orders</span>
+								</div>
+								{% comment %} <div class="card__linklist-item link" data-right="wish_list" data-action="left-nav"
+									data-change="My Wishlist">
+									{%- render 'icon', icon: 'account-collect' -%}
+									<span>My Wishlist</span>
+								</div> {% endcomment %}
+								{% comment %} <div class="card__linklist-item link" data-right="my_addresses" data-action="left-nav"
+									data-change="My Addresses">
+									{%- render 'icon', icon: 'account-location' -%}
+									<span>My Addresses</span>
+								</div> {% endcomment %}
+								<div class="card__linklist-item link" data-right="redemptions" data-action="left-nav"
+									data-change="redemptions">
+									<svg t="1672224750449" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2724" width="32" height="32"><path d="M982.528 472.064c-2.56-59.392-62.464-97.792-140.288-117.76V196.096c0-1.536-0.512-2.56-1.024-4.096 0-2.56 1.024-4.608 1.024-6.656 0-125.952-251.392-159.232-400.384-159.232S41.472 59.392 41.472 184.832c0 2.56 0.512 4.608 1.024 6.656 0 1.536-1.024 2.56-1.024 4.096v600.576c0 0.512 0.512 1.536 0.512 2.048 0 1.024-0.512 1.536-0.512 2.048 0 125.952 251.904 159.232 400.384 159.232 12.8 0 26.624-0.512 40.448-1.024 73.216 35.84 186.88 38.4 218.112 38.4 47.104 0 282.624-6.144 282.624-122.88 0-0.512-0.512-1.024-0.512-1.536 0-0.512 0.512-1.024 0.512-1.536V474.112c-0.512-0.512-0.512-1.536-0.512-2.048zM841.728 460.8c14.336 5.12 25.6 10.24 32.256 14.848-6.656 4.608-17.92 9.728-32.256 14.848-24.064 8.704-58.368 16.384-102.4 19.968-8.192 0.512-16.896 1.024-25.6 1.024-4.608 0-9.216 0.512-13.824 0.512-92.672 0-152.576-22.016-174.08-36.352 21.504-14.336 81.408-36.352 174.08-36.352 13.824 0 27.136 0.512 39.424 1.536 30.208 2.048 55.808 6.656 76.8 11.776 9.728 3.072 17.92 5.632 25.6 8.192zM441.344 128c166.4 0 266.24 36.352 292.864 56.832-26.624 20.992-126.464 56.832-292.864 56.832s-265.728-35.84-292.864-56.832c27.136-20.48 126.464-56.832 292.864-56.832z m-24.064 729.6c-164.352-3.584-258.048-42.496-273.92-60.928v-89.088c78.848 32.256 188.416 45.056 273.92 47.104v102.912z m0-205.312c-164.352-3.584-258.048-42.496-273.92-60.928V502.272c78.848 32.256 188.416 45.056 273.92 47.104v102.912z m5.632-205.312c-167.424-3.072-263.168-41.984-279.04-60.928V296.96c86.528 35.328 209.92 47.616 297.984 47.616 88.064 0 211.456-11.776 297.984-47.616v41.984c-13.312-1.024-26.112-1.536-39.424-1.536-121.856 0-250.88 34.816-277.504 109.568z m457.216 416.768c-13.312 8.704-46.08 19.968-96.256 26.624-24.064 3.072-52.224 5.632-83.968 5.632-97.28 0-160.768-18.944-180.224-32.256v-90.112c69.632 21.504 154.112 23.552 180.224 23.552 8.192 0 22.016 0 39.424-1.024h0.512c27.136-1.536 62.976-4.608 98.816-11.776 1.024 0 2.048-0.512 3.584-0.512 12.8-2.56 26.112-6.144 38.4-9.728v89.6z m0-200.704c-7.168 4.608-19.968 10.24-38.4 15.36-17.408 4.608-39.936 9.216-66.56 12.288-11.264 1.536-23.04 2.56-35.84 3.072-12.288 0.512-25.6 1.024-39.424 1.024-97.28 0-160.768-18.944-180.224-31.744v-77.312c51.2 19.456 115.2 28.672 177.664 28.672h2.56c13.312 0 26.112-0.512 39.424-1.536 35.328-2.048 70.144-7.168 102.4-15.36v-2.048 1.536c13.312-3.584 26.112-7.68 38.4-12.288v78.336z" fill="" p-id="2725" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path></svg>
+									<span>Redeem Coupons</span>
+								</div>
+								<div class="card__linklist-item link" data-right="recommend" data-action="left-nav" data-change="recommend">
+									<svg t="1672199086461" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3920" width="32" height="32"><path d="M256 960a128 128 0 0 1-128-128V466.645333A85.376 85.376 0 0 1 64 384v-106.666667a85.333333 85.333333 0 0 1 85.333333-85.333333h290.901334l-68.629334-68.629333a8.533333 8.533333 0 0 1 0-12.074667l33.194667-33.173333a8.533333 8.533333 0 0 1 12.053333 0l84.48 84.48 84.48-84.48a8.533333 8.533333 0 0 1 12.053334 0l33.194666 33.173333a8.533333 8.533333 0 0 1 0 12.074667l-68.650666 68.608L874.666667 192a85.333333 85.333333 0 0 1 85.333333 85.333333v106.666667a85.376 85.376 0 0 1-64 82.645333V832a128 128 0 0 1-128 128H256z m213.333333-490.666667H192v362.666667a64 64 0 0 0 60.245333 63.893333L256 896h213.333333V469.333333z m362.666667 0H533.333333v426.666667h234.666667a64 64 0 0 0 63.893333-60.245333L832 832V469.333333zM469.333333 256H149.333333a21.333333 21.333333 0 0 0-21.184 18.837333L128 277.333333v106.666667a21.333333 21.333333 0 0 0 18.837333 21.184L149.333333 405.333333h320v-149.333333z m405.333334 0H533.333333v149.333333h341.333334a21.333333 21.333333 0 0 0 21.184-18.837333L896 384v-106.666667a21.333333 21.333333 0 0 0-18.837333-21.184L874.666667 256z" fill="#333333" p-id="3921"></path></svg>
+									<span>Refer a Friend</span>
+								</div>
+								<div class="card__linklist-item link" data-right="my_postsale" data-action="left-nav"
+									data-change="Customer Services">
+									 {%- render 'icon', icon: 'cjj_post_sale' -%}
+									<span>Customer Services</span>
+								</div>
+								{% comment %} <a href="{{ routes.account_logout_url }}" class="card__linklist-item link" data-no-instant>{%
+									render 'icon', icon :"account-logout" %} {{ 'customer.general.logout' | t }}</a> {% endcomment %}
+							</div>
+						</div>
+					</div>
+	
+					{%- else -%}
+					<ul class="no-logged">
+						<li class="text-l"><a href="{{ routes.account_login_url }}?return_url={{ page.url }}">LOGIN &gt;</a>
+						</li>
+						<li class="text-r"><a href="{{ routes.account_register_url }}">CREATE ACCOUNT&gt;</a></li>
+					</ul>
+					{%- endif -%}
+				</div>
+	
+			</div>
+			
+				{%- comment -%}--------------------------订单列表--------------------{%- endcomment -%}
 
-              <div class="value-picker__choice-list">
-                <a href="{{ routes.account_url }}" class="value-picker__choice-item is-selected">{{ 'customer.general.orders' | t }} {% render 'icon', icon: 'check-2' %}</a>
-                <a href="{{ routes.account_addresses_url }}" class="value-picker__choice-item">{{ 'customer.general.addresses' | t }} {% render 'icon', icon: 'check-2' %}</a>
-                <a href="{{ routes.account_logout_url }}" class="value-picker__choice-item" data-no-instant>{{ 'customer.general.logout' | t }} {% render 'icon', icon: 'check-2' %}</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+				<div class="card my_orders account_right_content" data-type="accountPage">
+					{%- comment -%}-------------------------- desktop --------------{%- endcomment -%}
+					<div class="hidden-phone">
+						{% render 'my-order-view' customer:customer%}
+					</div>
 
-      <div class="layout__section">
-        <div class="card">
-          <div class="{% if customer.orders.size == 0 %}card__section card__section--tight{% else %}card__header card__header--tight{% endif %}">
-            <h1 class="heading h1">{{ 'customer.general.orders' | t }} {% if customer.orders.size > 0 %}({{ customer.orders.size }}){% endif %}</h1>
-          </div>
+					{%- comment -%}----------------------------mobile------------------------{%- endcomment -%}
+					<div class="large_pad   hidden-tablet-and-up">{% comment %} hidden-tablet-and-up {% endcomment %}
+						<div class="order-me container">
+							<h3 class="h3">{{- 'customer.general.orders' | t -}}</h3>
+							<div class="icon-box">
+								<ul class="icons" id="orders-list">
+									<li data-item="orders-all" class="current" data-type="orders-list" data-change="All">
+										{%- render 'icon', icon: 'cjj_all' -%}<br />
+										<span>All</span>
+									</li>
+									<li data-item="orders-unpaid" data-type="orders-list" data-change="Unpaid">
+										{%- render 'icon', icon: 'cjj_unpaid' -%}<br />
+										<span>Unpaid</span>
+									</li>
+									<li data-item="orders-confirmed" data-type="orders-list" data-change="Confirmed">
+										{%- render 'icon', icon: 'cjj_payment' -%}<br />
+										<span>Confirmed</span>
+									</li>
+									<li data-item="orders-shipped" data-type="orders-list" data-change="Shipped">
+										{%- render 'icon', icon: 'cjj_shipped' -%}<br />
+										<span>Shipped</span>
+									</li>
+									<li data-item="orders-completed" data-type="orders-list" data-change="Completed">
+										{%- render 'icon', icon: 'cjj_completed' -%}<br />
+										<span>Completed</span>
+									</li>
+									<li data-item="orders-payment" data-type="orders-list" data-change="returns">
+										{%- render 'icon', icon: 'cjj_processing' -%}<br />
+										<span>Returns</span>
+									</li>
+								</ul>
+							</div>
 
-          {%- if customer.orders.size == 0 -%}
-            <div class="card__section">
-              <div class="empty-state empty-state--extra-tight">
-                <div class="empty-state__icon">
-                  {%- render 'icon', icon: 'package' -%}
-                  <span class="empty-state__count">0</span>
-                </div>
+						</div>
+						{%- comment -%}--- HTML error found --{%- endcomment -%}
+						<div class="body-me loading" id="loading">
+							{%- render 'icon', icon: 'cjj_loading' -%}
+							<span class="loading-text">&nbsp;loading...</span>
+						</div> 
+						<div class="card__section" id="order_null">
+							<div class="empty-state empty-state--extra-tight">
+								<div class="empty-state__icon">
+									{%- render 'icon', icon: 'package' -%}
+									<span class="empty-state__count">0</span>
+								</div>
+								<p class="empty-state__icon-description">{{ 'customer.general.no_orders' | t }}</p>
+								<div class="empty-state__button-container">
+									<a href="{{ routes.all_products_collection_url }}"
+										class="empty-state__button button button--primary">{{ 'customer.general.no_orders_button' | t }}</a>
+								</div>
+							</div>
+						</div>
 
-                <p class="empty-state__icon-description">{{ 'customer.general.no_orders' | t }}</p>
+						<div class="body-me" id="body_me">{%- comment -%}<!--渲染订单区域-->{%- endcomment -%}</div>
+						<div class="post" id="post">
+							<div class="container">
+								<h3>
+									{%- render 'icon', icon: 'bi-email' -%}&nbsp;&nbsp;
+									<a href="mailto:{{shop.email}}" target="_blank" rel="noopener"
+										aria-describedby="a11y-new-window-message">{{shop.email}}</a>
+								</h3>
+							</div>
+						</div>
+						<div class="advert-me container">
+							<ul>
+								<li><a href="{{ routes.cart_url }}">SHOPPING CART</a></li>
+								<li><a href="{{ routes.root_url }}collections/hot-sale">HOT SALE</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 
-                <div class="empty-state__button-container">
-                  <a href="{{ routes.all_products_collection_url }}" class="empty-state__button button button--primary">{{ 'customer.general.no_orders_button' | t }}</a>
-                </div>
-              </div>
-            </div>
-          {%- else -%}
-            {%- paginate customer.orders by 8 -%}
-              <div class="table-wrapper">
-                <table class="table table--loose">
-                  <thead>
-                    <tr>
-                      <th>{{ 'customer.order.order' | t }}</th>
-                      <th>{{ 'customer.order.date' | t }}</th>
-                      <th>{{ 'customer.order.payment_status' | t }}</th>
-                      <th>{{ 'customer.order.fulfillment_status' | t }}</th>
-                      <th class="table__cell--right">{{ 'customer.order.total' | t }}</th>
-                    </tr>
-                  </thead>
+				{%- comment -%}------------------------vip规则弹窗-----------------------{%- endcomment -%}
+				<div class="modal" aria-hidden="true" id="account-vip-rurles">
+					{%- comment -%}规则说明{%- endcomment -%}
+					<div class="vip-rules" >
 
-                  <tbody>
-                    {%- for order in customer.orders -%}
-                      <tr>
-                        <td><a href="{{ order.customer_url }}" class="link link--accented">{{ order.name }}</a></td>
-                        <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
-                        <td>{{ order.financial_status_label }}</td>
-                        <td>{{ order.fulfillment_status_label }}</td>
-                        <td class="table__cell--right">{{ order.total_price | money }}</td>
-                      </tr>
-                    {%- endfor -%}
-                  </tbody>
-                </table>
-              </div>
+						<div class="close-rule__page" data-action="close-modal">{% render 'icon',icon:'close' %} </div>
 
-              {%- render 'pagination', paginate: paginate -%}
-            {%- endpaginate -%}
-          {%- endif -%}
-        </div>
-      </div>
-    </div>
-  </div>
+						<h1 class="h1 vip-rules__title">About Rules</h1>
+						<h3 class="h3">1. Introduction</h3>
+						<div class="rule-tex">
+							There is no fee for the HYFOL VIP. HYFOL VIP membership is limited to individuals only and
+							limited to one
+							account per individual.It is your identification that represent you are at legal ages to
+							join our program
+							and responsibility for your membership to keep your email and contact details up to date in
+							your Account.HYFOL
+							reserves the right to disqualify Members who have violated any Of theTerms and Conditions.
+							Any
+							fraudulent activity or attempt to manipulate or abuse the program will result in the account
+							being
+							removed from the program without notice. When a Membership is terminated, all outstanding
+							coupons and
+							outstanding rewards associated with the Membership are forfeited.
+						</div>
+						<h3 class="h3">2. Membership</h3>
+						<div class="rule-tex">
+							Every tier is valid for 12 months from the date the HYFOL VIP member qualifies(exclude
+							silver member). identity
+							validation is required every month.Data refreshes typically take up to 24 hours. Please
+							check your level after
+							24 hours. Once you become a silver member,you will earn a life-long status. Please note that
+							the level of your
+							membership is based on the times of eligible purchases or the amount of eligible spending
+							during the past 12
+							months which is 45 days before the refresh date every month.
+							<table border="1px" class="rule-table">
+								<thead>
+									<tr>
+										<th> </th>
+										<th>Silver</th>
+										<th>Gold</th>
+										<th>Platinum</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>
+											Points Redeem
+										</th>
+										<td>{% render 'icon',icon:"check" %}</td>
+										<td>{% render 'icon',icon:"check" %}</td>
+										<td>{% render 'icon',icon:"check" %}</td>
+									</tr>
+									<tr>
+										<th>
+											Level-up Coupon
+										</th>
+										<td></td>
+										<td>{% render 'icon',icon:"check" %}</td>
+										<td>{% render 'icon',icon:"check" %}</td>
+									</tr>
+									<tr>
+										<th>
+											Free Shipping Card
+										</th>
+										<td></td>
+										<td>{% render 'icon',icon:"check" %}</td>
+										<td>{% render 'icon',icon:"check" %}</td>
+									</tr>
+									<tr>
+										<th>
+											Birthday Gifts
+										</th>
+										<td></td>
+										<td></td>
+										<td>{% render 'icon',icon:"check" %}</td>
+									</tr>
+									<tr>
+										<th>
+											Exclusive Promotions
+										</th>
+										<td></td>
+										<td></td>
+										<td>{% render 'icon',icon:"check" %}</td>
+									</tr>
+								</tbody>
+							</table>
+							<p style="color:#919191 ;">( The Eligible Purchases means purchases on the HYFOL website
+								during the past 12
+								months which is 45 days
+								before 10h every month.)</p>
+						</div>
+						<h3 class="h3">3. Rewards </h3>
+						<div class="rule-tex">
+							Membership in the program may entitle you to various ofers in addition to rewards . The
+							details of these
+							ofers are set out from time to time to your personal acCount.
+						</div>
+					</div>
+
+				</div>
+
+				{%- comment -%}--------------------------------------优惠券-------------------------------------------{%- endcomment -%}
+				<div class="my_coupons account_right_content backgrount_e" data-type="accountPage">
+					<h3 class="my_coupons__title h3">My Coupons</h3>
+					<details-menu>
+						<div class="coupons-nav d-flex">
+							<summary aria-expanded="true" data-index="1">
+								Active Coupons
+							</summary>
+							<summary aria-expanded="false" data-index="2">
+								Expired Coupons
+							</summary>
+						</div>
+						<div class="unused__coupons page__item" data-index="1" aria-hidden="false">
+							<div class="my-coupons">
+								{% comment %} <!-- <h3 class="h3 my-coupons__title">Unused Coupons</h3> --> {% endcomment %}
+								<div class="my-coupons__list my-coupons_empty">
+									<div class="empty">
+										{%- render 'icon',icon:"package" -%}
+										<p>It is empty here :-(</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="expired__coupons page__item" data-index="2" aria-hidden="true">
+							<div class="my-coupons">
+								<!-- <h3 class="h3 my-coupons__title">Unused Coupons</h3> -->
+								<div class="my-coupons__list my-coupons_empty">
+									<div class="empty">
+										{%- render 'icon',icon:"package" -%}
+										<p>It is empty here :-(</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</details-menu>
+				</div>
+
+				{%- comment -%}--------------------  分享与邀请 -------------------{%- endcomment -%}
+				<div class="recommend account_right_content container" data-type="accountPage">
+					{% comment %}
+					 <h5 class="h3 heading" style=" text-align: center; ">Refer a Friend</h5>
+				{% endcomment %}
+					<div class="invitation_info">
+						<div class="rulesContainer" style=" text-align: right; color: #000;">
+							<button class="rulesBtn" data-action="open-modal"
+								aria-controls="referMask">Rules</button>
+								{% comment %} <img  class="hidden-phone" src="https://cdn.shopify.com/s/files/1/0595/0691/7535/files/3098dde95942af4963ce37d9121f7293.jpg?v=1673836099" alt="hyfol">
+								<img class="hidden-tablet hidden-lap hidden-desk" src="https://cdn.shopify.com/s/files/1/0595/0691/7535/files/e64ba840c8b684f2b92a9c61cb44d691.jpg?v=1673836099" alt="hyfol"> {% endcomment %}
+
+								<div class="share_poster" data-action="open-modal" aria-controls="shareMask">
+									<img class="hidden-phone" src="https://cdn.shopify.com/s/files/1/0595/0691/7535/files/58e6ef1880818b42cf035f8430fbc8e9.jpg?v=1673835999" alt="hyfol">
+									<img class="hidden-tablet hidden-lap hidden-desk" src="https://cdn.shopify.com/s/files/1/0595/0691/7535/files/2f9de4554fff33a6b831fc8ff45b7063.jpg?v=1673835998" alt="hyfol">
+								</div>
+						</div>
+						{% comment %} <h2 class="title" style="  font-weight: 600;">Earn <span class="invitation_codeMoney"
+								style="color: #cf0e0e;">$20</span> for every new customer you refer.</h2>
+						<p class="invitation_desc" style="font-size: 0.9rem;">Share hyfol with friends and you'll earn a $20
+							No minimum requirements coupon for each customer that makes a purchase
+							over 49$. Bonuses are unlimited</p> {% endcomment %}
+
+					</div>
+
+					<div class="recommendContainer d-flex">
+						<input type="email" id="recommendEmail" class="form__field form__field--text input refer" name="email"
+							required="required" placeholder="Enter your friend's email" style="">
+						<ul class="recommendLabel" style="display: none;"></ul>
+						<button class="button refer referSubmit"  data-action="submitEmai">
+							submit
+							<div class="loading-spinner" style="left: 0;"><svg viewBox="25 25 50 50" class="circular"><circle cx="50" cy="50" r="20" fill="none" class="path"></circle></svg></div>
+						</button>
+					</div>
+					<div class="invitation_history">
+						<div class="invitation_title">Referral History</div>
+						<div class="invited_box" style="text-align: center;">You Haven't Invited any Friends Yet.</div>
+					</div>
+					<div id="referMask" class="modal" aria-hidden="true">
+						<div class="RulesModal_content">
+							<button class="close_modal button" data-action="close-modal">
+								<svg class="icon link" viewBox="0 0 1056 1024" xmlns="http://www.w3.org/2000/svg" width="25"
+									height="25">
+									<path d="M50.55200000000001 916.798l882.47-882.47q33.94-33.94 67.882 0 33.94 33.941 0 67.882l-882.47 882.47q-33.94 33.94-67.882 0-33.94-33.941 0-67.882z"
+										fill="#222"></path>
+									<path d="M118.434 34.328l882.47 882.47q33.94 33.94 0 67.882-33.941 33.94-67.882 0L50.552 102.21q-33.94-33.94 0-67.882 33.941-33.94 67.882 0z"
+										fill="#222"></path>
+								</svg>
+							</button>
+							<div class="RulesModal_textWrap"><span class="rule_titlt">How to invite friends:</span>
+								<div>STEP 1. {% comment %} Click the INVITE button and share the link with your friend(s) {% endcomment %}Submit the email address of the friend(s) you want to invite</div>
+								<div>STEP 2. {% comment %} Your friend can join us through this link and receive an app-exclusive New
+									User Gift {% endcomment %}Click the INVITE button and share the link with your friend(s),Invite your friends to join us </div>
+								<div>STEP 3. You will earn a $20 No minimum requirements coupon once your invited friend makes a
+									purchase over 49$
+									(including shipping cost).</div>
+								<div class="rule_titlt">RULES: </div>
+								<div>1. You will earn the $20 bonus only if the invited friend is a new customer to Hyfol. This means
+									she/he has not registered on our website or placed an order before. （website: <a
+										href="https://www.hyfol.com"
+										style="color: rgb(0, 122, 255); display: inline; cursor: pointer; text-decoration: underline;">https://www.hyfol.com</a>
+									)</div>
+								<div>2. If your invited friend makes a purchase on Hyfol Websites, he/she cannot earn New User Gift. The
+									more you invite, the more you can earn. {% comment %} Please allow up to 24 hours to send the gift
+									card to your
+									email after your friend's order is placed. {% endcomment %}After a friend places an order, please
+									allow up to 24 hours to send the coupon to your hyfol personal center.</div>
+								<div>3. You can buy anything from Hyfol with the coupon{% comment %} , which means it can be combined
+									with other
+									discounts and offers. E-gift cards will expire on 2023/05/31 EST. {% endcomment %}</div>
+								{% comment %} <div>4. This period of the "Hyfol Refer-A-Friend" event will expire on 2023/05/31 EST. </div> {% endcomment %}
+							</div>
+						</div>
+					</div>
+					<div id="shareMask" class="modal" aria-hidden="true">
+						<div class="shareLink">
+							<div class="shareTitle">Share to <svg fill="#828282" data-action="close-modal" class="Share_closeSvg" viewBox="0 0 1056 1024" xmlns="http://www.w3.org/2000/svg" width="25" height="25"><path d="M50.55200000000001 916.798l882.47-882.47q33.94-33.94 67.882 0 33.94 33.941 0 67.882l-882.47 882.47q-33.94 33.94-67.882 0-33.94-33.941 0-67.882z" fill="#222"></path><path d="M118.434 34.328l882.47 882.47q33.94 33.94 0 67.882-33.941 33.94-67.882 0L50.552 102.21q-33.94-33.94 0-67.882 33.941-33.94 67.882 0z" fill="#222"></path></svg></div>
+								<div class="linkList d-flex">
+									<a class="shareLinkItem" href="https://twitter.com/intent/tweet?url=https://www.hyfol.com&text=Hey there! I've found some fantastic athleisure products at my new favorite brand: Hyfol! Sign up with my invite link now to get your free gifts!" target="_blank" title="Hey there! I've found some fantastic athleisure products at my new favorite brand: Hyfol! Sign up with my invite link now to get your free gifts!">
+										<svg class="icon share_icon"  width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg"><title></title><defs><filter id="filter-twitter"><feColorMatrix in="SourceGraphic" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"></feColorMatrix></filter></defs><g id="page-1" fill="none" fill-rule="evenodd"><g id="Grouping-33"><circle id="Oval" fill="#00B2F2" cx="44" cy="44" r="44"></circle><g transform="translate(24 28)" filter="url(#filter-twitter)" id="twitter-2"><path d="M36.495 7.934c0 14.27-9.357 24.545-23.119 24.996-5.82.45-9.807-1.32-13.376-3.994 3.987.45 9.357-.87 11.994-3.576-3.988 0-6.238-2.255-7.557-5.315h3.57c-3.57-1.353-6.27-4.026-6.27-8.471.868.45 1.768.87 3.568.87C2.186 10.671.418 4.873 2.637 1.297c3.987 4.445 8.874 8.472 16.945 8.89-2.25-8.89 9.357-13.4 14.244-7.57 2.251-.45 3.57-1.32 5.306-2.254-.45 2.255-1.769 3.575-3.57 4.445 1.77 0 3.12-.45 4.438-1.32-.418 1.771-2.186 3.575-3.505 4.445z" id="Paths" fill="#FFF" fill-rule="nonzero"></path></g></g></g></svg>
+										<p>Twitter</p></a>	
+									<a class="shareLinkItem" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fhyfol.com%3Futm_source%3Dshare&utm_medium=freeshipping&utm_campaign=Facebook&quote=Hey%20there!%20I%27ve%20found%20some%20fantastic%20athleisure%20products%20at%20my%20new%20favorite%20brand%3A%20Halara!%20Sign%20up%20with%20my%20invite%20link%20now%20to%20get%20your%20free%20gifts!https%3A%2F%2Fhalara.link%2Fs%2FGcGzCVS5%3FshareKey%3DMJXYAy2h%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook%3Futm_source%3Dshare%26utm_medium%3Dfreeshipping%26utm_campaign%3DFacebook" target="_blank" title="Hey there! I've found some fantastic athleisure products at my new favorite brand: Hyfol! Sign up with my invite link now to get your free gifts!">
+									<svg class="icon share_icon" width="88" height="88" viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg"><title></title><defs><filter id="filter-facebook"><feColorMatrix in="SourceGraphic" values="0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 0 1.000000 0 0 0 1.000000 0"></feColorMatrix></filter></defs><g id="page-1" fill="none" fill-rule="evenodd"><g id="Share" transform="translate(-612 -852)"><g id="Grouping-3" transform="translate(612 852)"><circle id="OvalBackups" fill="#33529D" cx="44" cy="44" r="44"></circle><g transform="translate(37 28)" filter="url(#filter-facebook)" id="Facebook-copy"><path d="M9.867 0C8.84 0 7.871.113 6.73.565c-2.338.962-3.48 3.11-3.48 6.559v3.335H0V16h3.25v16h6.617V16h4.506L15 10.46H9.867V7.971c0-.792.057-1.357.285-1.64.285-.509.855-.735 1.768-.735h3.023V.057H9.867V0z" id="Paths" fill="#fff" fill-rule="nonzero"></path></g></g></g></g></svg>
+										<p>Facebook</p></a>	
+									<a href="https://www.instagram.com/" class="shareLinkItem">
+										<img  class="icon share_icon"  src="https://cdn.shopify.com/s/files/1/0595/0691/7535/files/ins.jpg?v=1673856448" alt="hyfol share">
+										<p>Instagram</p>
+									</a>
+								</div>
+						</div>
+					</div>
+				</div>
+				
+				{%- comment -%}--------------------  积分兑换 -------------------{%- endcomment -%}
+				<div class="redemptions account_right_content" data-type="accountPage">
+					<h5 class="h3 heading" style=" text-align: center; ">Click to Redeem Coupon</h5>
+					{%- comment -%}-------------------------积分总览---------------------------{%- endcomment -%}
+					<div class="profile-view backgrount_e">
+							<div class="my-profile__view ">
+								<div class="profile-total">
+									<div class="profile_total"><strong>0</strong></div>
+									<div class="profile_heading">Total Points</div>
+								</div>
+								<span style="background-color: #aaa;height: 100%;width: 1px;margin: 0 auto;"></span>
+								<div class="profile-expire">
+									<div class="profile_expire"><strong>0</strong></div>
+									<div>Points Expired soon</div>
+								</div>
+							</div>
+					</div>
+					{%- comment -%}-----------------------兑换列表--------------------{%- endcomment -%}
+					<div class="discount_list ">
+						<div class="empty"><svg focusable="false" class="icon icon--package " viewBox="0 0 46 46" role="presentation">
+								<g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd">
+									<path d="M11 8l24 14m10-6L25 28 1 14m24 14v16"></path>
+									<path stroke-linecap="square" d="M45 16v14L25 44 1 30V14L21 2z"></path>
+								</g>
+							</svg>
+							<p>It is empty here :-(</p>
+						</div>
+					</div>
+
+				</div>
+
+				{%- comment -%}---------------------------我的简历---------------------------{%- endcomment -%}
+				<div class="my_profile account_right_content" data-type="accountPage">
+					<h3 class="mobile-account__title pc-account__title">My Profile</h3>
+					<div class="account-info customer_name">{{customer.first_name}} {{customer.last_name}}</div>
+					<div class="account-info customer_email">{{customer.email}}</div>
+					{% comment %}-------------------------会员信息----------------------- {% endcomment %}
+					<div class="my-account">
+					<div class="vip-page ">
+						<div class="vip-overview">
+							<div class="vip-user d-flex">
+								<div class="vip-user__avatar">
+									<img class="lazyload" alt="fill"
+										src="https://cdn.shopify.com/s/files/1/0595/0691/7535/files/bd0d72d9c0dedca8253dc2549b1a1017.png?v=1664507136">
+								</div>
+								<div class="vip-user__name">
+									<span style="margin-bottom:6px; display: block;">{{customer.name}}</span>
+									<div class="vip-icon__box view_myvip">
+										{%- render 'icon',icon:'vip',class:'vip' -%}
+										<span class="vip-user__grade">copper</span>
+									</div>
+									<div class="vip-icon__box view_mypoint">
+										{% render "icon",icon:'integral' %}
+										<span class="vip-integral">0</span>
+									</div>
+
+								</div>
+							</div>
+
+							<div class="vip-grade d-flex">
+								<span class="vip-level__s0">
+								</span>
+								<span class="vip-solid"></span>
+								<span class="vip-level__s1">
+									<img src="{{'s1.png' | asset_url}}" alt="">
+								</span>
+								<span class="vip-solid"></span>
+								<span class="vip-level__s2">
+									<img src="{{'s2.png' | asset_url}}" alt="">
+								</span>
+								<span class="vip-solid"></span>
+								<span class="vip-level__s3">
+									<img src="{{'s3.png' | asset_url}}" alt="">
+								</span>
+							</div>
+							<p class="vip-info__title">Welcome to the HYFOL VIP</p>
+						</div>
+
+						<div class="vip-overview__rule" aria-hidden="true">
+							<p class="vip-upgrade__info">
+								<span class="vip-upgrade__header">Copper: </span> No consumption
+							</p>
+							<p class="vip-upgrade__info">
+								<span class="vip-upgrade__header">Silver: </span> US$0.1 or 1 order(s) are required
+								to become a silver member
+							</p>
+							<p class="vip-upgrade__info">
+								<span class="vip-upgrade__header">Gold: </span>US$120 or 3 order(s) are required to
+								become a gold member
+							</p>
+							<p class="vip-upgrade__info">
+								<span class="vip-upgrade__header">Platinum: </span> US$500 or 5 order(s) are
+								required to become a platinum member
+							</p>
+							<div class="vip-rules__link" data-action="open-modal" aria-controls="account-vip-rurles">
+								About rules
+							</div>
+						</div>
+					</div>
+					</div>
+
+					{%- comment -%}-------------------------生日信息------------------{%- endcomment -%}
+					<div class="birthday backgrount_e" style="padding: 2rem;">
+						<h3 class="h3" style="text-align: center;">My Birthday</h3>
+						<p style="text-align: center;">Enter your birthday get 100 point</p>
+						<div class="d-flex" style="max-width: 360px;margin: 0 auto;">
+							<input type="date" id="birthdayDate" class="form__field form__field--text input refer" name="date"
+								pattern="\d{4}-\d{2}-\d{2}" max="{{'now' |date: '%Y-%m-%d' }}" min="1970-01-01" style="line-height: 1;">
+							<button class="button refer" style="background: #000;color: #FFF;" data-action="birthdaySubmit">
+								submit
+							</button>
+						</div>
+					</div>
+					{%- comment -%}-----------------积分记录----------------------{%- endcomment -%}
+					<div class="profile-record backgrount_e">
+						<h4 class="profile-story__title">Point Detalls</h4>
+						<details-menu>
+							<div class="profile-nav">
+								<summary aria-expanded="true" data-index="1">
+									All
+								</summary>
+								<summary aria-expanded="false" data-index="2">
+									Earned
+								</summary>
+								<summary aria-expanded="false" data-index="3">
+									Used
+								</summary>
+								<summary aria-expanded="false" data-index="4">
+									Expired
+								</summary>
+							</div>
+							<div class="profile-all page__item" data-index="1" aria-hidden="false">
+								<table border="1">
+									<thead>
+										<tr>
+											<th>Date And Time</th>
+											<th>Point Type</th>
+											<th>Point Amount</th>
+											<th>Expiration Date</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td colspan="4">
+												<div class="my-coupons_empty">
+													<div class="empty">
+														{%- render 'icon',icon:"package" -%}
+														<p>It is empty here :-(</p>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<div id="pageList">{%- comment -%}---------分页--------{%- endcomment -%}</div>
+							</div>
+							<div class="profile-earned page__item" data-index="2" aria-hidden="true">
+								<table border="1">
+									<thead>
+										<tr>
+											<th>Date And Time</th>
+											<th>Point Type</th>
+											<th>Point Amount</th>
+											<th>Expiration Date</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td colspan="4">
+												<div class="my-coupons_empty">
+													<div class="empty">
+														{%- render 'icon',icon:"package" -%}
+														<p>It is empty here :-(</p>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="profile-point page__item" data-index="3" aria-hidden="true">
+								<table border="1">
+									<thead>
+										<tr>
+											<th>Date And Time</th>
+											<th>Point Type</th>
+											<th>Point Amount</th>
+											<th>Expiration Date</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td colspan="4">
+												<div class="my-coupons_empty">
+													<div class="empty">
+														{%- render 'icon',icon:"package" -%}
+														<p>It is empty here :-(</p>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="profile-expired page__item" data-index="4" aria-hidden="true">
+								<table border="1">
+									<thead>
+										<tr>
+											<th>Date And Time</th>
+											<th>Point Type</th>
+											<th>Point Amount</th>
+											<th>Expiration Date</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td colspan="4">
+												<div class="my-coupons_empty">
+													<div class="empty">
+														{%- render 'icon',icon:"package" -%}
+														<p>It is empty here :-(</p>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</details-menu>
+					</div>
+
+					{%- comment -%}----------------------------客户地址------------------------{%- endcomment -%}
+					<div class="my_addresses " >
+						<section data-section-id="{{ section.id }}" data-section-type="account">
+							<div class="container container--flush">
+								<div class="card">
+									<div class="card__section card__section--flex card__section--tight">
+										<h1 class="card__title heading h1">{{ 'customer.general.addresses' | t }} {% if
+											customer.addresses_count > 0 %}({{ customer.addresses_count }}){% endif %}</h1>
+										{%- if customer.addresses_count > 0 -%}
+										<button class="button button--small button--primary" data-action="open-modal"
+											aria-controls="modal-address-new">{{ 'customer.addresses.add_address' | t
+											}}</button>
+										{%- endif -%}
+									</div>
+
+									{%- if customer.addresses_count == 0 -%}
+									<div class="card__section">
+										<div class="empty-state empty-state--extra-tight">
+											<div class="empty-state__icon">
+												{%- render 'icon', icon: 'address' -%}
+												<span class="empty-state__count">0</span>
+											</div>
+
+											<p class="empty-state__icon-description">{{ 'customer.addresses.no_addresses' |
+												t }}</p>
+
+											<div class="empty-state__button-container">
+												<button class="empty-state__button button button--primary"
+													data-action="open-modal" aria-controls="modal-address-new">{{
+													'customer.addresses.no_addresses_button' | t }}</button>
+											</div>
+										</div>
+									</div>
+
+									{%- else -%}
+									{%- paginate customer.addresses by 8 -%}
+									<div class="address-list">
+										<div class="address-list__item" data-address>
+											<div class="address-list__item-top">
+												<p class="heading h6">{{ 'customer.addresses.default_address' | t }}</p>
+												{{- customer.default_address | format_address -}}
+											</div>
+
+											<div class="address-list__action-list">
+												<button class="link link--accented" data-action="open-modal"
+													aria-controls="modal-address-{{ customer.default_address.id }}">{{
+													'customer.addresses.edit' | t }}</button>
+												<!-- <button class="link link--accented" onclick="Shopify.CustomerAddress.destroy({{ customer.default_address.id }}); return false">{{ 'customer.addresses.delete' | t }}</button> -->
+												<button type="button" class="link link--accented"
+													aria-label="{{ 'customer.addresses.delete' | t }} {{ forloop.index }}"
+													data-target="{{ customer.default_address.url }}"
+													data-action="deleteAddresses"
+													data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+													{{ 'customer.addresses.delete' | t }}
+												</button>
+											</div>
+										</div>
+
+										{%- assign address_count = paginate.current_offset | plus: 2 -%}
+
+										{%- for address in customer.addresses -%}
+										{%- if address.id == customer.default_address.id -%}
+										{%- continue -%}
+										{%- endif -%}
+
+										<div class="address-list__item">
+											<div class="address-list__item-top">
+												<p class="heading h6">{{ 'customer.addresses.address_number' | t: number:
+													address_count }}</p>
+												{{- address | format_address -}}
+											</div>
+
+											<div class="address-list__action-list">
+												<button class="link link--accented" data-action="open-modal"
+													aria-controls="modal-address-{{ address.id }}">{{
+													'customer.addresses.edit' | t }}</button>
+												<!-- <button class="link link--accented" onclick="Shopify.CustomerAddress.destroy({{ address.id }}); return false">{{ 'customer.addresses.delete' | t }}</button> -->
+												<button type="button" class="link link--accented "
+													aria-label="{{ 'customer.addresses.delete' | t }} {{ forloop.index }}"
+													data-target="{{ address.url }}"
+													data-action="deleteAddresses"
+													data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+													{{ 'customer.addresses.delete' | t }}
+												</button>
+											</div>
+										</div>
+
+										{%- assign address_count = address_count | plus: 1 -%}
+										{%- endfor -%}
+									</div>
+
+									{% render 'pagination', paginate: paginate %}
+									{% assign dm_paginate_by = paginate.page_size %}{%- endpaginate -%}
+									{%- endif -%}
+								</div>
+
+							</div>
+
+
+							{%- assign new_form_errored = false -%}
+
+							{%- capture form_status -%}
+							{%- form 'customer_address', customer.new_address, class: 'form' -%}
+							{%- if form.errors -%}
+							{%- assign new_form_errored = true -%}
+							{%- endif -%}
+							{%- endform -%}
+							{%- endcapture -%}
+
+							<div id="modal-address-new" class="modal"
+								aria-hidden="{% if new_form_errored %}false{% else %}true{% endif %}">
+								<div class="modal__dialog" role="dialog">
+									<header class="modal__header">
+										<h3 class="modal__title heading h2">{{ 'customer.addresses.add_address' | t }}</h3>
+										<button class="modal__close link" data-action="close-modal"
+											title="{{ 'general.accessibility.close' | t | escape }}">
+											{%- render 'icon', icon: 'close' -%}
+										</button>
+									</header>
+
+									<div class="modal__content modal__content--ios-push">
+										<p class="modal__description">{{ 'customer.addresses.form_subtitle' | t }}</p>
+
+										{%- form 'customer_address', customer.new_address, class: 'form' -%}
+										{%- if form.errors -%}
+										<div class="alert alert--error">
+											<ul class="alert__error-list" role="list">
+												{%- for field in form.errors -%}
+												{%- if field == 'form' -%}
+												<li class="alert__error-item">{{ form.errors.messages[field] }}</li>
+												{%- else -%}
+												<li class="alert__error-item"><strong>{{
+														form.errors.translated_fields[field] }}</strong> {{
+													form.errors.messages[field] }}</li>
+												{%- endif -%}
+												{%- endfor -%}
+											</ul>
+										</div>
+										{%- endif -%}
+
+										{%- if request.locale.iso_code == 'ja' -%}
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[last_name]" type="text"
+												class="form__field form__field--text {% if form.last_name != blank %}is-filled{% endif %}"
+												name="address[last_name]" value="{{ form.last_name }}" autofocus>
+											<label for="address-new[last_name]" class="form__floating-label">{{
+												'customer.addresses.last_name' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[first_name]" type="text"
+												class="form__field form__field--text {% if form.first_name != blank %}is-filled{% endif %}"
+												name="address[first_name]" value="{{ form.first_name }}">
+											<label for="address-new[first_name]" class="form__floating-label">{{
+												'customer.addresses.first_name' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[zip]" type="text"
+												class="form__field form__field--text {% if form.zip != blank %}is-filled{% endif %}"
+												name="address[zip]" value="{{ form.zip }}">
+											<label for="address-new[zip]" class="form__floating-label">{{
+												'customer.addresses.zip' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[country]" id="address-new[country]">{{
+													all_country_option_tags }}</select>
+											</div>
+
+											<label for="address-new[country]" class="form__floating-label">{{
+												'customer.addresses.country' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled"
+											style="display: none">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[province]" id="address-new[province]"></select>
+											</div>
+
+											<label for="address-new[province]" class="form__floating-label">{{
+												'customer.addresses.province' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[city]" type="text"
+												class="form__field form__field--text {% if form.city != blank %}is-filled{% endif %}"
+												name="address[city]" value="{{ form.city }}">
+											<label for="address-new[city]" class="form__floating-label">{{
+												'customer.addresses.city' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[address1]" type="text"
+												class="form__field form__field--text {% if form.address1 != blank %}is-filled{% endif %}"
+												name="address[address1]" value="{{ form.address1 }}">
+											<label for="address-new[address1]" class="form__floating-label">{{
+												'customer.addresses.address1' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[address2]" type="text"
+												class="form__field form__field--text {% if form.address2 != blank %}is-filled{% endif %}"
+												name="address[address2]" value="{{ form.address2 }}">
+											<label for="address-new[address2]" class="form__floating-label">{{
+												'customer.addresses.address2' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[company]" type="text"
+												class="form__field form__field--text {% if form.company != blank %}is-filled{% endif %}"
+												name="address[company]" value="{{ form.company }}">
+											<label for="address-new[company]" class="form__floating-label">{{
+												'customer.addresses.company' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[phone]" type="text"
+												class="form__field form__field--text {% if form.phone != blank %}is-filled{% endif %}"
+												name="address[phone]" value="{{ form.phone }}">
+											<label for="address-new[phone]" class="form__floating-label">{{
+												'customer.addresses.phone' | t }}</label>
+										</div>
+										{%- else -%}
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[first_name]" type="text"
+												class="form__field form__field--text {% if form.first_name != blank %}is-filled{% endif %}"
+												name="address[first_name]" value="{{ form.first_name }}" autofocus>
+											<label for="address-new[first_name]" class="form__floating-label">{{
+												'customer.addresses.first_name' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[last_name]" type="text"
+												class="form__field form__field--text {% if form.last_name != blank %}is-filled{% endif %}"
+												name="address[last_name]" value="{{ form.last_name }}">
+											<label for="address-new[last_name]" class="form__floating-label">{{
+												'customer.addresses.last_name' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[company]" type="text"
+												class="form__field form__field--text {% if form.company != blank %}is-filled{% endif %}"
+												name="address[company]" value="{{ form.company }}">
+											<label for="address-new[company]" class="form__floating-label">{{
+												'customer.addresses.company' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[phone]" type="text"
+												class="form__field form__field--text {% if form.phone != blank %}is-filled{% endif %}"
+												name="address[phone]" value="{{ form.phone }}">
+											<label for="address-new[phone]" class="form__floating-label">{{
+												'customer.addresses.phone' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[address1]" type="text"
+												class="form__field form__field--text {% if form.address1 != blank %}is-filled{% endif %}"
+												name="address[address1]" value="{{ form.address1 }}">
+											<label for="address-new[address1]" class="form__floating-label">{{
+												'customer.addresses.address1' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-new[address2]" type="text"
+												class="form__field form__field--text {% if form.address2 != blank %}is-filled{% endif %}"
+												name="address[address2]" value="{{ form.address2 }}">
+											<label for="address-new[address2]" class="form__floating-label">{{
+												'customer.addresses.address2' | t }}</label>
+										</div>
+
+										<div class="form__input-row">
+											<div class="form__input-wrapper form__input-wrapper--labelled">
+												<input id="address-new[city]" type="text"
+													class="form__field form__field--text {% if form.city != blank %}is-filled{% endif %}"
+													name="address[city]" value="{{ form.city }}">
+												<label for="address-new[city]" class="form__floating-label">{{
+													'customer.addresses.city' | t }}</label>
+											</div>
+
+											<div class="form__input-wrapper form__input-wrapper--labelled">
+												<input id="address-new[zip]" type="text"
+													class="form__field form__field--text {% if form.zip != blank %}is-filled{% endif %}"
+													name="address[zip]" value="{{ form.zip }}">
+												<label for="address-new[zip]" class="form__floating-label">{{
+													'customer.addresses.zip' | t }}</label>
+											</div>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[country]" id="address-new[country]">{{
+													all_country_option_tags }}</select>
+											</div>
+
+											<label for="address-new[country]" class="form__floating-label">{{
+												'customer.addresses.country' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled"
+											style="display: none">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[province]" id="address-new[province]"></select>
+											</div>
+
+											<label for="address-new[province]" class="form__floating-label">{{
+												'customer.addresses.province' | t }}</label>
+										</div>
+										{%- endif -%}
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<div class="checkbox-wrapper">
+												<input type="checkbox" class="checkbox" name="address[default]"
+													id="address-new[default]" value="0">
+												{% render 'icon', icon: 'check' %}
+											</div>
+
+											<label for="address-new[default]">{{ 'customer.addresses.set_default' | t
+												}}</label>
+										</div>
+
+										<button class="form__submit button button--primary button--full" data-scenable="1"
+											data-sctype="profile_set" data-submitForm>{{ 'customer.addresses.add_address' |
+											t }}</button>
+										{%- endform -%}
+									</div>
+								</div>
+							</div>
+
+
+							<div id="modal-address-{{ customer.default_address.id }}" class="modal" aria-hidden="true">
+								<div class="modal__dialog" role="dialog">
+									<header class="modal__header">
+										<h3 class="modal__title heading h2">{{ 'customer.addresses.edit_address' | t }}</h3>
+										<button class="modal__close link" data-action="close-modal"
+											title="{{ 'general.accessibility.close' | t | escape }}">
+											{%- render 'icon', icon: 'close' -%}
+										</button>
+									</header>
+
+									<div class="modal__content modal__content--ios-push">
+										<p class="modal__description">{{ 'customer.addresses.form_subtitle' | t }}</p>
+
+										{% form 'customer_address', customer.default_address, class: 'form' %}
+										{%- if request.locale.iso_code == 'ja' -%}
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[last_name]" type="text"
+												class="form__field form__field--text {% if form.last_name != blank %}is-filled{% endif %}"
+												name="address[last_name]" value="{{ form.last_name }}" autofocus>
+											<label for="address-{{ address.id }}[last_name]" class="form__floating-label">{{
+												'customer.addresses.last_name' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[first_name]" type="text"
+												class="form__field form__field--text {% if form.first_name != blank %}is-filled{% endif %}"
+												name="address[first_name]" value="{{ form.first_name }}">
+											<label for="address-{{ address.id }}[first_name]"
+												class="form__floating-label">{{ 'customer.addresses.first_name' | t
+												}}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[zip]" type="text"
+												class="form__field form__field--text {% if form.zip != blank %}is-filled{% endif %}"
+												name="address[zip]" value="{{ form.zip }}">
+											<label for="address-{{ address.id }}[zip]" class="form__floating-label">{{
+												'customer.addresses.zip' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[country]" id="address-{{ address.id }}[country]"
+													data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+											</div>
+
+											<label for="address-{{ address.id }}[country]" class="form__floating-label">{{
+												'customer.addresses.country' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled"
+											style="display: none">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[province]" id="address-{{ address.id }}[province]"
+													data-default="{{ form.province }}"></select>
+											</div>
+
+											<label for="address-{{ address.id }}[province]" class="form__floating-label">{{
+												'customer.addresses.province' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[city]" type="text"
+												class="form__field form__field--text {% if form.city != blank %}is-filled{% endif %}"
+												name="address[city]" value="{{ form.city }}">
+											<label for="address-{{ address.id }}[city]" class="form__floating-label">{{
+												'customer.addresses.city' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[address1]" type="text"
+												class="form__field form__field--text {% if form.address1 != blank %}is-filled{% endif %}"
+												name="address[address1]" value="{{ form.address1 }}">
+											<label for="address-{{ address.id }}[address1]" class="form__floating-label">{{
+												'customer.addresses.address1' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[address2]" type="text"
+												class="form__field form__field--text {% if form.address2 != blank %}is-filled{% endif %}"
+												name="address[address2]" value="{{ form.address2 }}">
+											<label for="address-{{ address.id }}[address2]" class="form__floating-label">{{
+												'customer.addresses.address2' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[company]" type="text"
+												class="form__field form__field--text {% if form.company != blank %}is-filled{% endif %}"
+												name="address[company]" value="{{ form.company }}">
+											<label for="address-{{ address.id }}[company]" class="form__floating-label">{{
+												'customer.addresses.company' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[phone]" type="text"
+												class="form__field form__field--text {% if form.phone != blank %}is-filled{% endif %}"
+												name="address[phone]" value="{{ form.phone }}">
+											<label for="address-{{ address.id }}[phone]" class="form__floating-label">{{
+												'customer.addresses.phone' | t }}</label>
+										</div>
+										{%- else -%}
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[first_name]" type="text"
+												class="form__field form__field--text {% if form.first_name != blank %}is-filled{% endif %}"
+												name="address[first_name]" value="{{ form.first_name }}" autofocus>
+											<label for="address-{{ address.id }}[first_name]"
+												class="form__floating-label">{{ 'customer.addresses.first_name' | t
+												}}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[last_name]" type="text"
+												class="form__field form__field--text {% if form.last_name != blank %}is-filled{% endif %}"
+												name="address[last_name]" value="{{ form.last_name }}">
+											<label for="address-{{ address.id }}[last_name]" class="form__floating-label">{{
+												'customer.addresses.last_name' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[company]" type="text"
+												class="form__field form__field--text {% if form.company != blank %}is-filled{% endif %}"
+												name="address[company]" value="{{ form.company }}">
+											<label for="address-{{ address.id }}[company]" class="form__floating-label">{{
+												'customer.addresses.company' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[phone]" type="text"
+												class="form__field form__field--text {% if form.phone != blank %}is-filled{% endif %}"
+												name="address[phone]" value="{{ form.phone }}">
+											<label for="address-{{ address.id }}[phone]" class="form__floating-label">{{
+												'customer.addresses.phone' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[address1]" type="text"
+												class="form__field form__field--text {% if form.address1 != blank %}is-filled{% endif %}"
+												name="address[address1]" value="{{ form.address1 }}">
+											<label for="address-{{ address.id }}[address1]" class="form__floating-label">{{
+												'customer.addresses.address1' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[address2]" type="text"
+												class="form__field form__field--text {% if form.address2 != blank %}is-filled{% endif %}"
+												name="address[address2]" value="{{ form.address2 }}">
+											<label for="address-{{ address.id }}[address2]" class="form__floating-label">{{
+												'customer.addresses.address2' | t }}</label>
+										</div>
+
+										<div class="form__input-row">
+											<div class="form__input-wrapper form__input-wrapper--labelled">
+												<input id="address-{{ address.id }}[city]" type="text"
+													class="form__field form__field--text {% if form.city != blank %}is-filled{% endif %}"
+													name="address[city]" value="{{ form.city }}">
+												<label for="address-{{ address.id }}[city]" class="form__floating-label">{{
+													'customer.addresses.city' | t }}</label>
+											</div>
+
+											<div class="form__input-wrapper form__input-wrapper--labelled">
+												<input id="address-{{ address.id }}[zip]" type="text"
+													class="form__field form__field--text {% if form.zip != blank %}is-filled{% endif %}"
+													name="address[zip]" value="{{ form.zip }}">
+												<label for="address-{{ address.id }}[zip]" class="form__floating-label">{{
+													'customer.addresses.zip' | t }}</label>
+											</div>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[country]" id="address-{{ address.id }}[country]"
+													data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+											</div>
+
+											<label for="address-{{ address.id }}[country]" class="form__floating-label">{{
+												'customer.addresses.country' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled"
+											style="display: none">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[province]" id="address-{{ address.id }}[province]"
+													data-default="{{ form.province }}"></select>
+											</div>
+
+											<label for="address-{{ address.id }}[province]" class="form__floating-label">{{
+												'customer.addresses.province' | t }}</label>
+										</div>
+										{%- endif -%}
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<div class="checkbox-wrapper">
+												<input type="checkbox" class="checkbox"
+													id="address-{{ customer.default_address.id }}[default]"
+													name="address[default]" value="1" checked>
+												{% render 'icon', icon: 'check' %}
+											</div>
+
+											<label for="address-{{ customer.default_address.id }}[default]">{{
+												'customer.addresses.set_default' | t }}</label>
+										</div>
+
+										<button class="form__submit button button--primary button--full" data-scenable="1"
+											data-sctype="profile_set">{{ 'customer.addresses.edit_address' | t }}</button>
+										{% endform %}
+									</div>
+								</div>
+							</div>
+
+
+							{%- paginate customer.addresses by 9 -%}
+							{%- for address in customer.addresses -%}
+							{%- if address.id == customer.default_address.id -%}
+							{%- continue -%}
+							{%- endif -%}
+
+							<div id="modal-address-{{ address.id }}" class="modal" aria-hidden="true">
+								<div class="modal__dialog" role="dialog">
+									<header class="modal__header">
+										<h3 class="modal__title heading h2">{{ 'customer.addresses.edit_address' | t }}</h3>
+										<button class="modal__close link" data-action="close-modal"
+											title="{{ 'general.accessibility.close' | t | escape }}">
+											{%- render 'icon', icon: 'close' -%}
+										</button>
+									</header>
+
+									<div class="modal__content modal__content--ios-push">
+										<p class="modal__description">{{ 'customer.addresses.form_subtitle' | t }}</p>
+
+										{% form 'customer_address', address, class: 'form' %}
+										{%- if request.locale.iso_code == 'ja' -%}
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[last_name]" type="text"
+												class="form__field form__field--text {% if form.last_name != blank %}is-filled{% endif %}"
+												name="address[last_name]" value="{{ form.last_name }}" autofocus>
+											<label for="address-{{ address.id }}[last_name]" class="form__floating-label">{{
+												'customer.addresses.last_name' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[first_name]" type="text"
+												class="form__field form__field--text {% if form.first_name != blank %}is-filled{% endif %}"
+												name="address[first_name]" value="{{ form.first_name }}">
+											<label for="address-{{ address.id }}[first_name]"
+												class="form__floating-label">{{ 'customer.addresses.first_name' | t
+												}}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[zip]" type="text"
+												class="form__field form__field--text {% if form.zip != blank %}is-filled{% endif %}"
+												name="address[zip]" value="{{ form.zip }}">
+											<label for="address-{{ address.id }}[zip]" class="form__floating-label">{{
+												'customer.addresses.zip' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[country]" id="address-{{ address.id }}[country]"
+													data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+											</div>
+
+											<label for="address-{{ address.id }}[country]" class="form__floating-label">{{
+												'customer.addresses.country' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled"
+											style="display: none">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[province]" id="address-{{ address.id }}[province]"
+													data-default="{{ form.province }}"></select>
+											</div>
+
+											<label for="address-{{ address.id }}[province]" class="form__floating-label">{{
+												'customer.addresses.province' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[city]" type="text"
+												class="form__field form__field--text {% if form.city != blank %}is-filled{% endif %}"
+												name="address[city]" value="{{ form.city }}">
+											<label for="address-{{ address.id }}[city]" class="form__floating-label">{{
+												'customer.addresses.city' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[address1]" type="text"
+												class="form__field form__field--text {% if form.address1 != blank %}is-filled{% endif %}"
+												name="address[address1]" value="{{ form.address1 }}">
+											<label for="address-{{ address.id }}[address1]" class="form__floating-label">{{
+												'customer.addresses.address1' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[address2]" type="text"
+												class="form__field form__field--text {% if form.address2 != blank %}is-filled{% endif %}"
+												name="address[address2]" value="{{ form.address2 }}">
+											<label for="address-{{ address.id }}[address2]" class="form__floating-label">{{
+												'customer.addresses.address2' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[company]" type="text"
+												class="form__field form__field--text {% if form.company != blank %}is-filled{% endif %}"
+												name="address[company]" value="{{ form.company }}">
+											<label for="address-{{ address.id }}[company]" class="form__floating-label">{{
+												'customer.addresses.company' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[phone]" type="text"
+												class="form__field form__field--text {% if form.phone != blank %}is-filled{% endif %}"
+												name="address[phone]" value="{{ form.phone }}">
+											<label for="address-{{ address.id }}[phone]" class="form__floating-label">{{
+												'customer.addresses.phone' | t }}</label>
+										</div>
+
+										{%- else -%}
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[first_name]" type="text"
+												class="form__field form__field--text {% if form.first_name != blank %}is-filled{% endif %}"
+												name="address[first_name]" value="{{ form.first_name }}" autofocus>
+											<label for="address-{{ address.id }}[first_name]"
+												class="form__floating-label">{{ 'customer.addresses.first_name' | t
+												}}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[last_name]" type="text"
+												class="form__field form__field--text {% if form.last_name != blank %}is-filled{% endif %}"
+												name="address[last_name]" value="{{ form.last_name }}">
+											<label for="address-{{ address.id }}[last_name]" class="form__floating-label">{{
+												'customer.addresses.last_name' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[company]" type="text"
+												class="form__field form__field--text {% if form.company != blank %}is-filled{% endif %}"
+												name="address[company]" value="{{ form.company }}">
+											<label for="address-{{ address.id }}[company]" class="form__floating-label">{{
+												'customer.addresses.company' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[phone]" type="text"
+												class="form__field form__field--text {% if form.phone != blank %}is-filled{% endif %}"
+												name="address[phone]" value="{{ form.phone }}">
+											<label for="address-{{ address.id }}[phone]" class="form__floating-label">{{
+												'customer.addresses.phone' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[address1]" type="text"
+												class="form__field form__field--text {% if form.address1 != blank %}is-filled{% endif %}"
+												name="address[address1]" value="{{ form.address1 }}">
+											<label for="address-{{ address.id }}[address1]" class="form__floating-label">{{
+												'customer.addresses.address1' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<input id="address-{{ address.id }}[address2]" type="text"
+												class="form__field form__field--text {% if form.address2 != blank %}is-filled{% endif %}"
+												name="address[address2]" value="{{ form.address2 }}">
+											<label for="address-{{ address.id }}[address2]" class="form__floating-label">{{
+												'customer.addresses.address2' | t }}</label>
+										</div>
+
+										<div class="form__input-row">
+											<div class="form__input-wrapper form__input-wrapper--labelled">
+												<input id="address-{{ address.id }}[city]" type="text"
+													class="form__field form__field--text {% if form.city != blank %}is-filled{% endif %}"
+													name="address[city]" value="{{ form.city }}">
+												<label for="address-{{ address.id }}[city]" class="form__floating-label">{{
+													'customer.addresses.city' | t }}</label>
+											</div>
+
+											<div class="form__input-wrapper form__input-wrapper--labelled">
+												<input id="address-{{ address.id }}[zip]" type="text"
+													class="form__field form__field--text {% if form.zip != blank %}is-filled{% endif %}"
+													name="address[zip]" value="{{ form.zip }}">
+												<label for="address-{{ address.id }}[zip]" class="form__floating-label">{{
+													'customer.addresses.zip' | t }}</label>
+											</div>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[country]" id="address-{{ address.id }}[country]"
+													data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+											</div>
+
+											<label for="address-{{ address.id }}[country]" class="form__floating-label">{{
+												'customer.addresses.country' | t }}</label>
+										</div>
+
+										<div class="form__input-wrapper form__input-wrapper--labelled"
+											style="display: none">
+											<div class="select-wrapper select-wrapper--primary is-filled">
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+												<select name="address[province]" id="address-{{ address.id }}[province]"
+													data-default="{{ form.province }}"></select>
+											</div>
+
+											<label for="address-{{ address.id }}[province]" class="form__floating-label">{{
+												'customer.addresses.province' | t }}</label>
+										</div>
+										{%- endif -%}
+
+										<div class="form__input-wrapper form__input-wrapper--labelled">
+											<div class="checkbox-wrapper">
+												<input type="checkbox" class="checkbox"
+													id="address-{{ address.id }}[default]" name="address[default]" {% if
+													address.id==customer.default_address.id %}value="1" checked{% endif %}>
+												{% render 'icon', icon: 'check' %}
+											</div>
+
+											<label for="address-{{ address.id }}[default]">{{
+												'customer.addresses.set_default' | t }}</label>
+										</div>
+
+										<button class="form__submit button button--primary button--full" data-scenable="1"
+											data-sctype="profile_set">{{ 'customer.addresses.edit_address' | t }}</button>
+										{% endform %}
+									</div>
+								</div>
+							</div>
+							{%- endfor -%}
+							{% assign dm_paginate_by = paginate.page_size %}{%- endpaginate -%}
+						</section>
+
+					</div>
+
+					{%- comment -%}--------------------------收藏列表-------------------{%- endcomment -%}
+					<div class="wish_list ">
+						<header>
+							<h1 class="center wish_title">MY WISHLIST</h1>
+						</header>
+
+						<div class="wish_loading">
+							<div class="body-me loading">
+								{%- render 'icon', icon: 'cjj_loading' -%}
+								<span class="loading-text">&nbsp;loading...</span>
+							</div>
+						</div>
+
+						<div class="collect page-width"></div>
+
+						<div id="czquickview" class="modal" aria-hidden="true">
+							<div class="modal__dialog modal__dialog--stretch" role="dialog">
+								<button class="modal__close link" data-action="close-modal" title="Close"><svg
+										focusable="false" class="icon icon--close " viewBox="0 0 19 19" role="presentation">
+										<path
+											d="M9.1923882 8.39339828l7.7781745-7.7781746 1.4142136 1.41421357-7.7781746 7.77817459 7.7781746 7.77817456L16.9705627 19l-7.7781745-7.7781746L1.41421356 19 0 17.5857864l7.7781746-7.77817456L0 2.02943725 1.41421356.61522369 9.1923882 8.39339828z"
+											fill="currentColor" fill-rule="evenodd"></path>
+									</svg>
+								</button>
+
+								<div class="modal__loader"><svg focusable="false" class="icon icon--search-loader "
+										viewBox="0 0 64 64" role="presentation">
+										<path opacity=".4"
+											d="M23.8589104 1.05290547C40.92335108-3.43614731 58.45816642 6.79494359 62.94709453 23.8589104c4.48905278 17.06444068-5.74156424 34.59913135-22.80600493 39.08818413S5.54195825 57.2055303 1.05290547 40.1410896C-3.43602265 23.0771228 6.7944697 5.54195825 23.8589104 1.05290547zM38.6146353 57.1445143c13.8647142-3.64731754 22.17719655-17.89443541 18.529879-31.75914961-3.64743965-13.86517841-17.8944354-22.17719655-31.7591496-18.529879S3.20804604 24.7494569 6.8554857 38.6146353c3.64731753 13.8647142 17.8944354 22.17719655 31.7591496 18.529879z">
+										</path>
+										<path
+											d="M1.05290547 40.1410896l5.80258022-1.5264543c3.64731754 13.8647142 17.89443541 22.17719655 31.75914961 18.529879l1.5264543 5.80258023C23.07664892 67.43614731 5.54195825 57.2055303 1.05290547 40.1410896z">
+										</path>
+									</svg>
+								</div>
+
+								<div class="modal__inner">
+									<div class="abc"></div>
+								</div>
+							</div>
+						</div>
+
+						{%- if customer -%}
+						<div class="collect-body" style="display: none;">
+							<div class=" collect-body-layout">
+								<div class="wish_center">
+									You currently have nothing saved to your Wishlist.<br />
+									Personalize your shopping experience with your Wishlist.
+								</div>
+								<div class="d-flex aic jcc sign-button">
+									<a href="/collections/shop" class="sign-button">Let's Get Started!</a>
+								</div>
+							</div>
+						</div>
+						{%- endif -%}
+
+					</div>
+
+				</div>
+
+				{%- comment -%}----------------------------联系我们-----------------------{%- endcomment -%}
+				<div class="my_postsale account_right_content" data-type="accountPage">
+					<div class="customers-services">
+						<div class="container">
+							<h3>{%- render 'icon', icon: 'bi-email' -%}&nbsp;&nbsp;
+								<a href="mailto:contactus@hyfol.com" target="_blank" rel="noopener"
+									aria-describedby="a11y-new-window-message">contactus@hyfol.com</a>
+							</h3>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
 </section>
+<div class="loading-mask d-none" style="" ><div class="loading-spinner"><svg viewBox="25 25 50 50" class="circular"><circle cx="50" cy="50" r="20" fill="none" class="path"></circle></svg></div></div>
+
+{%- capture discount_str -%}
+{%- for order in customer.orders -%}
+{%- for discount in order.discount_applications -%}
+{%- if discount.type =="discount_code" -%}
+{{discount.title}},
+{%- endif -%}
+{%- endfor -%}
+{%- endfor -%}
+{%- endcapture -%}
+{%- assign discounts = discount_str | downcase -%}
+	 
+<script>
+	~function () {
+
+		var Delegate = (function () {
+			function Delegate(root) {
+				this.listenerMap = [{}, {}];
+				if (root) {
+					this.root(root);
+				}
+				this.handle = Delegate.prototype.handle.bind(this); // Cache of event listeners removed during an event cycle
+				this._removedListeners = [];
+			}
+
+			Delegate.prototype.root = function (root) {
+				var listenerMap = this.listenerMap;
+				var eventType; // Remove master event listeners
+
+				if (this.rootElement) {
+					for (eventType in listenerMap[1]) {
+						if (listenerMap[1].hasOwnProperty(eventType)) {
+							this.rootElement.removeEventListener(eventType, this.handle, true);
+						}
+					}
+					for (eventType in listenerMap[0]) {
+						if (listenerMap[0].hasOwnProperty(eventType)) {
+							this.rootElement.removeEventListener(eventType, this.handle, false);
+						}
+					}
+				}
+
+				if (!root || !root.addEventListener) {
+					if (this.rootElement) {
+						delete this.rootElement;
+					}
+					return this;
+				}
+
+				this.rootElement = root; // Set up master event listeners
+
+				for (eventType in listenerMap[1]) {
+					if (listenerMap[1].hasOwnProperty(eventType)) {
+						this.rootElement.addEventListener(eventType, this.handle, true);
+					}
+				}
+				for (eventType in listenerMap[0]) {
+					if (listenerMap[0].hasOwnProperty(eventType)) {
+						this.rootElement.addEventListener(eventType, this.handle, false);
+					}
+				}
+
+				return this;
+			};
+
+			Delegate.prototype.captureForType = function (eventType) {
+				return ['blur', 'error', 'focus', 'load', 'resize', 'scroll'].indexOf(eventType) !== -1;
+			};
+
+			Delegate.prototype.on = function (eventType, selector, handler, useCapture) {
+				var root;
+				var listenerMap;
+				var matcher;
+				var matcherParam;
+				if (!eventType) {
+					throw new TypeError('Invalid event type: ' + eventType);
+				}
+
+
+				if (typeof selector === 'function') {
+					useCapture = handler;
+					handler = selector;
+					selector = null;
+				}
+
+				if (useCapture === undefined) {
+					useCapture = this.captureForType(eventType);
+				}
+
+				if (typeof handler !== 'function') {
+					throw new TypeError('Handler must be a type of Function');
+				}
+
+				root = this.rootElement;
+				listenerMap = this.listenerMap[useCapture ? 1 : 0];
+				if (!listenerMap[eventType]) {
+					if (root) {
+						root.addEventListener(eventType, this.handle, useCapture);
+					}
+
+					listenerMap[eventType] = [];
+				}
+
+				if (!selector) {
+					matcherParam = null;
+
+					matcher = matchesRoot.bind(this); // Compile a matcher for the given selector
+				} else if (/^[a-z]+$/i.test(selector)) {
+					matcherParam = selector;
+					matcher = matchesTag;
+				} else if (/^#[a-z0-9\-_]+$/i.test(selector)) {
+					matcherParam = selector.slice(1);
+					matcher = matchesId;
+				} else {
+					matcherParam = selector;
+					matcher = Element.prototype.matches;
+				} // Add to the list of listeners
+
+				listenerMap[eventType].push({
+					selector: selector,
+					handler: handler,
+					matcher: matcher,
+					matcherParam: matcherParam
+				});
+				return this;
+			};
+
+
+			Delegate.prototype.off = function (eventType, selector, handler, useCapture) {
+				var i;
+				var listener;
+				var listenerMap;
+				var listenerList;
+				var singleEventType; // Handler can be passed as
+				// the second or third argument
+
+				if (typeof selector === 'function') {
+					useCapture = handler;
+					handler = selector;
+					selector = null;
+				}
+
+				if (useCapture === undefined) {
+					this.off(eventType, selector, handler, true);
+					this.off(eventType, selector, handler, false);
+					return this;
+				}
+				listenerMap = this.listenerMap[useCapture ? 1 : 0];
+
+				if (!eventType) {
+					for (singleEventType in listenerMap) {
+						if (listenerMap.hasOwnProperty(singleEventType)) {
+							this.off(singleEventType, selector, handler);
+						}
+					}
+					return this;
+				}
+
+				listenerList = listenerMap[eventType];
+				if (!listenerList || !listenerList.length) {
+					return this;
+				}
+
+				for (i = listenerList.length - 1; i >= 0; i--) {
+					listener = listenerList[i];
+					if ((!selector || selector === listener.selector) && (!handler || handler === listener.handler)) {
+						this._removedListeners.push(listener);
+						listenerList.splice(i, 1);
+					}
+				} // All listeners removed
+
+
+				if (!listenerList.length) {
+					delete listenerMap[eventType]; // Remove the main handler
+					if (this.rootElement) {
+						this.rootElement.removeEventListener(eventType, this.handle, useCapture);
+					}
+				}
+
+				return this;
+			};
+
+			Delegate.prototype.handle = function (event) {
+				var i;
+				var l;
+				var type = event.type;
+				var root;
+				var phase;
+				var listener;
+				var returned;
+				var listenerList = [];
+				var target;
+				var eventIgnore = 'ftLabsDelegateIgnore';
+
+				if (event[eventIgnore] === true) {
+					return;
+				}
+
+				target = event.target; // Hardcode value of Node.TEXT_NODE
+				// as not defined in IE8
+				if (target.nodeType === 3) {
+					target = target.parentNode;
+				} // Handle SVG <use> elements in IE
+
+				if (target.correspondingUseElement) {
+					target = target.correspondingUseElement;
+				}
+
+				root = this.rootElement;
+				phase = event.eventPhase || (event.target !== event.currentTarget ? 3 : 2); // eslint-disable-next-line default-case
+
+				switch (phase) {
+					case 1:
+						//Event.CAPTURING_PHASE:
+						listenerList = this.listenerMap[1][type];
+						break;
+
+					case 2:
+						//Event.AT_TARGET:
+						if (this.listenerMap[0] && this.listenerMap[0][type]) {
+							listenerList = listenerList.concat(this.listenerMap[0][type]);
+						}
+						if (this.listenerMap[1] && this.listenerMap[1][type]) {
+							listenerList = listenerList.concat(this.listenerMap[1][type]);
+						}
+
+						break;
+
+					case 3:
+						//Event.BUBBLING_PHASE:
+						listenerList = this.listenerMap[0][type];
+						break;
+				}
+
+				var toFire = []; // Need to continuously check
+
+				l = listenerList.length;
+
+				while (target && l) {
+					for (i = 0; i < l; i++) {
+						listener = listenerList[i]; // Bail from this loop if
+						if (!listener) {
+							break;
+						}
+
+						if (target.tagName && ["button", "input", "select", "textarea"].indexOf(target.tagName.toLowerCase()) > -1 && target.hasAttribute("disabled")) {
+							// Remove things that have previously fired
+							toFire = [];
+						} // Check for match and fire
+						else if (listener.matcher.call(target, listener.matcherParam, target)) {
+							toFire.push([event, target, listener]);
+						}
+					}
+					if (target === root) {
+						break;
+					}
+
+					l = listenerList.length; // Fall back to parentNode since SVG children have no parentElement in IE
+					target = target.parentElement || target.parentNode; // Do not traverse up to document root when using parentNode, though
+					if (target instanceof HTMLDocument) {
+						break;
+					}
+				}
+
+				var ret;
+
+				for (i = 0; i < toFire.length; i++) {
+					// Has it been removed during while the event function was fired
+					if (this._removedListeners.indexOf(toFire[i][2]) > -1) {
+						continue;
+					}
+
+					returned = this.fire.apply(this, toFire[i]); // Stop propagation to subsequent
+					// callbacks if the callback returned
+					// false
+
+					if (returned === false) {
+						toFire[i][0][eventIgnore] = true;
+						toFire[i][0].preventDefault();
+						ret = false;
+						break;
+					}
+				}
+
+				return ret;
+			};
+
+			Delegate.prototype.fire = function (event, target, listener) {
+				return listener.handler.call(target, event, target);
+			};
+
+			function matchesTag(tagName, element) {
+				return tagName.toLowerCase() === element.tagName.toLowerCase();
+			}
+
+			function matchesRoot(selector, element) {
+				if (this.rootElement === window) {
+					return (
+						element === document ||
+						element === document.documentElement ||
+						element === window
+					);
+				}
+				return this.rootElement === element;
+			}
+
+			function matchesId(id, element) {
+				return id === element.id;
+			}
+
+			Delegate.prototype.destroy = function () {
+				this.off();
+				this.root();
+			};
+			return Delegate
+		})();
+
+		const account = new Delegate(document.querySelector('#account'))
+		account.on('click',(ev,target)=>{
+			const ru =document.querySelector('.vip-overview__rule')
+			ru&&ru.setAttribute('aria-hidden',true)
+		})
+		const element = document.querySelector('.loading-mask')
+		document.addEventListener('page:loading:start', (ev) => {
+			element.classList.remove('d-none')
+			document.documentElement.classList.add('is-locked');
+		})
+		document.addEventListener('page:loading:end', (ev) => {
+			element.classList.add('d-none')
+			document.documentElement.classList.remove('is-locked');
+		})
+
+		element.addEventListener('click', e => {
+			element.classList.add('d-none')
+			document.documentElement.classList.remove('is-locked');
+		})
+
+		function getSectionInnerHTML(html, selector = '.shopify-section') {
+			return new DOMParser()
+				.parseFromString(html, 'text/html')
+				.querySelector(selector).innerHTML;
+		}
+
+		function ajax(url, data, token, method) {
+			const req = new XMLHttpRequest()
+			req.open(method, url)
+			req.setRequestHeader("Content-type", "application/json");
+			req.setRequestHeader("siteValue", "hyfol");
+			token && req.setRequestHeader("Authorization", token);
+			req.send(data)
+			return new Promise((resovle, reject) => {
+				req.onreadystatechange = function () {
+					if (req.readyState == 4) {
+						try {
+							var data = JSON.parse(req.responseText)
+							resovle(data)
+						} catch (error) {
+							resovle({success:false,data:req.responseText})
+						}
+					}
+				}
+			})
+
+		};
+
+		let baseURL = 'http://api.leandow-technology.com/api/'
+
+		async function getData(url, data, token, method = "POST", type = "json") {
+			const headers = { "siteValue": "hyfol" }
+			const options = {
+				method: method,
+				headers
+			}
+			if (type == 'json') {
+				headers['Content-Type'] = 'application/json'
+				data && (options.body = JSON.stringify(data))
+			}
+			token && (headers['Authorization'] = token)
+			if (type == 'formData') {
+				headers['Content-Type'] = 'application/x-www-form-urlencoded'
+			}
+			try {
+				let response = await fetch(baseURL.concat(url), options);
+				return response.json();
+			} catch (error) {
+				return ajax(baseURL.concat(url), options.body, token, method)
+			}
+		}
+
+		/* 收藏 */
+		var getCollectList = function () {
+
+			var productIds, currentPage, total, sectionId
+			function getCollectList(event) {
+				var pageSectionId = document.querySelector(".page__sub-header").parentElement.getAttribute("data-section-id")
+				const collectList = {
+					current: 1,
+					customerId: "{{customer.id}}",
+					size: 100
+				}
+
+				getData("customerCollectionProduct/collectionProductList", collectList)
+					.then(res => {
+
+						if (res.data.records.length < 1) {
+							document.querySelector('.collect-body').style.display = "block"
+							document.querySelector(".wish_loading").style.display = "none"
+							return
+						}
+						productIds = res.data.records
+						currentPage = 1
+						total = res.data.total
+						var ids = res.data.records.map(i => "id:".concat(i.productId))
+						ids = ids.join(' OR ')
+						fetch(`/search?q=${ids}&type=product`)
+							.then((res) => {
+								res.text().then((content) => {
+									document.querySelector('.collect-body').style.display = "none"
+									document.querySelector(".wish_loading").style.display = "none"
+									const dom = document.createElement('div')
+									dom.innerHTML = content
+									let heading = dom.querySelector(".collection__dynamic-part .collection__toolbar")
+									heading && heading.remove()
+									document.querySelector('.collect').appendChild(dom.querySelector(".collection__dynamic-part"))
+									document.querySelector('.collect').appendChild(dom.querySelector('[data-section-type="collection"] .modal'))
+									sectionId = dom.querySelector('[data-section-type="collection"]').getAttribute('data-section-id')
+								})
+							})
+					})
+			}
+
+			async function nextCollectList(event, target) {
+				event.preventDefault()
+				window.scroll(0, 0)
+
+				var currentIds, content, url
+				var nextPage = target.getAttribute('data-page')
+				var productList = document.querySelector(".product-list--collection")
+				document.querySelector(".wish_loading").style.display = "flex"
+				productList.style.display = "none"
+
+				if (sectionId && total <= productIds.length) {
+					currentIds = productIds
+					url = '/search?section_id='.concat(sectionId, "&page=", nextPage, '&')
+				} else {
+					const collectList = {
+						current: nextPage,
+						customerId: "{{customer.id}}",
+						size: 24
+					}
+					var response = await getData("customerCollectionProduct/collectionProductList", collectList)
+					currentIds = response.data.records
+					url = "/search?"
+				}
+
+				var ids = currentIds.map(i => "id:".concat(i.productId))
+				ids = ids.join(' OR ')
+				content = await fetch(url.concat(`q=${ids}&type=product`)).then(res => res.text())
+				document.querySelector(".wish_loading").style.display = "none"
+				const dom = document.createElement('div')
+				dom.innerHTML = content
+				let heading = dom.querySelector(".collection__dynamic-part .collection__toolbar")
+				heading && heading.remove()
+				var productContaner = document.querySelector('.collect ')
+				var oldProductList = document.querySelector('.collect .collection__dynamic-part')
+				var newProductList = dom.querySelector(".collection__dynamic-part")
+				productContaner && productContaner.replaceChild(newProductList, oldProductList)
+
+			}
+
+			if ("{{ customer.id}}") {
+				getCollectList()
+				account.on('click', '.pagination__nav-item.link,.pagination__next,.pagination__prev', nextCollectList)
+				account.on('click', '.collect_btn', (event, target) => {
+					event.preventDefault()
+					var productTtem = target.closest(".product-item")
+					productTtem && productTtem.remove();
+				})
+			}
+
+		}();
+
+		function getFormData(form) {
+			var hash = [];
+			for (var i = 0, len = form.elements.length; i < len; i++) {
+				var formElement = form.elements[i];
+				if (formElement.name === '' || formElement.disabled) {
+					continue;
+				}
+				if (formElement.name && !formElement.disabled && (formElement.checked || /select|textarea/i.test(formElement.nodeName) || /hidden|text|search|tel|url|email|password|datetime|date|month|week|time|datetime-local|number|range|color/i.test(formElement.type))) {
+					hash.push(formElement.name + '=' + formElement.value)
+				}
+			}
+			return hash.join('&');
+		}
+
+		let codeStr = "{{discounts}}"
+		codeStr = codeStr && codeStr.split(',') || []
+
+		const customerJson = {
+			email: "{{ customer.email}}",
+			id: "{{ customer.id }}"
+		}
+		class DetailsMenu extends HTMLElement {
+			constructor() {
+				super();
+				this.addEventListener('click', (e) => {
+					e.preventDefault()
+					let target = e.target
+					if (!['summary'].includes(target.tagName.toLowerCase()) || target.getAttribute('aria-expanded') === 'true') return
+					this.onAcativ(target)
+
+				})
+			}
+
+			onAcativ(target) {
+				this.close(target)
+				const activePage = this.querySelector(`.page__item[data-index="${target.dataset.index}"]`)
+				activePage.setAttribute('aria-hidden', false)
+				target.setAttribute('aria-expanded', true)
+
+			}
+
+			close() {
+				const oldActiveNav = this.querySelector('[aria-expanded="true"]')
+				const oldActivePage = this.querySelector('[aria-hidden="false"]')
+				oldActivePage.setAttribute('aria-hidden', true)
+				oldActiveNav.setAttribute('aria-expanded', false);
+			}
+		}
+		customElements.define('details-menu', DetailsMenu);
+
+		function createClass(classObj, protoList) {
+			var pro = classObj.prototype
+			for (var i = 0; i < protoList.length; i++) {
+				var descriptor = protoList[i]
+				descriptor.enumerable = descriptor.enumerable || false;
+				descriptor.configurable = true;
+				if ("value" in descriptor) descriptor.writable = true;
+				pro && Object.defineProperty(pro, descriptor.key, descriptor)
+			}
+			return classObj
+		}
+
+		var AccountSetion = (function () {
+			function Account(element) {
+				this.element = element || document
+				this.accountGate = new Delegate(this.element)
+				this.navigation = this.element.querySelectorAll('.card__linklist-item')
+				this.mobileOrderNavs = this.element.querySelectorAll('[data-type="orders-list"]')
+				this.pcOrderNavs = this.element.querySelectorAll('.orders-nav__item')
+				this.accountPages = this.element.querySelectorAll('[data-type="accountPage"]')
+				this.init()
+				this.eventListener()
+			}
+			createClass(Account, [{
+				key: "init",
+				value: function () {
+					if(!location.hash)location.hash="Orders+All";
+					this.pageSwitch()
+					this.getToken()
+					this.renderMobOrder()
+					this.changeMobileOrderView()
+				}
+			}, {
+				key: "eventListener",
+				value: function () {
+					this.accountGate.on('click', '[data-type="orders-list"]', this.changeMobOrderNav.bind(this))//mobile order list
+					this.accountGate.on('click', '.order-preview__item', this.orderQuickView.bind(this))//pc overview list
+					this.accountGate.on('click', '[data-action="left-nav"]', this.changeNavigate.bind(this))//pc left navlist
+					this.accountGate.on('click', '.form__submit[data-submitForm]', this.addAddresses.bind(this))//add
+					this.accountGate.on('click', '[data-action="deleteAddresses"]', this.romoveAddresses.bind(this)) //remove
+					this.accountGate.on('click', '.title-info-name', this.viewOrder.bind(this)) //view Order
+					this.accountGate.on('click', '.orders-nav__item', this.changeOrderNav.bind(this)) //change order nav
+					this.accountGate.on('click', '.convertible_code', this.convertible.bind(this)) //code
+					this.accountGate.on('click', '[data-action="pageSwitch"]', this.getPoint.bind(this)) //page limit
+					this.accountGate.on('input', '#recommendEmail', this.changInput.bind(this), true) // change
+					this.accountGate.on('click', this._select.bind(this), true) // select
+					this.accountGate.on('click', '[data-action="submitEmai"]', this._submit.bind(this)) // submit
+					this.accountGate.on('click', '[data-action="birthdaySubmit"]', this._submitBir.bind(this)) // submit
+					this.accountGate.on('click', '.view_mypoint', this._view.bind(this)) // view
+					this.accountGate.on('click', '.view_myvip', this._viewVip.bind(this)) // view vip
+				}
+			}, {
+				key: "getToken",
+				value: function getToken() {
+					const _this = this
+					let url = baseURL.concat('customerAccount/login')
+					fetch(url, {
+						method: "POST",
+						body: JSON.stringify(customerJson),
+						headers: { 'content-type': 'application/json', 'siteValue': 'hyfol' }
+					}).then(response => response.json()).then(data => {
+						if (!data.success) return;
+						_this.token = data.data || ""
+						if (!_this.token) return _this.getToken();
+						_this.getCustomer(_this.token)
+						_this.getCoupons(_this.token)
+						_this.getPrice(_this.token)
+						_this.getPoint(_this.token)
+						_this._getHistory()
+					}).catch(reason => {
+						_this.getToken()
+					})
+				}
+			},
+			{
+				key: "getCoupons",//获取自己的优惠券
+				value: function getCoupons(token) {
+
+					getData('customerAccount/getShopifyMyPriceRules', '', token, "GET", 'formData').then(({ data, code, success }) => {
+						if (code == 200 && data && data.length && success) {
+							const couponView = document.querySelector('.my-account .my-coupons__list')
+							const unusedCoupons = document.querySelector('.unused__coupons .my-coupons__list')
+							const expiredCoupons = document.querySelector('.expired__coupons .my-coupons__list')
+							const couponList = []
+							const expireList = []
+							const reg = /^[$0-9.]+%?/
+							data.forEach((item, i) => {
+								let C = ''
+								const codeHtml = item.summary.replace(/^[0-9$.]+%?( off)?/, (a, b, c, d) => {
+									C = a.split(' ').shift() || "0%"
+									C=C.replace('.00','')
+									return `<span style=" font-size: 1rem; font-weight: 600;">${a}</span>`
+								})
+								const coupon = `<div class="my-coupons__item" data-index="${item.id}">
+												<div class="codeLeft">
+													<ul class="couponDos dostLeft">
+														<li class="couponDost"></li><li class="couponDost"></li>
+														<li class="couponDost"></li><li class="couponDost"></li>
+														<li class="couponDost"></li><li class="couponDost"></li>
+													</ul>
+													<ul class="couponDos dostRight">
+														<li class="couponDost"></li><li class="couponDost"></li>
+														<li class="couponDost"></li><li class="couponDost"></li>
+														<li class="couponDost"></li><li class="couponDost"></li>
+													</ul>
+													<p style="font-weight: 500;">${codeHtml}</p>
+													<p style="font-weight: 600;line-height:1;">Code: <span class="coupon_code">${item.discount_code ? item.discount_code[0] : item.title}</span></p>
+													<ul class="coupons-date" style=" font-weight: 500;"><li>minimum spend to use:none</li><li>${item.ends_at}</li></ul>
+												</div>
+												<div class="codeRight">
+													<span class="d-block" style="text-align: center;font-family: emoji;margin-top: 10px;">coupon</span>
+													<span class="d-flex space-between codeSave">save <span class="d-inline-block  codeAmount ">${C}<span
+													class="d-inline-block poa alert--center" style=" writing-mode: tb-rl; font-size: 1rem;top: 0; bottom: 0;margin: auto 0;right: 0;">off</span></span></span>
+												</div>
+											</div>`
+								if (codeStr.indexOf(item.title.toLocaleLowerCase()) != -1 || item.status != "active") {
+									expireList.push(coupon)
+								} else { couponList.push(coupon) }
+							})
+							couponView && couponList.length && (couponView.innerHTML = couponList.join('')) && couponView.classList.remove("my-coupons_empty")
+							unusedCoupons && couponList.length && (unusedCoupons.innerHTML = couponList.join('')) && unusedCoupons.classList.remove("my-coupons_empty")
+							expireList && expireList.length && (expiredCoupons.innerHTML = expireList.join('')) && expiredCoupons.classList.remove("my-coupons_empty")
+
+						}
+					})
+				}
+			}, {
+				key: "getPoint",//获取积分
+				value: function getPoint(e, target, token,type="all") {
+					token = token ? token : this.token
+					document.dispatchEvent(new CustomEvent('theme:loading:start'))
+					//获取积分记录
+					const body = {
+						pageNum: 1,
+						pageSize: 10,
+						type: type//all, earned, pointAmount, expired
+					}
+					const pointPage = document.getElementById('pageList')
+					if (target && target.hasAttribute('disabled')) return;
+					target && (body.pageNum = target.getAttribute('data-page'))
+					target && target.setAttribute('disabled', '')
+					getData('customerAccount/getPointInfo', body, token).then((data) => {
+						const { pointsExpiredSoon, profileDetalls, totalPoints } = data.data
+						const expiredList = []
+						const earnedList = []
+						const useList = []
+						const totalContainer = document.querySelector('.profile_total')
+						const expireContainer = document.querySelector('.profile_expire')
+						const allProfile = document.querySelector('.profile-all tbody')
+						const expiredInfo = document.querySelector('.profile-expired tbody')
+						const earnedInfo = document.querySelector('.profile-earned tbody')
+						const pointUse = document.querySelector('.profile-point tbody')
+						const pointContainer = document.querySelector('.vip-integral')
+						totalContainer.innerHTML = totalPoints || 0;
+						pointContainer.innerHTML = totalPoints || 0;
+						expireContainer.innerHTML = pointsExpiredSoon || 0;
+						const templateAll = profileDetalls.records.map(item => {
+							let tempStr
+							if (item.type == 'cost') {
+								tempStr = `<tr>
+								<td>${item.createTime}</td>
+								<td>${item.pointType}</td>
+								<td class="profile-amount">${item.pointAmount}</td>
+								<td>${item.expireTime}</td>
+							</tr>`
+								item.pointType == 'Point Expired' && expiredList.push(tempStr) || useList.push(tempStr)
+							} else if (item.type == 'earned') {
+								tempStr = `<tr>
+								<td>${item.createTime}</td>
+								<td>${item.pointType}</td>
+								<td class="profile-amount">+ ${item.pointAmount}</td>
+								<td>${item.expireTime}</td>
+							</tr>`
+								earnedList.push(tempStr)
+							} else {
+								tempStr = `<tr>
+								<td>${item.createTime}</td>
+								<td>${item.pointType}</td>
+								<td class="profile-amount">${item.pointAmount}</td>
+								<td>${item.expireTime}</td>
+							</tr>`
+							}
+
+							return tempStr
+						})
+						allProfile.innerHTML = templateAll.join('')
+						expiredInfo.innerHTML = expiredList.join('')
+						earnedInfo.innerHTML = earnedList.join('')
+						pointUse.innerHTML = useList.join('')
+						const pages = profileDetalls.pages
+						const current = profileDetalls.current
+						if (pages > 1) {
+							let i = 1
+							let pageStr = `<button class="previous pageInfo" ${current == 1 ? 'disabled' : ""} data-label="Previous" data-page="${current - 1 || current}" data-action="pageSwitch" data-pages="${pages}">Previous</button>`;
+							for (i; i <= pages; i++) {
+								pageStr += `<span class="pageItem ${current == i ? "current" : ""}" data-action="pageSwitch" data-page="${i}" data-pages="${pages}">${i}</span>`
+							}
+							pageStr += `<button class="next pageInfo" data-label="Next" data-page="2" data-action="pageSwitch" ${current == pages ? "disabled" : ""} data-pages="${pages}">Next</button>`
+							pointPage.innerHTML = pageStr
+						}
+						target && target.removeAttribute('disabled')
+						document.dispatchEvent(new CustomEvent('theme:loading:end'))
+					})
+				}
+
+			}, {
+				key: "getCustomer",
+				value: function getCustomer(token) {
+					getData('customerAccount/selectCustomer', '', token).then(data => {
+						const { siteType, totalPoint, totalSpent, vipType ,birthday} = data.data
+						const pointContainer = document.querySelector('.vip-integral')
+						const userVip = document.querySelector('.vip-user__grade')
+						const bir=document.getElementById("birthdayDate")
+						bir&&(bir.value=birthday)
+						totalPoint && (pointContainer.innerHTML = totalPoint)
+						userVip && (userVip.innerHTML = vipType || "copper")
+					})
+				}
+
+			}, {
+				key: "getPrice",
+				value: function getPrice(token) {
+					getData('customerAccount/getPriceRulesTemplateList', '', token, "GET", "formData").then(({ data, success }) => {
+						if (!success) return;
+						const discountBox = document.querySelector('.discount_list')
+						const list = data.map(n => {
+							return `<div class="discount_item"><div class="coupon_content d-flex"><span class="coupon_item_title" >${n.title}</span>
+							<span class="" style="list-style-type: square;">None minimum spend to use</span>
+							<span class="">${n.validDay || "long-term"}</span></div>
+							<span class="coupon_dashed"></span>
+							<button class="convertible_code" data-id="${n.id}" style="padding: 6px;border-radius: 6px;">${n.pointNum} Points</button>
+							</div>`
+						})
+						discountBox.innerHTML = list.join('')
+					})
+				}
+
+			}, {
+				key: "pageSwitch",
+				value: function (ev, target) {
+					var nowNav = window.location.hash.replace(/#|(%20)/g, " ").trim()
+					var hashValue = nowNav.split('+')[0]
+					var navigations = this.navigation
+					for (let index = 0; index < navigations.length; index++) {
+						var element = navigations[index];
+						if (element.getAttribute('data-change') == hashValue) {
+							document.querySelector('.breadcrumb__link[aria-current="page"]').innerHTML = nowNav
+							element.className = " card__linklist-item link text--stronger "
+							var enode = element.getAttribute("data-right")
+							document.querySelector("." + enode).style.display = "block"
+						} else {
+							element.className = " card__linklist-item "
+						}
+					}
+					if (hashValue == 'Orders') {
+						document.querySelectorAll('[data-change="Orders"]').forEach(i => {
+							i.className = " card__linklist-item link text--stronger "
+						})
+						document.querySelector('.my_orders').style.display = "block"
+					}
+					this.changePcOrderView()
+					window.scroll(0, 0)
+				}
+			}, {
+				key: "changeMobOrderNav",
+				value: function (ev, target) {
+					var navName = target.getAttribute('data-change')
+					var url = window.location.hash.split("+")[1]
+					if (url == navName) return;
+					window.location.hash = "Orders+" + navName
+					this.changeMobileOrderView()
+					this.renderMobOrder()
+				}
+			}, {
+				key: "loading",
+				value: function (bool) {
+					let loading = document.querySelector('#loading')
+					let body_me = document.querySelector('#body_me')
+					let nullbox = document.querySelector('#order_null')
+					if (bool) {
+						loading.style.display = 'block';
+						body_me.innerHTML = ''
+						nullbox.style.display = 'none'
+					} else {
+						loading.style.display = 'none';
+					}
+				}
+			}, {
+				key: "romoveAddresses",
+				value: function (ev, target) {
+					if (!target.dataset.target) return
+					document.dispatchEvent(new CustomEvent('page:loading:start'))
+					if (confirm("Are you sure you wish to delete this address?")) {
+						fetch(target.dataset.target, { method: "POST", headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: '_method=delete' }).then(response => {
+							document.dispatchEvent(new CustomEvent('page:loading:end'))
+						location.reload()
+						})
+					}
+				}
+			}, {
+				key: "addAddresses",
+				value: function (ev, target) {
+					ev.preventDefault()
+					var form = ev.target.closest('form')
+					var formData = getFormData(form)
+					document.dispatchEvent(new CustomEvent('page:loading:start'))
+					fetch('/account/addresses', {
+						method: "POST",
+						headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+						body: formData
+					}).then(response => {
+						document.dispatchEvent(new CustomEvent('page:loading:end'))
+						location.reload()
+					})
+				}
+			}, {
+				key: "orderQuickView",
+				value: function changeNav(ev, target) {
+					var navName = target.getAttribute('data-nav-type')
+					var navigations = this.navigation
+					window.location.hash = "Orders+" + navName
+					var url = navName.toLowerCase()
+					var list = this.accountPages
+					for (let i = 0; i < list.length; i++) {
+						list[i].style.display = "none"
+					}
+					window.scroll(0, 0)
+
+					if (navName === 'Post-sale') {
+						for (let i = 0; i < navigations.length; i++) {
+							var el = navigations[i];
+							if (el.getAttribute("data-right") == "my_postsale") {
+								el.className = "card__linklist-item link text--stronger "
+							} else {
+								el.className = "card__linklist-item "
+							}
+						}
+						document.querySelector(".my_postsale").style.display = "block"
+						return
+					}
+
+					for (let i = 0; i < navigations.length; i++) {
+						var el = navigations[i];
+						if (el.getAttribute("data-right") == "my_orders") {
+							el.className = "card__linklist-item link text--stronger "
+						} else {
+							el.className = "card__linklist-item "
+						}
+					}
+
+					document.querySelector(".my_orders").style.display = "block"
+					this.pcOrderNavs.forEach((item) => {
+						item.setAttribute("data-action", false)
+					})
+
+					document.querySelector(".order-" + url).setAttribute("data-action", true)
+					var index = document.querySelector(".order-" + url).getAttribute("data-index")
+					document.querySelectorAll('.order-item__card').forEach((item) => {
+						if (item.getAttribute("data-index") == index) {
+							item.setAttribute("aria-hidden", false)
+						} else {
+							item.setAttribute("aria-hidden", true)
+						}
+					})
+				}
+			}, {
+				key: "orderNavChange",
+				value: function (ev, target) {
+					document.querySelector(".my_orders").style.display = "block"
+					this.pcOrderNavs.forEach((item) => {
+						item.setAttribute("data-action", false)
+					})
+				}
+			}, {
+				key: "changePcOrderView",
+				value: function () {
+					if (!location.hash) return;
+					var hash = location.hash.replace('#', '')
+					var hashName = hash.split("+")[0]
+					//var hashKey = hash.replace('%20', ' ')
+					if (hashName != "Orders") return;
+					var hashValue = window.location.hash.split("+")[1]||"All"
+					var orderViews = this.element.querySelectorAll('.order-item__card')
+					var index;
+					this.pcOrderNavs.forEach((item, i) => {
+						if (item.getAttribute('data-change') == hashValue ) {
+							item.setAttribute('data-action', true)
+							index = item.getAttribute('data-index')
+						} else {
+							item.setAttribute('data-action', false)
+						}
+					})
+					orderViews.forEach(i => {
+						if (i.getAttribute('data-index') == index) {
+							i.setAttribute('aria-hidden', false)
+						} else {
+							i.setAttribute('aria-hidden', true)
+						}
+					})
+				}
+			}, {
+				key: "changeMobileOrderView",
+				value: function (ev, target) {
+					if (!location.hash) return;
+					var hashName = window.location.hash.replace('#', '').split("+")[0]
+					if (hashName != "Orders") return;
+					var hashValue = window.location.hash.split("+")[1]
+					this.mobileOrderNavs.forEach(i => {
+						if (i.getAttribute('data-change') == hashValue) {
+							i.classList.add('current')
+						} else {
+							i.classList.remove('current')
+						}
+					})
+
+				}
+			}, {
+				key: "changeNavigate",
+				value: function (ev, target) {
+					var searchValue = target.getAttribute('data-change')
+					window.location.hash = searchValue
+					var list = this.accountPages
+					for (var i = 0; i < list.length; i++) {
+						list[i].style.display = "none"
+					}
+					this.pageSwitch()
+				}
+			}, {
+				key: "renderMobOrder",
+				value: function () {
+					this.loading(true)
+					let body_me = document.querySelector('#body_me')
+					let nullbox = document.querySelector('#order_null')
+					nullbox.style.display = 'none'
+					var url
+					var reg = /Orders+[\d\D]+/
+					if (reg.test(location.hash)) {
+						var hash = location.hash.split('+')[1].toLowerCase()
+						url = '?section_id=my-orders-' + hash;
+					} else {
+						url = '?section_id=my-orders-all';
+					}
+					fetch(url, {
+						credentials: 'same-origin',
+						method: "GET"
+					}).then(response => response.text().then(content => {
+						body_me.innerHTML = content
+						var fag = body_me.querySelectorAll('.card .order-box')
+						if (!fag.length) {
+							nullbox.style.display = 'block'
+							body_me.style.display = 'none'
+						} else {
+							nullbox.style.display = 'none'
+							body_me.style.display = 'block'
+						}
+						this.loading(false);
+					}))
+				}
+
+			}, {
+				key: "viewOrder",
+				value: function (e, target) {
+					const orderUrl = target.dataset.url
+					if (!orderUrl) return
+					fetch(orderUrl, {
+						credentials: 'same-origin',
+						method: 'GET'
+					}).then(response => response.text())
+						.then(html => {
+							document.querySelector('.card.my_orders').innerHTML = getSectionInnerHTML(html, '.order-summary')
+							window.scroll(0, 0)
+						})
+				}
+			}, {
+				key: "changeOrderNav",
+				value: function (e, target) {
+						if (target.dataset.action !== 'false' && target.parentElement.dataset.action !== 'false') return
+						const nav = target.dataset.action ? target : target.parentElement
+						const preNav = document.querySelector('.orders-nav__item[data-action="true"]')
+						const preView = document.querySelector('.order-item__card[aria-hidden="false"]')
+						const openOrederView = document.querySelector(`.order-item__card[data-index="${nav.dataset.index}"]`)
+						nav.dataset.action = true;
+						preNav && preNav.setAttribute('data-action',false);
+						preView && preView.setAttribute('aria-hidden', true);
+						openOrederView.setAttribute("aria-hidden", false);
+						let hashUrl = target.textContent.replace(/\s*|[\r\n]/g, '');
+						window.location.hash = "Orders+" + hashUrl;
+				}
+			}, {
+				key: "convertible",
+				value: function (e, target) {
+					const _this = this
+					const id = target.getAttribute('data-id')
+					if (!id) return;
+					document.dispatchEvent(new CustomEvent('page:loading:start'))
+					let url = 'customerAccount/pointExchangePriceRulesTemplate'
+					url += "?id=" + id
+					getData(url, '', _this.token, "GET", 'fornData').then(({ success, data }) => {
+						document.dispatchEvent(new CustomEvent('page:loading:end'))
+						if (!success) return Message.error('Exchange failed');
+						Message.success('Exchange success')
+					}).catch(e => {
+						document.dispatchEvent(new CustomEvent('page:loading:end'))
+						Message.success('Exchange success')
+					})
+				}
+			}, {
+				key: "changInput",
+				value: function (ev, target) {
+					let value = target.value
+					const label = document.querySelector('.recommendLabel')
+					const hosts = ['@gmail.com', '@hotmail.com', '@yahoo.com', '@yahoo.es', '@google.com', '@icloud.com', '@aol.com', '@live.com', '@oultlook.com']
+					let reg = /[a-z0-9A-Z.]+/
+					let ex = /@.*/
+					let hot = ex.test(value) ? ex.exec(value)[0] : ""
+					let el = reg.test(value) ? reg.exec(value)[0] : value;
+					let list = []
+					if (!hosts.includes(hot) && el) {
+						label.style.display == "none" && (label.style.display = "block")
+						hosts.forEach(i => new RegExp(hot).test(i) && list.push(`<li data-action="selectAction">${el.concat(i)}</li>`))
+					}
+					else { label && (label.style.display = "none") }
+					label && (label.innerHTML = list.join(''))
+				}
+			}, {
+				key: "_select",
+				value: function (ev, target) {
+					target = ev.target
+					const label = document.querySelector('.recommendLabel')
+					if (target.getAttribute('data-action') !== "selectAction") {
+						label && (label.style.display == 'block') && (label.style.display = "none")
+						return
+					}
+					let value = target.innerText
+					const inp = document.getElementById('recommendEmail')
+					inp && (inp.value = value)
+					label.style.display = "none"
+					return false
+				}
+			}, {
+				key: "_submit",
+				value: function (e, target) {
+					const _this = this
+					const inp = document.getElementById('recommendEmail')
+					if (!inp) return
+					if (target && target.hasAttribute('disabled')) return
+					if (/[a-zA-Z0-9\.-_]+@[a-zA-Z0-9]+\.[a-zA-Z]+/.test(inp.value)) {
+						target && target.setAttribute('disabled', '')
+						getData('customerAccount/inviteByEmail'.concat('?email=', inp.value), '', this.token, "GET", "formData").then(data => {
+							target && target.removeAttribute('disabled')
+							data.success && Message.success('success')
+							!data.success && Message.error('User has been invited or failed to submit')
+							data.success && _this._getHistory()
+						}).catch(er => {
+							Message.error('fail')
+							target && target.removeAttribute('disabled')
+						})
+					}
+				}
+			}, {
+				key: "_submitBir",
+				value: function (e, target) {
+					const bir = document.getElementById('birthdayDate')
+					if (!bir || !bir.value || !/\d{4}-\d{2}-\d{2}/.test(bir.value)) return;
+					getData('customerAccount/saveBirthday'.concat("?birthday=", bir.value), '', this.token, "GET", "formData").then(({ data, success }) => {
+						success && Message.success("Saving succeeded")
+						!success && Message.error('fail')
+					}).catch(e => {
+						Message.error('fail')
+					})
+				}
+			}, {
+				key: "_getHistory",
+				value: function () {
+					const hisContaine = document.querySelector('.invited_box')
+					if (!hisContaine) return
+					let base = 'http://api.leandow-technology.com/api/customerAccount/getInviteList'
+					ajax(base, '{"pageNum": 1,"pageSize": 20}', this.token, "post").then(({ data, success }) => {
+						if (success && data.total > 0) {
+							const E = data.records.map(i => `<li data-id="${i.id}">${i.inviteEmail}</li>`)
+							hisContaine.innerHTML = `<ul class="d-flex historyList" data-total="${data.total}">${E.join('')}</ul>`
+						}
+					})
+				}
+			},{
+				key:"_view",
+				value:function(ev,target){
+					location.hash="Profile"
+					var list = this.accountPages
+					for (var i = 0; i < list.length; i++) {
+						list[i].style.display = "none"
+					}
+					this.pageSwitch();
+				}
+			}, {
+				key: "_viewVip",
+				value: function (ev, target) {
+					const rule = document.querySelector('.vip-overview__rule')
+					const hidden = rule.getAttribute('aria-hidden') == "false" ? false : true;
+					rule.setAttribute('aria-hidden', !hidden)
+				}
+			}])
+
+			return Account
+		})();
+		var accountS = new AccountSetion(document.getElementById("account"))
+
+	}()
+
+</script>
 
 {% schema %}
 {
-  "name": "Account"
+"name": "个人中心左侧导航",
+"settings": [{
+"type":"image_picker",
+"id":"points_rule",
+"label":"积分兑换规则图"
+}]
 }
 {% endschema %}

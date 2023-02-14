@@ -1,1 +1,376 @@
-{"sections":{"main":{"type":"main-collections-list","settings":{"collections_to_show":"selected"}},"newsletter":{"type":"newsletter","settings":{}}},"order":["main","newsletter"]}
+{
+  "sections": {
+    "1659078275fbaaff0b": {
+      "type": "no_space_img",
+      "settings": {
+        "sensorsName": "",
+        "bg_image": "shopify:\/\/shop_images\/pc_-__02.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/02_b7f8815e-9146-4d00-a62b-b3a701b9a012.jpg",
+        "link": "mailto:contactus@hyfol.com",
+        "shadow": false
+      }
+    },
+    "1659078326335e9c03": {
+      "type": "rich-text",
+      "settings": {
+        "text_width": "wide",
+        "text_layout": "left",
+        "title_color": "#ffffff",
+        "text_color": "#ffffff",
+        "background": "#000000",
+        "margin_top": 0,
+        "margin_botton": 0,
+        "font_size": 21,
+        "margin_lr": 0,
+        "title": "Coustomize Your T-Shirt",
+        "content": "<p>Order in bulk online. We print in full colour and ship to you.<\/p>",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
+    "165907842062e21097": {
+      "type": "no_space_img",
+      "settings": {
+        "sensorsName": "",
+        "bg_image": "shopify:\/\/shop_images\/pc_-__04_82014303-e491-4b1f-9079-5dfff5e52284.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/04_aabb77f3-0e97-4a71-a053-d939973ab9a2.jpg",
+        "link": "",
+        "shadow": false
+      }
+    },
+    "165907847214e16188": {
+      "type": "rich-text",
+      "settings": {
+        "text_width": "wide",
+        "text_layout": "left",
+        "title_color": "#ffffff",
+        "text_color": "#ffffff",
+        "background": "#000000",
+        "margin_top": 0,
+        "margin_botton": 0,
+        "font_size": 21,
+        "margin_lr": 0,
+        "title": "What Will You Create?",
+        "content": "<p>We love seeing what you make so please tag us when your products arrive. <\/p><p>You can design on your phone and we'll print what you see on screen in full colour. It's easy :)<\/p>",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
+    "165907848769ab3ff1": {
+      "type": "no_space_img",
+      "settings": {
+        "sensorsName": "",
+        "bg_image": "shopify:\/\/shop_images\/06_bfc27155-de17-4b2d-88b6-61265af2933b.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/06_0ddfe0ac-9ea2-4c13-8b20-8b09f21fbce7.jpg",
+        "link": "",
+        "shadow": false
+      }
+    },
+    "16590785450cc5cf8a": {
+      "type": "rich-text",
+      "settings": {
+        "text_width": "wide",
+        "text_layout": "left",
+        "title_color": "#ffffff",
+        "text_color": "#ffffff",
+        "background": "#000000",
+        "margin_top": 0,
+        "margin_botton": 0,
+        "font_size": 21,
+        "margin_lr": 0,
+        "title": "Custom Printed Plothing",
+        "content": "<p>Add your design to a huge range of quality products<\/p>",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
+    "165907865634949e08": {
+      "type": "linkImg",
+      "blocks": {
+        "2f9adda0-5d17-4b95-b3d2-836e7ffbfbc3": {
+          "type": "link",
+          "settings": {
+            "heading": "menshirt",
+            "sensorsLinkName": "menshirt",
+            "link": "https:\/\/www.hyfol.com\/collections\/high-quality-essential-clothes-at-hyfol",
+            "left": 0,
+            "top": 0,
+            "width": 32,
+            "height": 100
+          }
+        },
+        "b88d1ed7-9c5d-4f10-af88-75d2c090f683": {
+          "type": "link",
+          "settings": {
+            "heading": "pants",
+            "sensorsLinkName": "pants",
+            "link": "https:\/\/www.hyfol.com\/collections\/high-quality-essential-clothes-at-hyfol?spu=sp220602mmsl%2Csp211130r4qg%2Csp220728nklw",
+            "left": 33,
+            "top": 0,
+            "width": 31,
+            "height": 100
+          }
+        },
+        "aa6a8643-1128-4282-9282-a51475ee2f6c": {
+          "type": "link",
+          "settings": {
+            "heading": "hats",
+            "sensorsLinkName": "hats",
+            "link": "https:\/\/www.hyfol.com\/collections\/high-quality-essential-clothes-at-hyfol?spu=sp220707mqac",
+            "left": 67,
+            "top": 0,
+            "width": 100,
+            "height": 100
+          }
+        }
+      },
+      "block_order": [
+        "2f9adda0-5d17-4b95-b3d2-836e7ffbfbc3",
+        "b88d1ed7-9c5d-4f10-af88-75d2c090f683",
+        "aa6a8643-1128-4282-9282-a51475ee2f6c"
+      ],
+      "settings": {
+        "linkImg_title": "",
+        "linkImg_content": "",
+        "hidDesk": false,
+        "sensorsName": "",
+        "hidWeb": true,
+        "line": false,
+        "image": "shopify:\/\/shop_images\/pc_-__08_35422bbc-9124-4863-883f-33d6c403a111.jpg",
+        "tpadding": 0,
+        "rpadding": 0,
+        "bpadding": 0,
+        "lpadding": 0
+      }
+    },
+    "1659078670c9c60ada": {
+      "type": "linkImg",
+      "blocks": {
+        "68272705-abdf-48ff-afaa-80f3bb73aca6": {
+          "type": "link",
+          "settings": {
+            "heading": "menshirt",
+            "sensorsLinkName": "menshirt",
+            "link": "https:\/\/www.hyfol.com\/collections\/high-quality-essential-clothes-at-hyfol",
+            "left": 0,
+            "top": 0,
+            "width": 31,
+            "height": 100
+          }
+        },
+        "d2650935-0174-4ba0-898a-1cec0c214412": {
+          "type": "link",
+          "settings": {
+            "heading": "pants",
+            "sensorsLinkName": "pants",
+            "link": "https:\/\/www.hyfol.com\/collections\/high-quality-essential-clothes-at-hyfol?spu=sp220602mmsl%2Csp211130r4qg%2Csp220728nklw",
+            "left": 33,
+            "top": 0,
+            "width": 34,
+            "height": 100
+          }
+        },
+        "05978106-18d8-4dc1-99c7-3ae44ae2252e": {
+          "type": "link",
+          "settings": {
+            "heading": "hats",
+            "sensorsLinkName": "hats",
+            "link": "https:\/\/www.hyfol.com\/collections\/high-quality-essential-clothes-at-hyfol?spu=sp220707mqac",
+            "left": 69,
+            "top": 0,
+            "width": 100,
+            "height": 100
+          }
+        }
+      },
+      "block_order": [
+        "68272705-abdf-48ff-afaa-80f3bb73aca6",
+        "d2650935-0174-4ba0-898a-1cec0c214412",
+        "05978106-18d8-4dc1-99c7-3ae44ae2252e"
+      ],
+      "settings": {
+        "linkImg_title": "",
+        "linkImg_content": "",
+        "hidDesk": true,
+        "sensorsName": "",
+        "hidWeb": false,
+        "line": false,
+        "image": "shopify:\/\/shop_images\/08_7d1c4e28-b64b-4d47-91b6-a66bc7288834.jpg",
+        "tpadding": 0,
+        "rpadding": 0,
+        "bpadding": 0,
+        "lpadding": 0
+      }
+    },
+    "165907856021cc2f9c": {
+      "type": "no_space_img",
+      "settings": {
+        "sensorsName": "",
+        "bg_image": "shopify:\/\/shop_images\/4_e28cb12d-bd13-4679-82c2-713532e2ede8.gif",
+        "web_bg_image": "shopify:\/\/shop_images\/6_8314c673-f7e2-4374-95d5-2b662908cb56.gif",
+        "link": "",
+        "shadow": false
+      }
+    },
+    "165907878923c6b2b1": {
+      "type": "rich-text",
+      "settings": {
+        "text_width": "wide",
+        "text_layout": "left",
+        "title_color": "#ffffff",
+        "text_color": "#ffffff",
+        "background": "#000000",
+        "margin_top": 0,
+        "margin_botton": 0,
+        "font_size": 21,
+        "margin_lr": 0,
+        "title": "Full Colour, Photo Quality And Strong Designs.",
+        "content": "<p>Our world-class designers team will be able to create and customize your graphics to meet your demand.<\/p><p>Your will feel empowered and inspired to wear on some creative and beautiful designs that speak for you.<\/p>",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
+    "1659321991c10f5bc2": {
+      "type": "transparent-collection",
+      "settings": {
+        "collection": "hyfol-best-seller-1",
+        "sensorsName": "",
+        "title": "BEST SELLER",
+        "products_count": 12,
+        "layout": "vertical",
+        "stack_products": false,
+        "show_quick_buy": false,
+        "link_title": "",
+        "link_url": "https:\/\/www.hyfol.com\/collections\/hyfol-best-seller-1",
+        "backgroun": "#000000"
+      }
+    },
+    "main": {
+      "type": "main-collections-list",
+      "disabled": true,
+      "blocks": {
+        "ddd82bfb-8303-4233-9e4e-4db4a1e3af78": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "ddd82bfb-8303-4233-9e4e-4db4a1e3af78"
+      ],
+      "settings": {
+        "collections_to_show": "selected",
+        "collection_linklist": "",
+        "show_collection_title": true,
+        "show_collection_overlay": true,
+        "collection_overlay_opacity": 20
+      }
+    },
+    "1659336417e01aa356": {
+      "type": "summary-tex",
+      "blocks": {
+        "cc1a4018-6738-4f77-b38b-7c5b393f4bdd": {
+          "type": "text",
+          "settings": {
+            "title_text": "How Do I Create A Custom T-Shirt?",
+            "centont_text": "<p>Just pick one essential products from the website，and send in your design or your design ideas via email：<a href=\"mailto:contactus@hyfol.com\" title=\"mailto:contactus@hyfol.com\">contactus@hyfol.com<\/a> <\/p><p>your will qet a qoute once you let us know the quantity required.<br\/><\/p>",
+            "title_size": 17,
+            "margin_top": 15,
+            "margin_botton": 5,
+            "border_top_size": 1,
+            "border_color": "#cccccc",
+            "details_margin_botton": 14
+          }
+        },
+        "ea776825-66c6-403c-b59f-9a62b4f980f5": {
+          "type": "text",
+          "settings": {
+            "title_text": "What’s The Minimum Order For Custom T-Shirts?",
+            "centont_text": "<p>We do have minimum number requirement of 10 pieces at a time in order to produce more efficiently . Bulk discounts will be offered depending on your order quantity.<\/p>",
+            "title_size": 16,
+            "margin_top": 15,
+            "margin_botton": 5,
+            "border_top_size": 1,
+            "border_color": "#cccccc",
+            "details_margin_botton": 14
+          }
+        },
+        "1180828e-dd48-41ed-a182-599df57b809f": {
+          "type": "text",
+          "settings": {
+            "title_text": "How will the service be charged?",
+            "centont_text": "<p>-We do charge $35 for a one-time design upon receiving your request. A few adjustments are allowed.<\/p><p>The design fee is non-refundable unless an order of &gt;50 pcs is placed. <\/p><p>-Also, we offer different tiers of discounts based on your order quantity. <\/p><p>Buy 10-20 pcs, get 25% off <\/p><p>Buy 21-49 pcs, get 30% off <\/p><p>Buy 50-99 pcs, get 35% off <\/p><p>Buy 100+ pcs, get 40% off<\/p>",
+            "title_size": 22,
+            "margin_top": 15,
+            "margin_botton": 5,
+            "border_top_size": 1,
+            "border_color": "#CCCCCC",
+            "details_margin_botton": 14
+          }
+        },
+        "66b4f19c-e061-47e0-98ca-d6fe617b9cf7": {
+          "type": "text",
+          "settings": {
+            "title_text": "When Will I Receive My Custom Clothing?",
+            "centont_text": "<p>Designs will be ready within 3 working days for you to decide. we can alternaate the designs regardingly . Once the designs are fixed and your order payment received, we will inform you the estimated production and shipping time needed according to order quantity and your shipping countries.<\/p>",
+            "title_size": 22,
+            "margin_top": 15,
+            "margin_botton": 5,
+            "border_top_size": 1,
+            "border_color": "#cccccc",
+            "details_margin_botton": 14
+          }
+        }
+      },
+      "block_order": [
+        "cc1a4018-6738-4f77-b38b-7c5b393f4bdd",
+        "ea776825-66c6-403c-b59f-9a62b4f980f5",
+        "1180828e-dd48-41ed-a182-599df57b809f",
+        "66b4f19c-e061-47e0-98ca-d6fe617b9cf7"
+      ],
+      "settings": {
+        "header_text": "Your Custom T-Shirt FAQS",
+        "text_color": "#ffffff",
+        "background_color": "#000000",
+        "margin_tb": 12,
+        "text_size": 19,
+        "header_mtop": 0,
+        "header_mbottom": 0,
+        "summary_layout": "left"
+      }
+    },
+    "1659339876ca738e1f": {
+      "type": "no_space_img",
+      "settings": {
+        "sensorsName": "",
+        "bg_image": "shopify:\/\/shop_images\/2_0721a565-b0bb-43c3-a335-569b09045683.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/94d53239037849179c79285840325f32_7960dc77-b64f-4044-b983-4a651b8a5322.jpg",
+        "link": "",
+        "shadow": false
+      }
+    },
+    "0119287e-fc21-4fce-8b1f-59f862d9c040": {
+      "type": "questionnaire",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "1659078275fbaaff0b",
+    "1659078326335e9c03",
+    "165907842062e21097",
+    "165907847214e16188",
+    "165907848769ab3ff1",
+    "16590785450cc5cf8a",
+    "165907865634949e08",
+    "1659078670c9c60ada",
+    "165907856021cc2f9c",
+    "165907878923c6b2b1",
+    "1659321991c10f5bc2",
+    "main",
+    "1659336417e01aa356",
+    "1659339876ca738e1f",
+    "0119287e-fc21-4fce-8b1f-59f862d9c040"
+  ]
+}

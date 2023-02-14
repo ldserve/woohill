@@ -1,1 +1,111 @@
-{"sections":{"main":{"type":"main-collection","settings":{}},"recently-viewed-products":{"type":"recently-viewed-products","settings":{}}},"order":["main","recently-viewed-products"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "aadbe3da-449e-4121-b058-c6934b46191f": {
+          "type": "activity",
+          "settings": {
+            "show_activity": true,
+            "activity_image": "shopify:\/\/shop_images\/20.jpg",
+            "activity_link1": "https:\/\/www.hyfol.com\/collections\/custompromotion-buy-4-get-20-off",
+            "activity_incolle": "Women's Graphic Tees&Tanks",
+            "activity_inser": 8,
+            "show_line_border": false
+          }
+        },
+        "72528d66-ff69-4592-8e46-c5ff1c715a09": {
+          "type": "activity",
+          "settings": {
+            "show_activity": true,
+            "activity_image": "shopify:\/\/shop_images\/59.jpg",
+            "activity_link1": "https:\/\/www.hyfol.com\/collections\/summer-clearance-any-3-for-59",
+            "activity_incolle": "Women's Graphic Tees&Tanks",
+            "activity_inser": 12,
+            "show_line_border": false
+          }
+        }
+      },
+      "block_order": [
+        "aadbe3da-449e-4121-b058-c6934b46191f",
+        "72528d66-ff69-4592-8e46-c5ff1c715a09"
+      ],
+      "settings": {
+        "show_collection_image": true,
+        "collapse_collection_description": false,
+        "collection_image_size": "preserve_ratio",
+        "collection_banner": "shopify:\/\/shop_images\/hyfol_58130583-ecf9-47e2-ae55-2989e2353408.jpg",
+        "products_per_row": "4",
+        "default_products_per_page": 48,
+        "default_view_layout": "grid",
+        "show_quick_buy": "list",
+        "show_quick_view": "list_grid",
+        "quick_links": "",
+        "quick_links_show_products_count": false,
+        "show_filters": true,
+        "show_filter_color_swatch": true,
+        "open_group_filters_mode": "all_closed"
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "disabled": true,
+      "settings": {
+        "title": "Recently viewed",
+        "title_color": "#000000",
+        "show_quick_buy": true,
+        "product_grid": false
+      }
+    },
+    "1647854450d982388c": {
+      "type": "no_space_img",
+      "disabled": true,
+      "settings": {
+        "sensorsName": "",
+        "bg_image": "shopify:\/\/shop_images\/pc_ecfe5778-d580-4833-8bee-b9f6f4548022.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/c8577a1df210126991a8c79837c61c3f_2c9ca8a0-6113-4191-ae0c-6322137f3c6a.jpg",
+        "link": "",
+        "shadow": false
+      }
+    },
+    "16485495641ce5a0ce": {
+      "type": "web-text",
+      "blocks": {
+        "b0f72010-1c19-48e6-9bbd-17402c18fd45": {
+          "type": "text",
+          "settings": {
+            "title": "DELIVERY TIME",
+            "content": "<p>For most situations, it takes around<br\/>5 business days to process.<\/p>"
+          }
+        },
+        "3235dc58-bb6b-4434-bd69-afb1a0eed267": {
+          "type": "text",
+          "settings": {
+            "title": "FREE SHIPPING",
+            "content": "<p>all orders of $69 or more are qualified for <\/p><p>free shipping.<\/p>"
+          }
+        },
+        "c4d579d8-9f9e-4bab-8272-5d944bf998e2": {
+          "type": "text",
+          "settings": {
+            "title": "REFUND POLICY",
+            "content": "<p>You have a maximum of 30 days to return your items.<br\/>You must send back your items to<br\/>an informed address by the customer service.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "b0f72010-1c19-48e6-9bbd-17402c18fd45",
+        "3235dc58-bb6b-4434-bd69-afb1a0eed267",
+        "c4d579d8-9f9e-4bab-8272-5d944bf998e2"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "recently-viewed-products",
+    "1647854450d982388c",
+    "16485495641ce5a0ce"
+  ]
+}

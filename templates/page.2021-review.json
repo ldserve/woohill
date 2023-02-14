@@ -1,0 +1,268 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "disabled": true,
+      "settings": {
+        "title": "Newsletter",
+        "content": "<p>A short sentence describing what someone will receive by subscribing<\/p>",
+        "background": "#1e2d7d",
+        "text": "#ffffff"
+      }
+    },
+    "164214075552818667": {
+      "type": "blog-posts",
+      "settings": {
+        "blog": "hyfol-2022-1-3",
+        "blog_posts_count": 3,
+        "title": "Blog posts",
+        "link_title": "View all",
+        "show_category": true,
+        "show_author": false,
+        "show_date": true,
+        "show_excerpt": false,
+        "stack_mobile": false
+      }
+    },
+    "1642061192a5d1a0ac": {
+      "type": "no_space_img",
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/PC_ddef9dc2-2478-435f-b71c-77bbac5c6c40.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/1080-222.jpg",
+        "link": "",
+        "shadow": false
+      }
+    },
+    "1642055251b3e62f1a": {
+      "type": "no_space_img",
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/HOODIES.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/1080-1.jpg",
+        "link": "https:\/\/www.hyfol.com\/collections\/mens-hoodies",
+        "shadow": false
+      }
+    },
+    "16420552947647aa32": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/1_78e65d42-514d-413d-831d-39e43c70bdfd.jpg",
+        "image_position": "right",
+        "image_width": 50,
+        "title": "Men's 100% Cotton Regular  Fit Retro American Flag  Graphic Hoodie",
+        "content": "<p><strong>Description <\/strong><\/p><p>Product Code:T11611521FG<br\/>Fabric:100% Cotton ;<br\/>Fit type: Regular fit;<br\/>Style:Causal\/Basic; <br\/>Occasion:Outdoor\/ Daily;<br\/>Sleeve Length:Long sleeve;<br\/>Thickness:Thick;<br\/>Season:Spring\/Fall\/Winter;<br\/>Cleaning method:Machine wash\/Hand wash;<\/p>",
+        "button_text": "View details",
+        "button_link": "https:\/\/www.hyfol.com\/products\/t11611521fg"
+      }
+    },
+    "1642055307406da67b": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/3_d4b3926a-485d-4e91-9091-3776772a7abb.jpg",
+        "image_position": "left",
+        "image_width": 50,
+        "title": "Men's 100% Cotton Skull  Graphic Pullover  Hoodie - 18020",
+        "content": "<p><strong>Description<\/strong><\/p><p>Product code: T11611521DE<br\/>Category: Hoodies <br\/>Fabric: 100% cotton, 285G fleece<br\/>Season: Fall \/ winter<br\/>Style: Casual for daily wear<br\/>Sleeve: Long sleeve<br\/>Collar: Round collar, with hood<\/p>",
+        "button_text": "View details",
+        "button_link": "https:\/\/www.hyfol.com\/products\/t11611521de"
+      }
+    },
+    "164205525958e34b2a": {
+      "type": "no_space_img",
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/Shirts.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/1080-2.jpg",
+        "link": "https:\/\/www.hyfol.com\/collections\/mens-short-sleeve",
+        "shadow": false
+      }
+    },
+    "16420555844cd12c8a": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/4g.jpg",
+        "image_position": "right",
+        "image_width": 50,
+        "title": "Men's 100% Cotton Regular Fit Skull Graphic Long Sleeve T-Shirt - 18023",
+        "content": "<p><strong>Description<\/strong><\/p><p>Product Code: T11861820O1<\/p><p>Fabric: 100% cotton;<\/p><p>Fit type: Regular fit;<\/p><p>Style: Casual \/ Basic; <\/p><p>Occasion: Outdoor \/ Daily;<\/p><p>Sleeve Length: Long sleeve;<\/p><p>Thickness: Regular;<\/p><p>Season: Spring \/ Fall;<\/p><p>Cleaning method: Machine wash \/ Hand wash<\/p>",
+        "button_text": "View details",
+        "button_link": "https:\/\/www.hyfol.com\/products\/t11861820o1"
+      }
+    },
+    "1642055651a29cc87e": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/2_0ed979d6-ce62-4d40-bbc0-56f2879e0972.jpg",
+        "image_position": "left",
+        "image_width": 50,
+        "title": "Men's 100% Cotton Skull Graphic  T-Shirt – 18007",
+        "content": "<p><strong>Description<\/strong><\/p><p>Product Code: T11861820NT<br\/>Fabric:100% Cotton ;<br\/>Fit type: Regular fit;<br\/>Style:Causal\/Basic; <br\/>Occasion:Outdoor\/ Daily;<br\/>Sleeve Length:Short sleeve;<br\/>Thickness:Thin;<br\/>Season:Summer;<br\/>Cleaning method:Machine wash\/Hand wash.<\/p>",
+        "button_text": "View details",
+        "button_link": "https:\/\/www.hyfol.com\/products\/t11861820nt?"
+      }
+    },
+    "1642055653969ade9a": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/5_8ea8e4a2-1212-47cc-b6a6-fe19eb78c13b.jpg",
+        "image_position": "right",
+        "image_width": 50,
+        "title": "Men's Route 66 Long Sleeve Graphic T-Shirt",
+        "content": "<p><strong>Description<\/strong><\/p><p>Product code: T11861820MO<br\/>Fabric: 100% Cotton<br\/>Thickness: Thick<br\/>Fit type: Relaxed Fit<br\/>Cleaning method: Machine Wash<\/p>",
+        "button_text": "View details",
+        "button_link": "https:\/\/www.hyfol.com\/products\/t11861820mo"
+      }
+    },
+    "1642055281c5c8adf6": {
+      "type": "no_space_img",
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/Cargo-Pants.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/1080-3.jpg",
+        "link": "https:\/\/www.hyfol.com\/collections\/mens-pants",
+        "shadow": false
+      }
+    },
+    "1642055655b04af49d": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/6_07c3cb96-3c16-4a5e-a0dd-f484eaa7689d.jpg",
+        "image_position": "left",
+        "image_width": 50,
+        "title": "Men's Comfy Multi-pocket Drawstring Waist Cargo Pants",
+        "content": "<p><strong>Description<\/strong><\/p><p>Product Code:T11491529CP<br\/>Fabric:Polyester ;<br\/>Fit type:Relaxed fit;<br\/>Style:Casual\/Basic;<br\/>Occasion:Outdoor\/ Daily;<br\/>Thickness:Regular;<br\/>Season:All seasons;<br\/>Number of pockets:Six pockets<br\/>Cleaning method:Machine wash\/Hand wash;<\/p>",
+        "button_text": "View details",
+        "button_link": "https:\/\/www.hyfol.com\/products\/t11491529cp?_pos=1&_sid=ad2981991&_ss=r&variant=41371686076575"
+      }
+    },
+    "16420557109109555b": {
+      "type": "mosaic",
+      "blocks": {
+        "16420557103c202152-0": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG-7030.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 0,
+            "background": "#f3f4f4",
+            "text_color": "#4f5558",
+            "title": "",
+            "content": "",
+            "content_position": "top_left",
+            "button_background": "#4f5558",
+            "button_text_color": "#f3f4f4",
+            "button_text": "Learn more",
+            "link": ""
+          }
+        },
+        "16420557103c202152-1": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/ADDDD.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 0,
+            "background": "#f3f4f4",
+            "text_color": "#4f5558",
+            "title": "",
+            "content": "",
+            "content_position": "top_left",
+            "button_background": "#4f5558",
+            "button_text_color": "#f3f4f4",
+            "button_text": "Learn more",
+            "link": ""
+          }
+        },
+        "16420557103c202152-2": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG-7191.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 0,
+            "background": "#f3f4f4",
+            "text_color": "#4f5558",
+            "title": "",
+            "content": "",
+            "content_position": "top_left",
+            "button_background": "#4f5558",
+            "button_text_color": "#f3f4f4",
+            "button_text": "Learn more",
+            "link": ""
+          }
+        },
+        "16420557103c202152-3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG-6975.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 0,
+            "background": "#f3f4f4",
+            "text_color": "#4f5558",
+            "title": "",
+            "content": "",
+            "content_position": "top_left",
+            "button_background": "#4f5558",
+            "button_text_color": "#f3f4f4",
+            "button_text": "Learn more",
+            "link": ""
+          }
+        },
+        "16420557103c202152-4": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/IMG-7176.jpg",
+            "show_overlay": false,
+            "overlay_opacity": 0,
+            "background": "#f3f4f4",
+            "text_color": "#4f5558",
+            "title": "",
+            "content": "",
+            "content_position": "top_left",
+            "button_background": "#4f5558",
+            "button_text_color": "#f3f4f4",
+            "button_text": "Learn more",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "16420557103c202152-0",
+        "16420557103c202152-1",
+        "16420557103c202152-2",
+        "16420557103c202152-3",
+        "16420557103c202152-4"
+      ],
+      "settings": {
+        "section_size": "large"
+      }
+    },
+    "164205529033951c38": {
+      "type": "no_space_img",
+      "settings": {
+        "bg_image": "shopify:\/\/shop_images\/HYFOL_ba99916f-6ec4-4dbc-b7d6-b3c862f5e333.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/1080-4.jpg",
+        "link": "",
+        "shadow": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "newsletter",
+    "164214075552818667",
+    "1642061192a5d1a0ac",
+    "1642055251b3e62f1a",
+    "16420552947647aa32",
+    "1642055307406da67b",
+    "164205525958e34b2a",
+    "16420555844cd12c8a",
+    "1642055651a29cc87e",
+    "1642055653969ade9a",
+    "1642055281c5c8adf6",
+    "1642055655b04af49d",
+    "16420557109109555b",
+    "164205529033951c38"
+  ]
+}

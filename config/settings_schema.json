@@ -3,9 +3,238 @@
     "name": "theme_info",
     "theme_name": "Warehouse",
     "theme_author": "Maestrooo",
-    "theme_version": "2.8.4",
-    "theme_documentation_url": "https://support.maestrooo.com/",
-    "theme_support_url": "https://support.maestrooo.com/article/203-contact-us"
+    "theme_version": "2.3.1",
+    "theme_documentation_url": "https:\/\/support.maestrooo.com\/",
+    "theme_support_url": "https:\/\/support.maestrooo.com\/article\/203-contact-us"
+  },
+  {
+    "name": "小购物车搭配购商品配置",
+    "settings": [
+      {
+        "type": "text",
+        "id": "collocation_spus",
+        "label": "请输入搭配商品spu",
+        "info": "spu用逗号隔开 格式如：sp220420c1yo,sp211119ulk5,sp211204asg2"
+      },
+      {
+        "type": "checkbox",
+        "id": "open_autoplay",
+        "label": "小购物车是否启用自动轮播",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "product_autoplay",
+        "label": "详情页是否启用自动轮播",
+        "default": true
+      },{
+        "type": "checkbox",
+        "id": "collocation_show",
+        "label": "是否启用搭配购",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "autoplay_time",
+        "label": "请输入轮播间隔时间",
+        "default": "5"
+      }
+    ]
+  },
+  {
+    "name": "活动配置",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "full_reduction",
+        "label": "按数量阶梯满减",
+        "info": "活动信息用逗号隔开 格式如： 5% OFF 2 PIECES,10% OFF 3 PIECES 第一位是折扣，第三位是数量"
+      },
+      {
+        "type": "checkbox",
+        "id": "full_isOpenview",
+        "label": "是否启用全场折扣活动",
+        "default": true
+      },{
+        "type": "richtext",
+        "id": "full_minus",
+        "label": "按金额阶梯满减",
+        "info": "活动信息用逗号隔开 格式如：ORDER 59 minus 5,ORDER 79 minus 10 第二位是订单金额，第四位是折扣金额",
+        "default":"<p>ORDER 69 minus 5 CODE:HF5,ORDER 79 minus 10 CODE:HF10,ORDER 149 minus 20 CODE:HF20,ORDER 299 minus 50 CODE:HF50</p>"
+      },{
+          "type": "checkbox",
+          "id": "full_minusSwitch",
+          "label": "是否启用满减活动",
+          "default": true
+      },{
+        "type": "richtext",
+        "id": "CustomPromotionUrl",
+        "label": "自定义活动跳转链接配置",
+        "info": "活动名称和链接用'='隔开，每条活动用','隔开 格式如：Choose 3 for $55=https://www.hyfol.com/collections/3-for-55",
+        "default":"<p>Choose 3 for $55=https://www.hyfol.com/collections/3-for-55,Choose 3 for $49.9=https://www.hyfol.com/collections/spring-sale</p>"
+      }
+    ]
+  },
+  {
+    "name": "首页雪花",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "showFlake",
+        "label": "下雪",
+        "default": false
+      },
+      {
+        "type": "image_picker",
+        "id": "flakeImg",
+        "label": "雪花图片",
+        "info": "缺省为小白点"
+      }
+    ]
+  },
+  {
+    "name": "购物车进度条",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_car_bar",
+        "label": "是否显示",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "进度点-1"
+      },
+      {
+        "type": "number",
+        "id": "car_bar_price1",
+        "label": "阶梯价格",
+        "info": "带两位小数点例如 200.00"
+      },
+      {
+        "type": "text",
+        "id": "car_bar_info1",
+        "label": "阶梯信息"
+      },
+      {
+        "type": "header",
+        "content": "进度点-2"
+      },
+      {
+        "type": "number",
+        "id": "car_bar_price2",
+        "label": "阶梯价格",
+        "info": "带两位小数点例如 200.00"
+      },
+      {
+        "type": "text",
+        "id": "car_bar_info2",
+        "label": "阶梯信息"
+      },
+      {
+        "type": "header",
+        "content": "进度点-3"
+      },
+      {
+        "type": "number",
+        "id": "car_bar_price3",
+        "label": "阶梯价格",
+        "info": "带两位小数点例如 200.00"
+      },
+      {
+        "type": "text",
+        "id": "car_bar_info3",
+        "label": "阶梯信息"
+      },
+      {
+        "type": "header",
+        "content": "进度点-4"
+      },
+      {
+        "type": "number",
+        "id": "car_bar_price4",
+        "label": "阶梯价格",
+        "info": "带两位小数点例如 200.00"
+      },
+      {
+        "type": "text",
+        "id": "car_bar_info4",
+        "label": "阶梯信息"
+      }
+    ]
+  },{
+    "name": "活动标签",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_activity_tag",
+        "label": "是否显示活动",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "全局标签颜色"
+      },
+      {
+        "type": "color",
+        "id": "gradient_color_start",
+        "label": "开始颜色",
+        "info": "渐变颜色",
+        "default":"#01cef0"
+      },
+      {
+        "type": "color",
+        "id": "gradient_color_end",
+        "label": "结束颜色",
+        "info": "渐变颜色",
+        "default":"#cced8e"
+      },
+      {
+        "type":"select",
+        "label":"标签形状",
+        "id":"tag_layout",
+        "options":[
+          {
+            "label":"标签",
+            "value":"TAG"
+          },{
+            "label":"书签",
+            "value":"bookmark"
+          },{
+            "label":"图片 TAG",
+            "value":"label"
+          }
+        ],
+        "default":"TAG"
+      },
+      {
+        "type": "header",
+        "content": "指定标签"
+      },{
+        "type":"textarea",
+        "id":"custome_tag_ui",
+        "label":"指定标签颜色配置",
+        "default":"Choose 3 for $59:#ff0000&#559ffb,Buy 1 get 2nd 50% OFF:#ebc918&#ee362a",
+        "info":"颜色之间用&隔开，tag之间用英文','隔开，格式：Choose 3 for $59:#01cef0&#cced8e"
+      },{
+        "type":"textarea",
+        "id":"activity_img_tag",
+        "label":"活动 TAG 图片",
+        "default":"Buy 4 Get EXTRA 20% Off=https://cdn.shopify.com/s/files/1/0595/0691/7535/files/6.png?v=1663667594,Choose 3 for $59=https://cdn.shopify.com/s/files/1/0595/0691/7535/files/5.png?v=1663667594,Buy 1 get 2nd 50% OFF=https://cdn.shopify.com/s/files/1/0595/0691/7535/files/4.png?v=1663667594",
+        "info":"图片为透明背景图，第一个tag名称、区分大小写、注意空格,tag名称'='图片url，tag之间以','隔开"
+      }
+    ]
+  },
+  {
+    "name": "巴西是否必填门牌号",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "brazil_house_number",
+        "label": "是否必填",
+        "default": false
+      }
+    ]
   },
   {
     "name": "Colors",
@@ -169,6 +398,12 @@
       },
       {
         "type": "color",
+        "id": "original_price_after_promotion",
+        "label": "Original price after promotion",
+        "default": "#212121"
+      },
+      {
+        "type": "color",
         "id": "product_in_stock_color",
         "label": "In stock",
         "default": "#00a500"
@@ -267,13 +502,13 @@
     ]
   },
   {
-    "name": "Color swatch",
+    "name": "颜色配置",
     "settings": [
       {
         "type": "textarea",
         "id": "color_swatch_config",
         "label": "Configuration",
-        "info": "Each rule must be in its own line. [Learn more](https://support.maestrooo.com/article/80-product-uploading-custom-color-for-color-swatch) about the exact naming convention."
+        "info": "Each rule must be in its own line. [Learn more](https:\/\/support.maestrooo.com\/article\/80-product-uploading-custom-color-for-color-swatch) about the exact naming convention."
       }
     ]
   },
@@ -356,7 +591,7 @@
         "type": "checkbox",
         "id": "show_reviews_badge",
         "label": "Show product rating",
-        "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/en/manual/products/product-reviews/installation)",
+        "info": "To display a rating, add a product rating app. [Learn more](https:\/\/help.shopify.com\/en\/manual\/products\/product-reviews\/installation)",
         "default": false
       },
       {
@@ -425,7 +660,7 @@
         "type": "checkbox",
         "id": "show_color_swatch",
         "label": "Show color swatch",
-        "info": "Colors appear white? [Learn more](http://support.maestrooo.com/article/80-product-uploading-custom-color-for-color-swatch)",
+        "info": "Colors appear white? [Learn more](http:\/\/support.maestrooo.com\/article\/80-product-uploading-custom-color-for-color-swatch)",
         "default": false
       },
       {
@@ -473,7 +708,7 @@
         "type": "url",
         "id": "cart_empty_button_link",
         "label": "Empty button link",
-        "default": "/collections/all"
+        "default": "\/collections\/all"
       },
       {
         "type": "checkbox",
@@ -485,15 +720,15 @@
         "type": "checkbox",
         "id": "cart_show_free_shipping_threshold",
         "label": "Show free shipping minimum amount",
-        "info": "Make sure that you have properly configured your [shipping rates](/admin/settings/shipping).",
+        "info": "Make sure that you have properly configured your [shipping rates](\/admin\/settings\/shipping).",
         "default": false
       },
       {
         "type": "text",
         "id": "cart_free_shipping_threshold",
         "label": "Free shipping minimum amount",
-        "info": "Only write a number, no letters. Wording can be changed in [language settings](https://support.maestrooo.com/article/55-changing-themes-wording).",
-        "default": "50"
+        "info": "Only write a number, no letters. Wording can be changed in [language settings](https:\/\/support.maestrooo.com\/article\/55-changing-themes-wording).",
+        "default": "69"
       }
     ]
   },
@@ -507,67 +742,67 @@
       {
         "type": "text",
         "id": "social_facebook",
-        "info": "https://www.facebook.com/shopify",
+        "info": "https:\/\/www.facebook.com\/shopify",
         "label": "Facebook"
       },
       {
         "type": "text",
         "id": "social_twitter",
-        "info": "https://twitter.com/shopify",
+        "info": "https:\/\/twitter.com\/shopify",
         "label": "Twitter"
       },
       {
         "type": "text",
         "id": "social_pinterest",
-        "info": "https://www.pinterest.com/shopify",
+        "info": "https:\/\/www.pinterest.com\/shopify",
         "label": "Pinterest"
       },
       {
         "type": "text",
         "id": "social_instagram",
-        "info": "https://instagram.com/shopify",
+        "info": "https:\/\/instagram.com\/shopify",
         "label": "Instagram"
       },
       {
         "type": "text",
         "id": "social_vimeo",
-        "info": "https://vimeo.com/shopify",
+        "info": "https:\/\/vimeo.com\/shopify",
         "label": "Vimeo"
       },
       {
         "type": "text",
         "id": "social_tumblr",
-        "info": "https://shopify.tumblr.com",
+        "info": "https:\/\/shopify.tumblr.com",
         "label": "Tumblr"
       },
       {
         "type": "text",
         "id": "social_youtube",
-        "info": "https://www.youtube.com/user/shopify",
+        "info": "https:\/\/www.youtube.com\/user\/shopify",
         "label": "YouTube"
       },
       {
         "type": "text",
         "id": "social_tiktok",
-        "info": "https://www.tiktok.com/shopify",
+        "info": "https:\/\/www.tiktok.com\/shopify",
         "label": "TikTok"
       },
       {
         "type": "text",
         "id": "social_linkedin",
-        "info": "https://linkedin.com/in/shopify",
+        "info": "https:\/\/linkedin.com\/in\/shopify",
         "label": "LinkedIn"
       },
       {
         "type": "text",
         "id": "social_snapchat",
-        "info": "https://snapchat.com/add/shopify",
+        "info": "https:\/\/snapchat.com\/add\/shopify",
         "label": "Snapchat"
       },
       {
         "type": "text",
         "id": "social_fancy",
-        "info": "https://fancy.com/Shopify",
+        "info": "https:\/\/fancy.com\/Shopify",
         "label": "Fancy"
       }
     ]

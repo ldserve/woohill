@@ -1,7 +1,7 @@
 {%- capture section_settings -%}
 {
   "autoPlay": {{ section.settings.autoplay | json }},
-  "prevNextButtons": false,
+  "prevNextButtons": true,
   "pageDots": {% if section.blocks.size > 1 %}true{% else %}false{% endif %},
   "setGallerySize": {% if section.settings.section_size == 'preserve_ratio' %}true{% else %}false{% endif %},
   "adaptiveHeight": {% if section.settings.section_size == 'preserve_ratio' %}true{% else %}false{% endif %},
@@ -9,11 +9,16 @@
   "cycleSpeed": {{ section.settings.cycle_speed | times: 1000 | json }}
 }
 {%- endcapture -%}
-
+<style>
+  #shopify-section-{{ section.id }} .container--flush {
+		padding: 0;
+	}
+</style>
 <section data-section-id="{{ section.id }}" data-section-type="slideshow" data-section-settings='{{ section_settings }}'>
-  <div {% unless section.settings.edge_to_edge %}class="container container--flush"{% endunless %}>
+  <div {% unless section.settings.edge_to_edge %}class="indexContainer container--flush"{% endunless %}>
     <div class="slideshow slideshow--{{ section.settings.section_size | replace: '_', '-' }} {% if section.settings.edge_to_edge %}slideshow--edge2edge{% endif %}" style="color: {{ section.blocks.first.settings.text_color }}">
       {%- for block in section.blocks -%}
+          {%- assign mkt_material_url =  block.settings.image | image_url | split: "?" | first -%}
         {%- if block.settings.mobile_image -%}
           {%- capture mobile_size -%}{{ block.settings.mobile_image.width | at_most: 600 }}x{{ block.settings.mobile_image.height | at_most: 800 }}{%- endcapture -%}
           {%- capture bgset -%}{{ block.settings.mobile_image | img_url: mobile_size, crop: 'center' }} [--phone] | {{ block.settings.image | img_url: '800x' }} 800w, {{ block.settings.image | img_url: '1000x' }} 1000w, {{ block.settings.image | img_url: '1200x' }} 1200w, {{ block.settings.image | img_url: '1400x' }} 1400w, {{ block.settings.image | img_url: '1600x' }} 1600w, {{ block.settings.image | img_url: '1800x' }} 1800w{%- endcapture -%}
@@ -23,7 +28,7 @@
         {%- endif -%}
 
         {%- capture slide_inner -%}
-          <div class="slideshow__slide-inner slideshow__slide-inner--{{ block.settings.content_position | replace: '_', '-' }} lazyload image--fade-in" {% if block.settings.image and section.settings.section_size != 'preserve_ratio' %}data-bgset="{{ bgset }}" data-sizes="auto"{% endif %}>
+          <div  class="slideshow__slide-inner slideshow__slide-inner--{{ block.settings.content_position | replace: '_', '-' }} lazyload image--fade-in" {% if block.settings.image and section.settings.section_size != 'preserve_ratio' %}data-bgset="{{ bgset }}" data-sizes="auto"{% endif %}>
             {%- unless block.settings.image -%}
               {%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
 
@@ -70,9 +75,8 @@
               {%- if block.settings.content != blank -%}
                 <p class="slideshow__content">{{ block.settings.content | escape | newline_to_br }}</p>
               {%- endif -%}
-
               {%- if block.settings.link != blank and block.settings.button_text != blank -%}
-                <a href="{{ block.settings.link }}" class="slideshow__button button">{{ block.settings.button_text | escape }}</a>
+                <a href="{{ block.settings.link }}" class="slideshow__button button shence_commodityView" data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" data-scdata='{"mkt_type":"banner","first_mkt_name":"{{ section.settings.sensorsName }}","first_mkt_id":"{{ section.id }}","second_mkt_rank":"{{ forloop.index }}","third_mkt_rank":"","mkt_material_url":"{{ mkt_material_url }}","mkt_material_name":"","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>{{ block.settings.button_text | escape }}</a>
               {%- endif -%}
             {%- endcapture -%}
 
@@ -85,7 +89,7 @@
             {%- endif -%}
           </div>
 
-          <style>
+          {% style %}
             #block-{{ block.id }} {
               color: {{ block.settings.text_color }};
             }
@@ -99,13 +103,25 @@
               background: {{ block.settings.button_background | color_modify: 'alpha', 0.8 }};
             }
 
+						#block-{{ block.id }} .slideshow__title{
+							{%- if block.settings.heading_text_font -%}font-family: {{ block.settings.heading_text_font }};{%- endif-%}
+							color:{{  block.settings.heading_text_color}};
+							font-size:{{ block.settings.heading_text_font_size }}px;
+						}
+
+						#block-{{ block.id }} .slideshow__content{
+							{%- if block.settings.content_text_font -%}font-family: {{ block.settings.content_text_font }};{%- endif-%}
+							color:{{  block.settings.content_text_color}};
+							font-size:{{ block.settings.content_text_font_size }}px;
+						}
+
             {%- if block.settings.show_overlay -%}
               #block-{{ block.id }}.slideshow__slide--overlay::before {
                 {%- assign overlay_opacity = block.settings.overlay_opacity | divided_by: 100.0 -%}
                 background: linear-gradient(to bottom, rgba(0, 0, 0, 0), {{ '#000000' | color_modify: 'alpha', overlay_opacity }});
               }
             {%- endif -%}
-          </style>
+					{% endstyle %}
 
           {%- if block.settings.image and section.settings.section_size != 'preserve_ratio' -%}
             <noscript>
@@ -119,7 +135,7 @@
         {%- endcapture -%}
 
         {%- if block.settings.link != blank and block.settings.button_text == blank -%}
-          <a href="{{ block.settings.link }}" class="slideshow__slide {% if block.settings.show_overlay %}slideshow__slide--overlay{% endif %} {% if forloop.first %}is-selected{% endif %}" id="block-{{ block.id }}" data-block-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <a href="{{ block.settings.link }}" class="slideshow__slide shence_commodityView {% if block.settings.show_overlay %}slideshow__slide--overlay{% endif %} {% if forloop.first %}is-selected{% endif %}" id="block-{{ block.id }}" data-block-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}  data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" data-scdata='{"mkt_type":"banner","first_mkt_name":"{{ section.settings.sensorsName }}","first_mkt_id":"{{ section.id }}","second_mkt_rank":"{{ forloop.index }}","third_mkt_rank":"","mkt_material_url":"{{ mkt_material_url }}","mkt_material_name":"","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>
             {{- slide_inner -}}
           </a>
         {%- else -%}
@@ -131,10 +147,25 @@
     </div>
   </div>
 </section>
+<script>
+  ~function () {
 
+    var box = document.getElementById('shopify-section-{{ section.id }}');
+    let slideshow__slide = box.querySelectorAll('.slideshow__slide-inner')
+    if(slideshow__slide.length > 0) {
+      for (let i = 0; i< slideshow__slide.length; i++){
+        if(slideshow__slide[i].getAttribute('data-link')){
+          slideshow__slide[i].addEventListener('click',() =>{
+            window.location.href = slideshow__slide[i].getAttribute('data-link')
+          })
+        }
+      }
+    }
+  }()
+</script>
 {% schema %}
 {
-  "name": "Slideshow",
+  "name": "轮播图",
   "max_blocks": 6,
   "settings": [
     {
@@ -203,8 +234,14 @@
   "blocks": [
     {
       "type": "image",
-      "name": "Slide",
+      "name": "轮播项",
       "settings": [
+        {
+          "type":"text",
+          "id":"sensorsName",
+          "label":"组件埋点名称",
+          "info":"用于神策分析的该组件命名（必填）"
+        },
         {
           "type": "image_picker",
           "id": "image",
@@ -243,15 +280,59 @@
         {
           "type": "text",
           "id": "title",
-          "label": "Heading",
+          "label": "标题",
           "default": "Slide title"
         },
+				{
+					"type": "font_picker",
+					"id": "heading_text_font",
+					"label": "标题字体",
+					"default": "helvetica_n4"
+				},
+				{
+					"type": "range",
+					"id": "heading_text_font_size",
+					"min": 12,
+					"max": 100,
+					"step": 1,
+					"unit": "px",
+					"label": "标题字体大小",
+					"default": 20
+				},
+				{
+					"type": "color",
+					"id": "heading_text_color",
+					"label": "标题字体颜色",
+					"default": "#ffffff"
+				},
         {
           "type": "textarea",
           "id": "content",
-          "label": "Content",
+          "label": "内容",
           "default": "Tell your story"
         },
+				{
+					"type": "font_picker",
+					"id": "content_text_font",
+					"label": "内容字体",
+					"default": "helvetica_n4"
+				},
+				{
+					"type": "range",
+					"id": "content_text_font_size",
+					"min": 12,
+					"max": 100,
+					"step": 1,
+					"unit": "px",
+					"label": "内容字体大小",
+					"default": 12
+				},
+				{
+					"type": "color",
+					"id": "content_text_color",
+					"label": "内容字体颜色",
+					"default": "#ffffff"
+				},
         {
           "type": "select",
           "id": "content_position",
@@ -331,7 +412,7 @@
   "presets": [
     {
       "category": "Image",
-      "name": "Slideshow",
+      "name": "轮播图",
       "blocks": [
         {
           "type": "image"

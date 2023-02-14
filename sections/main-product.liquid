@@ -1,130 +1,326 @@
 {%- assign shipping_estimator_block = section.blocks | where: 'type', 'shipping_estimator' | first -%}
 {%- assign variant_selector_block = section.blocks | where: 'type', 'variant_selector' | first -%}
 {%- assign buy_buttons_block = section.blocks | where: 'type', 'buy_buttons' | first -%}
+<style>
+  #shopify-section- {{section.id}} .color-swatch-list {
+  	text-align: unset;
+  }
+
+  /*尺码表样式 start*/
+  #sizeGuideModal .modal__inner .modal__inner__top {
+  	padding: 10px 30px;
+  	background-color: #1b1b1b;
+  	text-align: center;
+  	color: #FFFFFF;
+  }
+
+  #sizeGuideModal .modal__inner__top__title {
+  	font-size: 20px;
+  	color: #FFFFFF;
+  }
+
+  #sizeGuideModal .modal__close {
+  	color: #FFFFFF;
+  }
+
+  #sizeGuideModal .sizeGuideModal__checkbox {
+  	display: flex;
+  	align-items: center;
+  	cursor: pointer;
+  	margin-bottom: 20px;
+  	font-weight: 500;
+  	justify-content: center;
+  }
+
+  #sizeGuideModal .sizeGuideModal__checkbox__core {
+  	position: relative;
+  	display: inline-block;
+  	width: 40px;
+  	height: 20px;
+  	background-color: #E0DCD6;
+  	border-radius: 10px;
+  	margin: 0 12px;
+  }
+
+  #sizeGuideModal .sizeGuideModal__checkbox__core:after {
+  	content: "";
+  	position: absolute;
+  	left: 0;
+  	width: 20px;
+  	height: 20px;
+  	background-color: rgb(173, 16, 15);
+  	border-radius: 50%;
+  	transition: all ease-in-out 0.2s;
+  }
+
+  #sizeGuideModal .is-checked .sizeGuideModal__checkbox__core:after {
+  	left: 100%;
+  	margin-left: -20px;
+  }
+
+  #sizeGuideModal .sizeGuideModal__checkbox span:nth-child(1) {
+  	color: rgb(173, 16, 15);
+  }
+
+  #sizeGuideModal .is-checked span:nth-child(1) {
+  	color: var(--text-color);
+  }
+
+  #sizeGuideModal .is-checked span:nth-child(3) {
+  	color: rgb(173, 16, 15);
+  }
+
+  #sizeGuideModal table {
+  	border-top: 1px solid #999;
+  	border-left: 1px solid #999;
+  	border-spacing: 0;
+  	display: block;
+  	max-width: fit-content;
+  	overflow-x: auto;
+  	white-space: nowrap;
+  	margin: auto;
+  	text-align: center;
+  }
+
+  #sizeGuideModal table td,
+  #sizeGuideModal table th {
+  	padding: 10px 20px;
+  	border-bottom: 1px solid #999;
+  	border-right: 1px solid #999;
+  	background: #E0DCD6;
+  	font-weight: 500;
+  }
+
+  #sizeGuideModal table td:first-child,
+  #sizeGuideModal table th:first-child {
+  	background: #FFFFFF;
+  }
+
+  #sizeGuideModal .sizeGuideModal__tips {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	margin-top: 20px;
+  }
+
+  #sizeGuideModal .sizeGuideModal__tips__right {
+  	width: 20%;
+  	min-width: 150px;
+  }
+
+  #sizeGuideModal .sizeGuideModal__tips__title {
+  	color: rgb(173, 16, 15);
+  }
+
+  #sizeGuideModal .sizeGuideModal__tips__item__num {
+  	min-width: 20px;
+  	height: 20px;
+  	text-align: center;
+  	line-height: 20px;
+  	background: #1b1b1b;
+  	color: #FFFFFF;
+  	border-radius: 50%;
+  	margin-right: 15px;
+  }
+
+  #sizeGuideModal .sizeGuideModal__tips__item {
+  	display: flex;
+  	align-items: center;
+  	margin-bottom: 30px;
+  }
+
+  #sizeGuideModal .sizeGuideModal__tips__item__text p {
+  	margin: 0;
+  }
+
+  #sizeGuideModal .sizeGuideModal__tips__item__text {
+  	display: inline-block;
+  }
+
+  @media screen and (max-width: 641px) {
+  	#sizeGuideModal .modal__close {
+  		position: absolute;
+  		right: 10px;
+  		top: 20px;
+  	}
+
+  	#sizeGuideModal .card__section {
+  		padding: 15px;
+  	}
+
+  	#sizeGuideModal table td,
+  	#sizeGuideModal table th {
+  		padding: 5px 10px;
+  	}
+
+  	#sizeGuideModal .sizeGuideModal__tips__item {
+  		margin-bottom: 10px;
+  	}
+  }
+
+  /*尺码表样式 end*/
+  .style-block-swatch {
+  	padding: 0px 6px;
+  	border: 1px solid var(--form-border-color);
+  	margin:4px 6px;
+  	border-radius: 3px;
+  }
+
+  .style-block-swatch.active {
+  	border: 1px solid rgb(40, 40, 40);
+  	box-shadow: 0 0 0 1px #000;
+  	font-weight: 500;
+  }
+  .product-form__add-button.button--primary{
+  	font-size: 17px;
+  }
+</style>
 
 {%- capture section_settings -%}
-{
-  "showShippingEstimator": {% if template == 'product.quick-view' or product.available == false or shipping_estimator_block == blank %}false{% else %}true{% endif %},
-  "showQuantitySelector": {{ variant_selector_block.settings.show_quantity_selector | json }},
-  "showPaymentButton": {% if product.template_suffix == 'pre-order' %}false{% else %}{{ buy_buttons_block.settings.show_payment_button | json }}{% endif %},
-  "showInventoryQuantity": {% if product.template_suffix != 'pre-order' %}{{ variant_selector_block.settings.show_inventory_quantity | json }}{% else %}false{% endif %},
-  "lowInventoryThreshold": {{ variant_selector_block.settings.low_inventory_threshold | json }},
-  "galleryTransitionEffect": {{ section.settings.carousel_effect | json }},
-  "enableImageZoom": {% if template == 'product.quick-view' %}false{% else %}{{ section.settings.enable_image_zoom | json }}{% endif %},
-  "zoomEffect": {{ section.settings.zoom_effect | json }},
-  "enableVideoLooping": {{ section.settings.enable_video_looping | json }},
-  "productOptions": {{ product.options | json | escape }},
-  "enableHistoryState": {% if template == 'product.quick-view' %}false{% else %}true{% endif %},
-  "infoOverflowScroll": {% if template == 'product.quick-view' %}false{% else %}true{% endif %},
-  "isQuickView": {% if template == 'product.quick-view' %}true{% else %}false{% endif %}
-}
+	{
+	"showShippingEstimator": {% if template == 'product.quick-view' or product.available == false or shipping_estimator_block == blank %}false{% else %}true{% endif %},
+	"showQuantitySelector": {{ variant_selector_block.settings.show_quantity_selector | json }},
+	"showPaymentButton": {% if product.template_suffix == 'pre-order' %}false{% else %}{{ buy_buttons_block.settings.show_payment_button | json }}{% endif %},
+	"showInventoryQuantity": {% if product.template_suffix != 'pre-order' %}{{ variant_selector_block.settings.show_inventory_quantity | json }}{% else %}false{% endif %},
+	"lowInventoryThreshold": {{ variant_selector_block.settings.low_inventory_threshold | json }},
+	"galleryTransitionEffect": {{ section.settings.carousel_effect | json }},
+	"enableImageZoom": {% if template == 'product.quick-view' %}false{% else %}{{ section.settings.enable_image_zoom | json }}{% endif %},
+	"zoomEffect": {{ section.settings.zoom_effect | json }},
+	"enableVideoLooping": {{ section.settings.enable_video_looping | json }},
+	"productOptions": {{ product.options | json | escape }},
+	"enableHistoryState": {% if template == 'product.quick-view' %}false{% else %}true{% endif %},
+	"infoOverflowScroll": {% if template == 'product.quick-view' %}false{% else %}true{% endif %},
+	"isQuickView": {% if template == 'product.quick-view' %}true{% else %}false{% endif %}
+	}
 {%- endcapture -%}
-
+{%- for ldoption in product.options_with_values -%}
+  {%- if ldoption.name == 'COLOR' or ldoption.name == 'Color' -%}
+    {%- for value in ldoption.values -%}
+      {%- if forloop.index == 1 -%}
+        {%- assign color = value -%}
+      {%- else -%}
+        {%- assign color = color | append: ',' | append: value -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- for value in ldoption.values -%}
+      {%- if forloop.index == 1 -%}
+        {%- assign size = value -%}
+      {%- else -%}
+        {%- assign size = size | append: ',' | append: value -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endfor -%}
+{% for tag in product.tags %}
+  {%- if forloop.index == 1 -%}
+    {%- assign tags = tag | handleize -%}
+  {%- else -%}
+    {%- assign tagtitlie = tag | handleize -%}
+    {%- assign tags = tags | append: ',' | append: tagtitlie -%}
+  {%- endif -%}
+{% endfor %}
+{%- for line_item in cart.items -%}
+  {%- if forloop.index == 1 -%}
+    {%- assign id = line_item.id -%}
+  {%- else -%}
+    {%- assign id = id | append: ',' | append: line_item.id -%}
+  {%- endif -%}
+{%- endfor -%}
 <section data-section-id="{{ section.id }}" data-section-type="product" data-section-settings='{{ section_settings }}'>
   {%- if template != 'product.quick-view' -%}
-    <div class="container container--flush">
-      <div class="page__sub-header">
-        <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
-          <ol class="breadcrumb__list" role="list">
-            <li class="breadcrumb__item">
-              <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> {%- render 'icon', icon: 'arrow-right' -%}
-            </li>
+    <div class="page__sub-header">
+      <nav aria-label="{{ 'general.breadcrumb.title' | t }}" class="breadcrumb">
+        <ol class="breadcrumb__list" role="list">
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link link" href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+            {%- render 'icon', icon: 'arrow-right' -%}
+          </li>
 
-            <li class="breadcrumb__item">
-              {%- if collection -%}
-                <a class="breadcrumb__link link" href="{{ collection.url }}">{{ collection.title }}</a> {%- render 'icon', icon: 'arrow-right' -%}
-              {%- else -%}
-                <a class="breadcrumb__link link" href="{{ routes.all_products_collection_url }}">{{- 'collection.general.all_products' | t -}}</a> {%- render 'icon', icon: 'arrow-right' -%}
-              {%- endif -%}
-            </li>
-
-            <li class="breadcrumb__item">
-              <span class="breadcrumb__link" aria-current="page">{{ product.title | truncate: 40 }}</span>
-            </li>
-          </ol>
-        </nav>
-
-        {%- if collection.previous_product or collection.next_product -%}
-          <div class="page__navigation">
-            {%- if collection.previous_product -%}
-              <span class="page__navigation-item page__navigation-item--prev">
-                <a href="{{ collection.previous_product.url }}" class="link" rel="prev">{%- render 'icon', icon: 'arrow-left' -%} {{- 'product.general.previous_product' | t -}}</a>
-              </span>
+          <li class="breadcrumb__item">
+            {%- if collection -%}
+              <a class="breadcrumb__link link" href="{{ collection.url }}">{{ collection.title }}</a>
+              {%- render 'icon', icon: 'arrow-right' -%}
+            {%- else -%}
+              <a class="breadcrumb__link link" href="{{ routes.all_products_collection_url }}">
+                {{- 'collection.general.all_products' | t -}}
+              </a>
+              {%- render 'icon', icon: 'arrow-right' -%}
             {%- endif -%}
+          </li>
 
-            {%- if collection.next_product -%}
-              <span class="page__navigation-item page__navigation-item--next">
-                <a href="{{ collection.next_product.url }}" class="link" rel="next">{{- 'product.general.next_product' | t -}} {%- render 'icon', icon: 'arrow-right' -%}</a>
-              </span>
-            {%- endif -%}
-          </div>
-        {%- endif -%}
-      </div>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__link" aria-current="page">{{ product.title | truncate: 40 }}</span>
+          </li>
+        </ol>
+      </nav>
 
+      {%- if collection.previous_product or collection.next_product -%}
+        <div class="page__navigation">
+          {%- if collection.previous_product -%}
+            <span class="page__navigation-item page__navigation-item--prev">
+              <a href="{{ collection.previous_product.url }}" class="link" rel="prev">
+                {%- render 'icon', icon: 'arrow-left' -%}
+                {{- 'product.general.previous_product' | t -}}
+              </a>
+            </span>
+          {%- endif -%}
+
+          {%- if collection.next_product -%}
+            <span class="page__navigation-item page__navigation-item--next">
+              <a href="{{ collection.next_product.url }}" class="link" rel="next">
+                {{- 'product.general.next_product' | t -}}
+                {%- render 'icon', icon: 'arrow-right' -%}
+              </a>
+            </span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+    <div
+      class="container container--flush shenceDetail"
+      data-scenable="1"
+      data-scdata='
+        {"is_quick_view":0,
+        "commodity_spuid": "{{ product.handle }}",
+                   "commodity_name": "{{ product.title | handleize }}",
+        "currency_unit":"USD",
+        "commodity_skuid":"{{ product.selected_or_first_available_variant.sku }}",
+        "commodity_image_quantity":"{{ product.images.size }}",
+        "commodity_description_text":["{{ product.description | handleize }}"],
+        "commodity_description_image":["{{ product.featured_image | image_url | split: "?" | first }}"],
+        "commodity_size":"{{ size }}",
+        "commodity_color":"{{ color }}",
+        "commodity_tag":"{{ tags }}",
+        "commodity_type":"{{ product.type | handleize }}",
+        "original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}",
+        "current_price":"{{ product.selected_or_first_available_variant.price }}"}
+      '
+    >
       <div class="product-block-list product-block-list--{{ section.settings.image_size }}">
         <div class="product-block-list__wrapper">
           {%- if product.media.size > 0 -%}
             <div class="product-block-list__item product-block-list__item--gallery">
-              {% render 'product-gallery' %}
+              {% render 'product-gallery', zoomFactor: section.settings.zoomFactor %}
             </div>
           {%- endif -%}
 
           <div class="product-block-list__item product-block-list__item--info">
             {%- render 'product-info' -%}
           </div>
-
           {%- for block in section.blocks -%}
             {%- case block.type -%}
-              {%- comment -%}
-              --------------------------------------------------------------------------------------
-              DESCRIPTION
-              --------------------------------------------------------------------------------------
-              {%- endcomment -%}
-
-              {%- when 'description' -%}
-                {%- if product.description != blank -%}
-                  <div class="product-block-list__item product-block-list__item--description" {{ block.shopify_attributes }}>
-                    <div class="card">
-                      {%- if block.settings.display_mode == 'collapse' -%}
-                        <button class="card__collapsible-button" data-action="toggle-collapsible" aria-expanded="false" aria-controls="block-{{ section.id }}-{{ block.id }}">
-                          <span class="card__title heading h3">{{ 'product.general.description' | t }}</span>
-                          <span class="plus-button plus-button--large"></span>
-                        </button>
-
-                        <div id="block-{{ section.id }}-{{ block.id }}" class="card__collapsible">
-                          <div class="card__collapsible-content">
-                            <div class="rte text--pull">
-                              {{ product.description | remove: 'data-section-type="product"' }}
-                            </div>
-                          </div>
-                        </div>
-                      {%- else -%}
-                        <div class="card__header">
-                          <h2 class="card__title heading h3">{{ 'product.general.description' | t }}</h2>
-                        </div>
-
-                        <div class="card__section {% if block.settings.display_mode == 'view_more' %}expandable-content{% endif %}" {% if block.settings.display_mode == 'view_more' %}aria-expanded="false"{% endif %}>
-                          <div class="rte text--pull">
-                            {{ product.description | remove: 'data-section-type="product"' }}
-                          </div>
-
-                          {%- if block.settings.display_mode == 'view_more' -%}
-                            <button class="expandable-content__toggle">
-                              <span class="expandable-content__toggle-icon"></span>
-                              <span class="expandable-content__toggle-text" data-view-more="{{ 'product.general.view_more' | t | escape }}" data-view-less="{{ 'product.general.view_less' | t | escape }}">{{- 'product.general.view_more' | t -}}</span>
-                            </button>
-                          {%- endif -%}
-                        </div>
-                      {%- endif -%}
-                    </div>
-                  </div>
-                {%- endif -%}
+                {%- comment -%}
+                  --------------------------------------------------------------------------------------
+                  DESCRIPTION
+                  --------------------------------------------------------------------------------------
+                {%- endcomment -%}
 
               {%- when 'content' -%}
                 {%- comment -%}
-                --------------------------------------------------------------------------------------
-                CONTENT (we first check the page and then inline content)
-                --------------------------------------------------------------------------------------
+                  --------------------------------------------------------------------------------------
+                  CONTENT (we first check the page and then inline content)
+                  --------------------------------------------------------------------------------------
                 {%- endcomment -%}
 
                 {%- assign page = block.settings.page -%}
@@ -138,12 +334,22 @@
                 {%- endif -%}
 
                 {%- if title != blank and content != blank -%}
-                  <div class="product-block-list__item product-block-list__item--content" {{ block.shopify_attributes }}>
+                  <div
+                    class="product-block-list__item product-block-list__item--content"
+                    {{ block.shopify_attributes }}
+                  >
                     <div class="card">
                       {%- if block.settings.display_mode == 'collapse' -%}
-                        <button class="card__collapsible-button" data-action="toggle-collapsible" aria-expanded="false" aria-controls="block-{{ section.id }}-{{ block.id }}">
+                        <button
+                          class="card__collapsible-button"
+                          data-action="toggle-collapsible"
+                          aria-expanded="false"
+                          aria-controls="block-{{ section.id }}-{{ block.id }}"
+                        >
                           <span class="card__title heading h3">{{ title }}</span>
-                          <span class="plus-button plus-button--large"></span>
+                          <span class="card-arrow">
+                            {%- render 'icon', icon: 'arrow-bottom' -%}
+                          </span>
                         </button>
 
                         <div id="block-{{ section.id }}-{{ block.id }}" class="card__collapsible">
@@ -158,7 +364,12 @@
                           <h2 class="card__title heading h3">{{ title }}</h2>
                         </div>
 
-                        <div class="card__section {% if block.settings.display_mode == 'view_more' %}expandable-content{% endif %}" {% if block.settings.display_mode == 'view_more' %}aria-expanded="false"{% endif %}>
+                        <div
+                          class="card__section {% if block.settings.display_mode == 'view_more' %}expandable-content{% endif %}"
+                          {% if block.settings.display_mode == 'view_more' %}
+                            aria-expanded="false"
+                          {% endif %}
+                        >
                           <div class="rte text--pull">
                             {{ content }}
                           </div>
@@ -166,7 +377,13 @@
                           {%- if block.settings.display_mode == 'view_more' -%}
                             <button class="expandable-content__toggle">
                               <span class="expandable-content__toggle-icon"></span>
-                              <span class="expandable-content__toggle-text" data-view-more="{{ 'product.general.view_more' | t | escape }}" data-view-less="{{ 'product.general.view_less' | t | escape }}">{{- 'product.general.view_more' | t -}}</span>
+                              <span
+                                class="expandable-content__toggle-text"
+                                data-view-more="{{ 'product.general.view_more' | t | escape }}"
+                                data-view-less="{{ 'product.general.view_less' | t | escape }}"
+                              >
+                                {{- 'product.general.view_more' | t -}}
+                              </span>
                             </button>
                           {%- endif -%}
                         </div>
@@ -175,76 +392,86 @@
                   </div>
                 {%- endif -%}
 
-            {%- when 'liquid' -%}
-              {%- comment -%}
-              --------------------------------------------------------------------------------------
-              LIQUID COE
-              --------------------------------------------------------------------------------------
-              {%- endcomment -%}
+              {%- when 'liquid' -%}
+                {%- comment -%}
+                  --------------------------------------------------------------------------------------
+                  LIQUID COE
+                  --------------------------------------------------------------------------------------
+                {%- endcomment -%}
 
-              {%- assign title = block.settings.title -%}
-              {%- assign liquid = block.settings.liquid -%}
+                {%- assign title = block.settings.title -%}
+                {%- assign liquid = block.settings.liquid -%}
 
-              {%- if title != blank and liquid != blank -%}
-                <div class="product-block-list__item product-block-list__item--content" {{ block.shopify_attributes }}>
-                  <div class="card">
-                    {%- if block.settings.display_mode == 'collapse' -%}
-                      <button class="card__collapsible-button" data-action="toggle-collapsible" aria-expanded="false" aria-controls="block-{{ section.id }}-{{ block.id }}">
-                        <span class="card__title heading h3">{{ title }}</span>
-                        <span class="plus-button plus-button--large"></span>
-                      </button>
+                {%- if title != blank and liquid != blank -%}
+                  <div
+                    class="product-block-list__item product-block-list__item--content"
+                    {{ block.shopify_attributes }}
+                  >
+                    <div class="card">
+                      {%- if block.settings.display_mode == 'collapse' -%}
+                        <button
+                          class="card__collapsible-button"
+                          data-action="toggle-collapsible"
+                          aria-expanded="false"
+                          aria-controls="block-{{ section.id }}-{{ block.id }}"
+                        >
+                          <span class="card__title heading h3">{{ title }}</span>
+                          <span class="card-arrow">
+                            {%- render 'icon', icon: 'arrow-bottom' -%}
+                          </span>
+                        </button>
 
-                      <div id="block-{{ section.id }}-{{ block.id }}" class="card__collapsible">
-                        <div class="card__collapsible-content">
+                        <div id="block-{{ section.id }}-{{ block.id }}" class="card__collapsible">
+                          <div class="card__collapsible-content">
+                            <div class="rte text--pull">
+                              {{ liquid }}
+                            </div>
+                          </div>
+                        </div>
+                      {%- else -%}
+                        <div class="card__header">
+                          <h2 class="card__title heading h3">{{ title }}</h2>
+                        </div>
+
+                        <div
+                          class="card__section {% if block.settings.display_mode == 'view_more' %}expandable-content{% endif %}"
+                          {% if block.settings.display_mode == 'view_more' %}
+                            aria-expanded="false"
+                          {% endif %}
+                        >
                           <div class="rte text--pull">
                             {{ liquid }}
                           </div>
+
+                          {%- if block.settings.display_mode == 'view_more' -%}
+                            <button class="expandable-content__toggle">
+                              <span class="expandable-content__toggle-icon"></span>
+                              <span
+                                class="expandable-content__toggle-text"
+                                data-view-more="{{ 'product.general.view_more' | t | escape }}"
+                                data-view-less="{{ 'product.general.view_less' | t | escape }}"
+                              >
+                                {{- 'product.general.view_more' | t -}}
+                              </span>
+                            </button>
+                          {%- endif -%}
                         </div>
-                      </div>
-                    {%- else -%}
-                      <div class="card__header">
-                        <h2 class="card__title heading h3">{{ title }}</h2>
-                      </div>
-
-                      <div class="card__section {% if block.settings.display_mode == 'view_more' %}expandable-content{% endif %}" {% if block.settings.display_mode == 'view_more' %}aria-expanded="false"{% endif %}>
-                        <div class="rte text--pull">
-                          {{ liquid }}
-                        </div>
-
-                        {%- if block.settings.display_mode == 'view_more' -%}
-                          <button class="expandable-content__toggle">
-                            <span class="expandable-content__toggle-icon"></span>
-                            <span class="expandable-content__toggle-text" data-view-more="{{ 'product.general.view_more' | t | escape }}" data-view-less="{{ 'product.general.view_less' | t | escape }}">{{- 'product.general.view_more' | t -}}</span>
-                          </button>
-                        {%- endif -%}
-                      </div>
-                    {%- endif -%}
-                  </div>
-                </div>
-              {%- endif -%}
-
-              {%- comment -%}
-              --------------------------------------------------------------------------------------
-              REVIEWS
-              --------------------------------------------------------------------------------------
-              {%- endcomment -%}
-              {%- when 'reviews' -%}
-                <div class="product-block-list__item product-block-list__item--reviews" {{ block.shopify_attributes }}>
-                  <span id="product-reviews" class="anchor"></span>
-
-                  <div class="card">
-                    <div class="card__section">
-                      {%- assign reviews_count = product.metafields.spr.reviews | split: '<meta itemprop="reviewCount" content="' | last | split: '">' | first | times: 1 -%}
-                      <div id="shopify-product-reviews" class="spr-reviews {% if reviews_count > 0 %}spr-reviews--has-reviews{% endif %}" data-id="{{ product.id }}">{{ product.metafields.spr.reviews }}</div>
+                      {%- endif -%}
                     </div>
                   </div>
-                </div>
+                {%- endif -%}
 
-              {%- comment -%}
-              --------------------------------------------------------------------------------------
-              TRUST BADGE
-              --------------------------------------------------------------------------------------
-              {%- endcomment -%}
+                {%- comment -%}
+                  --------------------------------------------------------------------------------------
+                  REVIEWS
+                  --------------------------------------------------------------------------------------
+                {%- endcomment -%}
+
+                {%- comment -%}
+                  --------------------------------------------------------------------------------------
+                  TRUST BADGE
+                  --------------------------------------------------------------------------------------
+                {%- endcomment -%}
 
               {%- when 'trust' -%}
                 {%- if block.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
@@ -261,7 +488,6 @@
 
                         {%- render 'icon', icon: 'lock', width: 22, height: 24 -%}
                       </div>
-
                       <div class="card__section">
                         {%- if show_payment_icons -%}
                           {%- if block.settings.custom_security_badge -%}
@@ -270,8 +496,42 @@
 
                           <div class="payment-list">
                             {% for type in shop.enabled_payment_types %}
-                              {{ type | payment_type_svg_tag: class: 'payment-list__item' }}
+                              {%- if type == 'paypal'
+                                or type == 'unionpay'
+                                or type == 'visa'
+                                or type == 'american_express'
+                                or type == 'maestro'
+                                or type == 'master'
+                                or type == 'diners_club'
+                                or type == 'discover'
+                                or type == 'jcb'
+                                or type == 'trustly'
+                              %}
+                                {{ type | payment_type_svg_tag: class: 'payment-list__item' }}
+                              {%- endif -%}
                             {% endfor %}
+                            <svg
+                              style="background: #FFFFFF"
+                              class="payment-list__item"
+                              version="1.1"
+                              id="Layer_1"
+                              xmlns="http://www.w3.org/2000/svg"
+                              x="0"
+                              y="0"
+                              viewBox="0 0 468 222.5"
+                              style="enable-background:new 0 0 468 222.5"
+                              xml:space="preserve"
+                            >
+                              <style>
+                              	.st0 {
+                              		fill-rule: evenodd;
+                              		clip-rule: evenodd;
+                              		fill: #635bff
+                              	}
+                              </style>
+                              <path class="st0"
+                              	d="M414 113.4c0-25.6-12.4-45.8-36.1-45.8-23.8 0-38.2 20.2-38.2 45.6 0 30.1 17 45.3 41.4 45.3 11.9 0 20.9-2.7 27.7-6.5v-20c-6.8 3.4-14.6 5.5-24.5 5.5-9.7 0-18.3-3.4-19.4-15.2h48.9c0-1.3.2-6.5.2-8.9zm-49.4-9.5c0-11.3 6.9-16 13.2-16 6.1 0 12.6 4.7 12.6 16h-25.8zM301.1 67.6c-9.8 0-16.1 4.6-19.6 7.8l-1.3-6.2h-22v116.6l25-5.3.1-28.3c3.6 2.6 8.9 6.3 17.7 6.3 17.9 0 34.2-14.4 34.2-46.1-.1-29-16.6-44.8-34.1-44.8zm-6 68.9c-5.9 0-9.4-2.1-11.8-4.7l-.1-37.1c2.6-2.9 6.2-4.9 11.9-4.9 9.1 0 15.4 10.2 15.4 23.3 0 13.4-6.2 23.4-15.4 23.4zM223.8 61.7l25.1-5.4V36l-25.1 5.3zM223.8 69.3h25.1v87.5h-25.1zM196.9 76.7l-1.6-7.4h-21.6v87.5h25V97.5c5.9-7.7 15.9-6.3 19-5.2v-23c-3.2-1.2-14.9-3.4-20.8 7.4zM146.9 47.6l-24.4 5.2-.1 80.1c0 14.8 11.1 25.7 25.9 25.7 8.2 0 14.2-1.5 17.5-3.3V135c-3.2 1.3-19 5.9-19-8.9V90.6h19V69.3h-19l.1-21.7zM79.3 94.7c0-3.9 3.2-5.4 8.5-5.4 7.6 0 17.2 2.3 24.8 6.4V72.2c-8.3-3.3-16.5-4.6-24.8-4.6C67.5 67.6 54 78.2 54 95.9c0 27.6 38 23.2 38 35.1 0 4.6-4 6.1-9.6 6.1-8.3 0-18.9-3.4-27.3-8v23.8c9.3 4 18.7 5.7 27.3 5.7 20.8 0 35.1-10.3 35.1-28.2-.1-29.8-38.2-24.5-38.2-35.7z" />
+                            </svg>
                           </div>
 
                           <p class="payment-list__notice">{{ 'product.general.payment_notice' | t }}</p>
@@ -286,26 +546,46 @@
                             <p class="card__subtitle heading h6">{{ 'product.general.security' | t }}</p>
                           {%- endif -%}
 
-                          {%- assign badge_width = block.settings.custom_security_badge.width | at_most: 450 | append: 'x' -%}
-                          <img class="product__trust-badge" style="width: {{ block.settings.custom_security_badge_width }}px"
-                               src="{{ block.settings.custom_security_badge | img_url: badge_width }}"
-                               srcset="{{ block.settings.custom_security_badge | img_url: badge_width }} 1x, {{ block.settings.custom_security_badge | img_url: badge_width, scale: 2 }} 2x"
-                               alt="{{ block.settings.custom_security_badge.alt | escape }}">
+                          {%- assign badge_width = block.settings.custom_security_badge.width
+                            | at_most: 450
+                            | append: 'x'
+                          -%}
+                          <img
+                            class="product__trust-badge"
+                            style="width: {{ block.settings.custom_security_badge_width }}px"
+                            src="{{ block.settings.custom_security_badge | img_url: badge_width }}"
+                            srcset="{{ block.settings.custom_security_badge | img_url: badge_width }} 1x, {{ block.settings.custom_security_badge | img_url: badge_width, scale: 2 }} 2x"
+                            alt="{{ block.settings.custom_security_badge.alt | escape }}"
+                          >
                         {%- endif -%}
                       </div>
+                      {%- if block.settings.show_trustworthy -%}
+                        <div class="card__header h3 pt-none">
+                          <h2 class="card__title heading h3">{{ block.settings.trustworthy_title | escape }}</h2>
+                        </div>
+                        <div class="card__section customer-d-flex pt-none">
+                          {%- render 'icon', icon: 'cjj_quality', class: 'font-60' -%}
+                          {%- render 'icon',icon:'cjj_fast-shipping'.class:'font-60' -%}
+                          {%- render 'icon', icon: 'cjj_verified', class: 'font-60' -%}
+                          {%- render 'icon', icon: 'cjj_best-seller', class: 'font-60' -%}
+                        </div>
+                      {%- endif -%}
                     </div>
                   </div>
                 {%- endif -%}
 
-              {%- comment -%}
-              --------------------------------------------------------------------------------------
-              ESTIMATE SHIPPING
-              --------------------------------------------------------------------------------------
-              {%- endcomment -%}
+                {%- comment -%}
+                  --------------------------------------------------------------------------------------
+                  ESTIMATE SHIPPING
+                  --------------------------------------------------------------------------------------
+                {%- endcomment -%}
 
               {%- when 'shipping_estimator' -%}
                 {%- if product.available -%}
-                  <div class="product-block-list__item product-block-list__item--shipping" {{ block.shopify_attributes }}>
+                  <div
+                    class="product-block-list__item product-block-list__item--shipping"
+                    {{ block.shopify_attributes }}
+                  >
                     <div class="card">
                       <div class="card__header">
                         <h2 class="card__title heading h3">{{ 'product.general.estimate_shipping' | t }}</h2>
@@ -315,34 +595,62 @@
                         <div class="shipping-estimator form" role="form">
                           <div class="form__input-row">
                             <div class="form__input-wrapper">
-                              <label for="shipping-estimator-country" class="form__label">{{ 'cart.shipping_estimator.country' | t }}</label>
+                              <label for="shipping-estimator-country" class="form__label">
+                                {{ 'cart.shipping_estimator.country' | t -}}
+                              </label>
 
                               <div class="select-wrapper select-wrapper--primary">
                                 {%- render 'icon', icon: 'arrow-bottom' -%}
 
-                                <select name="country" id="shipping-estimator-country" data-default="{{ customer.default_address.country | default: block.settings.shipping_estimator_default_country }}" required>
+                                <select
+                                  name="country"
+                                  id="shipping-estimator-country"
+                                  data-default="{{ customer.default_address.country | default: block.settings.shipping_estimator_default_country }}"
+                                  required
+                                >
                                   {{- country_option_tags -}}
                                 </select>
                               </div>
                             </div>
 
                             <div class="form__input-wrapper" style="display: none">
-                              <label for="shipping-estimator-province" class="form__label">{{ 'cart.shipping_estimator.province' | t }}</label>
+                              <label for="shipping-estimator-province" class="form__label">
+                                {{ 'cart.shipping_estimator.province' | t -}}
+                              </label>
 
                               <div class="select-wrapper select-wrapper--primary">
                                 {%- render 'icon', icon: 'arrow-bottom' -%}
 
-                                <select name="province" id="shipping-estimator-province" data-default="{{ customer.default_address.province }}"></select>
+                                <select
+                                  name="province"
+                                  id="shipping-estimator-province"
+                                  data-default="{{ customer.default_address.province }}"
+                                ></select>
                               </div>
                             </div>
 
                             <div class="form__input-wrapper" style="max-width: 155px">
-                              <label for="shipping-estimator-zip" class="form__label">{{ 'cart.shipping_estimator.zip_code' | t }}</label>
-                              <input type="text" name="zip" id="shipping-estimator-zip" class="form__field form__field--text" value="{{ customer.default.address.zip }}" required>
+                              <label for="shipping-estimator-zip" class="form__label">
+                                {{ 'cart.shipping_estimator.zip_code' | t -}}
+                              </label>
+                              <input
+                                type="text"
+                                name="zip"
+                                id="shipping-estimator-zip"
+                                class="form__field form__field--text"
+                                value="{{ customer.default.address.zip }}"
+                                required
+                              >
                             </div>
                           </div>
 
-                          <button type="button" class="form__submit button button--primary" data-action="estimate-shipping">{{ 'cart.shipping_estimator.estimate' | t }}</button>
+                          <button
+                            type="button"
+                            class="form__submit button button--primary"
+                            data-action="estimate-shipping"
+                          >
+                            {{ 'cart.shipping_estimator.estimate' | t }}
+                          </button>
 
                           <div class="shipping-estimator__results rte" style="display: none;"></div>
                         </div>
@@ -350,7 +658,14 @@
 
                       {%- if block.settings.show_refunds_policy and shop.refund_policy != blank -%}
                         <div class="card__section card__section--tight">
-                          <button class="product__refund-policy-link link link--accented" data-action="open-modal" aria-controls="modal-refunds-policy">{{ 'product.general.refund_policy' | t }} {%- render 'icon', icon: 'arrow-right' -%}</button>
+                          <button
+                            class="product__refund-policy-link link link--accented"
+                            data-action="open-modal"
+                            aria-controls="modal-refunds-policy"
+                          >
+                            {{ 'product.general.refund_policy' | t }}
+                            {%- render 'icon', icon: 'arrow-right' -%}
+                          </button>
                         </div>
                       {%- endif -%}
                     </div>
@@ -360,7 +675,11 @@
                         <div class="modal__dialog" role="dialog">
                           <header class="modal__header">
                             <h3 class="modal__title heading h2">{{ 'product.general.refund_policy' | t }}</h3>
-                            <button class="modal__close link" data-action="close-modal" title="{{ 'general.accessibility.close' | t | escape }}">
+                            <button
+                              class="modal__close link"
+                              data-action="close-modal"
+                              title="{{ 'general.accessibility.close' | t | escape }}"
+                            >
                               {%- render 'icon', icon: 'close' -%}
                             </button>
                           </header>
@@ -382,465 +701,829 @@
     </div>
   {%- else -%}
     {%- comment -%}We display the quick view within the product template so we can re-use the same settings{%- endcomment -%}
+    {% if template == 'product.quick-view' %}
+      {%- assign isQuickView = true -%}
+    {% else %}
+      {%- assign isQuickView = false -%}
+    {%- endif %}
     <div class="featured-product">
-      {%- render 'product-gallery' -%}
-      {%- render 'product-info' -%}
+      {%- render 'product-gallery', zoomFactor: section.settings.zoomFactor -%}
+      {%- render 'product-info', isQuickView: isQuickView -%}
     </div>
   {%- endif -%}
+
+  {%- comment -%} 尺码表弹窗 {%- endcomment -%}
+  <div
+    id="sizeGuideModal"
+    class="modal"
+    aria-hidden="true"
+    data-type="{{product.metafields.my_fields.category.second_commodity}}"
+  >
+    <div class="modal__dialog modal__dialog--stretch" role="dialog">
+      <button
+        class="modal__close link"
+        data-action="close-modal"
+        title="{{ 'general.accessibility.close' | t | escape }}"
+      >
+        {%- render 'icon', icon: 'close' -%}
+      </button>
+      <div class="modal__inner">
+        <div class="modal__inner__top">
+          <div class="heading modal__inner__top__title">{{ product.title }}</div>
+          <div class="h5">Size Chart</div>
+        </div>
+        <div class="card__section">
+          <div class="sizeGuideModal__checkbox">
+            <span>INCHES</span>
+            <span class="sizeGuideModal__checkbox__core"></span>
+            <span>CM</span>
+          </div>
+          <div class="sizeGuideModal__container">
+            <table>
+              <tbody></tbody>
+            </table>
+
+            {%- comment -%}上装{%- endcomment -%}
+            {% if product.metafields.my_fields.category.second_commodity contains '上装' %}
+              {%- comment -%}女上装{%- endcomment -%}
+              {%- if product.metafields.my_fields.category.second_commodity contains '女上装' -%}
+                <script type="application/json" data-type="chart">
+                  {
+                  "SIZE":	"S/M/L/XL/XXL/XXXL/XXXXL",
+                  "CHEST": "33.9-35.4/35.4-37/37-39.4/39.4-41.7/41.7-44/44-47.8/47.8-49.9",
+                  "WAIST":"26-27.6/27.6-29.1/29.1-31.5/31.5-33.9/33.9-36.2/36.2-38.8/38.8-41.5",
+                  "HIPS": "35.8-37.4/37.4-39/39-41.3/41.3-43.7/43.7-45.4/45.4-47.5/47.5-49.2"
+                  }
+                </script>
+                <script type="application/json" data-type="cm-chart">
+                  {
+                  "SIZE":	"S/M/L/XL/XXL/XXXL/XXXXL",
+                  "CHEST": "86-90/90-94/94-100/100-106/106-112/112-121/122-128",
+                  "WAIST":"66-70/70-74/74-80/80-88/88-96/96-102/102-108",
+                  "HIPS": "91-95/95-99/99-105/105-112/112-116/116-122/122-126"
+                  }
+                </script>
+                <div class="sizeGuideModal__tips">
+                  <div class="sizeGuideModal__tips__left">
+                    <h2 class="sizeGuideModal__tips__title heading">HOW TO MEASURE</h2>
+                    <div class="sizeGuideModal__tips__item">
+                      <span class="sizeGuideModal__tips__item__num">1</span>
+                      <div class="sizeGuideModal__tips__item__text">
+                        <p class="heading">Your bust</p>
+                        <p>Measure the circumference over the fullest part of your bust.</p>
+                      </div>
+                    </div>
+                    <div class="sizeGuideModal__tips__item">
+                      <span class="sizeGuideModal__tips__item__num">2</span>
+                      <div class="sizeGuideModal__tips__item__text">
+                        <p class="heading">Your waist</p>
+                        <p>Measure your waist at the thinnest place.</p>
+                      </div>
+                    </div>
+                    <div class="sizeGuideModal__tips__item">
+                      <span class="sizeGuideModal__tips__item__num">3</span>
+                      <div class="sizeGuideModal__tips__item__text">
+                        <p class="heading">Your hips</p>
+                        <p>Measure the fullest part of your hips.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sizeGuideModal__tips__right">
+                    <img
+                      src="https://cdn.shopifycdn.net/s/files/1/0595/0691/7535/files/nv.png?v=1660788734"
+                      alt="women's"
+                    >
+                  </div>
+                </div>
+              {%- else -%}
+                {% if product.metafields.my_fields.fatthintype == 'fat' %}
+                  <script type="application/json" data-type="chart">
+                    {
+                    	"SIZE": "S/M/L/XL/XXL/XXXL/XXXXL",
+                    	"US SIZE": "37-39/40-42/43-45/46-48/49-51/52-54/55-57",
+                    	"CHEST": "36.5-39.5/39.5-43.5/43.5-45.5/45.5-48.5/49.5-51.5/51.5-53.5/54.5-57.5",
+                    	"SLEEVE": "32.5-33.5/33.5-34.5/34-35/34.5-35.5/35.5-36.5/36.5-37.5/37-38",
+                    	"WAIST": "29.5-31.5/32.5-33.5/33.5-35.5/35.5-37.5/37.5-39.5/39.5-41.5/41.5-43.5",
+                    	"HIPS": "37.5-39/39.5-41/41.5-43/43.5-45/45.5-47/47.5-49/49.5-51",
+                    	"INSIDE LEG":"32-33/32-33/32-33/33-33.5/33-33.5/33-33.5/33-33.5"
+                    }
+                  </script>
+                {% else %}
+                  <script type="application/json" data-type="chart">
+                    {
+                    	"SIZE": "S/M/L/XL/XXL/XXXL/XXXXL",
+                    	"US SIZE": "37-39/39-41/42-44/44-46/46-48/48-50/50-52",
+                    	"CHEST": "37.5-39.5/39.5-41.5/41.5-44.5/43.5-46.5/45.5-48.5/47.5-50.5/49.5-52.5",
+                    	"SLEEVE": "32.5-33.5/33.5-34.5/34-35/34.5-35.5/35.5-36.5/36.5-37.5/37-38",
+                    	"WAIST": "29.5-31.5/32.5-33.5/33.5-35.5/35.5-37.5/37.5-39.5/39.5-41.5/41.5-43.5",
+                    	"HIPS": "37.5-39/39.5-41/41.5-43/43.5-45/45.5-47/47.5-49/49.5-51",
+                    	"INSIDE LEG":"32-33/32-33/32-33/33-33.5/33-33.5/33-33.5/33-33.5"
+                    }
+                  </script>
+                {% endif %}
+                <div class="sizeGuideModal__tips">
+                  <div class="sizeGuideModal__tips__left">
+                    <h2 class="sizeGuideModal__tips__title heading">HOW TO MEASURE</h2>
+                    <div class="sizeGuideModal__tips__item">
+                      <span class="sizeGuideModal__tips__item__num">1</span>
+                      <div class="sizeGuideModal__tips__item__text">
+                        <p class="heading">Bust</p>
+                        <p>Measure your chest over the fullest part.</p>
+                      </div>
+                    </div>
+                    <div class="sizeGuideModal__tips__item">
+                      <span class="sizeGuideModal__tips__item__num">2</span>
+                      <div class="sizeGuideModal__tips__item__text">
+                        <p class="heading">Waist</p>
+                        <p>Measure your waist at the narrowest point.</p>
+                      </div>
+                    </div>
+                    <div class="sizeGuideModal__tips__item">
+                      <span class="sizeGuideModal__tips__item__num">3</span>
+                      <div class="sizeGuideModal__tips__item__text">
+                        <p class="heading">Arm length</p>
+                        <p>Measure from your shoulder point to your wrist.</p>
+                      </div>
+                    </div>
+                  </div>
+                  {% if product.metafields.my_fields.fatthintype == 'fat' %}
+                    {% assign imgUrl = 'https://cdn.shopifycdn.net/s/files/1/0595/0691/7535/files/10ac9a3d1bce43981b2acbb0e786b070.png?v=1650527607' %}
+                  {% else %}
+                    {% assign imgUrl = 'https://cdn.shopifycdn.net/s/files/1/0595/0691/7535/files/e46e2a4dcec575d2135d3a6937f17f7b.png?v=1650527426' %}
+                  {% endif %}
+                  <div class="sizeGuideModal__tips__right">
+                    <img src="{{ imgUrl }}" alt="">
+                  </div>
+                </div>
+              {%- endif -%}
+
+              {%- comment -%}下装{%- endcomment -%}
+            {%- elsif product.metafields.my_fields.category.second_commodity contains '下装' %}
+              <script type="application/json" data-type="chart">
+                {
+                	"SIZE": "S/M/L/XL/XXL/XXXL/XXXXL",
+                	"US SIZE": "30-31/32-33/34-35/36-37/38-39/40-41/42-43",
+                	"WAIST": "29.5-31.5/32.5-33.5/33.5-35.5/35.5-37.5/37.5-39.5/39.5-41.5/41.5-43.5",
+                	"HIPS": "37.5-39/39.5-41/41.5-43/43.5-45/45.5-47/47.5-49/49.5-51"
+                }
+              </script>
+              <div class="sizeGuideModal__tips">
+                <div class="sizeGuideModal__tips__left">
+                  <h2 class="sizeGuideModal__tips__title heading">HOW TO MEASURE</h2>
+                  <div class="sizeGuideModal__tips__item">
+                    <span class="sizeGuideModal__tips__item__num">1</span>
+                    <div class="sizeGuideModal__tips__item__text">
+                      <p class="heading">Waist</p>
+                      <p>Measure your waist at the narrowest point.</p>
+                    </div>
+                  </div>
+                  <div class="sizeGuideModal__tips__item">
+                    <span class="sizeGuideModal__tips__item__num">2</span>
+                    <div class="sizeGuideModal__tips__item__text">
+                      <p class="heading">Low hip</p>
+                      <p>Measure your low hip around the fullest part of your hip.</p>
+                    </div>
+                  </div>
+                  <div class="sizeGuideModal__tips__item">
+                    <span class="sizeGuideModal__tips__item__num">3</span>
+                    <div class="sizeGuideModal__tips__item__text">
+                      <p class="heading">Inside leg</p>
+                      <p>Inside leg is measured from the crotch to the floor.</p>
+                    </div>
+                  </div>
+                </div>
+                {% assign imgUrl = 'https://cdn.shopifycdn.net/s/files/1/0595/0691/7535/files/55e467b9627d61fbc3b4e8f389b291ad.png?v=1650527643' %}
+                <div class="sizeGuideModal__tips__right">
+                  <img src="{{ imgUrl }}" alt="">
+                </div>
+              </div>
+              {%- comment -%}男式鞋{%- endcomment -%}
+            {% elsif product.metafields.my_fields.category.second_commodity contains '男式鞋' %}
+              <script type="application/json" data-type="shoe-chart">
+                {
+                	"US":"4.5/5/5.5/6/6.5/7/7.5/8/8.5/9/9.5/10/10.5/11",
+                	"UK":"4/4.5/5/5.5/6/6.5/7/7.5/8/8.5/9/9.5/10/10.5",
+                	"EU":"35/36/37/38/39/40/40.5/41/41.5/42/43/44/45/46",
+                	"JP":"225/230/235/240/245/250/255/260/265/270/275/280/285/290",
+                	"Foot lenght(cm)":"225/230/235/240/245/250/255/260/265/270/275/280/285/290"
+                }
+              </script>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-
 <script>
-  window.ShopifyXR=window.ShopifyXR||function(){(ShopifyXR.q=ShopifyXR.q||[]).push(arguments)};
-  ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
+  
+  
+	window.ShopifyXR = window.ShopifyXR || function () {
+		(ShopifyXR.q = ShopifyXR.q || []).push(arguments)
+	};
+	ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
 
-  // We save the ID of the product in the local storage, as it can be used by the "recently viewed products" section
-  (() => {
-    let items = JSON.parse(localStorage.getItem('recentlyViewedProducts') || '[]');
+	// We save the ID of the product in the local storage, as it can be used by the "recently viewed products" section
+	(() => {
+		let items = JSON.parse(localStorage.getItem('recentlyViewedProducts') || '[]');
 
-    // If the product already exists we first remove it
-    if (items.includes({{product.id | json}})) {
-      items.splice(items.indexOf({{ product.id | json }}), 1);
-    }
+		// We check if the current product already exists, and if it does not, we add it at the start
+		if (!items.includes({{ product.id | json }})) {
+		items.unshift({{ product.id | json }});
+        }
 
-    items.unshift({{ product.id | json }});
+	// Then, we save the current product into the local storage, by keeping only the 18 most recent
+	try {
+		localStorage.setItem('recentlyViewedProducts', JSON.stringify(items.slice(0, 18)));
+	} catch (error) {
+		// Do nothing, this may happen in Safari in incognito mode
+	}
+	/*尺码表 start*/
+	let sizeGuideModal = document.querySelector('#shopify-section-{{ section.id }} #sizeGuideModal')
+	let sizeGuideModal__checkbox = sizeGuideModal.querySelector('.sizeGuideModal__checkbox')
+	function initSizeGuideTable() {
+		let tbody = sizeGuideModal.querySelector('tbody')
+		let className = sizeGuideModal__checkbox.className
+		let jsonText = sizeGuideModal.querySelector('[type="application/json"][data-type="chart"]')
+		let cmJsonHtml = sizeGuideModal.querySelector('[type="application/json"][data-type="cm-chart"]')
+		let shoeJsonHtml = sizeGuideModal.querySelector('[type="application/json"][data-type="shoe-chart"]')
+		let cmjson = cmJsonHtml ? cmJsonHtml.innerHTML : '[]'
+		jsonText = jsonText || shoeJsonHtml 
+		let jsonData = jsonText ? jsonText.textContent : '[]'
+		let data = JSON.parse(jsonData)
+		if(cmJsonHtml&&className.indexOf('is-checked') > -1)data = JSON.parse(cmjson)
+		let tableHtml = ''
+		for (const item in data) {
+			tableHtml += `<tr>`
+			if (item === 'SIZE') {
+				tableHtml += `<th>${item}</th>`
+				let arr = data[item].split('/')
+				arr.map(i => {
+					tableHtml += `<th>${i}</th>`
+				})
+			} else {
+				if (className.indexOf('is-checked') > -1 && !cmJsonHtml && !shoeJsonHtml) {
+					tableHtml += `<td>${item === 'US SIZE' ? 'CM SIZE' : item}</td>`
+					let arr = data[item].split('/')
+					arr.map(i => {
+						let tdArr = i.split('-')
+						tableHtml += `<td>${tdArr[0] * 2.54.toFixed(1) + '-' + tdArr[1] * 2.54.toFixed(1)}</td>`
+					})
+				} else {
+					tableHtml += `<td>${item}</td>`
+					let arr = data[item].split('/')
+					arr.map(i => {
+						tableHtml += `<td>${i}</td>`
+					})
+				}
+			}
+			tableHtml += `</tr>`
+		}
+		tbody.innerHTML = tableHtml
+	}
 
-    // Then, we save the current product into the local storage, by keeping only the 18 most recent
-    try {
-      localStorage.setItem('recentlyViewedProducts', JSON.stringify(items.slice(0, 18)));
-    } catch (error) {
-      // Do nothing, this may happen in Safari in incognito mode
-    }
-  })();
+	sizeGuideModal__checkbox.addEventListener('click', () => {
+		let className = sizeGuideModal__checkbox.className
+		if (className.indexOf('is-checked') > -1) {
+			sizeGuideModal__checkbox.classList.remove('is-checked')
+		} else {
+			sizeGuideModal__checkbox.classList.add('is-checked')
+		}
+		initSizeGuideTable()
+	})
+
+	let a = 1
+	initSizeGuideTable()
+        /*尺码表 end*/
+    }) ();
+	pintrk('track', 'viewcategory');
+
+
 </script>
 
 {% schema %}
 {
-  "name": "Product",
-  "blocks": [
-    {
-      "type": "product_meta",
-      "name": "Product meta",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_vendor",
-          "label": "Show vendor",
-          "default": true
-        },
-        {
-          "type": "checkbox",
-          "id": "show_sku",
-          "label": "Show SKU",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "show_reviews_badge",
-          "label": "Show product rating",
-          "info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/en/manual/products/product-reviews/installation)",
-          "default": false
-        },
-        {
-          "type": "checkbox",
-          "id": "show_share_buttons",
-          "label": "Show share buttons",
-          "default": true
-        }
-      ]
-    },
-    {
-      "type": "variant_selector",
-      "name": "Variant selector",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "select",
-          "id": "selector_mode",
-          "label": "Selector type",
-          "options": [
-            {
-              "value": "block",
-              "label": "Block"
-            },
-            {
-              "value": "dropdown",
-              "label": "Dropdown"
-            }
-          ],
-          "default": "block"
-        },
-        {
-          "type": "select",
-          "id": "color_mode",
-          "label": "Color selector type",
-          "info": "Variant image mode requires that all variant has an associated image. [Learn more](https://help.shopify.com/en/manual/products/product-variant-images#add-images-to-existing-variants)",
-          "options": [
-            {
-              "value": "block",
-              "label": "Block"
-            },
-            {
-              "value": "dropdown",
-              "label": "Dropdown"
-            },
-            {
-              "value": "color",
-              "label": "Color swatch"
-            },
-            {
-              "value": "variant_image",
-              "label": "Variant image"
-            }
-          ],
-          "default": "color"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_quantity_selector",
-          "label": "Show quantity selector",
-          "default": true
-        },
-        {
-          "type": "checkbox",
-          "id": "show_taxes_included",
-          "label": "Show price taxes notice",
-          "default": false
-        },
-        {
-          "type": "header",
-          "content": "Inventory"
-        },
-        {
-          "type": "paragraph",
-          "content": "You can also add a stock countdown. [Learn more](https://support.maestrooo.com/article/177-product-show-an-stock-countdown-bar)."
-        },
-        {
-          "type": "checkbox",
-          "id": "show_inventory_quantity",
-          "label": "Show inventory quantity",
-          "default": false
-        },
-        {
-          "type": "range",
-          "id": "low_inventory_threshold",
-          "label": "Low inventory threshold",
-          "info": "Use low stock color when quantity is below the threshold. Choose 0 to always show in stock.",
-          "min": 0,
-          "max": 100,
-          "step": 1,
-          "default": 0
-        }
-      ]
-    },
-    {
-      "type": "buy_buttons",
-      "name": "Buy buttons",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_payment_button",
-          "label": "Show dynamic checkout button",
-          "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-          "default": true
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text",
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "This text will appear on the right part of the page."
-        },
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Text"
-        }
-      ]
-    },
-    {
-      "type": "button",
-      "name": "Button",
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "This button will appear on the right part of the page."
-        },
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Text"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link"
-        }
-      ]
-    },
-    {
-      "type": "store_pickup",
-      "name": "Local pickup availability",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "Show customers where they can pick up the product. [Learn more](https://help.shopify.com/en/manual/shipping/setting-up-and-managing-your-shipping/local-methods/local-pickup#show-pickup-availability-to-your-customers)"
-        }
-      ]
-    },
-    {
-      "type": "description",
-      "name": "Description",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "select",
-          "id": "display_mode",
-          "label": "Display mode",
-          "options": [
-            {
-              "value": "collapse",
-              "label": "Collapse"
-            },
-            {
-              "value": "view_more",
-              "label": "Show view more if long"
-            },
-            {
-              "value": "show_all",
-              "label": "Show all"
-            }
-          ],
-          "default": "show_all"
-        }
-      ]
-    },
-    {
-      "type": "content",
-      "name": "Content",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Content"
-        },
-        {
-          "type": "page",
-          "id": "page",
-          "label": "Content from page",
-          "info": "If specified, takes precedence over inline content."
-        },
-        {
-          "type": "select",
-          "id": "display_mode",
-          "label": "Display mode",
-          "options": [
-            {
-              "value": "collapse",
-              "label": "Collapse"
-            },
-            {
-              "value": "view_more",
-              "label": "Show view more if long"
-            },
-            {
-              "value": "show_all",
-              "label": "Show all"
-            }
-          ],
-          "default": "show_all"
-        }
-      ]
-    },
-    {
-      "type": "liquid",
-      "name": "Liquid",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title"
-        },
-        {
-          "type": "liquid",
-          "id": "liquid",
-          "label": "Liquid code",
-          "default": "{{ product.title }}"
-        },
-        {
-          "type": "select",
-          "id": "display_mode",
-          "label": "Display mode",
-          "options": [
-            {
-              "value": "collapse",
-              "label": "Collapse"
-            },
-            {
-              "value": "view_more",
-              "label": "Show view more if long"
-            },
-            {
-              "value": "show_all",
-              "label": "Show all"
-            }
-          ],
-          "default": "show_all"
-        }
-      ]
-    },
-    {
-      "type": "reviews",
-      "name": "Reviews",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "You need to install [Shopify's free Product Reviews](https://apps.shopify.com/product-reviews) app before enabling those options."
-        }
-      ]
-    },
-    {
-      "type": "shipping_estimator",
-      "name": "Shipping estimator",
-      "settings": [
-        {
-          "type": "text",
-          "id": "shipping_estimator_default_country",
-          "label": "Default country",
-          "info": "If the customer is logged in, the country of their shipping address will be used.",
-          "default": "United States"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_refunds_policy",
-          "label": "Show refunds policy",
-          "info": "Refund policy must be added into your store policies. [Learn more](https://help.shopify.com/manual/sell-online/checkout-settings/refund-privacy-tos).",
-          "default": true
-        }
-      ]
-    },
-    {
-      "type": "trust",
-      "name": "Trust content",
-      "settings": [
-        {
-          "type": "text",
-          "id": "trust_title",
-          "label": "Heading",
-          "default": "Payment & Security"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_payment_icons",
-          "label": "Show payment icons",
-          "default": true
-        },
-        {
-          "type": "image_picker",
-          "id": "custom_security_badge",
-          "label": "Security badge",
-          "info": "800 x 200px .jpg recommended"
-        },
-        {
-          "type": "range",
-          "id": "custom_security_badge_width",
-          "min": 100,
-          "max": 500,
-          "step": 10,
-          "unit": "px",
-          "label": "Security badge width",
-          "default": 200
-        }
-      ]
-    },
-    {
-      "type": "@app"
-    }
-  ],
-  "settings": [
-    {
-      "type": "header",
-      "content": "Media"
-    },
-    {
-      "type": "paragraph",
-      "content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)"
-    },
-    {
-      "type": "select",
-      "id": "image_size",
-      "label": "Size",
-      "options": [
-        {
-          "value": "small",
-          "label": "Small"
-        },
-        {
-          "value": "medium",
-          "label": "Medium"
-        },
-        {
-          "value": "large",
-          "label": "Large"
-        }
-      ],
-      "default": "small"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_video_looping",
-      "label": "Enable video looping",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_image_zoom",
-      "label": "Enable image zoom",
-      "default": true
-    },
-    {
-      "type": "select",
-      "id": "zoom_effect",
-      "label": "Desktop zoom effect",
-      "options": [
-        {
-          "value": "inside",
-          "label": "Inside"
-        },
-        {
-          "value": "outside",
-          "label": "Outside"
-        }
-      ],
-      "default": "outside"
-    },
-    {
-      "type": "select",
-      "id": "carousel_effect",
-      "label": "Transition effect",
-      "options": [
-        {
-          "value": "fade",
-          "label": "Fade"
-        },
-        {
-          "value": "slide",
-          "label": "Slide"
-        }
-      ],
-      "default": "fade"
-    }
-  ]
+"name": "Product",
+"blocks": [
+{
+"type": "product_meta",
+"name": "Product meta",
+"limit": 1,
+"settings": [
+{
+"type": "checkbox",
+"id": "show_vendor",
+"label": "Show vendor",
+"default": true
+},
+{
+"type": "checkbox",
+"id": "show_sku",
+"label": "Show SKU",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "show_reviews_badge",
+"label": "Show product rating",
+"info": "To display a rating, add a product rating app. [Learn more](https://help.shopify.com/en/manual/products/product-reviews/installation)",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "show_share_buttons",
+"label": "Show share buttons",
+"default": true
+}
+]
+},
+{
+     "type": "product_sellpoint",
+     "name": "促销信息",
+     "limit": 1,
+     "settings": [
+       {
+         "type": "text",
+         "label": "不参加促销的商品标签",
+         "info":"不参加促销的商品标签里的商品不会展示促销信息",
+         "id": "notsale_tag"
+       },
+       {
+         "type": "richtext",
+         "label": "促销文案（详情）",
+         "id": "sale_text_on_detail"
+       },
+			{
+			"type": "richtext",
+			"label": "促销文案（产品图）",
+			"id": "sale_text_on_img"
+			}
+     ]
+   },
+{
+"type": "variant_selector",
+"name": "Variant selector",
+"limit": 1,
+"settings": [
+{
+"type": "select",
+"id": "selector_mode",
+"label": "Selector type",
+"options": [
+{
+"value": "block",
+"label": "Block"
+},
+{
+"value": "dropdown",
+"label": "Dropdown"
+}
+],
+"default": "block"
+},
+{
+"type": "select",
+"id": "color_mode",
+"label": "Color selector type",
+"info": "Variant image mode requires that all variant has an associated image. [Learn more](https://help.shopify.com/en/manual/products/product-variant-images#add-images-to-existing-variants)",
+"options": [
+{
+"value": "block",
+"label": "Block"
+},
+{
+"value": "dropdown",
+"label": "Dropdown"
+},
+{
+"value": "color",
+"label": "Color swatch"
+},
+{
+"value": "variant_image",
+"label": "Variant image"
+}
+],
+"default": "color"
+},
+{
+"type": "checkbox",
+"id": "show_promotion",
+"label": "展示活动信息",
+"default": false
+},
+{
+	"type": "checkbox",
+	"id": "show_discount_image",
+	"label": "展示折扣图片",
+	"default": true
+},
+{
+	"type": "image_picker",
+	"id": "discount_image",
+	"label": "折扣图片"
+
+},
+{
+"type": "checkbox",
+"id": "show_quantity_selector",
+"label": "Show quantity selector",
+"default": true
+},
+{
+"type": "checkbox",
+"id": "show_taxes_included",
+"label": "Show price taxes notice",
+"default": false
+},
+{
+"type": "header",
+"content": "Inventory"
+},
+{
+"type": "paragraph",
+"content": "You can also add a stock countdown. [Learn more](https://support.maestrooo.com/article/177-product-show-an-stock-countdown-bar)."
+},
+{
+"type": "checkbox",
+"id": "show_inventory_quantity",
+"label": "Show inventory quantity",
+"default": false
+},
+{
+"type": "range",
+"id": "low_inventory_threshold",
+"label": "Low inventory threshold",
+"info": "Use low stock color when quantity is below the threshold. Choose 0 to always show in stock.",
+"min": 0,
+"max": 100,
+"step": 1,
+"default": 0
+}
+]
+},
+{
+"type": "buy_buttons",
+"name": "Buy buttons",
+"limit": 1,
+"settings": [
+{
+"type": "checkbox",
+"id": "show_payment_button",
+"label": "Show dynamic checkout button",
+"info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+"default": true
+}
+]
+},
+{
+"type": "store_pickup",
+"name": "Local pickup availability",
+"limit": 1,
+"settings": [
+{
+"type": "paragraph",
+"content": "Show customers where they can pick up the product. [Learn more](https://help.shopify.com/en/manual/shipping/setting-up-and-managing-your-shipping/local-methods/local-pickup#show-pickup-availability-to-your-customers)"
+}
+]
+},
+{
+"type": "description",
+"name": "Description",
+"limit": 1,
+"settings": [
+{
+"type": "select",
+"id": "display_mode",
+"label": "Display mode",
+"options": [
+{
+"value": "collapse",
+"label": "Collapse"
+},
+{
+"value": "view_more",
+"label": "Show view more if long"
+},
+{
+"value": "show_all",
+"label": "Show all"
+}
+],
+"default": "show_all"
+}
+]
+},
+{
+"type": "content",
+"name": "Content",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "richtext",
+"id": "content",
+"label": "Content"
+},
+{
+"type": "page",
+"id": "page",
+"label": "Content from page",
+"info": "If specified, takes precedence over inline content."
+},
+{
+"type": "select",
+"id": "display_mode",
+"label": "Display mode",
+"options": [
+{
+"value": "collapse",
+"label": "Collapse"
+},
+{
+"value": "view_more",
+"label": "Show view more if long"
+},
+{
+"value": "show_all",
+"label": "Show all"
+}
+],
+"default": "show_all"
+}
+]
+},
+{
+"type": "liquid",
+"name": "Liquid",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "liquid",
+"id": "liquid",
+"label": "Liquid code",
+"default": "{{ product.title }}"
+},
+{
+"type": "select",
+"id": "display_mode",
+"label": "Display mode",
+"options": [
+{
+"value": "collapse",
+"label": "Collapse"
+},
+{
+"value": "view_more",
+"label": "Show view more if long"
+},
+{
+"value": "show_all",
+"label": "Show all"
+}
+],
+"default": "show_all"
+}
+]
+},
+{
+"type": "reviews",
+"name": "Reviews",
+"limit": 1,
+"settings": [
+{
+"type": "paragraph",
+"content": "You need to install [Shopify's free Product Reviews](https://apps.shopify.com/product-reviews) app before enabling those options."
+}
+]
+},
+{
+"type": "shipping_estimator",
+"name": "Shipping estimator",
+"settings": [
+{
+"type": "text",
+"id": "shipping_estimator_default_country",
+"label": "Default country",
+"info": "If the customer is logged in, the country of their shipping address will be used.",
+"default": "United States"
+},
+{
+"type": "checkbox",
+"id": "show_refunds_policy",
+"label": "Show refunds policy",
+"info": "Refund policy must be added into your store policies. [Learn more](https://help.shopify.com/manual/sell-online/checkout-settings/refund-privacy-tos).",
+"default": true
+}
+]
+},
+{
+"type": "trust",
+"name": "Trust content",
+"settings": [
+{
+"type": "checkbox",
+"id": "show_trustworthy",
+"label": "查看承诺图标",
+"default": true
+},{
+"type": "text",
+"id": "trustworthy_title",
+"label": "承诺图标标题",
+"default": "Trustworthy Shopping"
+},{
+"type": "text",
+"id": "trust_title",
+"label": "Heading",
+"default": "Payment & Security"
+},
+{
+"type": "checkbox",
+"id": "show_payment_icons",
+"label": "Show payment icons",
+"default": true
+},
+{
+"type": "image_picker",
+"id": "custom_security_badge",
+"label": "Security badge",
+"info": "800 x 200px .jpg recommended"
+},
+{
+"type": "range",
+"id": "custom_security_badge_width",
+"min": 100,
+"max": 500,
+"step": 10,
+"unit": "px",
+"label": "Security badge width",
+"default": 200
+}
+]
+},
+{
+"type":"collocation_purchase",
+"name":"搭配购",
+"limit":1
+},
+{
+"type": "delivery",
+"name": "Delivery",
+"limit": 1,
+"settings": [
+{
+"type": "select",
+"id": "display_mode",
+"label": "Display mode",
+"options": [
+{
+"value": "collapse",
+"label": "Collapse"
+},
+{
+"value": "view_more",
+"label": "Show view more if long"
+},
+{
+"value": "show_all",
+"label": "Show all"
+}
+],
+"default": "show_all"
+}
+]
+},
+{
+"type": "policy",
+"name": "Policy",
+"limit": 1,
+"settings": [
+{
+"type": "select",
+"id": "display_mode",
+"label": "Display mode",
+"options": [
+{
+"value": "collapse",
+"label": "Collapse"
+},
+{
+"value": "view_more",
+"label": "Show view more if long"
+},
+{
+"value": "show_all",
+"label": "Show all"
+}
+],
+"default": "show_all"
+}
+]
+},
+{
+"type": "@app"
+}
+],
+"settings": [
+{
+"type": "header",
+"content": "Media"
+},
+{
+"type": "image_picker",
+"id":"cjj_pro_bg_top",
+"label":"产品顶部背景图片"
+},
+{
+"type": "image_picker",
+"id":"cjj_pro_bg_bottom",
+"label":"产品底部背景图片"
+},
+{
+"type": "paragraph",
+"content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)"
+},
+{
+"type": "select",
+"id": "image_size",
+"label": "Size",
+"options": [
+{
+"value": "small",
+"label": "Small"
+},
+{
+"value": "medium",
+"label": "Medium"
+},
+{
+"value": "large",
+"label": "Large"
+}
+],
+"default": "small"
+},
+{
+"type": "checkbox",
+"id": "enable_video_looping",
+"label": "Enable video looping",
+"default": false
+},
+{
+"type": "checkbox",
+"id": "enable_image_zoom",
+"label": "Enable image zoom",
+"default": true
+},
+{
+"type": "select",
+"id": "zoom_effect",
+"label": "Desktop zoom effect",
+"options": [
+{
+"value": "inside",
+"label": "Inside"
+},
+{
+"value": "outside",
+"label": "Outside"
+}
+],
+"default": "outside"
+},
+   {
+     "type": "range",
+     "id": "zoomFactor",
+     "min": 1,
+     "max": 4,
+     "step": 0.1,
+     "unit": "倍",
+     "label": "放大镜倍率",
+     "default": 2
+     },
+{
+"type": "select",
+"id": "carousel_effect",
+"label": "Transition effect",
+"options": [
+{
+"value": "fade",
+"label": "Fade"
+},
+{
+"value": "slide",
+"label": "Slide"
+}
+],
+"default": "fade"
+}
+]
 }
 {% endschema %}

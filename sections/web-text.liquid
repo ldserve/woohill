@@ -1,0 +1,99 @@
+<style>
+  #shopify-section-{{section.id}} .section {
+    background-color: #770202;
+    color: #ffffff;
+    margin: 0;
+  }
+
+  #shopify-section-{{section.id}} .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 0px;
+  }
+
+  #shopify-section-{{section.id}} .text {
+    padding: 0px 20px;
+    text-align: center;
+    flex: 1;
+  }
+
+  #shopify-section-{{section.id}} .container p {
+    margin: 0;    
+    font-size: 17px;
+  }
+
+  #shopify-section-{{section.id}} .line {
+    border-right: 2px solid #ffffff;
+  }
+
+  #main #shopify-section-{{section.id}} .text:nth-last-child(1) {
+    border: none;
+  }
+
+  @media screen and (max-width: 1000px) {
+     #shopify-section-{{section.id}} .container {
+      padding: 10px 30px;
+      display: block;
+    }
+
+     #shopify-section-{{section.id}} .text {
+      padding: 22px 20px;
+      border-bottom: 1px solid #6C675D;
+      font-size: 14px;
+      width: 100%;
+    }
+
+     #shopify-section-{{section.id}} .heading {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+</style>
+
+<section class="section carsta">
+	<div class="container">
+		{%- for block in section.blocks -%}
+			<div class="text">
+				<h4 class="heading  h5" style=" color: white;margin: 0;">{{ block.settings.title }} </h4>
+				<div class="content-text">{{ block.settings.content }}</div>
+			</div>
+			{%- if forloop.index < forloop.length -%}
+				<div class="line "></div>
+			{%- endif -%}
+
+		{%- endfor -%}
+	</div>
+
+
+</section>
+
+{% schema %}
+{
+	"name": "Footer-text",
+    "blocks": [
+    {
+      "type": "text",
+      "name": "内容",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "标题",
+          "default": "About our store"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "文本内容",
+          "default": "<p>Use this text area to tell your customers about your brand and vision. You can change it in the theme editor.</p>"
+        }
+      ]
+    }],
+	"presets": [
+		{
+			"name": "Footer-text"
+		}
+	]
+}
+{% endschema %}

@@ -1,0 +1,399 @@
+<style>
+    :root{
+        --background:#000;
+    }
+    .questionnaire_mask {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.6);
+        top: 0;
+        left: 0;
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    /* 滚动条样式*/
+    .questionnaire_mask::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width: 4px;
+        /*高宽分别对应横竖滚动条的尺寸*/
+        height: 4px;
+        scrollbar-arrow-color: red;
+    }
+    .questionnaire_mask::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.2);
+        scrollbar-arrow-color: red;
+    }
+    .questionnaire_mask::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+        border-radius: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+    /* END */
+    .questionnaire_content {
+        position: absolute;
+        width: 60%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background-color: #fff;
+        color: #000;
+        padding: 4rem;
+        top: 110px;
+    }
+
+    @media screen and (min-width:650px) and (max-width:999px) {
+        .questionnaire_content {
+            width: 80%;
+        }
+    }
+
+    @media screen and (max-width:649px) {
+        .questionnaire_content {
+            width: 90%;
+            padding: 2rem;
+            top: 72px;
+        }
+        .questionnaire_content .radio-group{
+        width: 30%;
+        }
+        .questionnaire_content .input-group{
+            margin-bottom: 1rem;
+        }
+        .show-form_btn.button{
+            line-height: 1.8rem;
+            font-size: 1rem;
+            padding: 0px 0.6rem;
+        }
+        .btn-container.show-btn1,
+        .btn-container.show-btn2,
+        .btn-container.show-btn3{
+            bottom: 0;
+        }
+    }
+
+    fieldset {
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    .questionnaire_content legend {
+        text-align: left;
+    }
+
+    .button-submit {
+        text-align: center;
+        margin: 0;
+    }
+
+    .questionnaire-title {
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .required {
+        color: red;
+    }
+
+    .must-info {
+        margin-left: 0.5rem;
+    }
+
+    .closeForm {
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        cursor: pointer;
+    }
+    .show-form_btn{
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+    line-height: 2.4rem;
+    }
+    .btn-container{
+    text-align: center;
+    }
+
+    .show-btn1,.show-btn2,.show-btn3{
+        position: absolute;
+        bottom: 3rem;
+        width: 31%;
+    }
+    .show-btn1{
+    left: 0%;
+    }
+    .show-btn2{
+        left: 33%;
+    }
+    .show-btn3{
+        left: 67%;
+    }
+    body{
+        background-color: #000;
+    }
+    .form-control[type="radio"]{
+        box-shadow: none;
+        height: 22px;
+        cursor: pointer;
+    }
+    .form-control[type="radio"]:focus{
+        -webkit-box-shadow:none;
+        box-shadow: none;
+    }
+    .radio-group{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 14%;
+    padding: 0.5rem 0;
+    }
+    .radio-group>label{
+        width: 80%;
+    }
+    .input-group-addon{
+        font-weight: 700;
+    }
+    legend.input-group-addon{
+        margin-bottom: 10px;
+    }
+    .closeForm>.icon{
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+    .input-group .form-control{
+        display: table-cell; 
+    }
+    .input-group .form-control {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 100%;
+    margin-bottom: 0;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+.input-group .form-control:focus {
+    z-index: 3;
+}
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
+}
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    margin-bottom: 1.6rem;
+    width: 100%;
+}
+.form-control option{
+    background-color: #FFF;
+}
+</style>
+
+<script src="{{ 'request.js' | asset_url }}"></script>
+
+<div class="questionnaire_mask d-none">
+    <div class="questionnaire_content">
+        <h1 class="h1 questionnaire-title">Inquiry FORM</h1>
+        <div class="closeForm" data-type="close">{% render 'icon',icon:"close" %}</div>
+        <form action="" class="" id="questionnaire-form">
+            <div class="input-group">
+                <label class="input-group-addon" form="questionnaire-first_name">First Name</label>
+                <input type="text" class="form-control" placeholder="First Name" id="questionnaire-first_name"
+                    data-name="first_name" name="1">
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" form="questionnaire-last_name">Last Name</label>
+                <input type="text" class="form-control" placeholder="Last Name" id="questionnaire-last_name"
+                    data-name="last_name" name="2">
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" form="questionnaire-email">Email<span
+                        class="required must-info">*</span></label>
+                <input type="email" class="form-control" placeholder="your Email" id="questionnaire-email" required
+                    data-name="email" name="3">
+                <div class="required d-none required-empty">This question must be filled in</div>
+                <div class="required d-none required-error">Please enter a valid email address</div>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" form="questionnaire-customize">Product I Want To Customize</label>
+                <select class="form-control" placeholder="Username" id="questionnaire-customize" data-name="customize" name="4" type="select">
+                    <option value="Top">Top</option>
+                    <option value="Bottom">Bottom</option>
+                    <option value="Hat">Hat</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label class="input-group-addon" form="questionnaire-quantity">Quantity I Need</label>
+                <select class="form-control" placeholder="Username" id="questionnaire-quantity" data-name="quantity" data-name="5" type="select">
+                    <option value="10-30">10-30</option>
+                    <option value="30-50">30-50</option>
+                    <option value="50-100">50-100</option>
+                    <option value="100+">100+</option>
+                </select>
+            </div>
+            <fieldset class="input-group">
+                <legend class="input-group-addon">Do you need us to provide design services?</legend>
+               <div class="radio-group">
+                   <label for="questionnaire-design_yes" class="input-group-addon">Yes</label>
+                   <input type="radio" class="form-control" value="Yes" data-name="design" name="6" id="questionnaire-design_yes">
+               </div>
+               <div class="radio-group">
+                   <label for="questionnaire-design_no" class="input-group-addon">No</label>
+                   <input type="radio" class="form-control" value="No" data-name="design" name="6" id="questionnaire-design_no">
+               </div>
+            </fieldset>
+            <div class="input-group button-submit">
+                <button type="button" class="button questionnaire-submit button--primary" data-type="submit">SUBMIT</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+<script>
+    ~function () {
+        let userid='{{customer.id}}'
+        const maskBox = document.querySelector('.questionnaire_mask')
+        const formBox = document.getElementById('questionnaire-form')
+        const emailInput = document.getElementById('questionnaire-email')
+        const empty = document.querySelector('.required-empty')
+        const error = document.querySelector('.required-error')
+        const body =document.body
+        let isSubmit = false;
+        let isResquest=false
+
+        body.addEventListener('click', ev => {
+            if(isResquest) return;
+            let target = ev.target
+            if (target == maskBox || target.dataset.type == 'close') maskBox.classList.add('d-none'),body.classList.remove('promo-block__image-clip');
+            if(target.dataset.type=='showForm'){
+                body.classList.add('promo-block__image-clip')
+                maskBox.classList.remove('d-none')
+                body.classList.add('promo-block__image-clip')
+            }
+            if (target.dataset.type == 'submit') {//({optionContent:{},questionId:Date.now(),userid})
+            // !userid&&(window.location.href="https://www.hyfol.com/account/login")
+            userid=userid?userid:Date.now()
+            if(!isSubmit){
+                empty.classList.remove('d-none')
+                ev.preventDefault()
+                return
+            }
+            isResquest=true
+            target.disabled=true
+              const resData= []
+              Array.prototype.forEach.call(formBox.elements,(item,i)=>{
+                if(item.type == 'text'||item.type == "select-one" || item.type=="radio"&&item.checked ||item.type == 'email') resData.push( {optionContent:item.value,questionId:parseInt(item.name)||i+1,userid:parseInt(userid)||Date.now()});
+                })
+                try {
+                    ajax_method('http://api.leandow-technology.com/api/customerAccount/submitSurvey',resData,'POST',(res)=>{
+                       const data = JSON.parse(res)
+                        data.success&& alert('Submitted successfully')||alert("Cannot submit repeatedly");
+                        isResquest=false
+                        target.disabled=false
+                        data.success&& maskBox.classList.add('d-none')&&body.classList.remove('promo-block__image-clip');
+                    })
+                } catch (error) {
+                    isResquest=false
+                    target.disabled=false
+                }
+                ev.preventDefault()
+                ev.stopPropagation() 
+            }
+        })
+
+        formBox.addEventListener('blur', ev => {
+            let target = ev.target
+            if (target.name == 'email' ||target.dataset.name=="email") {
+                let value = target.value
+                isSubmit = value && value.search(/^(([\w]{1,}\.){0,2})?([a-zA-Z\d][\w-]{2,})@(\w{2,})\.([a-z]{2,})(\.[a-z]{2,})?$/) !== -1
+                !value && !isSubmit && empty.classList.remove('d-none')
+                value && !isSubmit && (error.classList.remove('d-none'))
+            }else{
+
+            }
+            ev.preventDefault()
+            ev.stopPropagation()
+        }, true)
+
+        formBox.addEventListener('focus', ev => {
+            let target = ev.target
+            if (target.dataset.name == "email") {
+                empty.classList.add('d-none')
+                error.classList.add('d-none')
+            }
+            ev.preventDefault()
+            ev.stopPropagation()
+        }, true)
+
+        const button = document.createElement('button')
+        const buttonBox = document.createElement('div')
+        const inserImgBox=document.querySelectorAll('.cjj[data-type="questionnaire"]')[0]
+        button.dataset.type = 'showForm'
+        button.innerHTML = 'CONTACT US'
+        button.className = 'show-form_btn button button--primary'
+        buttonBox.className = 'btn-container'
+
+        buttonBox.append(button)
+        const btn1=buttonBox.cloneNode(true)
+        const btn2=buttonBox.cloneNode(true)
+        const btn3=buttonBox.cloneNode(true)
+        const btn=buttonBox.cloneNode(true)
+        btn.classList.add('btn-color')
+        btn1.classList.add('show-btn1')
+        btn2.classList.add('show-btn2')
+        btn3.classList.add('show-btn3')
+        const btnArr=[ btn1,btn2,btn3]
+        const mobileBtnArr=[ btn1.cloneNode(true),btn2.cloneNode(true),btn3.cloneNode(true)]
+        const inserBox1=document.querySelector('[data-desktop] .image_link')
+        const inserBox2=document.querySelector('[data-mobile] .image_link')
+        const inserProduct =document.querySelector('[data-section-type="featured-collection"]')
+        inserBox1.append(...btnArr)
+        inserBox2.append(...mobileBtnArr)
+        inserProduct.append( buttonBox)
+        inserImgBox.append(btn)
+        
+    }();
+
+</script>
+
+{% schema %}
+{
+    "name":"问卷",
+    "settings":[],
+    "presets": [
+    {
+        "name": "问卷"
+    }
+]
+}
+{% endschema %}

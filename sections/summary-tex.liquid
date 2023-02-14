@@ -1,0 +1,218 @@
+<style>
+#myshopify-section-{{section.id}}{
+    padding:{{section.settings.margin_tb}}px 0px;
+    background:{{section.settings.background_color}};
+    color:{{section.settings.text_color}};
+    font-size:{{section.settings.text_size}}px;
+    margin:0;
+}
+
+.summary-title__{{section.id}}{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.section-{{section.id}}[open] .icon{
+    transform: rotate(90deg);
+}
+
+.accordion__title{
+margin: 0;
+}
+.summary-header--title{
+    margin-top:{{section.settings.header_mtop}}px;
+    margin-bottom:{{section.settings.header_mbottom}}px;
+    text-align:{{section.settings.summary_layout}}
+}
+@media screen and (max-width: 999px) {
+    #myshopify-section-{{section.id}} .accordion__title{
+        font-size:18px
+    }
+    .accordion__content.rte{
+        font-size: 14px;
+    }
+}
+</style>
+
+<section class="section" id="myshopify-section-{{section.id}}">
+<div class="container text--layout">
+<h1 class="summary-header--title heading h1" style="color:{{section.settings.text_color}} ;">{{section.settings.header_text}}</h1>
+
+{%- for block in section.blocks -%}
+<style>
+    .section-template-{{forloop.index}} {
+    border-top:{{block.settings.border_top_size}}px solid {{block.settings.border_color}};
+
+    }
+    .summary-item-{{forloop.index}}{
+        margin-top:{{block.settings.margin_top}}px;
+        margin-bottom:{{block.settings.margin_botton}}px;
+    }
+   .section-template-{{forloop.index}}{
+    margin-bottom:{{block.settings.details_margin_botton}}px;
+   }
+   .accordion__title{
+    font-size:{{block.settings.title_size}}px;
+   }
+</style>
+
+<details class="section-{{section.id}} section-template-{{forloop.index}}" open>
+    <summary role="button" aria-expanded="true">
+        <div class="summary-title__{{section.id}} summary-item-{{forloop.index}}" >
+            <h2 class="accordion__title" >{{block.settings.title_text}} </h2>
+            {%- render 'icon',icon:'arrow-right'-%}
+        </div>
+    </summary>
+    <div class="accordion__content rte">
+       {{block.settings.centont_text}}
+    </div>
+    
+</details>
+{%- endfor -%}
+
+</div>
+
+</section>
+
+
+{% schema %}
+{
+  "name": "Summary text",
+  "settings": [{
+        "type": "text",
+        "id": "header_text",
+        "default": "Welcome to our store",
+        "label": "标题"
+  },{
+        "type": "color",
+        "id": "text_color",
+        "label": "文本颜色",
+        "default":"#1d1d1d"
+  },{
+        "type": "color",
+        "id": "background_color",
+        "label": "背景颜色"
+  },
+  {
+    "type":"range",
+    "id":"margin_tb",
+    "min":0,
+    "max":100,
+    "step":1,
+    "unit":"px",
+    "label":"上下边距",
+    "default":20
+  },
+  {
+    "type":"range",
+    "id":"text_size",
+    "min":0,
+    "max":100,
+    "step":1,
+    "unit":"px",
+    "label":"字体大小",
+    "default":15
+  },
+  {
+    "type":"range",
+    "id":"header_mtop",
+    "min":0,
+    "max":100,
+    "step":1,
+    "unit":"px",
+    "label":"主标题顶部边距",
+    "default":0
+  },
+  {
+    "type":"range",
+    "id":"header_mbottom",
+    "min":0,
+    "max":100,
+    "step":1,
+    "unit":"px",
+    "label":"主标题底部边距",
+    "default":0
+  },
+  {
+    "type":"select",
+    "label":"主标题对齐方式",
+    "id":"summary_layout",
+    "options":[{
+        "value":"left",
+        "label":"居左"
+    },{
+        "value":"center",
+        "label":"居中"
+    },{
+        "value":"right",
+        "label":"居右"
+    }],
+    "default":"left"
+  }],
+  "blocks":[{
+    "type":"text",
+    "name":"summary item",
+    "settings":[ {
+            "type":"text",
+            "id":"title_text",
+            "label":"标题",
+            "default":"summary"
+        },{
+            "type":"richtext",
+            "id":"centont_text",
+            "label":"内容"
+        },{
+            "type":"range",
+            "id":"title_size",
+            "min":0,
+            "max":100,
+            "step":1,
+            "unit":"px",
+            "label":"标题字体大小",
+            "default":16
+        },{
+            "type":"range",
+            "id":"margin_top",
+            "min":0,
+            "max":100,
+            "step":1,
+            "unit":"px",
+            "label":"标题顶部边距",
+            "default":16
+        },{
+            "type":"range",
+            "id":"margin_botton",
+            "min":0,
+            "max":100,
+            "step":1,
+            "unit":"px",
+            "label":"标题底部边距",
+            "default":16
+        },{
+            "type":"number",
+            "id":"border_top_size",
+            "label":"顶部边框大小",
+            "default":1
+        },{
+            "type":"color",
+            "id":"border_color",
+            "label":"顶部边框颜色",
+            "default":"#CCCCCC"
+        },{
+            "type":"range",
+            "id":"details_margin_botton",
+            "min":0,
+            "max":100,
+            "step":1,
+            "unit":"px",
+            "label":"底部边距",
+            "default":14
+        }]
+  }],
+  "presets": [
+  {
+    "name": "summary text"
+  }
+]
+}
+{% endschema  %}

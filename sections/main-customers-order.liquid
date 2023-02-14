@@ -257,17 +257,9 @@
                   {%- else -%}
                     <span class="order-foot__item-category">{{ 'customer.order.tax_excluded' | t }} ({{ tax_line.title }} {{ tax_line.rate_percentage }}%)</span>
                   {%- endif -%}
-
                   <span class="order-foot__item-value">{{ tax_line.price | money }}</span>
                 </div>
               {%- endfor -%}
-
-              {%- if order.total_duties > 0 -%}
-                <div class="order-foot__item order-foot__item">
-                  <span class="order-foot__item-category">{{ 'customer.order.total_duties' | t }}</span>
-                  <span class="order-foot__item-value">{{ order.total_duties | money }}</span>
-                </div>
-              {%- endif -%}
 
               {%- if order.total_refunded_amount > 0 -%}
                 <div class="order-foot__item order-foot__item">

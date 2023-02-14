@@ -1,17 +1,86 @@
-<div class="product-form__payment-container" {{ block.shopify_attributes }}>
+<div class="product-form__payment-container" {{ block.shopify_attributes }} >
+  <div class="select-size-no d-none"><svg t="1656656102365" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2538" width="200" height="200"><path d="M549.28 579.584c-2.528 27.584-20.064 40.48-37.376 40.48-12.864 0 0 0 0 0-16.448-3.104-29.216-10.112-34.816-38.016l-22.624-260.8c0-26.208 31.872-49.408 58.912-49.408s56.16 24.256 56.16 50.432L549.28 579.584zM512 654.176c-27.04 0-48.992 21.92-48.992 48.992s21.92 49.024 48.992 49.024 48.992-21.952 48.992-49.024c0-27.04-21.92-48.992-48.992-48.992zM899.808 512c0 214.176-173.6 387.776-387.84 387.776-214.144 0-387.776-173.6-387.776-387.776s173.632-387.808 387.776-387.808c214.208 0 387.84 173.632 387.84 387.808zM828 512c0-174.528-141.472-315.968-316-315.968S196.032 337.472 196.032 512c0 174.496 141.44 315.968 315.968 315.968S828 686.496 828 512z" p-id="2539"></path></svg>Please Select Size</div>
+  {% for tag in product.tags %}
+    {%- if forloop.index == 1 -%}
+      {%- assign tags = tag | handleize -%}
+    {%- else -%}
+      {%- assign tagtitlie = tag | handleize -%}
+      {%- assign tags = tags | append: "," | append: tagtitlie -%}
+    {%- endif -%}
+  {% endfor %}
+
+ {%- for line_item in cart.items -%}
+  {%- if forloop.index == 1 -%}
+    {%- assign id = line_item.sku -%}
+  {%- else -%}
+    {%- assign id = id  | append: "," | append: line_item.sku  -%}
+  {%- endif  -%}
+ {%- endfor  -%}
   {%- if product.template_suffix != 'contact' -%}
-    {%- if product.selected_or_first_available_variant.available -%}
+		{% assign isSoldOut = ture %}
+		{% for pro_variant in product.variants %}
+			{% if pro_variant.available == true  %}
+				{% assign isSoldOut = false %}
+			{% endif %}
+		{% endfor %}
+    {%- if isSoldOut == false -%}
       {%- if product.template_suffix == 'pre-order' -%}
-        <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart">{{ 'product.form.pre_order' | t }}</button>
+        <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart" >{{ 'product.form.pre_order' | t }}</button>
       {%- else -%}
-        <button type="submit" class="product-form__add-button button button--primary" data-action="add-to-cart">{{ 'product.form.add_to_cart' | t }}</button>
+        <button type="submit" class="product-form__add-button button button--primary"
+         data-scenable="1" data-sctype="addCart"
+         data-productid="{{product.id}}"
+         data-scdata='{"is_quick_view":{% if template == "product.quick-view" %}1{% else %}0{% endif %},
+							"commodity_spuid": "{{product.handle}}",
+               "commodity_name": "{{product.title | handleize }}",
+							"currency_unit":"USD",
+							"commodity_skuid":"{{ product.selected_or_first_available_variant.sku }}",
+              "commodity_size":"",
+				      "commodity_color":"",
+							"commodity_image_quantity":"{{product.images.size}}",
+              "commodity_description_text":["{{product.description | handleize }}"],
+				      "commodity_description_image":["{{ product.featured_image | image_url | split: "?" | first  }}"],
+							"commodity_tag":"{{ tags }}",
+              "commodity_type":"{{product.type | handleize}}",
+							"original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}",
+			      	"current_price":"{{ product.selected_or_first_available_variant.price }}",
+              "discount_price":"",
+              "compliment_commodities":"{{ id }}",
+              "bonus_name":"",
+              "bonus_amount":0,
+              "entrance":"{%- if isQuickView -%}QuickView_AddToCart{%- else -%}CommodityDetailPage_AddToCart{%- endif -%}"}'
+         data-action="add-to-cart" >{{ 'product.form.add_to_cart' | t }}</button>
       {%- endif -%}
     {%- else -%}
       <button type="submit" class="product-form__add-button button button--disabled" disabled>{{ 'product.form.sold_out' | t }}</button>
     {%- endif -%}
 
     {%- if block.settings.show_payment_button and product.template_suffix != 'pre-order' -%}
-      {{ form | payment_button }}
+      <div
+      data-scenable="1"
+      data-sctype="addCart"
+      data-scsession='{"entrance":"QuickView_BuyItNow"}'
+      data-scdata='{
+        "is_quick_view":{% if template == "product.quick-view" %}1{% else %}0{% endif %},
+							"commodity_spuid": "{{product.handle}}",
+               "commodity_name": "{{product.title | handleize }}",
+							"currency_unit":"USD",
+							"commodity_skuid":"",
+              "commodity_size":"",
+				      "commodity_color":"",
+							"commodity_image_quantity":"{{product.images.size}}",
+              "commodity_description_text":["{{product.description | handleize }}"],
+				      "commodity_description_image":["{{ product.featured_image | image_url | split: "?" | first  }}"],
+							"commodity_tag":"{{ tags }}",
+              "commodity_type":"{{product.type | handleize}}",
+							"original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}",
+			      	"current_price":"{{ product.selected_or_first_available_variant.price }}",
+              "discount_price":"",
+              "compliment_commodities":"{{ id }}",
+              "bonus_name":"",
+              "bonus_amount":0,
+              "entrance":"QuickView_BuyItNow"}'>
+    {{ form | payment_button }}</div>
     {%- endif -%}
   {%- else -%}
     <a href="mailto:{{ shop.email }}" class="button button--primary">{{ 'product.form.contact_us' | t }}</a>
@@ -25,3 +94,16 @@
     </style>
   {%- endif -%}
 </div>
+
+{%- comment -%}
+<div data-pp-message data-pp-placement="product" data-pp-amount="{{cart.total_price| money_without_currency }}" data-pp-buyercountry="US" data-pp-style-align="center"></div>
+{%- endcomment -%}
+<div class="payment-list">
+  {% for type in shop.enabled_payment_types %}
+    {%- if type =='paypal' or type=='unionpay' or type=='visa' or type=='american_express' or type=='maestro'or type=='master' or type=='diners_club' or type=='discover'or type=='jcb'or type=='trustly' %}
+      {{ type | payment_type_svg_tag: class: 'payment-list__item' }}
+    {%- endif -%}
+  {% endfor %}
+<svg style="background: #FFFFFF" class="payment-list__item" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 468 222.5" style="enable-background:new 0 0 468 222.5" xml:space="preserve"><style>.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#635bff}</style><path class="st0" d="M414 113.4c0-25.6-12.4-45.8-36.1-45.8-23.8 0-38.2 20.2-38.2 45.6 0 30.1 17 45.3 41.4 45.3 11.9 0 20.9-2.7 27.7-6.5v-20c-6.8 3.4-14.6 5.5-24.5 5.5-9.7 0-18.3-3.4-19.4-15.2h48.9c0-1.3.2-6.5.2-8.9zm-49.4-9.5c0-11.3 6.9-16 13.2-16 6.1 0 12.6 4.7 12.6 16h-25.8zM301.1 67.6c-9.8 0-16.1 4.6-19.6 7.8l-1.3-6.2h-22v116.6l25-5.3.1-28.3c3.6 2.6 8.9 6.3 17.7 6.3 17.9 0 34.2-14.4 34.2-46.1-.1-29-16.6-44.8-34.1-44.8zm-6 68.9c-5.9 0-9.4-2.1-11.8-4.7l-.1-37.1c2.6-2.9 6.2-4.9 11.9-4.9 9.1 0 15.4 10.2 15.4 23.3 0 13.4-6.2 23.4-15.4 23.4zM223.8 61.7l25.1-5.4V36l-25.1 5.3zM223.8 69.3h25.1v87.5h-25.1zM196.9 76.7l-1.6-7.4h-21.6v87.5h25V97.5c5.9-7.7 15.9-6.3 19-5.2v-23c-3.2-1.2-14.9-3.4-20.8 7.4zM146.9 47.6l-24.4 5.2-.1 80.1c0 14.8 11.1 25.7 25.9 25.7 8.2 0 14.2-1.5 17.5-3.3V135c-3.2 1.3-19 5.9-19-8.9V90.6h19V69.3h-19l.1-21.7zM79.3 94.7c0-3.9 3.2-5.4 8.5-5.4 7.6 0 17.2 2.3 24.8 6.4V72.2c-8.3-3.3-16.5-4.6-24.8-4.6C67.5 67.6 54 78.2 54 95.9c0 27.6 38 23.2 38 35.1 0 4.6-4 6.1-9.6 6.1-8.3 0-18.9-3.4-27.3-8v23.8c9.3 4 18.7 5.7 27.3 5.7 20.8 0 35.1-10.3 35.1-28.2-.1-29.8-38.2-24.5-38.2-35.7z"/></svg>
+</div>
+

@@ -1,6 +1,7 @@
 {%- capture section_settings -%}
 {
-  "currentProductId": {{ product.id | json }}
+  "currentProductId": {{ product.id | json }},
+  "mobileStackable":{{section.settings.product_grid}}
 }
 {%- endcapture -%}
 
@@ -8,15 +9,21 @@
   <div class="container">
     {%- if section.settings.title != blank -%}
       <header class="section__header">
-        <h2 class="section__title heading h3">{{ section.settings.title | escape }}</h2>
+        {% style %}
+         .heading{
+          color:{{ section.settings.title_color }}
+         }
+        {% endstyle %}
+        <h2 class="section__title heading h3 font_16">{{ section.settings.title | escape }}</h2>
       </header>
     {%- endif -%}
-
-    <div class="recently-viewed-products-placeholder">
+    <div class="recently-viewed-products-placeholder pb-80">
       {%- if request.page_type == 'search' -%}
         <div class="scroller">
           <div class="scroller__inner">
-            <div class="product-list product-list--vertical product-list--scrollable">
+            {%- assign layout_mode = section.settings.product_layout -%}
+            <div class="product-list  product-list--vertical product-list--scrollable {% if product_grid %}product-list--mobile{% endif %}">
+             
               {%- comment -%}
               NOTE: we are doing an inner for loop to preserve the order (from most recently seen to oldest one), as search.results, out of the box,
                     will order by title, which is not really desirable. As the number of recently viewed products is kept small, I think the inner loop
@@ -30,7 +37,7 @@
 
                 {%- for product in search.results -%}
                   {%- if product.id == id -%}
-                    {%- render 'product-item', product: product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy -%}
+                    {%- render 'product-item', product: product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy,forloop:forloop,first_mkt_name:'Recently viewed' -%}
                     {%- break -%}
                   {%- endif -%}
                 {%- endfor -%}
@@ -87,11 +94,23 @@
       "default": "Recently viewed"
     },
     {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading color",
+      "default": "#000"
+      },
+    {
       "type": "checkbox",
       "id": "show_quick_buy",
       "label": "Show quick buy",
       "default": false
+    },{
+      "type":"checkbox",
+      "id":"product_grid",
+      "label":"移动端启用网格布局",
+      "default":false
     }
+    
   ],
   "presets": [
     {

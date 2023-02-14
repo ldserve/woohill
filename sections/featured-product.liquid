@@ -161,7 +161,8 @@
         </div>
       {%- endif -%}
     </div>
-  </div>
+
+</div>
 
   {%- if product != blank -%}
     <script>
@@ -169,8 +170,8 @@
       ShopifyXR('addModels', {{ product.media | where: 'media_type', 'model' | json }});
     </script>
   {%- endif -%}
+ 
 </section>
-
 {% schema %}
 {
   "name": "Featured product",
@@ -302,41 +303,6 @@
           "label": "Show dynamic checkout button",
           "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
           "default": true
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "Text",
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "This text will appear on the right part of the page."
-        },
-        {
-          "type": "richtext",
-          "id": "content",
-          "label": "Text"
-        }
-      ]
-    },
-    {
-      "type": "button",
-      "name": "Button",
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "This button will appear on the right part of the page."
-        },
-        {
-          "type": "text",
-          "id": "text",
-          "label": "Text"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link"
         }
       ]
     },

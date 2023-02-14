@@ -1,0 +1,32 @@
+<script type="text/javascript">
+var page_title = "OtherPage";
+switch({{request.page_type | json}}) {
+	case 'index': 
+	page_title = "HomePage";
+	break;
+	case 'product':
+	page_title = "ProductDetailPage";
+	break;
+	case 'collection':
+	page_title = "CategoryListPage";
+	break;
+	case 'cart':
+	page_title = "CartPage";
+	break;
+}
+sensors.quick('isReady',function(){
+	new sadhus_shence({
+	   container:"body",
+	   type: "mktClick",
+	   customData: function (container,el) {
+		   	var newData = {};
+		    newData.page_title = page_title;
+			var productItem = el.closest(".product-item")
+		    if (el.classList.contains('product-item_mktClick') && productItem && productItem.querySelector(".color-swatch__radio:checked")) {
+		    	newData.commodity_skuid =productItem.querySelector(".color-swatch__radio:checked").getAttribute("data-sku");
+		    }
+		    return newData;
+		}
+	});
+});
+</script>

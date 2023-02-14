@@ -43,7 +43,7 @@
       {%- endif -%}
 
       <div class="form__input-wrapper form__input-wrapper--labelled">
-        <input type="email" id="customer[email]" class="form__field form__field--text" name="customer[email]" autocomplete="email" required="required" {% if form.errors contains 'email' %}aria-invalid="true" aria-describedby="register-form-error"{% endif %}>
+        <input type="email" id="customer[email]" class="form__field form__field--text" name="customer[email]" required="required" {% if form.errors contains 'email' %}aria-invalid="true" aria-describedby="register-form-error"{% endif %}>
         <label for="customer[email]" class="form__floating-label">{{ 'customer.register.email' | t }}</label>
       </div>
 

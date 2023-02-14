@@ -1,5 +1,6 @@
 {%- if paginate.pages > 1 -%}
-  <div class="pagination">
+
+  <div class="pagination {{class}} sadhus_agination" data-resultPage="{{ paginate.current_page }}">
     <div class="pagination__inner">
       {%- if paginate.previous -%}
         <a class="pagination__prev link" rel="prev" title="{{ 'general.pagination.previous_page' | t }}" data-page="{{ paginate.current_page | minus: 1 }}" href="{{ paginate.previous.url }}{{ hash }}">
@@ -26,4 +27,8 @@
       {%- endif -%}
     </div>
   </div>
+  <script >
+    window.theme.currentPage={{paginate.current_page | json}};
+    window.theme.pages={{paginate.pages | json}};
+    </script>
 {%- endif -%}

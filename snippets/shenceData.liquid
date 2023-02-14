@@ -1,0 +1,597 @@
+<script>
+
+   if ({{ request.page_type | json }} == 'collection') {/*集合页*/
+
+   let addQuickView=new sadhus_shence({
+      container:"body",
+      type:"addCart",
+      sendType:"AddToCart",
+      setSessionId:"sensorsCheckout",
+      customData: function(container,el){/*形参为当前容器dom */
+         let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+
+         newData.commodity_quantity = 1
+         let data =  el.getAttribute('data-scdata')
+         data=JSON.parse(data)
+         newData.compliment_commodities=data.compliment_commodities.split(',')
+         newData.commodity_tag=data.commodity_tag.split(',')
+         const valueSelected=document.querySelector('.select-wrapper option[selected]')
+         let sku = ""
+         let id=""
+         if(valueSelected){
+            sku =  valueSelected.getAttribute('data-sku') || ""
+            id =  valueSelected.value || ""
+         }
+        id= el.dataset.productid
+         const formParent=el.closest('.product-form')
+         const colorChecked=formParent.querySelector('.product-form__option[data-selector-type="color"]')
+         const sizeChecked= formParent.querySelector('.product-form__option[data-selector-type="block"]')
+         newData.commodity_color=colorChecked?colorChecked.querySelector('.product-form__selected-value').innerText : ""
+         newData.commodity_size=sizeChecked?sizeChecked.querySelector('.product-form__selected-value').innerText : ""
+         newData.commodity_skuid=sku
+         gtag("event","conversion",{"send_to":"AW-319309832/2I9aCIf48eYCEIiQoZgB","transaction_id":""});
+         pintrk("track","addtocart",{value:data.current_price,order_quantity:1,currency:"USD",line_items:[{product_id:id,product_category:data.commodity_type}]});
+         gtag('event', 'conversion', { 'send_to': 'AW-11080226206/5eNWCI2M4IkYEJ6ru6Mp','transaction_id': ''});
+        return newData  /*返回值必须为{}*/
+      },
+      callback:function(){
+          sensors.setProfile({last_addtocart_time:getFormatDate()})
+          addQuickView.updateFn();
+      }
+   })
+   new sadhus_shence({
+      delayed:true,
+      container:".product-list.product-list--collection",
+      type:"quickView",
+      event:'click',
+      sendType:"CommodityDetail",
+      customData: function(container,el){/*形参为当前容器dom */
+         let newData={};
+              if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category| json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         try {  newData.entry_source=document.referrer||''} catch (error) {newData.entry_source=''}
+       
+         let data = el.getAttribute('data-scdata')
+         data=JSON.parse(data)
+         newData.commodity_tag=data.commodity_tag.split(',')
+         return newData  /*返回值必须为{}*/
+      }
+   })
+
+
+
+   new sadhus_shence({
+         delayed:true,
+      container:"body",
+      type:"valueChange",
+      event:'click',
+      sendType:"CommodityDetail",
+      customData: function(container,el){/*形参为当前容器dom */
+         let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         let data = el.getAttribute('data-scdata')
+         data=JSON.parse(data)
+         const valueSelected=document.querySelector('.select-wrapper option[selected]')
+         let id = ""
+         if(valueSelected){
+            id =  valueSelected.getAttribute('data-sku') || ""
+         }
+         const formParent=el.closest('.product-form')
+         const colorChecked=formParent.querySelector('.product-form__option[data-selector-type="color"]')
+         const sizeChecked = formParent.querySelector('.product-form__option[data-selector-type="block"]')
+         newData.commodity_color=colorChecked?colorChecked.querySelector('.product-form__selected-value').innerText : ""
+         newData.commodity_size=sizeChecked?sizeChecked.querySelector('.product-form__selected-value').innerText : ""
+         newData.commodity_skuid=id
+         newData.commodity_tag=data.commodity_tag.split(',')
+         try {  newData.entry_source=document.referrer||''} catch (error) {newData.entry_source=''}
+         return newData  /*返回值必须为{}*/
+      },
+   })
+
+   }
+
+   if ({{ request.page_type | json }} == 'product') {/*产品页*/
+      document.querySelector('.shenceDetail .ld-variant-list')
+      if( document.querySelector('.shenceDetail .ld-variant-list')){
+         new sadhus_shence({
+      delayed:true,
+      container:".shenceDetail .ld-variant-list",
+      type:"valueChange",
+      event:'click',
+      sendType:"CommodityDetail",
+      customData:function (container,el){/*形参为当前容器dom */
+         let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+
+         let data =  el.getAttribute('data-scdata')
+         data=JSON.parse(data)
+         const valueSelected=document.querySelector('.select-wrapper option[selected]')
+         let id = ""
+         if(valueSelected){
+            id =  valueSelected.getAttribute('data-sku') || ""
+         }
+         const formParent=el.closest('.product-form')
+         const colorChecked=formParent.querySelector('.product-form__option[data-selector-type="color"]')||formParent.querySelector('.product-form__option[data-selector-type="variant"]')
+         const sizeChecked= formParent.querySelector('.product-form__option[data-selector-type="block"]')
+         newData.commodity_color=colorChecked?colorChecked.querySelector('.product-form__selected-value').innerText : ""
+         newData.commodity_size=sizeChecked?sizeChecked.querySelector('.product-form__selected-value').innerText : ""
+         newData.commodity_skuid=id
+         newData.commodity_tag=data.commodity_tag.split(',')
+         try {  newData.entry_source=document.referrer||''} catch (error) {newData.entry_source=''}
+         return newData  /*返回值必须为{}*/
+      },
+   })
+      }
+
+
+   new sadhus_shence({
+      container:".shenceDetail",
+      event:'load',
+      sendType:"CommodityDetail",
+      customData: function(container,el){/*形参为当前容器dom */
+         let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         let data=  el.getAttribute('data-scdata')
+         data=JSON.parse(data)
+         newData.commodity_tag=data.commodity_tag.split(',')
+         const valueSelected=container.querySelector('.select-wrapper option[selected]')
+         let id = ""
+         if(valueSelected){
+            id =  valueSelected.getAttribute('data-sku') || ""
+         }
+         const colorChecked=container.querySelector('.ld-variant input[checked]')
+         const sizeChecked=container.querySelector('.block-swatch input[checked]')
+         newData.commodity_color=colorChecked?colorChecked.value : ""
+         newData.commodity_size=sizeChecked?sizeChecked.value : ""
+         newData.site_category = getSiteCategory()
+         try {  newData.entry_source=document.referrer||''} catch (error) {newData.entry_source=''}
+         return newData  /*返回值必须为{}*/
+      }
+   })
+   let addCart=new sadhus_shence({
+      delayed:true,
+      container:".shenceDetail .product-form",
+      event:"click",
+      type:"addCart",
+      sendType:"AddToCart",
+      customData: function(container,el){/*形参为当前容器dom */
+         let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         newData.commodity_quantity = 1
+          let data =  el.getAttribute('data-scdata')
+         data=JSON.parse(data)
+         newData.compliment_commodities=data.compliment_commodities.split(',')
+         newData.commodity_tag=data.commodity_tag.split(',')
+         const valueSelected=document.querySelector('.select-wrapper option[selected]')
+         let sku = ""
+         let id=""
+         if(valueSelected){
+            sku =  valueSelected.getAttribute('data-sku') || ""
+            id =  valueSelected.value || ""
+         }
+         id= el.dataset.productid
+         const formParent=el.closest('.product-form')
+         const colorChecked=formParent.querySelector('.product-form__option[data-selector-type="color"]')||formParent.querySelector('.product-form__option[data-selector-type="variant"]')
+         const sizeChecked= formParent.querySelector('.product-form__option[data-selector-type="block"]')
+         newData.commodity_color=colorChecked?colorChecked.querySelector('.product-form__selected-value').innerText : ""
+         newData.commodity_size=sizeChecked?sizeChecked.querySelector('.product-form__selected-value').innerText : ""
+         newData.commodity_skuid=sku
+         newData.site_category = getSiteCategory()
+         gtag("event","conversion",{"send_to":"AW-319309832/2I9aCIf48eYCEIiQoZgB","transaction_id":""});
+         pintrk("track","addtocart",{value:data.current_price,order_quantity:1,currency:"USD",line_items:[{product_id:id,product_category:data.commodity_type}]});
+          gtag('event', 'conversion', { 'send_to': 'AW-11080226206/5eNWCI2M4IkYEJ6ru6Mp', 'transaction_id': '' });
+        return newData  /*返回值必须为{}*/
+      },
+      callback:function(){
+          sensors.setProfile({last_addtocart_time:getFormatDate()})
+          addCart.updateFn();
+      }
+   })
+   }
+
+   new sadhus_shence({
+      delayed:true,
+      container:"body",
+      type:"addMinCart",
+      event:'click',
+      sendType:"AddToCart",
+      userTabel:{last_addtocart_time:getFormatDate()},
+      customData: function(container,el){/*形参为当前容器dom */
+        let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         let data=el.getAttribute('data-scdata')
+         let id=el.getAttribute('data-id')
+         data=JSON.parse(data)
+
+         newData.compliment_commodities=data.compliment_commodities.split(',')
+         newData.commodity_tag=data.commodity_tag.split(',')
+         newData.site_category = getSiteCategory()
+         gtag("event","conversion",{"send_to":"AW-319309832/2I9aCIf48eYCEIiQoZgB","transaction_id":""});
+         pintrk("track","addtocart",{value:data.current_price,order_quantity:1,currency:"USD",line_items:[{product_id:id,product_category:data.commodity_type}]});
+          gtag('event', 'conversion', { 'send_to': 'AW-11080226206/5eNWCI2M4IkYEJ6ru6Mp', 'transaction_id': '' });
+         return newData  /*返回值必须为{}*/
+      },
+      callback:function(){
+          sensors.setProfile({last_addtocart_time:getFormatDate()})
+      }
+   })
+
+   new sadhus_shence({
+      delayed:true,
+      container:"body",
+      type:"minusMinCart",
+      event:'click',
+      sendType:"RemoveFromCart",
+      customData: function(container,target){/*形参为当前容器dom */
+        let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+         newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         let data =target && target.getAttribute('data-scdata')
+         // let data=  container.querySelector('.quantity-selector__button').getAttribute('data-scdata')
+        try {data=JSON.parse(data)} catch (error) {
+         data={compliment_commodities:[],commodity_tag:[]}
+         } 
+         newData.compliment_commodities=data.compliment_commodities.split(',')
+         newData.commodity_tag=data.commodity_tag.split(',')
+         newData.site_category = getSiteCategory()
+         return newData  /*返回值必须为{}*/
+      }
+   })
+
+   new sadhus_shence({
+      delayed:true,
+      container:"body",
+      type:"removeMinCart",
+      event:'click',
+      sendType:"RemoveFromCart",
+      customData: function(container,target){/*形参为当前容器dom */
+        let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         let data =target && target.getAttribute('data-scdata')
+         // let data=  container.querySelector('.quantity-selector__button').getAttribute('data-scdata')
+        try {data=JSON.parse(data)} catch (error) {
+         data={compliment_commodities:[],commodity_tag:[]}
+         } 
+         // let data = container.querySelector('.ld-link-item').getAttribute('data-scdata')
+         newData.compliment_commodities=data.compliment_commodities.split(',')
+         newData.commodity_tag=data.commodity_tag.split(',')
+         newData.site_category = getSiteCategory()
+         return newData  /*返回值必须为{}*/
+      }
+   })
+
+   if ({{ request.page_type | json }} == 'cart') {/*购物车页*/
+   new sadhus_shence({
+         delayed:true,
+      container:"body",
+      type:"addMainCart",
+      event:'click',
+      sendType:"AddToCart",
+      userTabel:{last_addtocart_time:getFormatDate()},
+      customData: function(container){/*形参为当前容器dom */
+        let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         let data=  container.querySelector('.addCart').getAttribute('data-scdata')
+         let id= container.querySelector('.addCart').getAttribute('data-id')
+         data=JSON.parse(data)
+         newData.compliment_commodities=data.compliment_commodities.split(',')
+         newData.commodity_tag=data.commodity_tag.split(',')
+         newData.site_category = getSiteCategory()
+         gtag("event","conversion",{"send_to":"AW-319309832/2I9aCIf48eYCEIiQoZgB","transaction_id":""});
+         pintrk("track","addtocart",{value:data.current_price,order_quantity:1,currency:"USD",line_items:[{product_id:id,product_category:data.commodity_type}]});
+          gtag('event', 'conversion', { 'send_to': 'AW-11080226206/5eNWCI2M4IkYEJ6ru6Mp', 'transaction_id': '' });
+         return newData  /*返回值必须为{}*/
+      },
+      callback:function(){
+          sensors.setProfile({last_addtocart_time:getFormatDate()})
+      }
+   })
+
+   new sadhus_shence({
+         delayed:true,
+      container:"body",
+      type:"minusMainCart",
+      event:'click',
+      sendType:"RemoveFromCart",
+      customData: function(container){/*形参为当前容器dom */
+        let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         let data=  container.querySelector('.removeCart').getAttribute('data-scdata')
+         data=JSON.parse(data)
+         newData.compliment_commodities=data.compliment_commodities.split(',')
+         newData.commodity_tag=data.commodity_tag.split(',')
+         newData.site_category = getSiteCategory()
+         return newData  /*返回值必须为{}*/
+      }
+   })
+
+   new sadhus_shence({
+      delayed:true,
+      container:"body",
+      type:"removeMainCart",
+      event:'click',
+      sendType:"RemoveFromCart",
+      customData: function(container){/*形参为当前容器dom */
+        let newData={};
+         if(!{{product.metafields.my_fields.category | json}} ){
+         newData.first_commodity=""
+         newData.second_commodity=""
+         newData.third_commodity= ""
+         } else{
+         const category = {{product.metafields.my_fields.category |  json}}
+          newData.first_commodity=category.first_commodity
+         newData.second_commodity=category.second_commodity
+         newData.third_commodity= category.third_commodity
+         }
+         let data=  container.querySelector('.ld-link-item').getAttribute('data-scdata')
+         data=JSON.parse(data)
+         newData.compliment_commodities=data.compliment_commodities.split(',')
+         newData.commodity_tag=data.commodity_tag.split(',')
+         newData.site_category = getSiteCategory()
+         return newData  /*返回值必须为{}*/
+      }
+   })
+
+   }
+
+
+   /*@Author   苦行僧|2022/1/4*/
+   /*点击预测搜索产品-上报当前点击产品信息*/
+   new sadhus_shence({
+     container: ".header__search-bar-wrapper",
+     type: "SearchResultClick",
+     customData: function(container){
+       let newData={};
+       let sel=container.querySelector("#search-product-type");
+       newData.key_word= container.querySelector(".search-bar__input ").value;
+       newData.key_word_classification=sel.options[sel.selectedIndex].value;
+       if(newData.key_word_classification===""){newData.key_word_classification="All categories"}
+       newData.search_type="点击自动联想内容";
+       newData.currency_unit="USD";
+       newData.result_page="";
+       return newData
+     },
+     callback:function (){
+       sensors.setProfile({ last_search_time: getFormatDate() });
+     }
+   });
+   /*点击预测搜索产品-上报当前所有搜索结果*/
+   new sadhus_shence({
+     container: ".header__search-bar-wrapper",
+     typeName:"sctypepros",
+     dataName: "scdatapros",
+     enableName:'scenablepros',
+     type: "SearchRequest",
+     customData:function (container) {
+       let newData={};
+       let sel=container.querySelector("#search-product-type");
+       newData.key_word= container.querySelector(".search-bar__input ").value;
+       newData.key_word_classification=sel.options[sel.selectedIndex].value;
+       if(newData.key_word_classification===""){newData.key_word_classification="All categories"}
+       newData.search_type="自动联想";
+       let listStr=container.querySelector("[data-skulist]").dataset.skulist;
+       let listArr=listStr.split(',');
+       listArr.pop();
+       newData.commodity_skuid_list=listArr;
+       return newData
+     }
+   });
+   /*点击搜索按钮和viewall-记录session*/
+   new sadhus_shence({
+     container:".header__search-bar-wrapper",
+     type:"searchjump",
+     setSessionId:"sensorsSearchRequesth",
+     customSession:function(container){
+       let newData={};
+       let sel=container.querySelector("#search-product-type");
+       newData.key_word= container.querySelector(".search-bar__input ").value;
+       newData.key_word_classification=sel.options[sel.selectedIndex].value;
+       if(newData.key_word_classification===""){newData.key_word_classification="All categories"}
+       return newData;
+     },
+     callback:function (){
+       sensors.setProfile({ last_search_time: getFormatDate() });
+     }
+   });
+   /*搜索结果页面*/
+   {%- if request.page_type =="search" -%}
+   /*打开-默认上报-删除session，转存session用于点击上报*/
+   new sadhus_shence({
+     event:"sync",
+     container:".page__content .collection",
+     type:"SearchRequest",
+     getSessionId:"sensorsSearchRequesth",
+     setSessionId: "sensorsSearchResultClick",
+     delSession:true,
+     customSession:function (container) {
+       let newData={};
+       newData=JSON.parse(sessionStorage.getItem('sensorsSearchRequesth'));
+       return newData;
+     },
+      customData:function (el) {
+       let newData={};
+       const data=el.dataset.scdata;
+       let scdata=JSON.parse(data);
+       let listArr=scdata.commodity_skuid_list.split(',');
+       listArr.pop();
+       newData.commodity_skuid_list=listArr
+       return newData;
+     }
+   });
+   /*点击产品-上报产品信息*/
+   new sadhus_shence({
+     container:".page__content .collection__dynamic-part",
+     type:"SearchResultClick",
+     getSessionId: "sensorsSearchResultClick",
+     customData: function(container){
+       let newData={};
+       newData.currency_unit="USD";
+       newData.result_number=container.querySelector(".product-list--collection").dataset.resultnumber;
+       const aginationEl=container.querySelector(".sadhus_agination");
+       if(aginationEl){
+         newData.result_page=aginationEl.dataset.resultpage;
+         }else{
+         newData.result_page="1";
+         }
+
+       let session=sessionStorage.getItem('sensorsSearchResultClick');
+       session=JSON.parse(session);
+       Object.assign(newData,session)
+       return newData
+     }
+   });
+   /*点击搜索按钮-记录session*/
+   let clickSearch= new sadhus_shence({
+     container:".form__connected-item",
+     type:"searchjump",
+     setSessionId:"sensorsSearchRequesth",
+     customSession:function(container){
+       let newData={};
+       newData.key_word= container.querySelector("#search ").value;
+       newData.key_word_classification='All categories';
+       return newData;
+     },
+     callback:function (){
+       clickSearch.updateFn();
+       sensors.setProfile({ last_search_time: getFormatDate() });
+     }
+   });
+   {%- endif -%}
+
+      // 加购
+         let purchaseList = document.querySelectorAll('.card__section .exhibition-right')
+            purchaseList && purchaseList.forEach(purchase => {
+               purchase.querySelector('.add-button') && new sadhus_shence({
+                  container: purchase,
+                  type: "collcation-addCart",
+                  event: "click",
+                  // debug: true,
+                  sendType: "AddToCart",
+                  customData: function (container, el) {
+                     const newData = {}
+                     const colorChecked = purchase.querySelector('.color-swatch__radio[checked]')
+                     const sizeChecked = purchase.querySelector('.block-swatch__radio[checked]')
+                     const jsonData = purchase.closest('.exhibition').querySelector('[type="application/json"]')
+                     const productData = JSON.parse(jsonData.innerHTML)
+                     let spuId = "{{ product.handle }}"
+                     let id = ''
+                     id = el.dataset.productid
+                     let data = el.getAttribute('data-scdata')
+                     data = JSON.parse(data)
+                     newData.collocation_spuid = spuId ? spuId : "";
+                     newData.commodity_color = colorChecked ? colorChecked.value : ""
+                     newData.commodity_size = sizeChecked ? sizeChecked.value : ""
+                     if (!colorChecked || !sizeChecked) return newData
+                     const sku = purchase.querySelector('input[data-sku]').getAttribute('data-sku')
+                     newData.commodity_skuid = sku ? sku : "";
+                     gtag("event", "conversion", { "send_to": "AW-319309832/2I9aCIf48eYCEIiQoZgB", "transaction_id": "" });
+                     pintrk("track", "addtocart", { value: data.current_price, order_quantity: 1, currency: "USD", line_items: [{ product_id: id ,product_category:data.commodity_type}] });
+                      gtag('event', 'conversion', { 'send_to': 'AW-11080226206/5eNWCI2M4IkYEJ6ru6Mp', 'transaction_id': '' });
+                     return newData
+                  },
+                  callback: function () {
+                     sensors.setProfile({ last_addtocart_time: getFormatDate() })
+                     this.updateFn();
+                  }
+               })
+            })
+
+   </script>  

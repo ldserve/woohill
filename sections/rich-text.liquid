@@ -9,13 +9,20 @@
     {%- assign container_classes = 'container' -%}
 {%- endcase -%}
 
-<section class="section section--text-centered" data-section-id="{{ section.id }}" data-section-type="rich-text">
-  <div class="{{ container_classes }}">
+
+<style>
+  .rich-section-{{section.id}}{
+    font-size:{{section.settings.font_size}}px;
+  }
+</style>
+
+<section class="section section--text-centered section__text--layout" data-section-id="{{ section.id }}" data-section-type="rich-text" style="margin-top:{{section.settings.margin_top}}px; margin-bottom: {{section.settings.margin_botton}}px;margin-left:{{section.settings.margin_lr}}px;margin-right:{{section.settings.margin_lr}}px;background-color: {{section.settings.background}};">
+  <div class="{{ container_classes }} text--layout" style=" text-align: {{section.settings.text_layout}}; color: {{section.settings.text_color}}; ">
     {%- if section.settings.title != blank -%}
-      <h2 class="heading h1">{{ section.settings.title | escape }}</h2>
+      <h2 class="heading h1" style="color: {{section.settings.title_color}};">{{ section.settings.title | escape }}</h2>
     {%- endif -%}
 
-    <div class="rte">
+    <div class="rte rich-section-{{section.id}}">
       {{ section.settings.content }}
 
       {%- if section.settings.button_link != blank and section.settings.button_text != blank -%}
@@ -48,6 +55,80 @@
         }
       ],
       "default": "narrow"
+    },{
+      "type": "select",
+      "id": "text_layout",
+      "label": "文本对齐方式",
+      "options": [
+      {
+        "value":"left",
+        "label":"左对齐"
+      },{
+        "value":"center",
+        "label":"居中对齐"
+      },{
+        "value":"right",
+        "label":"右对齐"
+      }],
+      "default": "center"
+    },
+    
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "标题文本颜色",
+      "default": "#1b1b1b"
+    },{
+      "type": "color",
+      "id": "text_color",
+      "label": "文本颜色",
+      "default": "#1b1b1b"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "背景颜色",
+      "default": "#edece6"
+    },
+    {
+      "type":"range",
+      "id":"margin_top",
+      "min":0,
+      "max":100,
+      "step":1,
+      "unit":"px",
+      "label":"顶部边距",
+      "default":20
+    },
+    {
+      "type":"range",
+      "id":"margin_botton",
+      "min":0,
+      "max":100,
+      "step":1,
+      "unit":"px",
+      "label":"底部边距",
+      "default":20
+    },
+    {
+      "type":"range",
+      "id":"font_size",
+      "min":10,
+      "max":100,
+      "step":1,
+      "unit":"px",
+      "label":"正文字体大小",
+      "default":16
+    },
+    {
+      "type":"range",
+      "id":"margin_lr",
+      "min":0,
+      "max":100,
+      "step":1,
+      "unit":"px",
+      "label":"左右边距",
+      "default":0
     },
     {
       "type": "text",

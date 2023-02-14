@@ -1,0 +1,1104 @@
+{%- assign quantity = 0 -%}
+{%- assign if_use_bonus = 0 -%}
+{% for line_item in checkout.line_items %}
+	{%- assign unique_quantity = forloop.index -%}
+	{%- for discount_allocation in line_item.line_level_discount_allocations -%}
+		{% assign bonus_amount = discount_allocation.amount %}
+		{% assign bonus_name = discount_allocation.discount_application.title %}
+		{%- if line_item.line_level_discount_allocations != blank -%}
+			{% assign if_use_bonus = 1 %}
+		{% endif %}
+	{%- endfor -%}
+{% endfor %}
+
+
+{%- for transaction in checkout.transactions -%}
+	{%- assign transaction_id = transaction.id -%}
+{%- endfor -%}
+<script>
+    window.theme = {
+        pageType: {{ request.page_type | json }},
+        cartCount: {{ cart.item_count | json }},
+        moneyFormat: {{ shop.money_format | json }},
+        moneyWithCurrencyFormat: {{ shop.money_with_currency_format | json }},
+        currencyCodeEnabled: {{ settings.currency_code_enabled | json }},
+        showDiscount: {{ settings.show_discount | json }},
+        discountMode: {{ settings.discount_mode | json }},
+        searchMode: {{ settings.search_mode | json }},
+        searchUnavailableProducts: {{ settings.search_unavailable_products | json }},
+        cartType: {{ settings.cart_type | json }},
+        customer_id: "{{ customer.id }}"
+    };
+  window.pageType={{ request.page_type | json }}
+</script>
+<div class="sc-checkout-data"
+     data-scenable="1"
+     data-sctype="Checkout"
+     data-scdata='{
+        "checkout_id":"{{ checkout.id }}",
+        "order_commodity_unique_quantity": {{ unique_quantity }},
+        "order_logistics_fee": "{{ checkout.shipping_price }}",
+        "order_actual_amount": "{{ checkout.total_price }}",
+        "currency_unit": "{{ checkout.currency }}",
+        "if_use_bonus": {{ if_use_bonus }},
+        "bonus_name": "{{ bonus_name }}",
+        "bonus_amount": "{{ bonus_amount }}",
+        "entrance":""
+    }'
+>
+	<div
+		id="InformationOrder"
+		data-scenable="1"
+		data-sctype="InformationOrder"
+		data-sctype2='InformationOrderDetail'
+		data-scenable2="1"
+		data-scdata='{
+            "checkout_id":"{{ checkout.id }}",
+            "order_id":"{{ checkout.order_id }}",
+            "order_commodity_unique_quantity": {{ unique_quantity }},
+            "order_commodity_original_amount":"{{ checkout.line_items_subtotal_price }}",
+            "order_actual_amount": "{{ checkout.total_price }}",
+            "currency_unit": "{{ checkout.currency }}",
+            "if_use_express_paypal":0,
+            "if_use_bonus": {{ if_use_bonus }},
+            "bonus_name": "{{ bonus_name }}",
+            "bonus_amount": "{{ bonus_amount }}",
+            "shipping_type":"{{ checkout.shipping_method.title }}",
+            "receiver_name":"{{ checkout.shipping_address.first_name }} {{ checkout.shipping_address.last_name }}",
+            "receiver_phone":"{{ checkout.shipping_address.phone }}",
+            "receiver_country":"{{ checkout.shipping_address.country }}",
+            "receiver_state":"{{ checkout.shipping_address.province }}",
+            "receiver_city":"{{ checkout.shipping_address.city }}",
+            "receiver_postcode":"{{ checkout.shipping_address.zip }}",
+            "receiver_address":"{{ checkout.shipping_address.address1 }}{{ checkout.shipping_address.address2 }}"
+        }'
+	>
+	</div>
+	<div
+		id="ShippingOrder"
+		data-scenable="1"
+		data-sctype="ShippingOrder"
+		data-sctype2='ShippingOrderDetail'
+		data-scenable2="1"
+		data-scdata='{
+            "checkout_id":"{{ checkout.id }}",
+            "order_id":"{{ checkout.order_id }}",
+            "if_use_express_paypal":0,
+            "order_commodity_unique_quantity": {{ unique_quantity }},
+            "order_commodity_original_amount":"{{ checkout.line_items_subtotal_price }}",
+            "order_logistics_fee": "{{ checkout.shipping_price }}",
+            "order_actual_amount": "{{ checkout.total_price }}",
+            "currency_unit": "{{ checkout.currency }}",
+            "if_use_bonus": {{ if_use_bonus }},
+            "bonus_name": "{{ bonus_name }}",
+            "bonus_amount": "{{ bonus_amount }}",
+            "shipping_type":"{{ checkout.shipping_method.title }}",
+            "receiver_name":"{{ checkout.shipping_address.first_name }} {{ checkout.shipping_address.last_name }}",
+            "receiver_phone":"{{ checkout.shipping_address.phone }}",
+            "receiver_country":"{{ checkout.shipping_address.country }}",
+            "receiver_state":"{{ checkout.shipping_address.province }}",
+            "receiver_postcode":"{{ checkout.shipping_address.zip }}",
+            "receiver_city":"{{ checkout.shipping_address.city }}",
+            "receiver_address":"{{ checkout.shipping_address.address1 }}{{ checkout.shipping_address.address2 }}"
+        }'
+	>
+	</div>
+	<div
+		id="CompleteOrder"
+		data-scenable="1"
+		data-sctype="CompleteOrder"
+		data-sctype2='CompleteOrderDetail'
+		data-scenable2="1"
+		data-scdata='{
+            "checkout_id":"{{ checkout.id }}",
+            "order_id":"{{ checkout.order_id }}",
+            "if_use_express_paypal":0,
+            "order_commodity_unique_quantity": {{ unique_quantity }},
+            "order_commodity_original_amount":"{{ checkout.line_items_subtotal_price }}",
+            "order_logistics_fee": "{{ checkout.shipping_price }}",
+            "order_actual_amount": "{{ checkout.total_price }}",
+            "currency_unit": "{{ checkout.currency }}",
+            "if_use_bonus": {{ if_use_bonus }},
+            "bonus_name": "{{ bonus_name }}",
+            "bonus_amount": "{{ bonus_amount }}",
+            "shipping_type":"{{ checkout.shipping_method.title }}",
+            "receiver_name":"{{ checkout.shipping_address.first_name }} {{ checkout.shipping_address.last_name }}",
+            "receiver_phone":"{{ checkout.shipping_address.phone }}",
+            "receiver_country":"{{ checkout.shipping_address.country }}",
+            "receiver_state":"{{ checkout.shipping_address.province }}",
+            "receiver_city":"{{ checkout.shipping_address.city }}",
+            "receiver_postcode":"{{ checkout.shipping_address.zip }}",
+            "receiver_address":"{{ checkout.shipping_address.address1 }}{{ checkout.shipping_address.address2 }}",
+            "billing_address_type":"same as shipping address",
+            "billing_name":"{{ checkout.shipping_address.first_name }} {{ checkout.shipping_address.last_name }}",
+            "billing_phone":"{{ checkout.shipping_address.phone }}",
+            "billing_country":"{{ checkout.shipping_address.country }}",
+            "billing_postcode":"{{ checkout.shipping_address.zip }}",
+            "billing_state":"{{ checkout.shipping_address.province }}",
+            "billing_city":"{{ checkout.shipping_address.city }}",
+            "billing_apartment":"{{ checkout.shipping_address.street }}",
+            "billing_address":"{{ checkout.shipping_address.address1 }}{{ checkout.shipping_address.address2 }}"
+        }'
+	>
+	</div>
+	<div
+		id="PaySuccessOrder"
+		data-scenable="1"
+		data-sctype="PaySuccessOrder"
+		data-sctype2='PaySuccessOrderDetail'
+		data-scenable2="1"
+		data-scdata='{
+            "checkout_id":"{{ checkout.id }}",
+            "order_id":"{{ checkout.order_id }}",
+            "if_use_express_paypal":0,
+            "transaction_id":"{{ transaction_id }}",
+            "order_commodity_unique_quantity": {{ unique_quantity }},
+            "order_commodity_original_amount":"{{ checkout.line_items_subtotal_price }}",
+            "order_logistics_fee": "{{ checkout.shipping_price }}",
+            "order_actual_amount": "{{ checkout.total_price }}",
+            "currency_unit": "{{ checkout.currency }}",
+            "if_use_bonus": {{ if_use_bonus }},
+            "bonus_name": "{{ bonus_name }}",
+            "bonus_amount": "{{ bonus_amount }}",
+            "shipping_type":"{{ checkout.shipping_method.title }}",
+            "receiver_name":"{{ checkout.shipping_address.first_name }} {{ checkout.shipping_address.last_name }}",
+            "receiver_phone":"{{ checkout.shipping_address.phone }}",
+            "receiver_country":"{{ checkout.shipping_address.country }}",
+            "receiver_state":"{{ checkout.shipping_address.province }}",
+            "receiver_city":"{{ checkout.shipping_address.city }}",
+            "receiver_postcode":"{{ checkout.shipping_address.zip }}",
+            "receiver_address":"{{ checkout.shipping_address.address1 }}{{ checkout.shipping_address.address2 }}",
+            "billing_address_type":"same as shipping address",
+            "billing_name":"{{ checkout.billing_address.first_name }} {{ checkout.billing_address.last_name }}",
+            "billing_phone":"{{ checkout.billing_address.phone }}",
+            "billing_country":"{{ checkout.billing_address.country }}",
+            "billing_postcode":"{{ checkout.billing_address.zip }}",
+            "billing_state":"{{ checkout.billing_address.province }}",
+            "billing_city":"{{ checkout.billing_address.city }}",
+            "billing_apartment":"{{ checkout.billing_address.street }}",
+            "billing_address":"{{ checkout.billing_address.address1 }}{{ checkout.billing_address.address2 }}"
+        }'
+	>
+	</div>
+	{% for line_item in checkout.line_items %}
+		{% assign category = line_item.product.metafields.my_fields.category %}
+		{% assign titles = line_item.variant.title | split: "/" %}
+		{% for title in titles %}
+			{% case forloop.index %}
+			{% when 1 %}
+			{% assign commodity_color = title %}
+			{% when 2 %}
+			{% assign commodity_size = title %}
+			{% endcase %}
+		{% endfor %}
+		{% assign commodity_tag = line_item.product.tag | split: " " %}
+		{% assign compliment_commodities = %}
+		<div
+			class="CheckoutDetail"
+			data-scenable="1"
+			data-sctype="CheckoutDetail"
+			data-scdata='{
+                "checkout_id":"{{ checkout.id }}",
+                "order_commodity_unique_quantity": {{ unique_quantity }},
+                "order_commodity_original_amount":"{{ checkout.line_items_subtotal_price }}",
+                "order_logistics_fee": "{{ checkout.shipping_price }}",
+                "order_actual_amount":"{{ checkout.total_price }}",
+                "commodity_spuid":"{{ line_item.product.handle }}",
+                "commodity_skuid":"{{ line_item.sku }}",
+                "commodity_name":"{{ line_item.title }}",
+                "first_commodity":"{{ category.first_commodity }}",
+                "second_commodity":"{{ category.second_commodity }}",
+                "third_commodity":"{{ category.third_commodity }}",
+                "commodity_type":"{{ line_item.product.type | handleize}}",
+                "commodity_size":"{{ commodity_size }}",
+                "commodity_color":"{{ commodity_color }}",
+                "commodity_quantity":{{ line_item.quantity }},
+                "original_price":"{{ line_item.product.selected_or_first_available_variant.compare_at_price }}",
+                "current_price":"{{ line_item.product.selected_or_first_available_variant.price }}",
+                "discount_price":"{{ line_item.final_line_price }}",
+                "currency_unit": "{{ checkout.currency }}",
+                "commodity_description_text":["{{ line_item.product.description | handleize | slice: 0, 100 }}"],
+                "commodity_description_image":["{{ line_item.image | image_url | split: "?" | first }}"],
+                "entrance":""
+            }'
+		>
+		</div>
+		<div
+			class="InformationOrderDetail"
+			data-scenable="1"
+			data-sctype="InformationOrderDetail"
+			data-scdata='{
+                "checkout_id":"{{ checkout.id }}",
+                "order_id":"{{ checkout.order_id }}",
+                "if_use_express_paypal":0,
+                "order_commodity_unique_quantity": {{ unique_quantity }},
+                "order_commodity_original_amount":"{{ checkout.line_items_subtotal_price }}",
+                "order_logistics_fee": "{{ checkout.shipping_price }}",
+                "order_actual_amount":"{{ checkout.total_price }}",
+                "commodity_spuid":"{{ line_item.product.handle }}",
+                "commodity_skuid":"{{ line_item.sku }}",
+                "commodity_name":"{{ line_item.title | handleize }}",
+                "first_commodity":"{{ category.first_commodity }}",
+                "second_commodity":"{{ category.second_commodity }}",
+                "third_commodity":"{{ category.third_commodity }}",
+                "commodity_type":"{{ line_item.product.type | handleize}}",
+                "commodity_size":"{{ commodity_size }}",
+                "commodity_color":"{{ commodity_color }}",
+                "commodity_quantity":{{ line_item.quantity }},
+                "original_price":"{{ line_item.product.selected_or_first_available_variant.compare_at_price }}",
+                "current_price":"{{ line_item.product.selected_or_first_available_variant.price }}",
+                "discount_price":"{{ line_item.final_line_price }}",
+                "currency_unit": "{{ checkout.currency }}",
+                "commodity_description_text":["{{ line_item.product.description | handleize | slice: 0, 100 }}"],
+                "commodity_description_image":["{{ line_item.image | image_url | split: "?" | first }}"]
+            }'
+		>
+		</div>
+		<div
+			class="ShippingOrderDetail"
+			data-scenable="1"
+			data-sctype="ShippingOrderDetail"
+			data-scdata='{
+                "checkout_id":"{{ checkout.id }}",
+                "order_id":"{{ checkout.order_id }}",
+                "if_use_express_paypal":0,
+                "order_commodity_unique_quantity": {{ unique_quantity }},
+                "order_commodity_original_amount":"{{ checkout.line_items_subtotal_price }}",
+                "order_logistics_fee": "{{ checkout.shipping_price }}",
+                "order_actual_amount":"{{ checkout.total_price }}",
+                "commodity_spuid":"{{ line_item.product.handle }}",
+                "commodity_skuid":"{{ line_item.sku }}",
+                "commodity_name":"{{ line_item.title | handleize }}",
+                "first_commodity":"{{ category.first_commodity }}",
+                "second_commodity":"{{ category.second_commodity }}",
+                "third_commodity":"{{ category.third_commodity }}",
+                "commodity_type":"{{ line_item.product.type | handleize}}",
+                "commodity_size":"{{ commodity_size }}",
+                "commodity_color":"{{ commodity_color }}",
+                "commodity_quantity":{{ line_item.quantity }},
+                "original_price":"{{ line_item.product.selected_or_first_available_variant.compare_at_price }}",
+                "current_price":"{{ line_item.product.selected_or_first_available_variant.price }}",
+                "discount_price":"{{ line_item.final_line_price }}",
+                "currency_unit": "{{ checkout.currency }}",
+                "commodity_description_text":["{{ line_item.product.description | handleize | slice: 0, 100 }}"],
+                "commodity_description_image":["{{ line_item.image | image_url | split: "?" | first }}"]
+            }'
+		>
+		</div>
+		<div
+			class="CompleteOrderDetail"
+			data-scenable="1"
+			data-sctype="CompleteOrderDetail"
+			data-scdata='{
+                "checkout_id":"{{ checkout.id }}",
+                "order_id":"{{ checkout.order_id }}",
+                "if_use_express_paypal":0,
+                "order_commodity_unique_quantity": {{ unique_quantity }},
+                "order_commodity_original_amount":"{{ checkout.line_items_subtotal_price }}",
+                "order_logistics_fee": "{{ checkout.shipping_price }}",
+                "order_actual_amount":"{{ checkout.total_price }}",
+                "commodity_spuid":"{{ line_item.product.handle }}",
+                "commodity_skuid":"{{ line_item.sku }}",
+                "commodity_name":"{{ line_item.title | handleize }}",
+                "first_commodity":"{{ category.first_commodity }}",
+                "second_commodity":"{{ category.second_commodity }}",
+                "third_commodity":"{{ category.third_commodity }}",
+                "commodity_type":"{{ line_item.product.type | handleize}}",
+                "commodity_size":"{{ commodity_size }}",
+                "commodity_color":"{{ commodity_color }}",
+                "commodity_quantity":{{ line_item.quantity }},
+                "original_price":"{{ line_item.product.selected_or_first_available_variant.compare_at_price }}",
+                "current_price":"{{ line_item.product.selected_or_first_available_variant.price }}",
+                "discount_price":"{{ line_item.final_line_price }}",
+                "currency_unit": "{{ checkout.currency }}",
+                "commodity_description_text":["{{ line_item.product.description | handleize | slice: 0, 100 }}"],
+                "commodity_description_image":["{{ line_item.image | image_url | split: "?" | first }}"]
+            }'
+		>
+		</div>
+		{% comment %}
+			<div
+			class="PaySuccessOrderDetail"
+			data-scenable="1"
+			data-sctype="PaySuccessOrderDetail"
+			data-scdata='{
+                "checkout_id":"{{ checkout.id }}",
+                "order_id":"{{ checkout.order_id }}",
+                "if_use_express_paypal":0,
+                "transaction_id":"{{ transaction_id }}",
+                "order_commodity_unique_quantity": {{ unique_quantity }},
+                "order_commodity_original_amount":"{{ checkout.line_items_subtotal_price }}",
+                "order_logistics_fee": "{{ checkout.shipping_price }}",
+                "order_actual_amount":"{{ checkout.total_price }}",
+                "commodity_spuid":"{{ line_item.product.handle }}",
+                "commodity_skuid":"{{ line_item.sku }}",
+                "commodity_name":"{{ line_item.title | handleize }}",
+                "first_commodity":"{{ category.first_commodity }}",
+                "second_commodity":"{{ category.second_commodity }}",
+                "third_commodity":"{{ category.third_commodity }}",
+                "commodity_type":"{{ line_item.product.type | handleize}}",
+                "commodity_size":"{{ commodity_size }}",
+                "commodity_color":"{{ commodity_color }}",
+                "commodity_quantity":{{ line_item.quantity }},
+                "original_price":"{{ line_item.product.selected_or_first_available_variant.compare_at_price }}",
+                "current_price":"{{ line_item.product.selected_or_first_available_variant.price }}",
+                "discount_price":"{{ line_item.final_line_price }}",
+                "currency_unit": "{{ checkout.currency }}",
+                "commodity_description_text":["{{ line_item.product.description | handleize | slice: 0, 100 }}"],
+                "commodity_description_image":["{{ line_item.image | image_url | split: "?" | first }}"]
+            }'
+		>
+		</div>
+		{% endcomment %}
+	{% endfor %}
+</div>
+<script>
+    !function () {
+        var shippingFirstNameEl = document.querySelector('#checkout_shipping_address_first_name');
+        var shippingLastNameEl = document.querySelector('#checkout_shipping_address_last_name');
+        var shippingPhoneEl = document.querySelector('#checkout_shipping_address_phone');
+        var shippingemailOrPhoneEl = document.querySelector('#checkout_email_or_phone');
+        var shippingcountryEl = document.querySelector('#checkout_shipping_address_country');
+        var shippingzipEl = document.querySelector('#checkout_shipping_address_zip');
+        var shippingprovinceEl = document.querySelector('#checkout_shipping_address_province');
+        var shippingcityEl = document.querySelector('#checkout_shipping_address_city');
+        var shippingaddress1El = document.querySelector('#checkout_shipping_address_address1');
+        var shippingaddress2El = document.querySelector('#checkout_shipping_address_address2');
+
+        var billingFirstNameEl = document.querySelector('#checkout_billing_address_first_name');
+        var billingLastNameEl = document.querySelector('#checkout_billing_address_last_name');
+        var billingPhoneEl = document.querySelector('#checkout_billing_address_phone');
+        var billingcountryEl = document.querySelector('#checkout_billing_address_country');
+        var billingzipEl = document.querySelector('#checkout_billing_address_zip');
+        var billingprovinceEl = document.querySelector('#checkout_billing_address_province');
+        var billingcityEl = document.querySelector('#checkout_billing_address_city');
+        var billingaddress1El = document.querySelector('#checkout_billing_address_address1');
+        var billingaddress2El = document.querySelector('#checkout_billing_address_address2');
+
+        var rememberMeEl = document.querySelector('#checkout_remember_me');
+        var acceptsMarketingEl = document.querySelector('#checkout_buyer_accepts_marketing');
+
+        var InformationOrderEl = document.querySelector('#InformationOrder');
+        var ShippingOrderEl = document.querySelector('#ShippingOrder');
+        var CompleteOrderEl = document.querySelector('#CompleteOrder');
+        var PaySuccessOrderEl = document.querySelector('#PaySuccessOrder');
+
+        var InformationOrderDetailEls = document.querySelectorAll('.InformationOrderDetail');
+        var ShippingOrderDetailEls = document.querySelectorAll('.ShippingOrderDetail');
+        var CompleteOrderDetailEls = document.querySelectorAll('.CompleteOrderDetail');
+        /* 初始化一个的sensorsInformationOrder 以防sadhus_shence删除数据 */
+		    if(!localStorage.getItem('sensorsInformationOrder')){
+            localStorage.setItem('sensorsInformationOrder',JSON.stringify({is_save_information:1,is_subscribe:0}));
+        }
+        /*绑定iframe*/
+        var IframeOnClick = {
+            resolution: 200,
+            iframes: [],
+            interval: null,
+            Iframe: function () {
+                this.element = arguments[0];
+                this.cb = arguments[1];
+                this.hasTracked = false;
+            },
+            track: function (element, cb) {
+                this.iframes.push(new this.Iframe(element, cb));
+                if (!this.interval) {
+                    var _this = this;
+                    this.interval = setInterval(function () {
+                        _this.checkClick();
+                    }, this.resolution);
+                }
+            },
+            checkClick: function () {
+                if (document.activeElement) {
+                    var activeElement = document.activeElement;
+                    for (var i in this.iframes) {
+                        if (activeElement === this.iframes[i].element) {
+                            if (this.iframes[i].hasTracked === false) {
+                                this.iframes[i].cb.apply(window, []);
+                                this.iframes[i].hasTracked = true;
+                            }
+                        } else {
+                            this.iframes[i].hasTracked = false;
+                        }
+                    }
+                }
+            }
+        };
+        /* 购物车itemList*/
+        let line_items = [];
+        /* skuList*/
+        let compliment_commodities = [];
+        /*订单物品总数量*/
+        let quantity = 0;
+        /* 邮费 */
+        let order_logistics_fee = ('{{ checkout.shipping_price }}' * 1);
+        /* 订单画线前价格 */
+        let order_amount = 0 + order_logistics_fee;
+        /*商品总优惠折扣*/
+        let bonus_amount = 0;
+        /* 优惠券金额 */
+        let coupon_amount = ('{{ checkout.discounts_amount }}' * 1);
+
+			{% for line_item in checkout.line_items %}
+        quantity += ('{{ line_item.quantity }}' * 1)
+        order_amount += ('{{ line_item.original_line_price }}' * 1)
+        bonus_amount += ('{{ line_item.line_level_total_discount }}' * 1) || 0
+        line_items.push({
+            commodity_skuid: '{{ line_item.sku }}',
+        })
+        compliment_commodities.push('{{ line_item.sku }}')
+			{% endfor %}
+
+        let isSubmit = true
+        function actionCheckout() {
+            new sadhus_shence({
+                container: ".sc-checkout-data",
+                type: "Checkout",
+                event: 'sync',
+                customData: function (container) {
+                    let newData = Object.assign(orderHandleSendData('order'))
+                    if(sessionStorage.getItem('sensorsCheckout')){
+                        Object.assign(newData,JSON.parse(sessionStorage.getItem('sensorsCheckout')))
+                    }
+                    return newData
+                }
+            })
+            new sadhus_shence({
+                container: '.sc-checkout-data',
+                type: ".CheckoutDetail",
+                event: 'repeat',
+                sendType: "CheckoutDetail",
+                customData: function (container, el) {
+                    let scdata = JSON.parse(el.getAttribute('data-scdata'))
+                    let newData = orderHandleSendData('detailOrder', scdata)
+                    if(sessionStorage.getItem('sensorsCheckout')){
+                        Object.assign(newData,JSON.parse(sessionStorage.getItem('sensorsCheckout')))
+                    }
+                    return newData
+                },
+                callback: () => {
+
+                }
+            })
+
+        }
+        function handeleInfomationBtn (){
+            try {
+                let continueBtn = document.querySelector('#continue_button')
+                continueBtn.addEventListener('click',() => {
+                    let sensorsInformationOrder = {
+                        is_save_information: rememberMeEl && rememberMeEl.checked ? 1 : 0,
+                        is_subscribe: acceptsMarketingEl && acceptsMarketingEl.checked ? 1 : 0
+                    }
+                    if (shippingemailOrPhoneEl.value && shippingemailOrPhoneEl.value.indexOf("@") !== -1) {
+                        sensorsInformationOrder.receiver_email = shippingemailOrPhoneEl.value
+                    }
+                    localStorage.setItem('sensorsInformationOrder',JSON.stringify(sensorsInformationOrder));
+                })
+            } catch {
+                localStorage.setItem('sensorsInformationOrder',JSON.stringify({is_save_information:1,is_subscribe:0}));
+            }
+
+        }
+        function actionsInformationOrder() {
+            new sadhus_shence({
+                container: "#InformationOrder",
+                type: "InformationOrder",
+                event: 'sync',
+                getSessionId: "sensorsInformationOrder",
+                customData: function (container, el) {
+                    let newData = Object.assign(orderHandleSendData('order'))
+                    return newData
+                }
+            })
+            new sadhus_shence({
+                container: '.sc-checkout-data',
+                type: ".InformationOrderDetail",
+                event: 'repeat',
+                sendType: "InformationOrderDetail",
+                customData: function (container, el) {
+                    let scdata = JSON.parse(el.getAttribute('data-scdata'))
+                    let newData = orderHandleSendData('detailOrder', scdata)
+                    return newData
+                }
+            })
+        }
+
+        function actionsShippingOrder() {
+            new sadhus_shence({
+                container: "#ShippingOrder",
+                type: "ShippingOrder",
+                event: 'sync',
+                customData: function (container) {
+                    let newData = Object.assign(orderHandleSendData('order'))
+                    return newData
+                }
+            })
+            new sadhus_shence({
+                container: '.sc-checkout-data',
+                type: ".ShippingOrderDetail",
+                event: 'repeat',
+                sendType: "ShippingOrderDetail",
+                customData: function (container, el) {
+                    let scdata = JSON.parse(el.getAttribute('data-scdata'))
+                    let newData = orderHandleSendData('detailOrder', scdata)
+                    return newData
+                }
+            })
+        }
+        function getProperties() {
+            /*
+              $browser 字符串 浏览器名称
+              $browser_version 字符串 浏览器版本
+	            $manufacturer	字符串	设备制造商
+							$model	字符串	设备型号
+							$os	字符串	操作系统
+							$os_version	字符串	操作系统版本
+						*/
+            let properties = sensors.getPresetProperties()
+            properties.$browser = detector.browser.name
+            properties.$browser_version = detector.browser.fullVersion
+            properties.$manufacturer = detector.device.name === 'iphone' ? 'Apple' : undefined
+						properties.$model =  detector.device.name
+						properties.$os = detector.os.name === 'iPhone OS' ? 'iOS' : detector.os.name
+						properties.$os_version = detector.os.version
+            properties.$title = undefined
+            properties.$url = undefined
+            properties.$url_path = undefined
+            return properties
+        }
+        function getCompleteOrderData(){
+            let scdata = JSON.parse(CompleteOrderEl.getAttribute('data-scdata'))
+            let bdoVal = document.querySelector('bdo') && document.querySelector('bdo').innerText
+            if (bdoVal && bdoVal.indexOf("@") !== -1) {
+                scdata.receiver_email = bdoVal
+            }
+            try {
+                let tipEl = document.querySelector('.section--tip .button-group__button--active')
+                let amountBtnEl = document.querySelector('.section--tip #section--tip--amount-btn')
+                let CustomAmountEl = document.querySelector('.section--tip #section--tip--custom-amount')
+                if (amountBtnEl.disabled && CustomAmountEl.value) {
+                    scdata.if_use_tip = 1
+                    scdata.tip_type = 'custom'
+                    scdata.tip_amount = CustomAmountEl.value * 100
+                } else {
+                    if (Number(tipEl.getAttribute('value'))) {
+                        let btnContentEl = tipEl.querySelectorAll('div')[0]
+                        scdata.if_use_tip = 1
+                        scdata.tip_type = btnContentEl.innerText
+                        scdata.tip_amount = (tipEl.getAttribute('value')) * 100
+                    } else {
+                        scdata.if_use_tip = 0
+                        scdata.tip_type = '0'
+                        scdata.tip_amount = 0
+                    }
+                }
+            } catch (error) {
+                scdata.if_use_tip = 0
+                scdata.tip_type = '0'
+                scdata.tip_amount = 0
+                sensors.track('ErrorInformation', {ErrorInformationList: [
+                        'Can not find tipEl'
+                    ]});
+                console.log('Can not find tipEl')
+            }
+            try {
+                let paymentMethodInputs = document.querySelector('.section--payment-method').querySelectorAll('input')
+                Array.from(paymentMethodInputs).map((item, index) => {
+                    if (item.checked) {
+                        if(item.closest('.content-box__row').querySelector('img').getAttribute('alt') === 'PayPal'){
+                            scdata.payment_method = 'paypal'
+                            scdata.payment_type = 'paypal'
+                        } else {
+                            scdata.payment_method = 'credit card'
+                            scdata.payment_type = 'oceanpayment'
+                        }
+                    }
+                })
+            } catch (error) {
+                let paymentMethodInputs = document.querySelector('.section--payment-method') && document.querySelector('.section--payment-method').querySelectorAll('input')
+                if(paymentMethodInputs){
+                    Array.from(paymentMethodInputs).map((item, index) => {
+                        if (item.checked) {
+                            if (index === 0) {
+                                scdata.payment_method = 'paypal'
+                                scdata.payment_type = 'paypal'
+                            } else {
+                                scdata.payment_method = 'credit card'
+                                scdata.payment_type = 'oceanpayment'
+                            }
+                        }
+                    })
+                } else {
+                    scdata.payment_method = 'paypal'
+                    scdata.payment_type = 'paypal'
+                }
+            }
+            try {
+                let billingAddressInputs = document.querySelector('.section--billing-address').querySelectorAll('input')
+                Array.from(billingAddressInputs).map((item, index) => {
+                    if (item.checked) {
+                        if (index !== 0) {
+                            scdata.billing_address_type = "Use a different billing address"
+                            scdata.billing_name = billingFirstNameEl.value + ' ' + billingLastNameEl.value
+                            scdata.billing_phone = billingPhoneEl.value
+                            scdata.billing_country = billingcountryEl.value
+                            scdata.billing_postcode = billingzipEl.value
+                            scdata.billing_state = billingprovinceEl.value
+                            scdata.billing_city = billingcityEl.value
+                            scdata.billing_apartment = billingaddress2El.value
+                            scdata.billing_address = billingaddress1El.value + billingaddress2El.value
+                        }
+                    }
+                })
+            } catch (error) {
+                sensors.track('ErrorInformation', {ErrorInformationList: [
+                        'Can not find billingAddressInputs'
+                    ]});
+                console.log('Can not find billingAddressInputs')
+            }
+            let sendJavaOrderNewData = {}
+            let properties = getProperties()
+            sendJavaOrderNewData = Object.assign(paypalHandleSendData(scdata,'order'),properties)
+            sendJavaOrderNewData.if_use_express_paypal = 0
+            let CompleteOrderDetailArr = []
+            for (let i = 0; i < CompleteOrderDetailEls.length; i++) {
+                let sendJavaDetailNewData = paypalHandleSendData(JSON.parse(CompleteOrderDetailEls[i].getAttribute('data-scdata')),'detailOrder')
+                sendJavaDetailNewData = Object.assign(sendJavaDetailNewData,properties)
+                sendJavaDetailNewData.if_use_express_paypal = 0
+                CompleteOrderDetailArr.push(sendJavaDetailNewData)
+            }
+            return {
+                sendJavaOrderObj:sendJavaOrderNewData,
+                sendJavaOrderDetailArr:CompleteOrderDetailArr
+            }
+        }
+
+        function actionsCompleteOrder() {
+            let continueBtn = document.querySelector('.shown-if-js .step__footer__continue-btn')
+            let target = document.querySelector("#continue_button");
+            let insertContinueBtn = document.createElement("div");
+            insertContinueBtn.className = 'actions_complete_order'
+            target.parentNode.insertBefore(insertContinueBtn, continueBtn)
+            insertContinueBtn.appendChild(target)
+            insertContinueBtn.addEventListener('click',() => {
+		            let data = getCompleteOrderData()
+		            let sendData = {}
+                sendData = {
+                    distinctId: data.sendJavaOrderObj._distinct_id,
+                    checkoutId: data.sendJavaOrderObj.checkout_id,
+                    paySuccessData: data.sendJavaOrderObj,
+                    isLogin:!!"{{checkout.customer.id}}",
+                    paySuccessDetailDataList: data.sendJavaOrderDetailArr,
+                    profileIncrementData: {
+                        cumulative_payment: Number((data.sendJavaOrderObj.order_actual_amount).toFixed(2)),
+                        cumulative_order: 1
+                    },
+                    profileSetData: {
+                        receiver_country: data.sendJavaOrderObj.receiver_country,
+                        receiver_state: data.sendJavaOrderObj.receiver_state,
+                        receiver_city: data.sendJavaOrderObj.receiver_city,
+                        receiver_address: data.sendJavaOrderObj.receiver_address,
+                        receiver_postcode: data.sendJavaOrderObj.receiver_postcode,
+                        phone_number: data.sendJavaOrderObj.receiver_phone,
+                        last_order_time: getFormatDate(),
+                        last_coupon_time: data.sendJavaOrderObj.if_use_coupon ? getFormatDate() : undefined
+                    },
+                    profileSetOnceData: {
+                        first_order_time: getFormatDate()
+                    }
+                }
+                localStorage.setItem('sendJavaData',JSON.stringify(sendData))
+                ajax_method('api/sensorsAnalytics/trackSignUp', {
+                    anonymousId: sensors.quick('getAnonymousID'),
+                    registerId: "{{checkout.customer.id}}"
+                },'post')
+                ajax_method('api/sensorsAnalytics/reportPaySuccessOrder', sendData,'post',null,'sendJavaData')
+                isSubmit && customEvents('payment')
+            },true)
+        }
+
+        function ajax_method(url,data,method,onlyAjax,dataName='') {
+            let baseUrl
+		        let siteValue
+            if(location.host.indexOf('hyfol') > -1){
+                baseUrl = 'https://api.leandow-technology.com/'
+		            siteValue = 'hyfol'
+            }else if(location.host.indexOf('leandowtest') > -1 ){
+                baseUrl = 'https://api-dev.leandow-technology.com/'
+                siteValue = 'leandowTest'
+            }
+            data.siteValue = siteValue
+            if (typeof navigator !== 'object' || typeof navigator.sendBeacon !== 'function') {
+                let ajax = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
+                ajax.open(method, baseUrl + url);
+                ajax.setRequestHeader("Content-type","text/plain;charset=UTF-8");
+		        ajax.send(JSON.stringify(data));
+                ajax.onload=(res)=>{ajax.status==200&&localStorage.removeItem(dataName)}
+            } else {
+                if(onlyAjax){
+                    let ajax = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
+                    ajax.open(method, baseUrl + url);
+                    ajax.setRequestHeader("Content-type","text/plain;charset=UTF-8");
+		            ajax.send(JSON.stringify(data));
+                    ajax.onload=(res)=>{ajax.status==200&&localStorage.removeItem(dataName)}
+                } else {
+                    navigator.sendBeacon( baseUrl + url, JSON.stringify(data))
+                    let ajax = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
+                    ajax.open(method, baseUrl + url);
+                    ajax.setRequestHeader("Content-type","text/plain;charset=UTF-8");
+		            ajax.send(JSON.stringify(data));
+                    ajax.onload=(res)=>{ajax.status==200&&localStorage.removeItem(dataName)}
+                }
+            }
+
+        }
+
+        function removeHref () {
+            let list = Checkout.$('.breadcrumb__item--current').nextAll()
+            if(list && list.length > 0){
+                for (let i = 0; i < list.length; i++){
+                    if(list[i].querySelector('a')){
+                        list[i].querySelector('a').removeAttribute('href')
+                    }
+                }
+            }
+        }
+
+        function sendError (){
+            if(document.title.indexOf('Error') > -1){
+                let ErrorInformationList = []
+                let errorEls = document.querySelectorAll('.field__message--error')
+                if(errorEls && errorEls.length > 0){
+                    for (let i = 0; i < errorEls.length; i++){
+                        ErrorInformationList.push(errorEls[i].innerHTML ||errorEls[i].innerText)
+                    }
+                }
+                sensors.track('ErrorInformation', {ErrorInformationList:ErrorInformationList});
+            }
+        }
+        function orderHandleSendData(type, sendData) {
+            sendData = sendData ? sendData : {}
+            sendData.order_commodity_original_amount = order_amount
+            sendData.order_amount = order_amount
+            sendData.order_commodity_quantity = quantity
+            sendData.bonus_amount = bonus_amount
+            if (type === 'order') {
+                let bdoVal = document.querySelector('bdo') && document.querySelector('bdo').innerText
+                if (bdoVal && bdoVal.indexOf("@") !== -1) {
+                    sendData.receiver_email = bdoVal
+                }
+            } else if (type === 'detailOrder') {
+                sendData.compliment_commodities = compliment_commodities
+                sendData.discount_price = (sendData.discount_price * 1) / (sendData.commodity_quantity * 1)
+            }
+            try{
+                let couponBox =  document.querySelector('.total-line-table .total-line--reduction');
+                let coupon_amount = couponBox.querySelector('.order-summary__emphasis').getAttribute('data-checkout-discount-amount-target')
+                if (coupon_amount) {
+                    sendData.coupon_name = '';
+                    sendData.coupon_amount = coupon_amount *1;
+                    sendData.if_use_coupon = 1;
+                    sendData.coupon_code = couponBox.querySelector('.reduction-code__text').innerText;
+                }
+            } catch (err){
+                sendData.coupon_name = '';
+                sendData.coupon_amount = 0;
+                sendData.if_use_coupon = 0;
+                sendData.coupon_code = '';
+                console.log('Can not find couponBox')
+            }
+            /* 优惠金额 */
+            sendData.order_discount_amount = sendData.bonus_amount + sendData.coupon_amount;
+          	sendData.bonus_amount = bonus_amount ? bonus_amount : 0
+            return sendData
+        }
+
+        function paypalHandleSendData(sendData, type) {
+            sendData.if_use_express_paypal = 1
+            sendData.order_commodity_original_amount = order_amount
+            sendData.order_amount = order_amount
+            sendData.order_commodity_quantity = quantity
+            sendData.bonus_amount = bonus_amount
+            if (type !== 'detailOrder') {
+                if (shippingemailOrPhoneEl && shippingemailOrPhoneEl.value && shippingemailOrPhoneEl.value.indexOf("@") != -1) {
+                    sendData.receiver_email = sendData.value
+                }
+            } else {
+                sendData.compliment_commodities = compliment_commodities
+                sendData.discount_price = (sendData.discount_price * 1) / (sendData.commodity_quantity * 1)
+            }
+            try{
+                let couponBox =  document.querySelector('.total-line-table .total-line--reduction');
+                let coupon_amount = couponBox.querySelector('.order-summary__emphasis').getAttribute('data-checkout-discount-amount-target')
+                if (coupon_amount) {
+                    sendData.coupon_name = '';
+                    sendData.coupon_amount = coupon_amount * 1;
+                    sendData.if_use_coupon = 1;
+                    sendData.coupon_code = couponBox.querySelector('.reduction-code__text').innerText;
+                }
+            } catch (err){
+                sendData.coupon_name = '';
+                sendData.coupon_amount = 0;
+                sendData.if_use_coupon = 0;
+                sendData.coupon_code = '';
+                console.log('Can not find couponBox')
+            }
+            /* 优惠金额 */
+            sendData.order_discount_amount = sendData.bonus_amount + sendData.coupon_amount;
+          	sendData.bonus_amount = bonus_amount ? bonus_amount : 0
+            if (sendData.original_price || sendData.original_price == '') {
+                sendData.original_price = Number((sendData.original_price / 100).toFixed(2));
+            }
+            if (sendData.current_price || sendData.current_price == '') {
+                sendData.current_price = Number((sendData.current_price / 100).toFixed(2));
+            }
+            if (sendData.discount_price) {
+                sendData.discount_price = Number((sendData.discount_price / 100).toFixed(2));
+            }
+            if (sendData.bonus_amount) {
+                sendData.bonus_amount = Number((sendData.bonus_amount / 100).toFixed(2));
+            }
+            if (sendData.order_amount) {
+                sendData.order_amount = Number((sendData.order_amount / 100).toFixed(2));
+            }
+            if (sendData.order_commodity_original_amount) {
+                sendData.order_commodity_original_amount = Number((sendData.order_commodity_original_amount / 100).toFixed(2));
+            }
+            if (sendData.order_logistics_fee) {
+                sendData.order_logistics_fee = Number((sendData.order_logistics_fee / 100).toFixed(2));
+            }
+            if (sendData.order_discount_amount) {
+                sendData.order_discount_amount = Number((sendData.order_discount_amount / 100).toFixed(2));
+            }
+            if (sendData.order_actual_amount) {
+                sendData.order_actual_amount = Number((sendData.order_actual_amount / 100).toFixed(2));
+            }
+            if (sendData.discount_amount) {
+                sendData.discount_amount = Number((sendData.discount_amount / 100).toFixed(2));
+            }
+            if (sendData.tip_amount) {
+                sendData.tip_amount = Number((sendData.tip_amount / 100).toFixed(2));
+            }
+            if (sendData.coupon_amount) {
+                sendData.coupon_amount = Number((sendData.coupon_amount / 100).toFixed(2));
+            }
+            if (sendData.commodity_name) {
+                sendData.commodity_name = sendData.commodity_name.replaceAll('-', ' ');
+            }
+            if (sendData.commodity_spuid) {
+                sendData.commodity_spuid = sendData.commodity_spuid.toLocaleUpperCase()
+            }
+            if (sendData.compliment_commodities && sendData.compliment_commodities.length > 0) {
+                sendData.compliment_commodities.forEach(i => {
+                    i = i.toLocaleUpperCase()
+                })
+            }
+            return sendData
+        }
+        
+        function hideExpressCheckout () {
+            let shownEls =  document.querySelectorAll('.shown-if-js')
+            if(shownEls && shownEls.length > 0 ) {
+                for (var i = 0; i < shownEls.length; i++){
+                    if(shownEls[i].querySelector('.dynamic-checkout')){
+                        shownEls[i].style.display = 'none'
+                    }
+                }
+            }
+        }
+
+        function customEvents(type){
+                type&&console.log(type);
+                isSubmit=false
+                sensors.track('complateOrderQuty',{
+                $option:{server_url:'https://data.ld-bdp.com/sa?project=default'},
+                cookie_id:sensors.quick('getAnonymousID'),
+                checkout_id:'{{checkout.id}}',
+                order_id:'{{checkout.order_id}}',
+                time:Date.now()
+            })
+        }
+        Checkout.$(document).on("page:load", function () {
+            removeHref()
+            sendError()
+            /* hideExpressCheckout() */
+            sensors.quick('isReady', function () {
+                let properties = getProperties()
+                // console.log(properties)
+                let checkoutStep = sessionStorage.getItem('checkoutStep')
+                console.warn('checkoutStep', checkoutStep)
+                let activeText = document.querySelector('.breadcrumb__item--current') && document.querySelector('.breadcrumb__item--current').innerText
+                if (activeText && activeText.indexOf('Information') > -1) {
+                    handeleInfomationBtn()
+                    if(checkoutStep === 'Information') return
+                    actionCheckout()
+                    sessionStorage.setItem('checkoutStep', 'Information');
+                    console.warn('上报checkout')
+                } else if (activeText && activeText.indexOf( "Shipping") > -1) {
+                    if (checkoutStep === 'Shipping') return
+                    if (checkoutStep !== 'Information') {
+                        /* 上报checkout*/
+                        actionCheckout()
+                        console.warn('上报checkout')
+                    }
+                    setTimeout(() => {actionsInformationOrder();console.warn('上报InformationOrder')},400)
+                    let bdoVal = document.querySelector('bdo') && document.querySelector('bdo').innerText
+                    if (bdoVal && bdoVal.indexOf("@") !== -1) {
+                        sensors.track('SubscribptionResult', {
+                            subscribe_email: bdoVal,
+                            subscription_type: 'checkout订阅',
+                            fail_reason: ''
+                        });
+                    }
+                    sessionStorage.setItem('checkoutStep', 'Shipping');
+                } else if (activeText && activeText.indexOf("Payment") > -1 ) {
+                    let paymentBody = document.querySelector(".main");
+                    function paymentBodyCb (mutationsList, observer) {
+                        if(mutationsList && mutationsList.length > 0 ){
+                        let target = document.querySelector('.actions_complete_order')
+                        if(!target) { actionsCompleteOrder();console.warn('按钮绑定CompleteOrder')}
+                        }
+                    }
+                    const observer = new MutationObserver(paymentBodyCb)
+                    observer.observe(paymentBody,{ attributes: true, childList: true, subtree: true })
+                    if (checkoutStep === 'Payment') return
+                    if (checkoutStep !== 'Shipping') {
+                        /* 上报checkout*/
+                        actionCheckout()
+                        console.warn('上报checkout')
+                        /* 上报information*/
+                        setTimeout(() => {
+                            actionsInformationOrder()
+                            console.warn('上报InformationOrder')
+                        },400)
+                    }
+                    setTimeout(() => {
+		                  actionsShippingOrder()
+		                  console.warn('上报ShippingOrder')
+                    },800)
+                    sessionStorage.setItem('checkoutStep', 'Payment');
+                }
+                if (window.pageType === 'completeOrder'||document.querySelector('.os-order-number'))  {
+                    // isSubmit&&customEvents()
+                    const orderId={order_id:'{{checkout.order_id}}'}
+                    let sendData = JSON.parse(localStorage.getItem('sendJavaData'))
+                    sendData&&sendData.paySuccessDetailDataList.forEach(i=>Object.assign(i,orderId))
+		                if(sendData) {
+                        ajax_method('api/sensorsAnalytics/trackSignUp', {
+                            anonymousId: sensors.quick('getAnonymousID'),
+                            registerId: "{{checkout.customer.id}}"
+                        },'post',true)
+                        sendData.isSendCompleteOrder = false
+                        ajax_method('api/sensorsAnalytics/reportPaySuccessOrder', sendData,'post',true,'sendJavaData')
+                        isSubmit && customEvents('complate')
+                    }
+                    sessionStorage.setItem('checkoutStep', 'Checkout');
+						}
+                /*注册成功代码*/
+                if (window.SensorsDataWebJSSDKPlugin.PageLeave.current_page_url === location.origin + '/account/register' || window.SensorsDataWebJSSDKPlugin.PageLeave.current_page_url ===  location.origin + '/challenge') {/*从注册页面跳转进来*/
+                    if (Number({{ customer.id }})) {
+                        var isLogin = true;
+                    } else {
+                        var isLogin = false;
+                    }
+                    if (isLogin && (sessionStorage.getItem("sensorsRegisterButtonClick") == 'true' || sessionStorage.setItem("sensorsLoginButtonClick" == 'true'))) {
+                        sensors.setOnceProfile({signup_email: sessionStorage.getItem("sensorsRegisterResultRegister_email")});/*更新用户表注册邮箱*/
+                        sensors.setProfile({
+                            first_name: sessionStorage.getItem("First_name"),
+                            last_name: sessionStorage.getItem("Second_name")
+                        });/*更新用户表名字*/
+                        sessionStorage.setItem("sensorsRegisterButtonClick", false);
+                        sensors.login("{{checkout.customer.id}}")
+                        sensors.track('RegisterResult', {
+                            register_email: sessionStorage.getItem("sensorsRegisterResultRegister_email"),
+                            First_name: sessionStorage.getItem("First_name"),
+                            Second_name: sessionStorage.getItem("Second_name"),
+                            is_success: 1,
+                        });
+                    };
+                };
+            })
+        });
+        window.onload = function () {
+            let sections = document.querySelector(".dynamic-checkout__content");
+            function callback() {
+                let payif = document.getElementsByClassName('paypalLight')[0]
+                if (!payif) return
+                IframeOnClick.track(payif, function (e) {
+                    sessionStorage.setItem('sensorsCheckoutIf_use_express_paypal', '{"sensorsCheckoutIf_use_express_paypal":1}')
+                    let InformationOrderScdata = JSON.parse(InformationOrderEl.getAttribute('data-scdata'))
+                    let InformationOrderSendData = Object.assign(InformationOrderScdata, {
+                        order_commodity_quantity: quantity,
+                        receiver_name: shippingFirstNameEl.value + ' ' + shippingLastNameEl.value,
+                        receiver_phone: shippingPhoneEl && shippingPhoneEl.value,
+                        receiver_country: shippingcountryEl.value,
+                        receiver_postcode: shippingzipEl.value,
+                        receiver_state: shippingprovinceEl.value,
+                        receiver_city: shippingcityEl.value,
+                        receiver_address: shippingaddress1El.value + shippingaddress2El.value,
+                        is_save_information: rememberMeEl && rememberMeEl.checked ? 1 : 0,
+                        is_subscribe: acceptsMarketingEl && acceptsMarketingEl.checked ? 1 : 0,
+                        order_commodity_original_amount: order_amount
+                    })
+                    let ShippingOrderScdata = JSON.parse(ShippingOrderEl.getAttribute('data-scdata'))
+                    let CompleteOrderScdata = JSON.parse(CompleteOrderEl.getAttribute('data-scdata'))
+                    sensors.quick('isReady', function () {
+                        sensors.track('InformationOrder', paypalHandleSendData(InformationOrderSendData));
+                        for (let i = 0; i < line_items.length; i++) {
+                            let InformationOrderDetailScdata = JSON.parse(InformationOrderDetailEls[i].getAttribute('data-scdata'))
+                            sensors.track('InformationOrderDetail', paypalHandleSendData(InformationOrderDetailScdata, 'detailOrder'));
+                        }
+                        setTimeout(() => {
+                            sensors.track('ShippingOrder', paypalHandleSendData(ShippingOrderScdata));
+                            for (let i = 0; i < line_items.length; i++) {
+                                let ShippingOrderDetailScdata = JSON.parse(ShippingOrderDetailEls[i].getAttribute('data-scdata'))
+                                sensors.track('ShippingOrderDetail', paypalHandleSendData(ShippingOrderDetailScdata, 'detailOrder'));
+                            }
+                        }, 400)
+                        setTimeout(() => {
+                            let data = getCompleteOrderData()
+                            let sendData = {}
+                            sendData = {
+                                distinctId: data.sendJavaOrderObj._distinct_id,
+                                checkoutId: data.sendJavaOrderObj.checkout_id,
+                                paySuccessData: data.sendJavaOrderObj,
+                                isLogin: !!"{{ checkout.customer.id }}",
+                                paySuccessDetailDataList: data.sendJavaOrderDetailArr,
+                                profileIncrementData: {
+                                    cumulative_payment: Number((data.sendJavaOrderObj.order_actual_amount).toFixed(2)),
+                                    cumulative_order: 1
+                                },
+                                profileSetData: {
+                                    receiver_country: data.sendJavaOrderObj.receiver_country,
+                                    receiver_state: data.sendJavaOrderObj.receiver_state,
+                                    receiver_city: data.sendJavaOrderObj.receiver_city,
+                                    receiver_address: data.sendJavaOrderObj.receiver_address,
+                                    receiver_postcode: data.sendJavaOrderObj.receiver_postcode,
+                                    phone_number: data.sendJavaOrderObj.receiver_phone,
+                                    last_order_time: getFormatDate(),
+                                    last_coupon_time: data.sendJavaOrderObj.if_use_coupon ? getFormatDate() : undefined
+                                },
+                                profileSetOnceData: {
+                                    first_order_time: getFormatDate()
+                                }
+                            }
+                            localStorage.setItem('sendJavaData', JSON.stringify(sendData))
+                            ajax_method('api/sensorsAnalytics/trackSignUp', {
+                                anonymousId: sensors.quick('getAnonymousID'),
+                                registerId: "{{ checkout.customer.id }}"
+                            }, 'post')
+                            ajax_method('api/sensorsAnalytics/reportPaySuccessOrder', sendData, 'post',)
+                            isSubmit && customEvents('load')
+                        }, 800)
+                    })
+                });
+            }
+            callback();
+            const checkoutObserver = new MutationObserver(callback)
+            sections && checkoutObserver.observe(sections, { childList: true, subtree: true })
+        }
+    }()
+</script>
+

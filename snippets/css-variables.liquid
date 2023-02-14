@@ -16,6 +16,17 @@
   <link rel="preload" href="{{ settings.text_font | font_url }}" as="font" type="font/woff2" crossorigin>
 {%- endunless -%}
 
+{% assign pageType = request.page_type | json %}
+{%- if pageType contains "index" or pageType contains "collection" or pageType contains "search" -%}
+{% assign background  = "#000000" %}
+{%-elsif pageType contains "product" or pageType contains "cart"-%}
+{% assign background  = "#ffffff" %}
+{%- else -%}
+{% assign background  =  "#edece6"%}
+{%- endif -%}
+
+
+
 <style>
   {{ settings.heading_font | font_face: font_display: 'swap' }}
   {{ settings.text_font | font_face: font_display: 'swap' }}
@@ -35,6 +46,10 @@
   {{ text_font_bold_italic | font_face: font_display: 'swap' }}
 
   :root {
+  {% if settings.show_activity_tag %}
+--gradient-color-start: {{settings.gradient_color_start}}; 
+--gradient-color-end: {{settings.gradient_color_end}};
+{% endif %}
     --default-text-font-size : 15px;
     --base-text-font-size    : {{ settings.base_text_font_size }}px;
     --heading-font-family    : {{ settings.heading_font.family }}, {{ settings.heading_font.fallback_families }};
@@ -56,7 +71,7 @@
     --accent-color-rgb         : {{ settings.accent_color | color_extract: 'red' }}, {{ settings.accent_color | color_extract: 'green' }}, {{ settings.accent_color | color_extract: 'blue' }};
     --link-color               : {{ settings.link_color }};
     --link-color-hover         : {{ settings.link_color | color_darken: 15 }};
-    --background               : {{ settings.background }};
+    --background               : {{ background }};
     --secondary-background     : {{ settings.secondary_background }};
     --secondary-background-rgb : {{ settings.secondary_background | color_extract: 'red' }}, {{ settings.secondary_background | color_extract: 'green' }}, {{ settings.secondary_background | color_extract: 'blue' }};
     --accent-background        : {{settings.accent_color | color_modify: 'alpha', 0.08 }};
@@ -96,6 +111,7 @@
     {%- assign product_custom_label_2_lightness = settings.product_label_2_background | color_extract: 'lightness' -%}
 
     --product-on-sale-accent           : {{ settings.product_on_sale_accent }};
+    --product-on-sale-accent-original  : {{ settings.original_price_after_promotion }};
     --product-on-sale-accent-rgb       : {{ settings.product_on_sale_accent | color_extract: 'red' }}, {{ settings.product_on_sale_accent | color_extract: 'green' }}, {{ settings.product_on_sale_accent | color_extract: 'blue' }};
     --product-on-sale-color            : {% if product_on_sale_lightness < 65 %}#ffffff{% else %}#000000{% endif %};
     --product-in-stock-color           : {{ settings.product_in_stock_color }};
@@ -107,8 +123,8 @@
     --product-custom-label-2-color     : {% if product_custom_label_2_lightness < 65 %}#ffffff{% else %}#000000{% endif %};
     --product-review-star-color        : {{ settings.product_star_color }};
 
-    --mobile-container-gutter : 20px;
-    --desktop-container-gutter: 40px;
+    --mobile-container-gutter : 10px;
+    --desktop-container-gutter: 30px;
 
     /* Shopify related variables */
     --payment-terms-background-color: {{ settings.background }};

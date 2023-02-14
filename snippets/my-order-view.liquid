@@ -1,0 +1,537 @@
+
+<div class="order-render__view">
+    <h1 class="heading h3 my-order__title">My Order</h1>
+
+    <div class="order-view__box">
+
+        <ul class="d-flex orders-nav__list">
+        
+            <li class="order-all orders-nav__item" data-action="true" data-index="1" data-change="All">
+                {%- render 'icon', icon: 'cjj_all' -%}
+                <span>All</span>
+            </li>
+            <li class="order-unpaid orders-nav__item" data-action="false" data-index="2" data-change="Unpaid">
+                {%- render 'icon', icon: 'cjj_unpaid' -%}
+                <span>Unpaid</span>
+            </li>
+        
+            <li class="order-shipped orders-nav__item" data-action="false" data-index="3" data-change="Shipped">
+                {%- render 'icon', icon: 'cjj_shipped' -%}
+                <span>Shipped</span>
+            </li>
+        
+            <li class="order-completed orders-nav__item" data-action="false" data-index="4" data-change="Completed">
+                {%- render 'icon', icon: 'cjj_completed' -%}
+                <span>Completed</span>
+            </li>
+            <li class="order-payment orders-nav__item" data-action="false" data-index="5" data-change="Confirmed">
+                {%- render 'icon', icon: 'cjj_payment' -%}
+                <span>Confirmed</span>
+            </li>
+            <li class="order-processing orders-nav__item" data-action="false" data-index="6"
+                data-change="Returns">
+                {%- render 'icon', icon: 'cjj_processing' -%}
+                <span>Returns</span>
+            </li>
+        </ul>
+        <div class="order__render-view">
+
+            <div class="card order-item__card" aria-hidden="false" data-index="1">
+                {%- if customer.orders_count == 0 -%}
+                    <div class="card__section">
+                        <div class="empty-state empty-state--extra-tight">
+                        <div class="empty-state__icon">
+                            {%- render 'icon', icon: 'package' -%}
+                            <span class="empty-state__count">0</span>
+                        </div>
+
+                        <p class="empty-state__icon-description">{{ 'customer.general.no_orders' | t }}</p>
+        
+                        <div class="empty-state__button-container">
+                            <a href="{{ routes.all_products_collection_url }}" class="empty-state__button button button--primary">{{ 'customer.general.no_orders_button' | t }}</a>
+                        </div>
+                        </div>
+                    </div>
+                {%- else -%}
+                    
+                {%- paginate customer.orders by 16 -%}
+                {%- for order in customer.orders -%}
+                <div class="order-box">
+                    <div class="order-title">
+                        <div class="title-info d-flex">
+                            <span class="title-info-name" data-url="{{ order.customer_url }}">{{ 'customer.order.order' | t  }}:{{ order.name }}</span>
+                            <span class="title-info-data">{{ 'customer.order.date' | t }}:{{ order.created_at | date:   format: 'month_day_year' }}</span>
+                        </div>
+                        <div class="title-state">
+                            <span>{{ order.financial_status_label }}</span>&nbsp;
+                            <span>{{ order.fulfillment_status }}</span>
+                        </div>
+                    </div>
+                    <ul class="order-body">
+                        {%- for pro in order.line_items -%}
+                        <li class="order-item__card-body">
+                            <div class="d-flex" >
+                                <div class="pro-img">
+                                    <a href="{{ pro.url }}">
+                                        <img src="{{ pro.image | img_url: '90x90', scale: 2 }}"
+                                            alt="{{ pro.image.alt | escape }}">
+                                    </a>
+                                </div>
+
+                                <div class="pro-info">
+                                    <div class="info-title d-flex">
+                                    <a class="pro-info__title" href="{{ pro.url }}">{{ pro.product.title }}</a>
+                                    <span class="info-price__scribe line-item__price--highlight">{{pro.original_price | money}}</span>
+                                    <span class="info-price ">{{ pro.final_line_price | money }}</span>
+                                    </div>
+                    
+                                    <div class="info-style d-flex">
+                                        <span class="style-title">{{ pro.variant.title }}</span>
+                                        <span class="style-num">× {{ pro.quantity }}</span>
+                                    </div>
+
+                                    <p class="pro-info__text pro-info__discount">USE COUPONS OR {{pro.line_level_total_discount | money}}</p>
+                                    <p class="pro-info__text pro-info__paid">THE ACTUAL PAYMENT {{ pro.final_line_price | money }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {%- endfor -%}
+                    </ul>
+                    <div class="order-footer">
+                        <div class="shipping">
+                            <span>{{ 'customer.order.shipping' | t }}:{{ order.shipping_price | money }}</span>
+                        </div>
+                        <div class="all-total">
+                            <span class="total">{{ 'customer.order.total' | t }}:{{ order.total_price | money }}</span>
+                        </div>
+                    </div>
+                </div>
+                {%- endfor -%}
+                {%- render 'pagination', paginate: paginate -%}
+                {% assign dm_paginate_by = paginate.page_size %}
+                {%- endpaginate -%}
+                {%- endif -%}
+            </div>
+
+            {% comment %}--------------------未付款--------------------  {% endcomment %}
+            <div class="card order-item__card"  aria-hidden="true" data-index="2">
+                {%- assign empty_state = true -%}
+                {%- if customer.orders_count != 0 -%}
+                    
+                {%- paginate customer.orders by 16 -%}
+                {%- for order in customer.orders -%}
+                {% if order.financial_status == 'pending' or order.financial_status == "unpaid" %}
+                {%- assign empty_state = false -%}
+                <div class="order-box">
+                    <div class="order-title">
+                        <div class="title-info d-flex">
+                            <span class="title-info-name" data-url="{{ order.customer_url }}">{{ 'customer.order.order' | t  }}:{{ order.name }}</span>
+                            <span class="title-info-data">{{ 'customer.order.date' | t }}:{{ order.created_at | date:   format: 'month_day_year' }}</span>
+                        </div>
+                        <div class="title-state">
+                            <span>{{ order.financial_status_label }}</span>&nbsp;
+                            <span>{{ order.fulfillment_status }}</span>
+                        </div>
+                    </div>
+                    <ul class="order-body">
+                        {%- for pro in order.line_items -%}
+                        <li class="order-item__card-body">
+                            <div class="d-flex" >
+                                <div class="pro-img">
+                                    <a href="{{ pro.url }}">
+                                        <img src="{{ pro.image | img_url: '90x90', scale: 2 }}"
+                                            alt="{{ pro.image.alt | escape }}">
+                                    </a>
+                                </div>
+
+                                <div class="pro-info">
+                                    <div class="info-title d-flex">
+                                    <a class="pro-info__title" href="{{ pro.url }}">{{ pro.product.title }}</a>
+                                    <span class="info-price__scribe line-item__price--highlight">{{pro.original_price | money}}</span>
+                                    <span class="info-price ">{{ pro.final_line_price | money }}</span>
+                                    </div>
+                    
+                                    <div class="info-style d-flex">
+                                        <span class="style-title">{{ pro.variant.title }}</span>
+                                        <span class="style-num">× {{ pro.quantity }}</span>
+                                    </div>
+
+                                    <p class="pro-info__text pro-info__discount">USE COUPONS OR {{pro.line_level_total_discount | money}}</p>
+                                    <p class="pro-info__text pro-info__paid">THE ACTUAL PAYMENT {{ pro.final_line_price | money }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {%- endfor -%}
+                    </ul>
+                    <div class="order-footer">
+                        <div class="shipping">
+                            <span>{{ 'customer.order.shipping' | t }}:{{ order.shipping_price | money }}</span>
+                        </div>
+                        <div class="all-total">
+                            <span class="total">{{ 'customer.order.total' | t }}:{{ order.total_price | money }}</span>
+                        </div>
+                    </div>
+                </div>
+                {%- endif -%}
+                {%- endfor -%}
+                {%- render 'pagination', paginate: paginate -%}
+                {% assign dm_paginate_by = paginate.page_size %}
+                {%- endpaginate -%}
+                {%- endif -%}
+                {%- if empty_state -%}
+                <div class="card__section">
+                    <div class="empty-state empty-state--extra-tight">
+                    <div class="empty-state__icon">
+                        {%- render 'icon', icon: 'package' -%}
+                        <span class="empty-state__count">0</span>
+                    </div>
+    
+                    <p class="empty-state__icon-description">{{ 'customer.general.no_orders' | t }}</p>
+    
+                    <div class="empty-state__button-container">
+                        <a href="{{ routes.all_products_collection_url }}" class="empty-state__button button button--primary">{{ 'customer.general.no_orders_button' | t }}</a>
+                    </div>
+                    </div>
+                </div>
+                {%- endif -%}
+            </div>
+
+            {% comment %} -------------------------履行----------------------- {% endcomment %}
+            <div class="card order-item__card"  aria-hidden="true" data-index="3">
+                {%- assign empty_state = true -%}
+                {%- if customer.orders_count != 0 -%}
+                {%- paginate customer.orders by 16 -%}
+               
+                    {%- for order in customer.orders -%}
+                {%- if order.financial_status=='paid' and order.fulfillment_status=="partial" or  order.fulfillment_status=='in progress' -%}
+                {%- assign empty_state = false -%}
+    
+
+                <div class="order-box">
+                    <div class="order-title">
+                        <div class="title-info d-flex">
+                            <span class="title-info-name" data-url="{{ order.customer_url }}">{{ 'customer.order.order' | t  }}:{{ order.name }}</span>
+                            <span class="title-info-data">{{ 'customer.order.date' | t }}:{{ order.created_at | date:   format: 'month_day_year' }}</span>
+                        </div>
+                        <div class="title-state">
+                            <span>{{ order.financial_status_label }}</span>&nbsp;
+                            <span>{{ order.fulfillment_status }}</span>
+                        </div>
+                    </div>
+                    <ul class="order-body">
+                        {%- for pro in order.line_items -%}
+                        <li class="order-item__card-body">
+                            <div class="d-flex" >
+                                <div class="pro-img">
+                                    <a href="{{ pro.url }}">
+                                        <img src="{{ pro.image | img_url: '90x90', scale: 2 }}"
+                                            alt="{{ pro.image.alt | escape }}">
+                                    </a>
+                                </div>
+
+                                <div class="pro-info">
+                                    <div class="info-title d-flex">
+                                    <a class="pro-info__title" href="{{ pro.url }}">{{ pro.product.title }}</a>
+                                    <span class="info-price__scribe line-item__price--highlight">{{pro.original_price | money}}</span>
+                                    <span class="info-price ">{{ pro.final_line_price | money }}</span>
+                                    </div>
+                    
+                                    <div class="info-style d-flex">
+                                        <span class="style-title">{{ pro.variant.title }}</span>
+                                        <span class="style-num">× {{ pro.quantity }}</span>
+                                    </div>
+
+                                    <p class="pro-info__text pro-info__discount">USE COUPONS OR {{pro.line_level_total_discount | money}}</p>
+                                    <p class="pro-info__text pro-info__paid">THE ACTUAL PAYMENT {{ pro.final_line_price | money }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {%- endfor -%}
+                    </ul>
+                    <div class="order-footer">
+                        <div class="shipping">
+                            <span>{{ 'customer.order.shipping' | t }}:{{ order.shipping_price | money }}</span>
+                        </div>
+                        <div class="all-total">
+                            <span class="total">{{ 'customer.order.total' | t }}:{{ order.total_price | money }}</span>
+                        </div>
+                    </div>
+                </div>
+                {%- endif -%}
+                {%- endfor -%}
+                {%- render 'pagination', paginate: paginate -%}
+                {% assign dm_paginate_by = paginate.page_size %}
+                {%- endpaginate -%}
+                {%- endif -%}
+                {%- if empty_state -%}
+                <div class="card__section">
+                    <div class="empty-state empty-state--extra-tight">
+                    <div class="empty-state__icon">
+                        {%- render 'icon', icon: 'package' -%}
+                        <span class="empty-state__count">0</span>
+                    </div>
+    
+                    <p class="empty-state__icon-description">{{ 'customer.general.no_orders' | t }}</p>
+    
+                    <div class="empty-state__button-container">
+                        <a href="{{ routes.all_products_collection_url }}" class="empty-state__button button button--primary">{{ 'customer.general.no_orders_button' | t }}</a>
+                    </div>
+                    </div>
+                </div>
+                {%- endif -%}
+            </div>
+
+        {% comment %} --------------------------已完成------------------------ {% endcomment %}
+            <div class="card order-item__card"  aria-hidden="true" data-index="4">
+                {%- assign empty_state = true -%}
+                {%- if customer.orders_count != 0 -%}
+                {%- paginate customer.orders by 16 -%}
+                {%- for order in customer.orders -%}
+                {% if order.financial_status=='paid' and order.fulfillment_status=='complete' or order.fulfillment_status=='fulfilled' %}
+                {%- assign empty_state = false -%}
+                <div class="order-box">
+                    <div class="order-title">
+                        <div class="title-info d-flex">
+                            <span class="title-info-name"><span data-url="{{ order.customer_url }}">{{ 'customer.order.order' | t  }}:{{ order.name }}</span></span>
+                            <span class="title-info-data">{{ 'customer.order.date' | t }}:{{ order.created_at | date:   format: 'month_day_year' }}</span>
+                        </div>
+                        <div class="title-state">
+                            <span>{{ order.financial_status_label }}</span>&nbsp;
+                            <span>{{ order.fulfillment_status }}</span>
+                        </div>
+                    </div>
+                    <ul class="order-body">
+                        {%- for pro in order.line_items -%}
+                        <li class="order-item__card-body">
+                            <div class="d-flex" >
+                                <div class="pro-img">
+                                    <a href="{{ pro.url }}">
+                                        <img src="{{ pro.image | img_url: '90x90', scale: 2 }}"
+                                            alt="{{ pro.image.alt | escape }}">
+                                    </a>
+                                </div>
+
+                                <div class="pro-info">
+                                    <div class="info-title d-flex">
+                                    <a class="pro-info__title" href="{{ pro.url }}">{{ pro.product.title }}</a>
+                                    <span class="info-price__scribe line-item__price--highlight">{{pro.original_price | money}}</span>
+                                    <span class="info-price ">{{ pro.final_line_price | money }}</span>
+                                    </div>
+                    
+                                    <div class="info-style d-flex">
+                                        <span class="style-title">{{ pro.variant.title }}</span>
+                                        <span class="style-num">× {{ pro.quantity }}</span>
+                                    </div>
+
+                                    <p class="pro-info__text pro-info__discount">USE COUPONS OR {{pro.line_level_total_discount | money}}</p>
+                                    <p class="pro-info__text pro-info__paid">THE ACTUAL PAYMENT {{ pro.final_line_price | money }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {%- endfor -%}
+                    </ul>
+                    <div class="order-footer">
+                        <div class="shipping">
+                            <span>{{ 'customer.order.shipping' | t }}:{{ order.shipping_price | money }}</span>
+                        </div>
+                        <div class="all-total">
+                            <span class="total">{{ 'customer.order.total' | t }}:{{ order.total_price | money }}</span>
+                        </div>
+                    </div>
+                </div>
+                {%- endif -%}
+                {%- endfor -%}
+                {%- render 'pagination', paginate: paginate -%}
+                {% assign dm_paginate_by = paginate.page_size %}
+                {%- endpaginate -%}
+                {%- endif -%}
+                {%- if empty_state -%}
+                <div class="card__section">
+                    <div class="empty-state empty-state--extra-tight">
+                    <div class="empty-state__icon">
+                        {%- render 'icon', icon: 'package' -%}
+                        <span class="empty-state__count">0</span>
+                    </div>
+    
+                    <p class="empty-state__icon-description">{{ 'customer.general.no_orders' | t }}</p>
+    
+                    <div class="empty-state__button-container">
+                        <a href="{{ routes.all_products_collection_url }}" class="empty-state__button button button--primary">{{ 'customer.general.no_orders_button' | t }}</a>
+                    </div>
+                    </div>
+                </div>
+                {%- endif -%}
+            </div>
+        {%- comment -%}------------------------未履行---------------------------{%- endcomment -%}
+            <div class="card order-item__card"  aria-hidden="true" data-index="5">
+                {%- assign empty_state = true -%}
+                {%- if customer.orders_count != 0 -%}
+                {%- paginate customer.orders by 16 -%}
+                {%- for order in customer.orders -%}
+                {% if order.financial_status=='paid' and order.fulfillment_status=="unfulfilled"%}
+                {%- assign empty_state = false -%}
+                <div class="order-box">
+                    <div class="order-title">
+                        <div class="title-info d-flex">
+                            <span class="title-info-name"><span data-url="{{ order.customer_url }}">{{ 'customer.order.order' | t  }}:{{ order.name }}</span></span>
+                            <span class="title-info-data">{{ 'customer.order.date' | t }}:{{ order.created_at | date:   format: 'month_day_year' }}</span>
+                        </div>
+                        <div class="title-state">
+                            <span>{{ order.financial_status_label }}</span>&nbsp;
+                            <span>{{ order.fulfillment_status }}</span>
+                        </div>
+                    </div>
+                    <ul class="order-body">
+                        {%- for pro in order.line_items -%}
+                        <li class="order-item__card-body">
+                            <div class="d-flex" >
+                                <div class="pro-img">
+                                    <a href="{{ pro.url }}">
+                                        <img src="{{ pro.image | img_url: '90x90', scale: 2 }}"
+                                            alt="{{ pro.image.alt | escape }}">
+                                    </a>
+                                </div>
+
+                                <div class="pro-info">
+                                    <div class="info-title d-flex">
+                                    <a class="pro-info__title" href="{{ pro.url }}">{{ pro.product.title }}</a>
+                                    <span class="info-price__scribe line-item__price--highlight">{{pro.original_price | money}}</span>
+                                    <span class="info-price ">{{ pro.final_line_price | money }}</span>
+                                    </div>
+                    
+                                    <div class="info-style d-flex">
+                                        <span class="style-title">{{ pro.variant.title }}</span>
+                                        <span class="style-num">× {{ pro.quantity }}</span>
+                                    </div>
+
+                                    <p class="pro-info__text pro-info__discount">USE COUPONS OR {{pro.line_level_total_discount | money}}</p>
+                                    <p class="pro-info__text pro-info__paid">THE ACTUAL PAYMENT {{ pro.final_line_price | money }}</p>
+                                </div>
+                            </div>
+                        </li>
+                        {%- endfor -%}
+                    </ul>
+                    <div class="order-footer">
+                        <div class="shipping">
+                            <span>{{ 'customer.order.shipping' | t }}:{{ order.shipping_price | money }}</span>
+                        </div>
+                        <div class="all-total">
+                            <span class="total">{{ 'customer.order.total' | t }}:{{ order.total_price | money }}</span>
+                        </div>
+                    </div>
+                </div>
+                {%- endif -%}
+                {%- endfor -%}
+                {%- render 'pagination', paginate: paginate -%}
+                {% assign dm_paginate_by = paginate.page_size %}
+                {%- endpaginate -%}
+                {%- endif -%}
+                {%- if empty_state -%}
+                <div class="card__section">
+                    <div class="empty-state empty-state--extra-tight">
+                    <div class="empty-state__icon">
+                        {%- render 'icon', icon: 'package' -%}
+                        <span class="empty-state__count">0</span>
+                    </div>
+    
+                    <p class="empty-state__icon-description">{{ 'customer.general.no_orders' | t }}</p>
+    
+                    <div class="empty-state__button-container">
+                        <a href="{{ routes.all_products_collection_url }}" class="empty-state__button button button--primary">{{ 'customer.general.no_orders_button' | t }}</a>
+                    </div>
+                    </div>
+                </div>
+                {%- endif -%}
+            </div>
+            {%- comment -%}-----------------------退款----------------------{%- endcomment -%}
+            <div class="card order-item__card"  aria-hidden="true" data-index="6">
+                {%- assign empty_state = true -%}
+
+                {%- if customer.orders_count != 0 -%}
+                    {%- paginate customer.orders by 16 -%}
+
+                    {%- for order in customer.orders -%}
+                        {% if order.financial_status=='refunded' %}
+                        {%- assign empty_state = false -%}
+                        <div class="order-box">
+                            <div class="order-title">
+                                <div class="title-info d-flex">
+                                    <span class="title-info-name"><span data-url="{{ order.customer_url }}">{{ 'customer.order.order' | t  }}:{{ order.name }}</span></span>
+                                    <span class="title-info-data">{{ 'customer.order.date' | t }}:{{ order.created_at | date:   format: 'month_day_year' }}</span>
+                                </div>
+                                <div class="title-state">
+                                    <span>{{ order.financial_status_label }}</span>&nbsp;
+                                    <span>{{ order.fulfillment_status }}</span>
+                                </div>
+                            </div>
+                            <ul class="order-body">
+                                {%- for pro in order.line_items -%}
+                                <li class="order-item__card-body">
+                                    <div class="d-flex" >
+                                        <div class="pro-img">
+                                            <a href="{{ pro.url }}">
+                                                <img src="{{ pro.image | img_url: '90x90', scale: 2 }}"
+                                                    alt="{{ pro.image.alt | escape }}">
+                                            </a>
+                                        </div>
+
+                                        <div class="pro-info">
+                                            <div class="info-title d-flex">
+                                            <a class="pro-info__title" href="{{ pro.url }}">{{ pro.product.title }}</a>
+                                            <span class="info-price__scribe line-item__price--highlight">{{pro.original_price | money}}</span>
+                                            <span class="info-price ">{{ pro.final_line_price | money }}</span>
+                                            </div>
+                            
+                                            <div class="info-style d-flex">
+                                                <span class="style-title">{{ pro.variant.title }}</span>
+                                                <span class="style-num">× {{ pro.quantity }}</span>
+                                            </div>
+
+                                            <p class="pro-info__text pro-info__discount">USE COUPONS OR {{pro.line_level_total_discount | money}}</p>
+                                            <p class="pro-info__text pro-info__paid">THE ACTUAL PAYMENT {{ pro.final_line_price | money }}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                {%- endfor -%}
+                            </ul>
+                            <div class="order-footer">
+                                <div class="shipping">
+                                    <span>{{ 'customer.order.shipping' | t }}:{{ order.shipping_price | money }}</span>
+                                </div>
+                                <div class="all-total">
+                                    <span class="total">{{ 'customer.order.total' | t }}:{{ order.total_price | money }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {%- endif -%}
+                    {%- endfor -%}
+                    {%- render 'pagination', paginate: paginate -%}
+                    {% assign dm_paginate_by = paginate.page_size %}
+
+                    {%- endpaginate -%}
+                {%- endif -%}
+
+                {%- if empty_state -%}
+                <div class="card__section">
+                    <div class="empty-state empty-state--extra-tight">
+                    <div class="empty-state__icon">
+                        {%- render 'icon', icon: 'package' -%}
+                        <span class="empty-state__count">0</span>
+                    </div>
+    
+                    <p class="empty-state__icon-description">{{ 'customer.general.no_orders' | t }}</p>
+    
+                    <div class="empty-state__button-container">
+                        <a href="{{ routes.all_products_collection_url }}" class="empty-state__button button button--primary">{{ 'customer.general.no_orders_button' | t }}</a>
+                    </div>
+                    </div>
+                </div>
+                {%- endif -%}
+
+            </div>
+        
+
+        </div>
+    </div>
+
+</div>

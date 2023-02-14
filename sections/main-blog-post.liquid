@@ -160,7 +160,7 @@
                   {%- endfor -%}
 
                   {%- render 'pagination', paginate: paginate -%}
-                {%- endpaginate -%}
+                {% assign dm_paginate_by = paginate.page_size %}{%- endpaginate -%}
               </div>
             {%- endif -%}
 

@@ -9,6 +9,7 @@
 {%- capture section_settings -%}
 {
   "stackable": false,
+  "mobileStackable": {{section.settings.stackable}},
   "layout": "vertical",
   "productId": {{ product.id | json }},
   "useRecommendations": {{ use_recommendations | json }},
@@ -20,15 +21,20 @@
   <div class="container">
     {%- if section.settings.heading != blank -%}
       <header class="section__header">
-        <h2 class="section__title heading h3">{{ section.settings.heading | escape }}</h2>
+        {% style %}
+            .heading{
+              color:{{ section.settings.title_color }}
+            }
+        {% endstyle %}
+        <h2  class="section__title heading h3 font_16">{{ section.settings.heading | escape }}</h2>
       </header>
     {%- endif -%}
 
-    <div class="product-recommendations">
+    <div class="product-recommendations pb-80">
       {%- if recommendations.performed or use_recommendations == false -%}
         <div class="scroller">
           <div class="scroller__inner">
-            <div class="product-list product-list--vertical product-list--scrollable">
+            <div class="product-list product-list--vertical product-list--scrollable {% if section.settings.stackable %}product-list--mobile{% endif %}">
               {%- comment -%}
               If the merchant is explicitly using SuperFields, we use the hand-picked related products, otherwise we
               switch to the Shopify automatic recommendation
@@ -36,7 +42,7 @@
 
               {%- if use_recommendations -%}
                 {%- for product in recommendations.products -%}
-                  {%- render 'product-item', product: product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy -%}
+                  {%- render 'product-item', product: product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy,forloop:forloop,first_mkt_name:'You may also like' -%}
                 {%- else -%}
                   {%- comment -%}Hide the section if there is no recommendations to show{%- endcomment -%}
                   <style>
@@ -48,7 +54,7 @@
               {%- else -%}
                 {%- for block in section.blocks -%}
                   {%- if block.settings.product != blank -%}
-                    {%- render 'product-item', product: block.settings.product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy -%}
+                    {%- render 'product-item', product: block.settings.product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy,forloop:forloop,first_mkt_name:'You may also like' -%}
                   {%- endif -%}
                 {%- endfor -%}
               {%- endif -%}
@@ -88,7 +94,7 @@
   "settings": [
     {
       "type": "paragraph",
-      "content": "Dynamic recommendations change and improve with time. Create manual product recommendations using the Shopify Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations)."
+      "content": "Dynamic recommendations change and improve with time. [Learn more](https://help.shopify.com/en/themes/development/recommended-products). You can manually select products by adding content."
     },
     {
       "type": "text",
@@ -101,6 +107,17 @@
       "id": "show_quick_buy",
       "label": "Show quick buy",
       "default": false
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "标题字体颜色",
+      "default": "#000000"
+    },{
+      "type":"checkbox",
+      "id":"stackable",
+      "label":"移动端启用网格布局",
+      "default":false
     }
   ],
   "blocks": [

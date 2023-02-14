@@ -1,37 +1,24 @@
 {%- assign selected_variant = product.selected_or_first_available_variant -%}
+{% assign category = product.metafields.my_fields.category %}
 
-{%- if block.settings.show_share_buttons -%}
-  {%- capture share_buttons -%}
-    {%- assign share_url = shop.url | append: product.url | url_param_escape -%}
-    {%- assign twitter_text = product.title | url_param_escape -%}
-    {%- assign pinterest_description = product.description | strip_html | truncatewords: 15 | url_param_escape -%}
-    {%- assign pinterest_image = product.featured_media | img_url: '1024x' | prepend: 'https:' -%}
-
-    <ul class="social-media__item-list list--unstyled" role="list">
-      <li class="social-media__item social-media__item--facebook">
-        <a href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.facebook_share' | t }}">{%- render 'icon', icon: 'facebook' -%}</a>
-      </li>
-
-      <li class="social-media__item social-media__item--pinterest">
-        <a href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.pinterest_pin' | t }}">{%- render 'icon', icon: 'pinterest' -%}</a>
-      </li>
-
-      <li class="social-media__item social-media__item--twitter">
-        <a href="https://twitter.com/share?{% if twitter_text != blank %}text={{twitter_text}}&{% endif %}url={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.twitter_tweet' | t }}">{%- render 'icon', icon: 'twitter' -%}</a>
-      </li>
-
-      <li class="social-media__item">
-        <a href="mailto:?&subject={{ product.title | escape }}&body={{ share_url }}" aria-label="{{ 'general.social.email_share' | t }}">{% render 'icon', icon: 'email' %}</a>
-      </li>
-    </ul>
-  {%- endcapture -%}
+{%- if product.tags.size > 1 -%}
+{% for tag in product.tags %}
+{%- if forloop.index == 1 -%}
+   {%- assign commodity_tag = tag -%}
+{%- else -%}
+   {%- assign commodity_tag = commodity_tag | append: "," | append: tag -%}
+{%- endif -%}
+{% endfor %}
+   {%- assign commodity_tag = commodity_tag | split: "," -%}
+{%- else -%}
+   {%- assign commodity_tag = product.tags -%}
 {%- endif -%}
 
 <div class="product-meta">
   {%- if template.name == 'product' and template != 'product.quick-view' -%}
-    <h1 class="product-meta__title heading h1">{{ product.title }}</h1>
+    <h1 class="product-meta__title heading h1 hidden-phone hidden-tablet">{{ product.title }}</h1>
   {%- else -%}
-    <h3 class="product-meta__title heading h2">
+    <h3 class="product-meta__title heading h2 hidden-phone hidden-tablet">
       <a href="{{ product.url }}">{{ product.title }}</a>
     </h3>
   {%- endif -%}
@@ -90,18 +77,15 @@
       {%- endif -%}
     </div>
   {%- endif -%}
+  
+    {%- comment -%}
+    {%- if block.settings.show_reviews_badge -%}
+      <a href="{% if template.name != 'product' or template == 'product.quick-view' %}{{ product.url }}{% endif %}#product-reviews" class="product-meta__reviews-badge link" data-offset="30">
+        {%- render 'product-rating', product: product -%}
+      </a>
+    {%- endif -%}
+    {%- endcomment -%}
 
-  {%- if block.settings.show_reviews_badge -%}
-    <a href="{% if template.name != 'product' or template == 'product.quick-view' %}{{ product.url }}{% endif %}#product-reviews" class="product-meta__reviews-badge link" data-offset="30">
-      {%- render 'product-rating', product: product -%}
-    </a>
-  {%- endif -%}
-
-  {%- if block.settings.show_share_buttons -%}
-    <div class="product-meta__share-buttons hidden-phone">
-      {{ share_buttons }}
-    </div>
-  {%- endif -%}
 </div>
 
 <hr class="card__separator">

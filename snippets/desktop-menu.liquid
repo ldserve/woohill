@@ -30,7 +30,7 @@ always visible.
 {%- if is_floating == false and is_mega_menu -%}
   {%- render 'mega-menu', is_floating: is_floating, mega_menu: menu, index: index -%}
 {%- else -%}
-  <ul id="{{ index }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating {% if mega_menus.size > 0 %}nav-dropdown--fixed {% endif %}{% elsif menu.levels == 1 %}nav-dropdown--restrict{% endif %}" data-type="menu" aria-hidden="true" role="list">
+  <ul id="{{ index }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating {% if mega_menus.size > 0 %}nav-dropdown--fixed {% endif %}{% elsif menu.levels == 1 %}nav-dropdown--restrict{% endif %}" data-type="menu" aria-hidden="true" role="list" data-expenable="1">
     {%- if is_floating -%}
       {%- render 'icon', icon: 'nav-triangle-borderless' -%}
     {%- endif -%}
@@ -50,7 +50,7 @@ always visible.
 
       <li class="nav-dropdown__item {% if is_mega_menu %}has-mega-menu{% endif %}">
         {%- if link.links.size == 0 -%}
-          <a href="{{ link.url }}" class="nav-dropdown__link link" data-type="menuitem">{{ link.title }}</a>
+          <a href="{{ link.url }}" class="nav-dropdown__link link shence_commodityView" data-type="menuitem" data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" data-scdata='{"mkt_type":"bar","first_mkt_name":"顶部导航","first_mkt_id":"{{ section.id }}","second_mkt_rank":"{{ menuindex }}","third_mkt_rank":"{{ forloop.index }}","mkt_material_url":"","mkt_material_name":"{{ link.title | handleize }}","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>{{ link.title }}</a>
         {%- else -%}
           {%- capture index_nested -%}{{ index }}-{% increment nav_dropdown %}{%- endcapture -%}
           <a href="{{ link.url }}" class="nav-dropdown__link link" data-type="menuitem" aria-expanded="false" aria-controls="{{ index_nested }}" aria-haspopup="true">{{- link.title -}} {%- render 'icon', icon: 'arrow-right' -%}</a>
@@ -58,7 +58,7 @@ always visible.
           {%- if is_mega_menu -%}
             {%- render 'mega-menu', is_floating: is_floating, mega_menu: link, index: index_nested -%}
           {%- else -%}
-            <ul id="{{ index_nested }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating{% endif %}" data-type="menu" aria-hidden="true" role="list">
+            <ul id="{{ index_nested }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating{% endif %}" data-type="menu" aria-hidden="true" role="list" data-expenable="1">
               {%- render 'icon', icon: 'nav-triangle-left' -%}
 
               {%- for sub_link in link.links -%}
@@ -70,12 +70,12 @@ always visible.
 
                     <a href="{{ sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem" aria-expanded="false" aria-controls="{{ index_nested_nested }}" aria-haspopup="true">{{- sub_link.title -}} {%- render 'icon', icon: 'arrow-right' -%}</a>
 
-                    <ul id="{{ index_nested_nested }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating{% endif %}" data-type="menu" aria-hidden="true" role="list">
+                    <ul id="{{ index_nested_nested }}" class="nav-dropdown {% if is_floating %}nav-dropdown--floating{% endif %}" data-type="menu" aria-hidden="true" role="list" data-expenable="1">
                       {%- render 'icon', icon: 'nav-triangle-left' -%}
 
                       {%- for sub_sub_link in sub_link.links -%}
                         <li class="nav-dropdown__item">
-                          <a href="{{ sub_sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem">{{ sub_sub_link.title }}</a>
+                          <a href="{{ sub_sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem" >{{ sub_sub_link.title }}</a>
                         </li>
                       {%- endfor -%}
                     </ul>
@@ -89,3 +89,28 @@ always visible.
     {%- endfor -%}
   </ul>
 {%- endif -%}
+<style>
+  #shopify-section-{{ section.id }} .nav-bar__linklist .nav-bar__item>a{
+    position: relative;
+  }
+  #shopify-section-{{ section.id }} .nav-bar__linklist .nav-bar__item>a:after{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    pointer-events: none;
+    border-bottom: 2px solid;
+    opacity: 0;
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1);
+    -webkit-transition: opacity 0.5s,transform 0.5s;
+    transition: opacity 0.5s,transform 0.5s;
+  }
+  #shopify-section-{{ section.id }} .nav-bar__linklist .nav-bar__item:hover>a:after{
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+</style>

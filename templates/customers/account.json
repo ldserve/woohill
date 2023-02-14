@@ -1,1 +1,21 @@
-{"sections":{"main":{"type":"main-customers-account","settings":{}}},"order":["main"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-customers-account",
+      "settings": {
+      }
+    },
+    "1651059386d9622f2b": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "title_color": "#000000",
+        "show_quick_buy": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1651059386d9622f2b"
+  ]
+}

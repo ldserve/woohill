@@ -3,11 +3,19 @@
     {%- if search.types contains 'product' -%}
       <p class="search-bar__result-category">{{ 'header.search.products' | t }}</p>
 
-      <div class="search-bar__result-products">
+      <div class="search-bar__result-products" data-skulist="{%- for item in search.results limit: 5 -%}{{- item.handle| handleize -}},{%- endfor -%}">
         {%- assign clean_terms = search.terms | split: ' AND ' | last | remove_first: '*' -%}
 
-        {%- for item in search.results limit: 3 -%}
-          <a href="{{ item.url }}" class="search-bar__result-item">
+        {%- for item in search.results limit: 5 -%}
+          <a href="{{ item.url }}"
+             class="search-bar__result-item"
+             data-scenable="1"
+             data-sctype="SearchResultClick"
+             data-scdata='{"commodity_spuid":"{{- item.handle| handleize -}}","commodity_image_url":"{{- item.featured_image| image_url | split: '?' | first-}}","commodity_name":"{{- item.title|replace:"'",'' -}}","original_price":"{{- item.compare_at_price -}}","current_price":"{{- item.price -}}","mkt_tag":[],"result_number":"{{ forloop.length }}","mkt_location":"{{ forloop.index }}","commodity_spuid":"{{ item.handle |handleize}}","commodity_skuid":""}'
+             data-scenablepros='1'
+             data-sctypepros="SearchRequest"
+             data-scdatapros='{"result_number":{{ forloop.length }}}'
+          >
             <div class="search-bar__image-container">
               <div class="aspect-ratio aspect-ratio--square">
                 <img src="{{ item.featured_image | img_url: '120x120' }}" alt="{{ item.featured_image.alt | escape }}">
@@ -22,8 +30,13 @@
         {%- endfor -%}
       </div>
 
-      {%- if search.results_count > 3 -%}
-        <button class="search-bar__view-all" type="submit">
+      {%- if search.results_count > 5 -%}
+        <button class="search-bar__view-all"
+                type="submit"
+                data-scenable="1"
+                data-sctype="searchjump"
+                data-scsession='{"search_type":"点击view all"}'
+        >
           {%- if settings.search_mode == 'product' -%}
             {{- 'header.search.view_products' | t -}}
           {%- else -%}

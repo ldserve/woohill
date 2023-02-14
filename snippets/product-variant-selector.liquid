@@ -1,9 +1,221 @@
 {%- assign selected_variant = product.selected_or_first_available_variant -%}
-{%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,色,カラー,färg,farve,szín,barva' | split: ',' -%}
+{%- assign color_label = 'color,colour,couleur,cor,colore,farbe,색,颜色,カラー,färg,farve,szín,barva' | split: ',' -%}
 
+
+{%- for tag in product.tags -%}
+{%- if forloop.index == 1 -%}
+{%- assign tags = tag | handleize -%}
+{%- else -%}
+{%- assign tagtitlie = tag | handleize -%}
+{%- assign tags = tags | append: "," | append: tagtitlie -%}
+{%- endif -%}
+{%- endfor -%}
+
+<div  class="procut-discount">
+	{%- comment -%}
+		<span class="product-form__info-title text--strong">{{ 'product.form.price' | t }}:</span>
+	{%- endcomment -%}
+
+  <div role="region" aria-live="polite">
+    <div class="price-list" >
+      {%- if selected_variant.compare_at_price > selected_variant.price -%}
+        <span class="price price--highlight">
+          <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+
+          {%- if settings.currency_code_enabled -%}
+            {{- selected_variant.price | money_with_currency -}}
+          {%- else -%}
+            {{- selected_variant.price | money -}}
+          {%- endif -%}
+        </span>
+
+        <span class="price price--compare">
+          <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
+
+          {%- if settings.currency_code_enabled -%}
+            {{- selected_variant.compare_at_price | money_with_currency -}}
+          {%- else -%}
+            {{- selected_variant.compare_at_price | money -}}
+          {%- endif -%}
+        </span>
+      {%- else -%}
+        <span class="price">
+          <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
+
+          {%- if settings.currency_code_enabled -%}
+            {{- selected_variant.price | money_with_currency -}}
+          {%- else -%}
+            {{- selected_variant.price | money -}}
+          {%- endif -%}
+        </span>
+      {%- endif -%}
+
+    </div>
+
+    <div class="product-meta__share-buttons desktop-product-meta__share-buttons">
+      <a href="#product-reviews" class="product-meta__reviews-badge link" data-offset="30">
+        
+      </a>
+    </div>
+    {%- comment -%}
+    {%- assign product_meta_block = section.blocks | where: 'type', 'product_meta' | first -%}
+    {%- if product_meta_block != blank and product_meta_block.settings.show_share_buttons -%}
+    <div class="product-meta__share-buttons desktop-product-meta__share-buttons">
+      {%- assign share_url = shop.url | append: product.url | url_param_escape -%}
+      {%- assign twitter_text = product.title | url_param_escape -%}
+      {%- assign pinterest_description = product.description | strip_html | truncatewords: 15 | url_param_escape -%}
+      {%- assign pinterest_image = product.featured_media | img_url: '1024x' | prepend: 'https:' -%}
+
+      <ul class="social-media__item-list list--unstyled" role="list"
+          data-scdata='{
+        "commodity_spuid": "{{ product.handle }}",
+        "commodity_skuid":"{{ selected_variant.sku }}",
+        "commodity_name": "{{ product.title | handleize }}",
+        "commodity_image_quantity":"{{ product.images.size }}",
+        "first_commodity":"{{ category.first_commodity }}",
+        "second_commodity":"{{ category.second_commodity }}",
+        "third_commodity":"{{ category.third_commodity }}",
+        "commodity_tag":"{{ commodity_tag | handleize }}",
+        "commodity_description_text":["{{ product.description | handleize }}"],
+        "commodity_description_image":["{{ product.featured_image | image_url | split: "?" | first }}"],
+        "original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}",
+        "current_price":"{{ product.selected_or_first_available_variant.price }}",
+        "discount_price": "{{ variant.compare_at_price }}",
+        "currency_unit": "USD"
+      }'>
+        <li
+          data-scenable="1"
+          data-sctype="ShareCommodity"
+          data-scdata='{"share_medium": "Facebook"}'
+          class="social-media__item social-media__item--facebook">
+          <a href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener" aria-label="{{ 'general.social.facebook_share' | t }}">{%- render 'icon', icon: 'facebook' -%}</a>
+        </li>
+
+        <li
+          data-scenable="1"
+          data-sctype="ShareCommodity"
+          data-scdata='{"share_medium": "Pinterest"}'
+          class="social-media__item social-media__item--pinterest">
+          <a
+            href="https://pinterest.com/pin/create/button/?url={{ share_url }}{% if pinterest_image != blank %}&media={{ pinterest_image }}{% endif %}&description={{ pinterest_description }}"
+            target="_blank" rel="noopener"
+            aria-label="{{ 'general.social.pinterest_pin' | t }}">{%- render 'icon', icon: 'pinterest' -%}</a>
+        </li>
+
+        <li
+          data-scenable="1"
+          data-sctype="ShareCommodity"
+          data-scdata='{"share_medium": "Twitter"}'
+          class="social-media__item social-media__item--twitter">
+          <a
+            href="https://twitter.com/share?{% if twitter_text != blank %}text={{ twitter_text }}&{% endif %}url={{ share_url }}"
+            target="_blank" rel="noopener"
+            aria-label="{{ 'general.social.twitter_tweet' | t }}">{%- render 'icon', icon: 'twitter' -%}</a>
+        </li>
+
+        <li
+          data-scenable="1"
+          data-sctype="ShareCommodity"
+          data-scdata='{"share_medium": "Email"}'
+          class="social-media__item">
+          <a href="mailto:?&subject={{ product.title | escape }}&body={{ share_url }}"
+             aria-label="{{ 'general.social.email_share' | t }}">{% render 'icon', icon: 'email' %}</a>
+        </li>
+      </ul>
+    </div>
+  {%- endif -%}
+    {%- endcomment -%}
+  
+    {%- comment -%}----------------活动标签---------------{%- endcomment -%}
+			{% render "activity-tag", class_name:"desktop-tag_img" , show_img_tag:true %}
+
+
+    {% if block.settings.show_promotion %}
+		<div class="product-discount">
+			<div class="product-discount-detail">
+				{% render "icon" , icon: 'cjj_postage' %}
+				<div  class="product-discount-left"><strong>Free Shipping On Order Over {{settings.cart_free_shipping_threshold| times: 100 | money}}</strong> </div>
+			</div>
+		</div>
+	{% endif %}
+
+    <div class="product-form__price-info" style="display: {% if selected_variant.unit_price_measurement %}block{% else %}none{% endif %}">
+      <div class="unit-price-measurement">
+        <span class="unit-price-measurement__price">{{ selected_variant.unit_price | money }}</span>
+        <span class="unit-price-measurement__separator">/ </span>
+
+        <span class="unit-price-measurement__reference-value" {%- if selected_variant.unit_price_measurement.reference_value == 1 -%}style="display: none"{% endif %}>
+          {{- selected_variant.unit_price_measurement.reference_value -}}
+        </span>
+
+        <span class="unit-price-measurement__reference-unit">{{ selected_variant.unit_price_measurement.reference_unit }}</span>
+      </div>
+    </div>
+
+    {{- form | payment_terms -}}
+
+    {%- if block.settings.show_taxes_included -%}
+      {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
+        <p class="product-form__price-info">
+          {%- if cart.taxes_included -%}
+            {{ 'product.general.include_taxes' | t }}
+          {%- endif -%}
+
+          {%- if shop.shipping_policy.body != blank -%}
+            {{ 'product.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{%- comment -%}----------------------- 产品变体 ------------------{%- endcomment -%}
 {%- unless product.has_only_default_variant -%}
-  <div class="product-form__variants" {{ block.shopify_attributes }}>
-    {%- for option in product.options_with_values -%}
+
+<div class="product-form__variants" {{ block.shopify_attributes }}>
+  
+  {%- comment -%}--------------- Style ----------------------{%- endcomment -%}
+  {%- if product.metafields.custom.style != blank -%}
+ 
+    {%- assign metafield_str1 =  product.metafields.custom.style | remove: '{' -%}
+    {%- assign metafield_str =  metafield_str1 | remove: '}'  -%}
+    {%- assign metafield_arr = metafield_str  | remove: '"' | split: ',' -%}
+
+    {%- for style_item in metafield_arr -%}
+      {%- assign dow_style = style_item | downcase -%}
+      {%- if dow_style contains product.handle -%}
+        {%- assign style_str = style_item | split: ':' -%}
+        {%- assign style1 = style_str[0] -%}
+        {%- assign style2 = style_str[1] -%}
+        {% break %}
+      {%- endif -%}
+    {%- endfor -%}
+
+    <div class="product-form__option" data-type="style">
+      <div class="product-form__option-name text--strong">Style: <span class="product-form__selected-value">
+        {{ style1 }}</span></div>
+      <div class="block-swatch-list ">
+        {%- for style_item in metafield_arr -%}
+        {%- assign styles = style_item | split: ':' -%}
+        {%- assign style_name = styles[0] -%}
+        {%- assign style_link = styles[1] -%}
+        {%- if style_link != blank -%}
+
+        {%- if style1==style_name -%}
+        <span class="block-swatch style-block-swatch active">{{style_name}}</span>
+        {%- else -%}
+        <a href="{{all_products[style_link].url}}" class="block-swatch style-block-swatch ">{{style_name}}</a>
+        {%- endif -%}
+
+        {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- endif -%}
+{%- comment -%}------------------------ style END-------------------------------{%- endcomment -%}
+   
+  {%- for option in product.options_with_values -%}
       {%- assign downcase_option = option.name | downcase -%}
       {%- capture option_name -%}{{ section.id }}-{{ product.id }}-{{ forloop.index }}{%- endcapture -%}
 
@@ -36,20 +248,34 @@
         {%- endif -%}
       {%- endif -%}
 
-      <div class="product-form__option" data-selector-type="{{ option_selector_type }}">
+			<div class="product-form__option" data-selector-type="{{ option_selector_type }}">
         {%- case option_selector_type -%}
           {%- when 'color' -%}
             <span class="product-form__option-name text--strong">{{ option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></span>
 
-            <div class="color-swatch-list color-swatch-list--large">
+            <div class="color-swatch-list color-swatch-list--large ld-variant-list" >
               {%- assign color_swatch_config = settings.color_swatch_config | newline_to_br | split: '<br />' -%}
 
               {%- for value in option.values -%}
                 {%- assign downcased_value = value | downcase -%}
                 {%- capture color_id -%}{{ option_name }}-{{ forloop.index }}{%- endcapture -%}
 
-                <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %}">
-                  <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} data-option-position="{{ option.position }}">
+                <div class="color-swatch {% if downcased_value == 'white' or downcased_value == 'blanc' %}color-swatch--white{% endif %} ld-variant"
+                data-scenable="1" data-sctype="valueChange" data-scdata='{"is_quick_view":1,
+							      "commodity_spuid": "{{product.handle}}",
+							      "currency_unit":"USD",
+                    "commodity_name": "{{product.title | handleize }}",
+							      "commodity_skuid":"{{ selected_variant.sku }}",
+							      "commodity_image_quantity":"{{product.images.size}}",
+                    "commodity_description_text":["{{product.description | handleize }}"],
+				            "commodity_description_image":["{{ product.featured_image | image_url | split: "?" | first  }}"],
+							      "commodity_size":"",
+				            "commodity_color":"",
+							      "commodity_tag":"{{tags}}",
+                    "commodity_type":"{{product.type | handleize}}",
+							      "original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}",
+			            	"current_price":"{{ product.selected_or_first_available_variant.price }}"}'>
+                  <input class="color-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ color_id }}" value="{{ value | escape }}"  data-option-position="{{ option.position }}" {% if option.selected_value == value %}checked{% endif %}>
                   <label class="color-swatch__item" for="{{ color_id }}" style="{% render 'color-swatch-style', color_swatch_config: color_swatch_config, value: downcased_value %}" title="{{ value | escape }}">
                     <span class="visually-hidden">{{ value }}</span>
                     {%- render 'icon', icon: 'cross-sold-out' -%}
@@ -61,7 +287,7 @@
           {%- when 'variant' -%}
             <span class="product-form__option-name text--strong">{{ option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></span>
 
-            <div class="variant-swatch-list">
+            <div class="variant-swatch-list ld-variant-list">
               {%- capture option_name -%}option{{ option.position }}{%- endcapture -%}
 
               {%- for value in option.values -%}
@@ -69,14 +295,27 @@
 
                 {%- for variant in product.variants -%}
                   {%- if variant[option_name] == value and variant.image -%}
-                    <div class="variant-swatch">
-                      <input class="variant-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ variant_swatch_id }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} data-option-position="{{ option.position }}">
+                    <div class="variant-swatch ld-variant"
+                    data-scenable="1" data-sctype="valueChange" data-scdata='{"is_quick_view":0,
+							        "commodity_spuid": "{{product.handle}}",
+							        "currency_unit":"USD",
+                      "commodity_name": "{{product.title | handleize }}",
+							        "commodity_skuid":"{{selected_variant.sku}}",
+							        "commodity_image_quantity":"{{product.images.size}}",
+							        "commodity_description_text":["{{product.description | handleize }}"],
+				              "commodity_description_image":["{{ product.featured_image | image_url | split: "?" | first  }}"],
+							        "commodity_size":"",
+				              "commodity_color":"",
+							        "commodity_tag":"{{tags}}",
+                      "commodity_type":"{{product.type | handleize}}",
+							        "original_price":"{{ product.selected_or_first_available_variant.compare_at_price }}",
+			      	        "current_price":"{{ product.selected_or_first_available_variant.price }}"}'>
+                      <input class="variant-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ variant_swatch_id }}" value="{{ value | escape }}"  data-option-position="{{ option.position }}" {% if option.selected_value == value %}checked{% endif %}>
 
                       <label class="variant-swatch__item" for="{{ variant_swatch_id }}" title="{{ value | escape }}">
                         <div class="aspect-ratio" style="padding-bottom: {{ 100.0 | divided_by: variant.image.aspect_ratio }}%">
-                          <img src="{{ variant.image | img_url: '120x' }}" alt="{{ variant.image.alt | escape }}">
+                          <img src="{{ variant.image | img_url: '80x' }}" alt="{{ variant.image.alt | escape }}">
                         </div>
-
                         {% render 'icon', icon: 'cross-sold-out' %}
                       </label>
                     </div>
@@ -84,18 +323,58 @@
                     {%- break -%}
                   {%- endif -%}
                 {%- endfor -%}
-              {%- endfor -%}
+							{%- endfor -%}
+              {%- comment -%}-----------------------产品搭配 ------------------------------{%- endcomment -%}
+							{%- assign collocation_list = product.metafields.my_fields.optionCollocation -%}
+							{%- assign handles = collocation_list | split:',' -%}
+							{% for handle in handles %}
+								{%- assign collocation_product = all_products[handle] -%}
+								{%- if collocation_product != blank and collocation_product.handle != product.handle -%}
+									<a class="variant-swatch ld-variant" href="{{ collocation_product.url }}">
+										<div class="variant-swatch__item">
+											<div class="aspect-ratio" style="padding-bottom: {{ 100.0 | divided_by:  collocation_product.featured_image.aspect_ratio }}%">
+												<img src="{{  collocation_product.featured_image | img_url: '80x' }}" alt="{{  collocation_product.featured_image.alt | escape }}">
+											</div>
+										</div>
+									</a>
+								{%- endif -%}
+							{%- endfor -%}
+              {%- comment -%}----------------------------------------------------{%- endcomment -%}
             </div>
 
           {%- when 'block' -%}
-            <span class="product-form__option-name text--strong">{{ option.name }}: <span class="product-form__selected-value">{{ option.selected_value }}</span></span>
-
+						<div class="product-form__option-name text--strong d-flex space-between">
+							<span>{{ option.name }}:<span class="product-form__selected-value"></span> </span>
+              {%- comment -%}尺码表按钮{%- endcomment -%}
+									{% if product.metafields.my_fields.category != blank%}
+										{% assign showSizeGuideModal = true %}
+										{% assign listStr = "Bag,Bracelet,Cap,FLAG,Hat,Jewelry Gift Box,Men's Belt,Men's Coat,Men's Hat,Men's Scarf,Necklace,Pendant,Phone Case,Ring,StickerSocks,Women's Bracelet"  %}
+										{% assign noShowArr = listStr | split: ','  %}
+										{% for arrItem in noShowArr %}
+											{% assign typeDowncase = product.type | downcase %}
+											{% assign arrItemDowncase = arrItem | downcase %}
+											{% if typeDowncase == arrItemDowncase %}
+												{% assign showSizeGuideModal = false %}
+											{% endif %}
+										{% endfor %}
+										{% if showSizeGuideModal == true %}
+											<button
+												type="button"
+												class="product-form__selected-value size-chart-btn"
+												data-action="open-modal"
+												aria-controls="sizeGuideModal"
+											>
+												Size Chart
+											</button>
+										{% endif %}
+									{% endif %}
+						</div>
             <div class="block-swatch-list">
               {%- for value in option.values -%}
                 {%- capture block_swatch_id -%}{{ option_name }}-{{ forloop.index }}{%- endcapture -%}
 
                 <div class="block-swatch">
-                  <input class="block-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ block_swatch_id }}" value="{{ value | escape }}" {% if option.selected_value == value %}checked{% endif %} data-option-position="{{ option.position }}">
+                   <input class="block-swatch__radio product-form__single-selector" type="radio" name="{{ option_name }}" id="{{ block_swatch_id }}" value="{{ value | escape }}"  data-option-position="{{ option.position }}" {% if value =="ONE SIZE" %}checked{% endif %}>
                   <label class="block-swatch__item" for="{{ block_swatch_id }}" title="{{ value | escape }}">
                     <span class="block-swatch__item-text">{{ value }}</span>
                   </label>
@@ -131,113 +410,35 @@
       </div>
     </div>
   </div>
+
 {%- else -%}
   <input type="hidden" name="id" data-sku="{{ selected_variant.sku }}" value="{{ selected_variant.id }}">
 {%- endunless -%}
 
+{%- comment -%}------------------ 产品数量 -----------------{%- endcomment -%}
 <div class="product-form__info-list">
-  <div class="product-form__info-item">
-    <span class="product-form__info-title text--strong">{{ 'product.form.price' | t }}:</span>
-
-    <div class="product-form__info-content" role="region" aria-live="polite">
-      <div class="price-list">
-        {%- if selected_variant.compare_at_price > selected_variant.price -%}
-          <span class="price price--highlight">
-            <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
-
-            {%- if settings.currency_code_enabled -%}
-              {{- selected_variant.price | money_with_currency -}}
-            {%- else -%}
-              {{- selected_variant.price | money -}}
-            {%- endif -%}
-          </span>
-
-          <span class="price price--compare">
-            <span class="visually-hidden">{{ 'product.general.regular_price' | t }}</span>
-
-            {%- if settings.currency_code_enabled -%}
-              {{- selected_variant.compare_at_price | money_with_currency -}}
-            {%- else -%}
-              {{- selected_variant.compare_at_price | money -}}
-            {%- endif -%}
-          </span>
-        {%- else -%}
-          <span class="price">
-            <span class="visually-hidden">{{ 'product.general.sale_price' | t }}</span>
-
-            {%- if settings.currency_code_enabled -%}
-              {{- selected_variant.price | money_with_currency -}}
-            {%- else -%}
-              {{- selected_variant.price | money -}}
-            {%- endif -%}
-          </span>
-        {%- endif -%}
-      </div>
-
-      <div class="product-form__price-info" style="display: {% if selected_variant.unit_price_measurement %}block{% else %}none{% endif %}">
-        <div class="unit-price-measurement">
-          <span class="unit-price-measurement__price">{{ selected_variant.unit_price | money }}</span>
-          <span class="unit-price-measurement__separator">/ </span>
-
-          <span class="unit-price-measurement__reference-value" {%- if selected_variant.unit_price_measurement.reference_value == 1 -%}style="display: none"{% endif %}>
-            {{- selected_variant.unit_price_measurement.reference_value -}}
-          </span>
-
-          <span class="unit-price-measurement__reference-unit">{{ selected_variant.unit_price_measurement.reference_unit }}</span>
-        </div>
-      </div>
-
-      {{- form | payment_terms -}}
-
-      {%- if block.settings.show_taxes_included -%}
-        {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
-          <p class="product-form__price-info">
-            {%- if cart.taxes_included -%}
-              {{ 'product.general.include_taxes' | t }}
-            {%- endif -%}
-
-            {%- if shop.shipping_policy.body != blank -%}
-              {{ 'product.general.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-            {%- endif -%}
-          </p>
-        {%- endif -%}
-      {%- endif -%}
-    </div>
-  </div>
 
   {%- if block.settings.show_inventory_quantity and product.template_suffix != 'pre-order' -%}
     <div class="product-form__info-item">
       <span class="product-form__info-title text--strong">{{ 'product.form.inventory' | t }}:</span>
 
       <div class="product-form__info-content">
-        {%- if selected_variant.inventory_management -%}
-          {%- if selected_variant.available -%}
-            {%- if selected_variant.inventory_quantity <= 0 and selected_variant.requires_shipping -%}
-              {%- if selected_variant.incoming -%}
-                {%- capture next_incoming_date -%}{{ selected_variant.next_incoming_date | date: format: 'date' }}{%- endcapture -%}
-                <span class="product-form__inventory inventory inventory--high">{{ 'product.form.incoming_stock' | t: next_incoming_date: next_incoming_date }}</span>
-              {%- else -%}
-                <span class="product-form__inventory inventory inventory--high">{{ 'product.form.oversell_stock' | t }}</span>
-              {%- endif -%}
-            {%- elsif block.settings.low_inventory_threshold > 0 -%}
-              {%- if selected_variant.inventory_quantity <= block.settings.low_inventory_threshold -%}
-                <span class="product-form__inventory inventory inventory--low">{{ 'product.form.low_stock_with_quantity_count' | t: count: selected_variant.inventory_quantity }}</span>
-              {%- else -%}
-                <span class="product-form__inventory inventory inventory--high">{{ 'product.form.in_stock_with_quantity_count' | t: count: selected_variant.inventory_quantity }}</span>
-              {%- endif -%}
+        {%- if selected_variant.available -%}
+          {%- if selected_variant.inventory_management and selected_variant.inventory_policy == 'deny' and block.settings.low_inventory_threshold > 0 -%}
+            {%- if selected_variant.inventory_quantity <= block.settings.low_inventory_threshold -%}
+              <span class="product-form__inventory inventory inventory--low">{{ 'product.form.low_stock_with_quantity_count' | t: count: selected_variant.inventory_quantity }}</span>
+            {%- else -%}
+              <span class="product-form__inventory inventory inventory--high">{{ 'product.form.in_stock_with_quantity_count' | t: count: selected_variant.inventory_quantity }}</span>
+            {%- endif -%}
+          {%- else -%}
+            {%- if selected_variant.inventory_policy == 'continue' and selected_variant.inventory_quantity <= 0 and selected_variant.requires_shipping -%}
+              <span class="product-form__inventory inventory inventory--high">{{ 'product.form.oversell_stock' | t }}</span>
             {%- else -%}
               <span class="product-form__inventory inventory inventory--high">{{ 'product.form.in_stock' | t }}</span>
             {%- endif -%}
-          {%- else -%}
-            {%- if selected_variant.incoming -%}
-              {%- capture next_incoming_date -%}{{ selected_variant.next_incoming_date | date: format: 'date' }}{%- endcapture -%}
-              <span class="product-form__inventory inventory">{{ 'product.form.incoming_stock' | t: next_incoming_date: next_incoming_date }}</span>
-            {%- else -%}
-              <span class="product-form__inventory inventory">{{ 'product.form.sold_out' | t }}</span>
-            {%- endif -%}
           {%- endif -%}
         {%- else -%}
-          <span class="product-form__inventory inventory inventory--high">{{ 'product.form.in_stock' | t }}</span>
+          <span class="product-form__inventory inventory">{{ 'product.form.sold_out' | t }}</span>
         {%- endif -%}
 
         {%- for tag in product.tags -%}
@@ -274,3 +475,112 @@
     {%- endif -%}
   {%- endif -%}
 </div>
+
+    {%- comment -%}model info{%- endcomment -%}
+    <div id="modal-conve"></div>
+    <style>
+      .model-information_img {
+        margin-right: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+    
+      .model-information_wrap {
+        margin-right: 30px;
+        font-size: 14px;
+      }
+    
+      .model-info_value {
+        color: #9a9a9a;
+      }
+    
+      .model-information_info {
+        line-height: 1.5;
+      }
+    
+      .model-container {
+        margin-top: 14px;
+      }
+    .model-info_title{
+      font-weight: 600;
+    }
+      #modal-conve {
+        margin-bottom: 1rem;
+      }
+    
+      @media screen and (max-width: 640px) {
+        .model-information_wrap {
+          margin-right: 20px;
+        }
+      }
+      @media screen and (min-width: 641px){
+        .model-information_info{
+          font-size: 15px;
+        }
+      }
+    </style>
+    <script>
+      !function () {
+        const spu = '{{product.handle}}'//'SP220902NSUL'
+        fetch('http://api.leandow-technology.com/api/customerAccount/getModelInfoBySpu'.concat('?spu=', spu), {
+          method: "GET",
+          headers: { "siteValue": 'hyfol' }
+        }).then(response => response.json()).then(message => {
+          if (!message.success || !message.data.length) return;
+          let datas = message.data
+          let model = '<div class="model-heading section__title heading h3 font_16 ">Model Stats</div>'
+          // console.log(datas);
+          model += datas.map(data => `
+        			<div class="d-flex model-container">
+                <div class="model-information_img">
+                  <img src="${data.modelImage}">
+                </div>
+                <div class="model-information_wrap">
+                  <div class="model-information_info">
+                    <span class="model-info_title">Model Wear: </span>
+                    <span class="model-info_value">${data.modelWare}</span>
+                  </div>
+                  <div class="model-information_info">
+                    <span class="model-info_title">Height: </span>
+                    <span class="model-info_value">${data.height} ${data.heightUnit}</span>
+                  </div>
+                  <div class="model-information_info">
+                    <span class="model-info_title">Waist: </span>
+                    <span class="model-info_value">${data.waist} ${data.waistUnit}</span>
+                  </div>
+        			</div>
+        			<div class="model-information_wrap">
+        				<div class="model-information_info">
+        					<span class="model-info_title">Weight: </span>
+        					<span class="model-info_value">${data.weight} ${data.weightUnit}</span>
+        				</div>
+        				<div class="model-information_info">
+        					<span class="model-info_title">Bust: </span>
+        					<span class="model-info_value">${data.bust} ${data.bustUnit}</span>
+        				</div>
+        				<div class="model-information_info">
+        					<span class="model-info_title">Hips: </span>
+        					<span class="model-info_value">${data.hips} ${data.hipsUnit}</span>
+        				</div>
+        			</div>
+        			</div>`).join('')
+          const modelContaine = document.getElementById('modal-conve')
+          modelContaine && (modelContaine.innerHTML = model)
+
+        })
+      }();
+    </script>
+
+{%- comment -%}---------discount 图片-----------{%- endcomment -%}
+{% if block.settings.show_discount_image%}
+{% if block.settings.discount_image !=blank %}
+{%- capture supported_sizes -%}{%- render 'image-size', sizes: '300,400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000', image: section.settings.image -%}{%- endcapture -%}
+{%- assign image_url = block.settings.discount_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+    <div class="product-discount-img">
+      <img data-src="{{ image_url }}" data-widths="[{{ supported_sizes }}]" data-sizes="auto" alt="" class="lazyload" style="width: 100%">
+    </div>
+ 
+{% endif %}
+{% endif %}

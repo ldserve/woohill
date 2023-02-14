@@ -1,1 +1,126 @@
-{"sections":{"main":{"type":"main-cart","settings":{}},"recently-viewed-products":{"type":"recently-viewed-products","settings":{}}},"order":["main","recently-viewed-products"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "blocks": {
+        "88018ed7-27e5-4cee-8f78-ce82cd36e190": {
+          "type": "trust",
+          "disabled": true,
+          "settings": {
+            "icon": "bi-customer-support",
+            "title": "Your title",
+            "content": "<p>Short content about your store<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "88018ed7-27e5-4cee-8f78-ce82cd36e190"
+      ],
+      "settings": {
+        "show_car_bar": false,
+        "cart_show_count_down": false,
+        "enable_order_notes": true,
+        "show_payment_icons": true,
+        "gift_wrap_product": "",
+        "gift_wrap_text": "Do you want a gift wrap?",
+        "gift_wrap_button": "Add a gift wrap",
+        "show_shipping_estimator": false,
+        "shipping_estimator_default_country": "United States",
+        "trust_heading": "Our guarantees",
+        "upsell_heading": "Complete your cart",
+        "upsell_collection": "",
+        "upsell_products_count": 4
+      }
+    },
+    "1657104594e23caf5d": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "custompromotion-buy-4-get-20-off",
+        "title": "Buy 4 Get 20% Off",
+        "section_title_layout": "left",
+        "products_count": 12,
+        "layout": "vertical",
+        "stack_products": false,
+        "show_quick_buy": false,
+        "link_title": "View all",
+        "link_url": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "background": ""
+      }
+    },
+    "1661422901a3ed5616": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "summer-clearance-any-3-for-59",
+        "title": "Summer Clearance 3 For $59",
+        "section_title_layout": "left",
+        "products_count": 12,
+        "layout": "vertical",
+        "stack_products": false,
+        "show_quick_buy": false,
+        "link_title": "View all",
+        "link_url": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "background": ""
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "JUST LANDED",
+        "title_color": "#000000",
+        "show_quick_buy": false,
+        "product_layout": "flex"
+      }
+    },
+    "1657335361b9c0e6f5": {
+      "type": "mobile-payment-icons",
+      "settings": {
+        "show_payment_icons": true
+      }
+    },
+    "164855003715c57e88": {
+      "type": "web-text",
+      "blocks": {
+        "89c2b7d5-c49f-4ad4-af07-48c122d6ae70": {
+          "type": "text",
+          "settings": {
+            "title": "DELIVERY TIME",
+            "content": "<p>For most situations, it takes around<br\/>5 business days to process.<\/p>"
+          }
+        },
+        "bec8e211-529e-4447-ad4a-86bbea536204": {
+          "type": "text",
+          "settings": {
+            "title": "FREE SHIPPING",
+            "content": "<p>all orders of $60 or more are qualified for<br\/>free shipping.<\/p>"
+          }
+        },
+        "2560d647-032b-456b-9d37-57dfe3feab63": {
+          "type": "text",
+          "settings": {
+            "title": "REFUND POLICY",
+            "content": "<p>You have a maximum of 30 days to return your items.<br\/>You must send back your items to<br\/>an informed address by the customer service.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "89c2b7d5-c49f-4ad4-af07-48c122d6ae70",
+        "bec8e211-529e-4447-ad4a-86bbea536204",
+        "2560d647-032b-456b-9d37-57dfe3feab63"
+      ],
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1657104594e23caf5d",
+    "1661422901a3ed5616",
+    "recently-viewed-products",
+    "1657335361b9c0e6f5",
+    "164855003715c57e88"
+  ]
+}

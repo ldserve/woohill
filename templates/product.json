@@ -1,1 +1,200 @@
-{"sections":{"main":{"type":"main-product","blocks":{"product_meta":{"type":"product_meta","settings":{}},"variant_selector":{"type":"variant_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{}},"description":{"type":"description","settings":{}}},"block_order":["product_meta","variant_selector","buy_buttons","description"],"settings":{}},"product-recommendations":{"type":"product-recommendations","settings":{}},"recently-viewed-products":{"type":"recently-viewed-products","settings":{}}},"order":["main","product-recommendations","recently-viewed-products"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "product_meta": {
+          "type": "product_meta",
+          "settings": {
+            "show_vendor": false,
+            "show_sku": false,
+            "show_reviews_badge": false,
+            "show_share_buttons": true
+          }
+        },
+        "variant_selector": {
+          "type": "variant_selector",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "variant_image",
+            "show_promotion": true,
+            "show_discount_image": true,
+            "discount_image": "shopify:\/\/shop_images\/hyfol_db26843f-9d8b-4102-aafb-df704a9ee421.jpg",
+            "show_quantity_selector": false,
+            "show_taxes_included": false,
+            "show_inventory_quantity": false,
+            "low_inventory_threshold": 5
+          }
+        },
+        "78a65596-bd80-4353-82c9-7ede27334ff0": {
+          "type": "product_sellpoint",
+          "disabled": true,
+          "settings": {
+            "notsale_tag": "Nopromotion",
+            "sale_text_on_detail": "<p><strong>5% OFF 2 PIECES    <\/strong>| <strong>10% OFF 3 PIECES <\/strong><\/p><p><strong>15% OFF 4 PIECES <\/strong>| <strong>20% OFF 5 PIECES <\/strong><\/p><p><strong>25% OFF 6 PIECES <\/strong>| <strong>30% OFF 7+ PIECES<\/strong><\/p><p><\/p>",
+            "sale_text_on_img": "<p>BUY 1 MORE GET EXTRA 5% OFF<\/p>"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false
+          }
+        },
+        "40401d43-e40a-46bd-b84a-7563498f1427": {
+          "type": "delivery",
+          "settings": {
+            "display_mode": "view_more"
+          }
+        },
+        "220a0d08-af6d-41fd-a53d-f77edb36997c": {
+          "type": "policy",
+          "settings": {
+            "display_mode": "collapse"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "display_mode": "collapse"
+          }
+        },
+        "6040b192-8f10-4ee0-8454-dafbf292b96a": {
+          "type": "trust",
+          "disabled": true,
+          "settings": {
+            "show_trustworthy": true,
+            "trustworthy_title": "Trustworthy Shopping",
+            "trust_title": "Payment & Security",
+            "show_payment_icons": true,
+            "custom_security_badge_width": 500
+          }
+        },
+        "c9a13b76-73f3-4161-aa0c-5edbf018722c": {
+          "type": "reviews",
+          "settings": {
+          }
+        },
+        "2387415b-9519-418e-8c17-7ce70355de1c": {
+          "type": "shipping_estimator",
+          "disabled": true,
+          "settings": {
+            "shipping_estimator_default_country": "United States",
+            "show_refunds_policy": true
+          }
+        },
+        "98d40b54-cd8a-44cc-910c-b9e07340dbd3": {
+          "type": "collocation_purchase",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "product_meta",
+        "variant_selector",
+        "78a65596-bd80-4353-82c9-7ede27334ff0",
+        "buy_buttons",
+        "40401d43-e40a-46bd-b84a-7563498f1427",
+        "220a0d08-af6d-41fd-a53d-f77edb36997c",
+        "description",
+        "6040b192-8f10-4ee0-8454-dafbf292b96a",
+        "c9a13b76-73f3-4161-aa0c-5edbf018722c",
+        "2387415b-9519-418e-8c17-7ce70355de1c",
+        "98d40b54-cd8a-44cc-910c-b9e07340dbd3"
+      ],
+      "settings": {
+        "cjj_pro_bg_top": "shopify:\/\/shop_images\/HYFOL__01_b3e71f0c-87eb-4b3e-83be-f1ba04de0b79.jpg",
+        "image_size": "medium",
+        "enable_video_looping": false,
+        "enable_image_zoom": true,
+        "zoom_effect": "outside",
+        "zoomFactor": 3,
+        "carousel_effect": "slide"
+      }
+    },
+    "1648198863f0dd211e": {
+      "type": "no_space_img",
+      "disabled": true,
+      "settings": {
+        "sensorsName": "",
+        "bg_image": "shopify:\/\/shop_images\/1920_521383b7-2357-45e6-a93e-4f6fd17bef8e.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/T11861820NS_eda458a1-a10d-4879-b029-dca2b4c3fcde.jpg",
+        "link": "",
+        "shadow": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "blocks": {
+        "b4ecd593-46fe-40ea-869d-485aba879db5": {
+          "type": "product",
+          "settings": {
+            "product": "1111-的副本"
+          }
+        },
+        "fed408ca-c3ec-49dc-9f57-2a8aa8877c76": {
+          "type": "product",
+          "settings": {
+            "product": "t11611521ew"
+          }
+        },
+        "9b83fba7-376a-42e6-ab7c-9b95ade1b321": {
+          "type": "product",
+          "settings": {
+            "product": "example-t-shirt"
+          }
+        }
+      },
+      "block_order": [
+        "b4ecd593-46fe-40ea-869d-485aba879db5",
+        "fed408ca-c3ec-49dc-9f57-2a8aa8877c76",
+        "9b83fba7-376a-42e6-ab7c-9b95ade1b321"
+      ],
+      "settings": {
+        "heading": "You may also like",
+        "show_quick_buy": true,
+        "title_color": "#000000",
+        "stackable": true
+      }
+    },
+    "1192462ce7ecb73678": {
+      "type": "apps",
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently-viewed-products",
+      "settings": {
+        "title": "Recently viewed",
+        "title_color": "#000000",
+        "show_quick_buy": true,
+        "product_grid": true
+      }
+    },
+    "16476891022bcaf9d0": {
+      "type": "ld-write",
+      "settings": {
+      }
+    },
+    "1647854489fe39e68b": {
+      "type": "no_space_img",
+      "settings": {
+        "sensorsName": "",
+        "bg_image": "shopify:\/\/shop_images\/banner_93fd4064-f9ff-4e58-bebd-a95649e1f6bf.jpg",
+        "web_bg_image": "shopify:\/\/shop_images\/banner_79991416-2e65-4807-a094-84bfaa61285b.jpg",
+        "link": "",
+        "shadow": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1648198863f0dd211e",
+    "product-recommendations",
+    "1192462ce7ecb73678",
+    "recently-viewed-products",
+    "16476891022bcaf9d0",
+    "1647854489fe39e68b"
+  ]
+}

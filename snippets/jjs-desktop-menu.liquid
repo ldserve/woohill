@@ -1,0 +1,163 @@
+{%- if section.settings.desktop_navigation_layout == 'condensed' -%}
+  {%- assign is_floating = true -%}
+{%- else -%}
+  {%- assign is_floating = false -%}
+{%- endif -%}
+
+{%- assign is_mega_menu = false -%}
+
+{%- if is_floating == false and is_mega_menu -%}
+  {%- render 'mega-menu', is_floating: is_floating, mega_menu: menu, index: index -%}
+{%- else -%}
+  {%- assign high_light_menu = 'chritstmas,jackets&outerwear,special material,sweatshirts,long sleeve, patriot,polo shirt,Flash Sale Buy 3 For $55,Fishing Sale,polo shirts,cargo shorts,camouflage,hoodies,cargo  pants,halloween' -%}
+
+  <div class="nav-exhibition " aria-hidden="true">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.menu_item == menu.title -%}
+        {%- assign config = block.settings -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if config.menu_item == menu.title -%}
+      <div class="nav-bar__image" style="width: 15%;">
+        {%- capture supported_sizes -%}{%- render 'image-size', sizes: '200,300,400,500', image: config.image_url -%}{%- endcapture -%}
+        {%- assign image_url = config.image_1 | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+        <img
+          class="lazyload"
+          alt="{{ config.image_1.alt | escape }}"
+          data-src="{{ image_url }}"
+          data-widths="[{{ supported_sizes }}]"
+          data-sizes="auto"
+        >
+      </div>
+    {%- endif -%}
+
+    <ul
+      id="{{ index }}"
+      class="nav-dropdown clearborder {% if is_floating %}nav-dropdown--floating {% elsif menu.levels == 1 %}nav-dropdown--restrict{% endif %} clearposition d-flex"
+      data-type="menu"
+      role="list"
+      data-expenable="1"
+    >
+      {%- for link in menu.links -%}
+        <li class="nav-dropdown__item clearposition ">
+          {%- if link.links.size == 0 -%}
+            {% assign title_downcase = link.title | downcase | lstrip %}
+            <a
+              href="{{ link.url }}"
+              aria-label="{{title_downcase}}"
+              class="{% if high_light_menu contains title_downcase %}nav-dropdown__link__highlight {% endif %} nav-dropdown__link link shence_commodityView"
+              data-type="menuitem"
+              data-scenable="1"
+              data-expenable="1"
+              data-bindexp="1"
+              data-sctype="mktClick"
+              data-scdata='{"mkt_type":"bar","first_mkt_name":"顶部导航","first_mkt_id":"{{ section.id }}","second_mkt_rank":"{{ menuindex }}","third_mkt_rank":"{{ forloop.index }}","mkt_material_url":"","mkt_material_name":"{{ link.title | handleize }}","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'
+            >
+              {{ link.title }}
+              {% if high_light_menu contains title_downcase %}
+                {%- render 'icon', icon: 'link-hot', -%}
+              {% endif %}
+            </a>
+          {%- else -%}
+            {%- capture index_nested -%}{{ index }}-{% increment nav_dropdown %}{%- endcapture -%}
+            <div
+              class="nav-dropdown__link link"
+              data-type="menuitem"
+              aria-expanded="false"
+              aria-controls="{{ index_nested }}"
+              aria-haspopup="true"
+            >
+              {{- link.title -}}
+            </div>
+
+            <ul
+              id="{{ index_nested }}"
+              class="nav-dropdown clearposition clearborder padding-0 "
+              data-type="menu"
+              aria-hidden="true"
+              role="list"
+              data-expenable="1"
+            >
+              {%- for sub_link in link.links -%}
+                <li class="nav-dropdown__item sub-item">
+                  {%- if sub_link.links.size == 0 -%}
+                    {% assign sub_link_title_downcase = sub_link.title | downcase | lstrip %}
+
+                    <a
+                      href="{{ sub_link.url }}"
+                      aria-label="{{sub_link_title_downcase}}"
+                      class=" nav-dropdown__link link {% if high_light_menu contains sub_link_title_downcase %}nav-dropdown__link__highlight {% endif %}"
+                      data-type="menuitem"
+                    >
+                      {{ sub_link.title }}
+                      {% if high_light_menu contains sub_link_title_downcase %}
+                        {%- render 'icon', icon: 'link-hot', -%}
+                      {% endif %}
+                    </a>
+
+                  {%- else -%}
+                    {%- capture index_nested_nested -%}{{ index_nested }}-{% increment nav_dropdown_nested %}{%- endcapture -%}
+                    <div
+                      class="nav-dropdown__link link"
+                      data-type="menuitem"
+                      aria-expanded="false"
+                      aria-controls="{{ index_nested_nested }}"
+                      aria-haspopup="true"
+                    >
+                      {{- sub_link.title -}}
+                    </div>
+                    <ul
+                      id="{{ index_nested_nested }}"
+                      class="nav-dropdown clearborder clearposition  sub-bar padding-0"
+                      data-type="menu"
+                      aria-hidden="true"
+                      role="list"
+                      data-expenable="1"
+                    >
+                      {%- for sub_sub_link in sub_link.links -%}
+                        <li class="nav-dropdown__item sub-item">
+                          <a href="{{ sub_sub_link.url }}" class="nav-dropdown__link link" data-type="menuitem">
+                            {{- sub_sub_link.title -}}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}
+<style>
+  #shopify-section- {{ section.id }} .nav-bar__linklist .nav-bar__item>a {
+    position: relative;
+  }
+
+  #shopify-section- {{ section.id}}.nav-bar__linklist .nav-bar__item>a:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    pointer-events: none;
+    border-bottom: 2px solid;
+    opacity: 0;
+    -webkit-transform: scale(0, 1);
+    transform: scale(0, 1);
+    -webkit-transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  #shopify-section- {{ section.id}}.nav-bar__linklist .nav-bar__item:hover>a:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+</style>

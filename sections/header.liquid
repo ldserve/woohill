@@ -1,9 +1,9 @@
 {%- capture section_settings -%}
-{
-  "navigationLayout": {{ section.settings.desktop_navigation_layout | json }},
-  "desktopOpenTrigger": {{ section.settings.desktop_navigation_open_trigger | json }},
-  "useStickyHeader": {{ section.settings.enable_sticky_header | json }}
-}
+	{
+	"navigationLayout": {{ section.settings.desktop_navigation_layout | json }},
+	"desktopOpenTrigger": {{ section.settings.desktop_navigation_open_trigger | json }},
+	"useStickyHeader": {{ section.settings.enable_sticky_header | json }}
+	}
 {%- endcapture -%}
 
 {%- assign navigation_menu_handle = section.settings.navigation_menu | default: 'main-menu' -%}
@@ -13,403 +13,580 @@
 {%- assign navigation_mobile_menu = linklists[navigation_mobile_menu_handle] -%}
 
 <section data-section-id="{{ section.id }}" data-section-type="header" data-section-settings='{{ section_settings }}'>
-  <header class="header header--{{ section.settings.desktop_navigation_layout }} {% unless section.settings.show_condensed_search %}header--search-expanded{% endunless %}" role="banner">
-    <div class="container">
-      <div class="header__inner">
-        {%- comment -%}
-        --------------------------------------------------------------------------------------
-        MOBILE NAV
-        --------------------------------------------------------------------------------------
-        {%- endcomment -%}
+	<header
+		class="header header--{{ section.settings.desktop_navigation_layout }} {% unless section.settings.show_condensed_search %}header--search-expanded{% endunless %}"
+		role="banner">
+		<div class="indexContainer clearposition">
+			<div class="header__inner clearposition jjs-header__inner">
+				{%- comment -%}--------------手机导航按钮----------------{%- endcomment -%}
+				{%- if navigation_menu.links.size > 0 -%}
+					<nav class="header__mobile-nav hidden-lap-and-up">
+						<button class="header__mobile-nav-toggle icon-state touch-area" data-action="toggle-menu"
+										aria-expanded="false" aria-haspopup="true" aria-controls="mobile-menu"
+										aria-label="{{ 'header.navigation.open_menu' | t }}">
+							<span class="icon-state__primary">{%- render 'icon', icon: 'hamburger-mobile' -%}</span>
+							<span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
+						</button>
+						{%- comment -%}
+						{%- render 'mobile-menu', menu: navigation_mobile_menu -%}
+						{%- endcomment -%}
+						{%- render 'jjs-mobile-menu', menu: navigation_mobile_menu -%}
+					</nav>
+				{%- endif -%}
 
-        {%- if navigation_menu.links.size > 0 -%}
-          <nav class="header__mobile-nav hidden-lap-and-up">
-            <button class="header__mobile-nav-toggle icon-state touch-area" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-controls="mobile-menu" aria-label="{{ 'header.navigation.open_menu' | t }}">
-              <span class="icon-state__primary">{%- render 'icon', icon: 'hamburger-mobile' -%}</span>
-              <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
-            </button>
+				{%- comment -%}---------------桌面导航按钮---------------{%- endcomment -%}
+				{%- if section.settings.desktop_navigation_layout == 'condensed' and navigation_menu.links.size > 0 -%}
+					<nav class="header__desktop-nav hidden-pocket">
+						<button class="header__desktop-nav-toggle" data-action="toggle-menu" aria-expanded="false"
+										aria-haspopup="true" aria-label="{{ 'header.navigation.open_menu' | t }}">
+							<span>{%- render 'icon', icon: 'hamburger' -%} <span
+									class="header__desktop-nav-text">{{- 'header.navigation.menu' | t -}}</span></span>
+						</button>
 
-            {%- render 'mobile-menu', menu: navigation_mobile_menu -%}
-          </nav>
-        {%- endif -%}
+						{%- render 'desktop-menu', menu: navigation_menu, index: 'desktop-menu-0' -%}
+					</nav>
+				{%- endif -%}
 
-        {%- comment -%}
-          --------------------------------------------------------------------------------------
-          DESKTOP NAV
-          --------------------------------------------------------------------------------------
-        {%- endcomment -%}
+				{%- comment -%}---------------搜索按钮---------------{%- endcomment -%}
+				{%- if section.settings.show_condensed_search -%}
+					<div class="header__action-item hidden-tablet-and-up"  >
+						<div class="header__action-item-content"></div>
+						<div class="header__action-item-content cjj-searchico">
+							<a class="header__action-item-link" href="{{ routes.root_url }}" data-scenable="1"
+								 data-expenable="1" data-bindexp="1" data-sctype="mktClick"
+								 data-scdata='{"mkt_type":"bar","first_mkt_name":"顶部导航","first_mkt_id":"{{ section.id }}","second_mkt_rank":"0","third_mkt_rank":"","mkt_material_url":"","mkt_material_name":"logo","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>{% render 'icon', icon: 'home' %}</a>
+						</div>
+					</div>
+				{%- endif -%}
 
-        {%- if section.settings.desktop_navigation_layout == 'condensed' and navigation_menu.links.size > 0 -%}
-          <nav class="header__desktop-nav hidden-pocket">
-            <button class="header__desktop-nav-toggle" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-label="{{ 'header.navigation.open_menu' | t }}">
-              <span>{%- render 'icon', icon: 'hamburger' -%} <span class="header__desktop-nav-text">{{- 'header.navigation.menu' | t -}}</span></span>
-            </button>
+				{%- comment -%}---------------logo组件---------------{%- endcomment -%}
+				{%- capture header_logo -%}
+					<a href="{{ routes.root_url }}" style="display:block !important;" class="header__logo-link shence_commodityView hidden-lap-and-up" data-scenable="1"
+						 data-expenable="1" data-bindexp="1" data-sctype="mktClick"
+						 data-scdata='{"mkt_type":"bar","first_mkt_name":"顶部导航","first_mkt_id":"{{ section.id }}","second_mkt_rank":"0","third_mkt_rank":"","mkt_material_url":"","mkt_material_name":"logo","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>
+						{%- if section.settings.logo != blank -%}
+							{%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}
+							<span class="visually-hidden">{{ shop.name }}</span>
+							<img class="header__logo-image"
+									 style="max-width: {{ section.settings.logo_max_width }}px"
+									 width="{{ section.settings.logo.width }}"
+									 height="{{ section.settings.logo.height }}"
+									 src="{{ section.settings.logo | img_url: image_size, scale: 2 }}"
+									 alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+						{%- else -%}
+							<span class="header__logo-text">{{ shop.name }}</span>
+						{%- endif -%}
 
-            {%- render 'desktop-menu', menu: navigation_menu, index: 'desktop-menu-0' -%}
-          </nav>
-        {%- endif -%}
+					</a>
+				{%- endcapture -%}
+				{%- comment -%}---------------logo渲染---------------{%- endcomment -%}
+				{%- if request.page_type == 'index' -%}
+					<h1 class="header__logo" >{{ header_logo }}</h1>
+				{%- else -%}
+					<div class="header__logo" >{{ header_logo }}</div>
+				{%- endif -%}
 
-        {%- comment -%}
-        --------------------------------------------------------------------------------------
-        LOGO COMPONENT
-        --------------------------------------------------------------------------------------
-        {%- endcomment -%}
+				{%- comment -%}---------------头部菜单---------------{%- endcomment -%}
 
-        {%- capture header_logo -%}
-          <a href="{{ routes.root_url }}" class="header__logo-link">
-            {%- if section.settings.logo != blank -%}
-              {%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}
-              <span class="visually-hidden">{{ shop.name }}</span>
-              <img class="header__logo-image"
-                   style="max-width: {{ section.settings.logo_max_width }}px"
-                   width="{{ section.settings.logo.width }}"
-                   height="{{ section.settings.logo.height }}"
-                   src="{{ section.settings.logo | img_url: image_size, scale: 2 }}"
-                   alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
-            {%- else -%}
-              <span class="header__logo-text">{{ shop.name }}</span>
-            {%- endif -%}
-          </a>
-        {%- endcapture -%}
+				{%- comment -%}---------------导航菜单---------------{%- endcomment -%}
+				{%- if section.settings.desktop_navigation_layout == 'inline' and navigation_menu.links.size > 0 -%}
+					<nav class="nav-bar cjj-category clearposition jjs-nav-bar" >
+						{%- comment -%}---------------logo组件---------------{%- endcomment -%}
+						{%- capture header_logo -%}
+							<a href="{{ routes.root_url }}" class="header__logo-link shence_commodityView" data-scenable="1"
+								 data-expenable="1" data-bindexp="1" data-sctype="mktClick"
+								 data-scdata='{"mkt_type":"bar","first_mkt_name":"顶部导航","first_mkt_id":"{{ section.id }}","second_mkt_rank":"0","third_mkt_rank":"","mkt_material_url":"","mkt_material_name":"logo","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>
+								{%- if section.settings.logo != blank -%}
+									{%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}
+									<span class="visually-hidden">{{ shop.name }}</span>
+									<img class="header__logo-image"
+											 style="max-width: {{ section.settings.logo_max_width }}px"
+											 width="{{ section.settings.logo.width }}"
+											 height="{{ section.settings.logo.height }}"
+											 src="{{ section.settings.logo | img_url: image_size, scale: 2 }}"
+											 alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+								{%- else -%}
+									<span class="header__logo-text">{{ shop.name }}</span>
+								{%- endif -%}
+							</a>
+						{%- endcapture -%}
+						{%- comment -%}---------------logo渲染---------------{%- endcomment -%}
+						{%- if request.page_type == 'index' -%}
+							<h1 class="header__logo" style="display:none">{{ header_logo }}</h1>
+						{%- else -%}
+							<div class="header__logo" style="display:none">{{ header_logo }}</div>
+						{%- endif -%}
+						<div class="nav-bar__inner clearposition">
+							<ul class="nav-bar__linklist list--unstyled clearposition jjs-nav-bar" data-type="menu" role="list">
+								{%- for link in navigation_menu.links -%}
+									<li class="nav-bar__item clearposition">
+										{%- if link.links.size == 0 -%}
+											<a href="{{ link.url }}" class="nav-bar__link link shence_commodityView" data-type="menuitem"
+												 data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick"
+												 data-scdata='{"mkt_type":"bar","first_mkt_name":"顶部导航","first_mkt_id":"{{ section.id }}","second_mkt_rank":"{{ forloop.index }}","third_mkt_rank":"","mkt_material_url":"","mkt_material_name":"{{ link.title | handleize }}","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>{{ link.title }}</a>
+										{%- else -%}
+											{%- capture index -%}desktop-menu-0-{{ forloop.index }}{%- endcapture -%}
+											<div  class="nav-bar__link link shence_commodityView" data-type="menuitem"
+												 aria-expanded="false"
+												 aria-controls="{{ index }}" aria-haspopup="true" data-scenable="1" data-expenable="1"
+												 data-bindexp="1" data-sctype="mktClick"
+												 data-scdata='{"mkt_type":"bar","first_mkt_name":"顶部导航","first_mkt_id":"{{ section.id }}","second_mkt_rank":"{{ forloop.index }}","third_mkt_rank":"","mkt_material_url":"","mkt_material_name":"{{ link.title | handleize }}","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>
+												{{- link.title -}}
+												{%- render 'icon', icon: 'arrow-bottom' -%}
+											</div>
+											{%- render 'jjs-desktop-menu', menu: link, index: index, menuindex: forloop.index -%}
+										{%- endif -%}
+									</li>
+								{% if forloop.last !=true %}
+									<span class="nav-bar_line"></span>
+								{% endif %}
+								{%- endfor -%}
+							</ul>
+						</div>
+					</nav>
+				{%- endif -%}
 
-        {%- if request.page_type == 'index' -%}
-          <h1 class="header__logo">{{ header_logo }}</h1>
-        {%- else -%}
-          <div class="header__logo">{{ header_logo }}</div>
-        {%- endif -%}
 
-        {%- comment -%}
-        --------------------------------------------------------------------------------------
-        SEARCH COMPONENT
-        --------------------------------------------------------------------------------------
-        {%- endcomment -%}
+				{%- comment -%}---------------搜索组件---------------{%- endcomment -%}
 
-        <div class="header__search-bar-wrapper {% unless section.settings.show_condensed_search %}is-visible{% endunless %}">
-          <form action="{{ routes.search_url }}" method="get" role="search" class="search-bar">
-            {%- assign search_menu = linklists[section.settings.search_menu] -%}
+				<div
+					class="header__search-bar-wrapper {% unless section.settings.show_condensed_search %}is-visible{% endunless %}">
+					<form action="{{ routes.search_url }}" method="get" role="search" class="search-bar">
+						{%- assign search_menu = linklists[section.settings.search_menu] -%}
 
-            <div class="search-bar__top-wrapper">
-              <div class="search-bar__top">
-                <input type="hidden" name="type" value="product">
-                <input type="hidden" name="options[prefix]" value="last">
-                <input type="hidden" name="options[unavailable_products]" value="{{ settings.search_unavailable_products }}">
+						<div class="search-bar__top-wrapper">
+							<div class="search-bar__top">
+								<input type="hidden" name="type" value="product">
+								<input type="hidden" name="options[prefix]" value="last">
+								<input type="hidden" name="options[unavailable_products]"
+											 value="{{ settings.search_unavailable_products }}">
 
-                <div class="search-bar__input-wrapper">
-                  <input class="search-bar__input" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="{{ 'header.search.input_placeholder' | t }}" placeholder="{{ 'header.search.input_placeholder' | t }}">
-                  <button type="button" class="search-bar__input-clear hidden-lap-and-up" data-action="clear-input">
-                    <span class="visually-hidden">{{ 'header.search.clear' | t }}</span>
-                    {% render 'icon', icon: 'close' %}
-                  </button>
-                </div>
+								<div class="search-bar__input-wrapper">
+									<input class="search-bar__input" type="text" name="q" autocomplete="off" autocorrect="off"
+												 aria-label="{{ 'header.search.input_placeholder' | t }}"
+												 placeholder="{{ 'header.search.input_placeholder' | t }}">
+									<button type="button" class="search-bar__input-clear hidden-lap-and-up" data-action="clear-input">
+										<span class="visually-hidden">{{ 'header.search.clear' | t }}</span>
+										{% render 'icon', icon: 'close' %}
+									</button>
+								</div>
 
-                {%- comment -%}The type detection is sometimes a bit inaccurate as it returns empty type, so we do an additional logic{%- endcomment -%}
+								{%- comment -%}The type detection is sometimes a bit inaccurate as it returns empty type, so we do an additional logic{%- endcomment -%}
 
-                {%- assign has_at_least_one_type = false -%}
-                {%- for product_type in shop.types -%}
-                  {%- if product_type != blank -%}
-                    {%- assign has_at_least_one_type = true -%}
-                    {%- break -%}
-                  {%- endif -%}
-                {%- endfor -%}
+								{%- assign has_at_least_one_type = false -%}
+								{%- for product_type in shop.types -%}
+									{%- if product_type != blank -%}
+										{%- assign has_at_least_one_type = true -%}
+										{%- break -%}
+									{%- endif -%}
+								{%- endfor -%}
 
-                {%- if section.settings.show_search_filter and has_at_least_one_type -%}
-                  <div class="search-bar__filter">
-                    <label for="search-product-type" class="search-bar__filter-label">
-                      <span class="search-bar__filter-active">{{ 'header.search.all_categories' | t }}</span> {%- render 'icon', icon: 'arrow-bottom' -%}
-                    </label>
+								{%- comment -%}---------------搜索过滤器---------------{%- endcomment -%}
+								{%- if section.settings.show_search_filter and has_at_least_one_type -%}
+									<div class="search-bar__filter">
+										<label for="search-product-type" class="search-bar__filter-label">
+											<span
+												class="search-bar__filter-active">{{ 'header.search.all_categories' | t }}</span> {%- render 'icon', icon: 'arrow-bottom' -%}
+										</label>
 
-                    <select id="search-product-type">
-                      <option value="" selected="selected">{{ 'header.search.all_categories' | t }}</option>
+										<select id="search-product-type">
+											<option value="" selected="selected">{{ 'header.search.all_categories' | t }}</option>
 
-                      {%- for product_type in shop.types -%}
-                        {%- if product_type != blank -%}
-                          <option value="{{ product_type | escape }}">{{ product_type | escape }}</option>
-                        {%- endif -%}
-                      {%- endfor -%}
-                    </select>
-                  </div>
-                {%- endif -%}
+											{%- for product_type in shop.types -%}
+												{%- if product_type != blank -%}
+													<option value="{{ product_type | escape }}">{{ product_type | escape }}</option>
+												{%- endif -%}
+											{%- endfor -%}
+										</select>
+									</div>
+								{%- endif -%}
 
-                <button type="submit" class="search-bar__submit" aria-label="{{ 'header.search.submit' | t }}">
-                  {%- render 'icon', icon: 'search' -%}
-                  {%- render 'icon', icon: 'search-loader' -%}
-                </button>
-              </div>
+								{%- comment -%}---------------搜索提交按钮---------------{%- endcomment -%}
+								<button type="submit" class="search-bar__submit"
+												aria-label="{{ 'header.search.submit' | t }}"
+												data-scenable='1'
+												data-sctype="searchjump"
+												data-scsession='{"search_type":"点击搜索按钮"}'>
+									{%- render 'icon', icon: 'search' -%}
+									{%- render 'icon', icon: 'search-loader' -%}
+								</button>
+							</div>
 
-              <button type="button" class="search-bar__close-button hidden-tablet-and-up" data-action="unfix-search">
-                <span class="search-bar__close-text">{{ 'header.search.close_search' | t }}</span>
-              </button>
-            </div>
+							<button type="button" class="search-bar__close-button hidden-tablet-and-up" data-action="unfix-search">
+								<span class="search-bar__close-text">{{ 'header.search.close_search' | t }}</span>
+							</button>
+						</div>
 
-            <div class="search-bar__inner">
-              <div class="search-bar__results" aria-hidden="true">
-                <div class="skeleton-container">
-                  {%- for i in (1..3) -%}
-                    <div class="search-bar__result-item search-bar__result-item--skeleton">
-                      <div class="search-bar__image-container">
-                        <div class="aspect-ratio aspect-ratio--square">
-                          <div class="skeleton-image"></div>
-                        </div>
-                      </div>
+						<div class="search-bar__inner">
+							<div class="search-bar__results" aria-hidden="true">
+								<div class="skeleton-container">
+									{%- for i in (1..3) -%}
+										<div class="search-bar__result-item search-bar__result-item--skeleton">
+											<div class="search-bar__image-container">
+												<div class="aspect-ratio aspect-ratio--square">
+													<div class="skeleton-image"></div>
+												</div>
+											</div>
 
-                      <div class="search-bar__item-info">
-                        <div class="skeleton-paragraph">
-                          <div class="skeleton-text"></div>
-                          <div class="skeleton-text"></div>
-                        </div>
-                      </div>
-                    </div>
-                  {%- endfor -%}
-                </div>
+											<div class="search-bar__item-info">
+												<div class="skeleton-paragraph">
+													<div class="skeleton-text"></div>
+													<div class="skeleton-text"></div>
+												</div>
+											</div>
+										</div>
+									{%- endfor -%}
+								</div>
 
-                <div class="search-bar__results-inner">
-                  {%- comment -%}Placeholder div for real results{%- endcomment -%}
-                </div>
-              </div>
+								<div class="search-bar__results-inner">
+									{%- comment -%}Placeholder div for real results{%- endcomment -%}
+								</div>
+							</div>
 
-              {%- if search_menu.links.size > 0 -%}
-                <div class="search-bar__menu-wrapper" aria-hidden="true">
-                  {%- if section.settings.show_search_menu_title -%}
-                    <p class="search-bar__menu-title heading">{{ search_menu.title }}</p>
-                  {%- endif -%}
+							{%- if search_menu.links.size > 0 -%}
+								<div class="search-bar__menu-wrapper" aria-hidden="true">
+									{%- if section.settings.show_search_menu_title -%}
+										<p class="search-bar__menu-title heading">{{ search_menu.title }}</p>
+									{%- endif -%}
 
-                  <ul class="search-bar__menu-linklist list--unstyled" role="list">
-                    {%- for link in search_menu.links -%}
-                      <li>
-                        <a href="{{ link.url }}" class="search-bar__menu-link">{{ link.title }}</a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                </div>
-              {%- endif -%}
-            </div>
-          </form>
-        </div>
+									<ul class="search-bar__menu-linklist list--unstyled" role="list">
+										{%- for link in search_menu.links -%}
+											<li>
+												<a href="{{ link.url }}" class="search-bar__menu-link">{{ link.title }}</a>
+											</li>
+										{%- endfor -%}
+									</ul>
+								</div>
+							{%- endif -%}
+						</div>
+					</form>
+				</div>
 
-        {%- comment -%}
-        --------------------------------------------------------------------------------------
-        HEADER ACTIONS
-        --------------------------------------------------------------------------------------
-        {%- endcomment -%}
+				{%- comment -%}---------------语言/货币---------------{%- endcomment -%}
 
-        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
-          {%- assign country_selector = true -%}
-        {%- endif -%}
+				{%- if section.settings.show_currency_selector and shop.enabled_currencies.size > 1 -%}
+					{%- assign currency_selector = true -%}
+				{%- endif -%}
 
-        {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
-          {%- assign locale_selector = true -%}
-        {%- endif -%}
+				{%- if section.settings.show_locale_selector and shop.published_locales.size > 1 -%}
+					{%- assign locale_selector = true -%}
+				{%- endif -%}
+				{%- comment -%}----------导航图标列表----------{%- endcomment -%}
+				<div class="header__action-list">
+					{%- if locale_selector -%}
+						<div class="header__action-item header__action-item--locale hidden-pocket">
+							{%- form 'localization', id: 'localization_form_header_locale' -%}
+							<span class="header__action-item-title">{{ 'header.general.language' | t }}</span>
+							<input type="hidden" name="locale_code" value="{{ form.current_locale.iso_code }}">
 
-        <div class="header__action-list">
-          {%- if locale_selector -%}
-            <div class="header__action-item header__action-item--locale hidden-pocket">
-              {%- form 'localization', id: 'localization_form_header_locale' -%}
-                <span class="header__action-item-title">{{ 'header.general.language' | t }}</span>
-                <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+							<div class="header__action-item-content">
+								<button class="header__action-item-link" data-action="toggle-popover"
+												aria-controls="desktop-locale-selector" aria-expanded="false">
+									<span
+										class="locale-selector__value">{{ form.current_locale.endonym_name | capitalize }}</span> {% render 'icon', icon: 'arrow-bottom' %}
+								</button>
 
-                <div class="header__action-item-content">
-                  <button class="header__action-item-link" data-action="toggle-popover" aria-controls="desktop-locale-selector" aria-expanded="false">
-                    <span class="locale-selector__value">{{ localization.language.endonym_name | capitalize }}</span> {% render 'icon', icon: 'arrow-bottom' %}
-                  </button>
+								<div id="desktop-locale-selector" class="popover popover--locale" aria-hidden="true">
+									{%- render 'icon', icon: 'nav-triangle-borderless' -%}
 
-                  <div id="desktop-locale-selector" class="popover popover--locale" aria-hidden="true">
-                    {%- render 'icon', icon: 'nav-triangle-borderless' -%}
+									<div class="popover__inner popover__inner--no-padding">
+										<ul class="popover__linklist" role="list">
+											{%- for locale in form.available_locales -%}
+												<li class="popover__linklist-item">
+													<button type="submit" name="locale_code" class="popover__link-item"
+																	value="{{ locale.iso_code }}"
+																	{% if locale.iso_code == form.current_locale.iso_code %}aria-current="true"{% endif %}>
+														{{- locale.endonym_name | capitalize -}}
+													</button>
+												</li>
+											{%- endfor -%}
+										</ul>
+									</div>
+								</div>
+								{%- endform -%}
+							</div>
+						</div>
+					{%- endif -%}
 
-                    <div class="popover__inner popover__inner--no-padding">
-                      <ul class="popover__linklist" role="list">
-                        {%- for language in localization.available_languages -%}
-                          <li class="popover__linklist-item">
-                            <button type="submit" name="locale_code" class="popover__link-item" value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
-                              {{- language.endonym_name | capitalize -}}
-                            </button>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    </div>
-                  </div>
-                {%- endform -%}
-              </div>
-            </div>
-          {%- endif -%}
+					{%- if currency_selector -%}
+						<div class="header__action-item header__action-item--currency hidden-pocket">
+							{%- form 'localization', id: 'localization_form_header_currency' -%}
+							<span class="header__action-item-title">{{ 'header.general.currency' | t }}</span>
+							<input type="hidden" name="currency_code" value="{{ form.current_currency.iso_code }}">
 
-          {%- if country_selector -%}
-            <div class="header__action-item header__action-item--currency hidden-pocket">
-              {%- form 'localization', id: 'localization_form_header_currency' -%}
-                <span class="header__action-item-title">{{ 'header.general.country' | t }}</span>
-                <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+							<div class="header__action-item-content">
+								<button class="header__action-item-link" data-action="toggle-popover"
+												aria-controls="desktop-currency-selector" aria-expanded="false">
+									<span
+										class="currency-selector__value">{{ form.current_currency.iso_code }} {% if form.current_currency.symbol %}{{ form.current_currency.symbol }}{% endif %}</span> {% render 'icon', icon: 'arrow-bottom' %}
+								</button>
 
-                <div class="header__action-item-content">
-                  <button class="header__action-item-link" data-action="toggle-popover" aria-controls="desktop-currency-selector" aria-expanded="false">
-                    <span class="currency-selector__value">{{- localization.country.name }} ({{ localization.country.currency.iso_code }} {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}{%- endif -%})</span> {% render 'icon', icon: 'arrow-bottom' %}
-                  </button>
+								<div id="desktop-currency-selector" class="popover popover--currency" aria-hidden="true">
+									{%- render 'icon', icon: 'nav-triangle-borderless' -%}
 
-                  <div id="desktop-currency-selector" class="popover popover--currency" aria-hidden="true">
-                    {%- render 'icon', icon: 'nav-triangle-borderless' -%}
+									<div class="popover__inner popover__inner--no-padding">
+										<ul class="popover__linklist" role="list">
+											{%- for currency in form.available_currencies -%}
+												<li class="popover__linklist-item">
+													<button type="submit" name="currency_code" class="popover__link-item"
+																	value="{{ currency.iso_code }}"
+																	{% if currency.iso_code == form.current_currency.iso_code %}aria-current="true"{% endif %}>
+														{{ currency.iso_code }} {% if currency.symbol %}{{ currency.symbol }}{% endif %}
+													</button>
+												</li>
+											{%- endfor -%}
+										</ul>
+									</div>
+								</div>
+								{%- endform -%}
+							</div>
+						</div>
+					{%- endif -%}
 
-                    <div class="popover__inner popover__inner--no-padding popover__inner--restrict">
-                      <ul class="popover__linklist" role="list">
-                        {%- for country in localization.available_countries -%}
-                          <li class="popover__linklist-item">
-                            <button type="submit" name="country_code" class="popover__link-item" value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}aria-current="true"{% endif %}>
-                              {{- country.name }} ({{ country.currency.iso_code }} {% if country.currency.symbol %}{{ country.currency.symbol }}{%- endif -%})
-                            </button>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    </div>
-                  </div>
-                {%- endform -%}
-              </div>
-            </div>
-          {%- endif -%}
+					{%- comment -%}---------------搜索按钮---------------{%- endcomment -%}
+					{%- if section.settings.show_condensed_search -%}
+						<div class="header__action-item">
+							<div class="header__action-item-content cjj-searchico">
+								<a class="header__action-item-link" href="{{ routes.search_url }}" data-action="toggle-search"
+									 aria-expanded="false"
+									 aria-label="{{ 'header.search.open_search' | t }}">
+									{% render 'icon', icon: 'search' %}
+								</a>
+							</div>
+						</div>
+					{%- endif -%}
+					{%- comment -%}-------------登录按钮-----------------{%- endcomment -%}
+					{%- if shop.customer_accounts_enabled -%}
+						{%- comment -%}
+							IMPLEMENTATION NOTE: until the version 2.0 of Warehouse, our theme offered a quick login/registration popover. This worked well but, unfortunately,
+							on June 2021, Shopify rolled up an upgrade that show ReCaptcha v3 on every page, and load huge JS file (nearly 200Kb). This caused a drastic drop
+							in Page Speed performance (nearly 25 points). We therefore considered this feature is not worthwhile the drop of the score. I have kept the code
+							in case Shopify changes their mind in the future, but from what we have heard the change is here to stay
+						{%- endcomment -%}
 
-          {%- if section.settings.show_condensed_search -%}
-            <div class="header__action-item hidden-tablet-and-up">
-              <a class="header__action-item-link" href="{{ routes.search_url }}" data-action="toggle-search" aria-expanded="false" aria-label="{{ 'header.search.open_search' | t }}">{% render 'icon', icon: 'search' %}</a>
-            </div>
-          {%- endif -%}
+						<div class="header__action-item header__action-item--account">
+							{%- if customer -%}
+								<span
+									class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.welcome' | t: first_name: customer.first_name | truncate: 20 }}</span>
+							{%- else -%}
+								{%- comment -%}<span
+									class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.login' | t }}</span>{%- endcomment -%}
+							{%- endif -%}
 
-          {%- if shop.customer_accounts_enabled -%}
-            <div class="header__action-item header__action-item--account">
-              {%- if customer -%}
-                <span class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.welcome' | t: first_name: customer.first_name | truncate: 20 }}</span>
-              {%- else -%}
-                <span class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.login' | t }}</span>
-              {%- endif -%}
+							<div class="header__action-item-content">
+								<a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+									 class="header__action-item-link header__account-icon icon-state hidden-desk shence_commodityView"
+									 aria-label="{{ 'header.general.account' | t }}" {% if customer %}data-follow-link="phone"{% endif %}
+									 data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick"
+									 data-scdata='{"mkt_type":"bar","first_mkt_name":"顶部导航","first_mkt_id":"{{ section.id }}","second_mkt_rank":"","third_mkt_rank":"","mkt_material_url":"","mkt_material_name":"账号","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>
+									<span class="icon-state__primary">{%- render 'icon', icon: 'account' -%}</span>
+									<span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
+								</a>
 
-              <div class="header__action-item-content">
-                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link header__account-icon icon-state hidden-desk" aria-label="{{ 'header.general.account' | t }}" aria-controls="account-popover" aria-expanded="false" data-action="toggle-popover" {% if customer %}data-follow-link="phone"{% endif %}>
-                  <span class="icon-state__primary">{%- render 'icon', icon: 'account' -%}</span>
-                  <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
-                </a>
+								<a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+									 class="header__action-item-link hidden-pocket hidden-lap shence_commodityView"
+								     data-scenable="1" data-expenable="1" data-bindexp="1"
+									 data-sctype="mktClick"
+									 data-scdata='{"mkt_type":"bar","first_mkt_name":"顶部导航","first_mkt_id":"{{ section.id }}","second_mkt_rank":"","third_mkt_rank":"","mkt_material_url":"","mkt_material_name":"账号","commodity_spuid":"","commodity_skuid":"","commodity_name":"","original_price":"","current_price":"","currency_unit":"","mkt_tag":[]}'>
+								{%- render 'icon', icon: 'account' -%}
+								</a>
 
-                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link hidden-pocket hidden-lap" aria-controls="account-popover" aria-expanded="false" data-action="toggle-popover">
-                  {{ 'header.general.account' | t }} {% render 'icon', icon: 'arrow-bottom' %}
-                </a>
+								<div id="account-popover"
+										 class="popover {% if customer %}popover--logged{% else %}popover--large popover--unlogged{% endif %}"
+										 aria-hidden="true">
+									{%- render 'icon', icon: 'nav-triangle-borderless' -%}
 
-                <div id="account-popover" class="popover {% if customer %}popover--logged{% else %}popover--large popover--unlogged{% endif %}" aria-hidden="true">
-                  {%- render 'icon', icon: 'nav-triangle-borderless' -%}
+									{%- if customer -%}
+										<div class="popover__inner popover__inner--no-padding">
+											<div class="popover__linklist">
+												<a class="popover__link-item"
+													 href="{{ routes.account_url }}">{{ 'customer.general.orders' | t }}</a>
+												<a class="popover__link-item"
+													 href="{{ routes.account_addresses_url }}">{{ 'customer.general.addresses' | t }}</a>
+												<a class="popover__link-item" href="{{ routes.account_logout_url }}"
+													 data-no-instant>{{ 'customer.general.logout' | t }}</a>
+											</div>
+										</div>
+									{%- endif -%}
 
-                  {%- if customer -%}
-                    <div class="popover__inner popover__inner--no-padding">
-                      <div class="popover__linklist">
-                        <a class="popover__link-item" href="{{ routes.account_url }}">{{ 'customer.general.orders' | t }}</a>
-                        <a class="popover__link-item" href="{{ routes.account_addresses_url }}">{{ 'customer.general.addresses' | t }}</a>
-                        <a class="popover__link-item" href="{{ routes.account_logout_url }}" data-no-instant>{{ 'customer.general.logout' | t }}</a>
-                      </div>
-                    </div>
-                  {%- else -%}
-                    <div class="popover__panel-list">
-                      {%- comment -%}LOGIN{%- endcomment -%}
-                      <div id="header-login-panel" class="popover__panel popover__panel--default is-selected">
-                        <div class="popover__inner">
-                          {%- form 'customer_login', name: 'login', class: 'form', id: 'header_customer_login' -%}
-                            <header class="popover__header">
-                              <h2 class="popover__title heading">{{ 'customer.login.login' | t }}</h2>
-                              <p class="popover__legend">{{ 'customer.login.description' | t }}</p>
-                            </header>
+									{%- comment -%}
+										COMMENTED DUE TO PERFORMANCE CONCERN, PLEASE CHECK THE NOTE ON LINE 271 FOR REASON
+										<div class="popover__panel-list">
+											{%- comment -%}LOGIN{%- endcomment -%}
+											<div id="header-login-panel" class="popover__panel popover__panel--default is-selected">
+												<div class="popover__inner">
+													{%- form 'customer_login', name: 'login', class: 'form', id: 'header_customer_login' -%}
+														<header class="popover__header">
+															<h2 class="popover__title heading">{{ 'customer.login.login' | t }}</h2>
+															<p class="popover__legend">{{ 'customer.login.description' | t }}</p>
+														</header>
 
-                            <div class="form__input-wrapper form__input-wrapper--labelled">
-                              <input type="email" id="login-customer[email]" class="form__field form__field--text" autocomplete="email" name="customer[email]" required="required">
-                              <label for="login-customer[email]" class="form__floating-label">{{ 'customer.login.email' | t }}</label>
-                            </div>
+														<div class="form__input-wrapper form__input-wrapper--labelled">
+															<input type="email" id="login-customer[email]" class="form__field form__field--text"
+																		 name="customer[email]" required="required">
+															<label for="login-customer[email]"
+																		 class="form__floating-label">{{ 'customer.login.email' | t }}</label>
+														</div>
 
-                            <div class="form__input-wrapper form__input-wrapper--labelled">
-                              <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="current-password">
-                              <label for="login-customer[password]" class="form__floating-label">{{ 'customer.login.password' | t }}</label>
-                            </div>
+														<div class="form__input-wrapper form__input-wrapper--labelled">
+															<input type="password" id="login-customer[password]" class="form__field form__field--text"
+																		 name="customer[password]" required="required" autocomplete="current-password">
+															<label for="login-customer[password]"
+																		 class="form__floating-label">{{ 'customer.login.password' | t }}</label>
+														</div>
 
-                            <button type="submit" class="form__submit button button--primary button--full">{{ 'customer.login.submit' | t }}</button>
-                          {%- endform -%}
+														<button type="submit"
+																		class="form__submit button button--primary button--full">{{ 'customer.login.submit' | t }}</button>
+														<small
+															style="display: block; margin-top: 5px">{{- 'shopify.online_store.spam_detection.disclaimer_html' | t -}}</small>
+													{%- endform -%}
 
-                          <div class="popover__secondary-action">
-                            <p>{{ 'customer.login.new_customer' | t }} <a href="{{ routes.account_register_url }}" class="link link--accented">{{ 'customer.login.create_your_account' | t }}</a></p>
-                            <p>{{ 'customer.login.lost_password' | t }} <a href="{{ routes.account_url }}#recover-password" aria-controls="header-recover-panel" class="link link--accented">{{ 'customer.login.recover_password' | t }}</a></p>
-                          </div>
-                        </div>
-                      </div>
+													<div class="popover__secondary-action">
+														<p>{{ 'customer.login.new_customer' | t }}
+															<button data-action="show-popover-panel" aria-controls="header-register-panel"
+																			class="link link--accented">{{ 'customer.login.create_your_account' | t }}</button>
+														</p>
+														<p>{{ 'customer.login.lost_password' | t }} <a
+																href="{{ routes.account_url }}#recover-password" aria-controls="header-recover-panel"
+																class="link link--accented">{{ 'customer.login.recover_password' | t }}</a></p>
+													</div>
+												</div>
+											</div>
 
-                      {%- comment -%}RECOVER{%- endcomment -%}
-                      <div id="header-recover-panel" class="popover__panel popover__panel--sliding">
-                        <div class="popover__inner">
-                          {%- form 'recover_customer_password', name: 'recover', class: 'form' -%}
-                            <header class="popover__header">
-                              <h2 class="popover__title heading">{{ 'customer.recover_password.recover_password' | t }}</h2>
-                              <p class="popover__legend">{{ 'customer.recover_password.description' | t }}</p>
-                            </header>
+											{%- comment -%}RECOVER{%- endcomment -%}
+											<div id="header-recover-panel" class="popover__panel popover__panel--sliding">
+												<div class="popover__inner">
+													{%- form 'recover_customer_password', name: 'recover', class: 'form' -%}
+														<header class="popover__header">
+															<h2
+																class="popover__title heading">{{ 'customer.recover_password.recover_password' | t }}</h2>
+															<p class="popover__legend">{{ 'customer.recover_password.description' | t }}</p>
+														</header>
 
-                            <div class="form__input-wrapper form__input-wrapper--labelled">
-                              <input type="email" id="recover-customer[recover_email]" class="form__field form__field--text" name="email" required="required">
-                              <label for="recover-customer[recover_email]" class="form__floating-label">{{ 'customer.recover_password.email' | t }}</label>
-                            </div>
+														<div class="form__input-wrapper form__input-wrapper--labelled">
+															<input type="email" id="recover-customer[recover_email]"
+																		 class="form__field form__field--text" name="email" required="required">
+															<label for="recover-customer[recover_email]"
+																		 class="form__floating-label">{{ 'customer.recover_password.email' | t }}</label>
+														</div>
 
-                            <button type="submit" class="form__submit button button--primary button--full">{{ 'customer.recover_password.submit' | t }}</button>
-                          {%- endform -%}
+														<button type="submit"
+																		class="form__submit button button--primary button--full">{{ 'customer.recover_password.submit' | t }}</button>
+													{%- endform -%}
 
-                          <div class="popover__secondary-action">
-                            <p>{{ 'customer.recover_password.remembered_your_password' | t }} <button data-action="show-popover-panel" aria-controls="header-login-panel" class="link link--accented">{{ 'customer.recover_password.back_to_login' | t }}</button></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  {%- endif -%}
-                </div>
-              </div>
-            </div>
-          {%- endif -%}
+													<div class="popover__secondary-action">
+														<p>{{ 'customer.recover_password.remembered_your_password' | t }}
+															<button data-action="show-popover-panel" aria-controls="header-login-panel"
+																			class="link link--accented">{{ 'customer.recover_password.back_to_login' | t }}</button>
+														</p>
+													</div>
+												</div>
+											</div>
 
-          <div class="header__action-item header__action-item--cart">
-            <a class="header__action-item-link header__cart-toggle" href="{{ routes.cart_url }}" {% if settings.cart_type != 'page' and template != 'cart' %}aria-controls="mini-cart" aria-expanded="false" data-action="toggle-mini-cart"{% endif %} data-no-instant>
-              <div class="header__action-item-content">
-                <div class="header__cart-icon icon-state" aria-expanded="false">
-                  <span class="icon-state__primary">
-                    {%- render 'icon', icon: 'cart' -%}
-                    <span class="header__cart-count">{{ cart.item_count }}</span>
-                  </span>
+											{%- comment -%}REGISTER{%- endcomment -%}
+											<div id="header-register-panel" class="popover__panel popover__panel--sliding">
+												<div class="popover__inner">
+													{%- form 'create_customer', name: 'create', class: 'form' -%}
+														<header class="popover__header">
+															<h2 class="popover__title heading">{{ 'customer.register.create_account' | t }}</h2>
+															<p class="popover__legend">{{ 'customer.register.description' | t }}</p>
+														</header>
 
-                  <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
-                </div>
+														{%- if request.locale.iso_code == 'ja' -%}
+															<div class="form__input-wrapper form__input-wrapper--labelled">
+																<input type="text" id="customer[last_name]" class="form__field form__field--text"
+																			 name="customer[last_name]" autocomplete="family-name" required="required">
+																<label for="customer[last_name]"
+																			 class="form__floating-label">{{ 'customer.register.last_name' | t }}</label>
+															</div>
 
-                <span class="hidden-pocket hidden-lap">{{ 'header.general.cart' | t }}</span>
-              </div>
-            </a>
+															<div class="form__input-wrapper form__input-wrapper--labelled">
+																<input type="text" id="customer[first_name]" class="form__field form__field--text"
+																			 name="customer[first_name]" autocomplete="given-name" required="required">
+																<label for="customer[first_name]"
+																			 class="form__floating-label">{{ 'customer.register.first_name' | t }}</label>
+															</div>
+														{%- else -%}
+															<div class="form__input-wrapper form__input-wrapper--labelled">
+																<input type="text" id="customer[first_name]" class="form__field form__field--text"
+																			 name="customer[first_name]" autocomplete="given-name" required="required">
+																<label for="customer[first_name]"
+																			 class="form__floating-label">{{ 'customer.register.first_name' | t }}</label>
+															</div>
 
-            {%- if settings.cart_type != 'page' and template != 'cart' -%}
-              {%- render 'mini-cart' -%}
-            {%- endif -%}
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+															<div class="form__input-wrapper form__input-wrapper--labelled">
+																<input type="text" id="customer[last_name]" class="form__field form__field--text"
+																			 name="customer[last_name]" autocomplete="family-name" required="required">
+																<label for="customer[last_name]"
+																			 class="form__floating-label">{{ 'customer.register.last_name' | t }}</label>
+															</div>
+														{%- endif -%}
 
-  {%- if section.settings.desktop_navigation_layout == 'inline' and navigation_menu.links.size > 0 -%}
-    <nav class="nav-bar">
-      <div class="nav-bar__inner">
-        <div class="container">
-          <ul class="nav-bar__linklist list--unstyled" data-type="menu" role="list">
-            {%- for link in navigation_menu.links -%}
-              <li class="nav-bar__item">
-                {%- if link.links.size == 0 -%}
-                  <a href="{{ link.url }}" class="nav-bar__link link" data-type="menuitem">{{ link.title }}</a>
-                {%- else -%}
-                  {%- capture index -%}desktop-menu-0-{{ forloop.index }}{%- endcapture -%}
+														<div class="form__input-wrapper form__input-wrapper--labelled">
+															<input type="email" id="register-customer[email]" class="form__field form__field--text"
+																		 name="customer[email]" required="required">
+															<label for="register-customer[email]"
+																		 class="form__floating-label">{{ 'customer.register.email' | t }}</label>
+														</div>
 
-                  <a href="{{ link.url }}" class="nav-bar__link link" data-type="menuitem" aria-expanded="false" aria-controls="{{ index }}" aria-haspopup="true">
-                    {{- link.title -}}
-                    {%- render 'icon', icon: 'arrow-bottom' -%}
-                    {%- render 'icon', icon: 'nav-triangle' -%}
-                  </a>
+														<div class="form__input-wrapper form__input-wrapper--labelled">
+															<input type="password" id="register-customer[password]"
+																		 class="form__field form__field--text" name="customer[password]" required="required"
+																		 autocomplete="new-password">
+															<label for="register-customer[password]"
+																		 class="form__floating-label">{{ 'customer.register.password' | t }}</label>
+														</div>
 
-                  {%- render 'desktop-menu', menu: link, index: index -%}
-                {%- endif -%}
-              </li>
-            {%- endfor -%}
-          </ul>
-        </div>
-      </div>
-    </nav>
-  {%- endif -%}
+														<button type="submit"
+																		class="form__submit button button--primary button--full">{{ 'customer.register.submit' | t }}</button>
+													{%- endform -%}
+
+													<div class="popover__secondary-action">
+														<p>{{ 'customer.register.already_have_account' | t }}
+															<button data-action="show-popover-panel" aria-controls="header-login-panel"
+																			class="link link--accented">{{ 'customer.register.login' | t }}</button>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									{%- endcomment -%}
+								</div>
+							</div>
+						</div>
+					{%- endif -%}
+					{%- comment -%}----------购物车按钮----------{%- endcomment -%}
+					<div class="header__action-item header__action-item--cart">
+						<a class="header__action-item-link header__cart-toggle" href="{{ routes.cart_url }}" 
+						{% if settings.cart_type !='page' and template !='cart' %}aria-controls="mini-cart" 
+						aria-expanded="false" data-action="toggle-mini-cart"
+							{% endif %} data-no-instant>
+							<div class="header__action-item-content">
+					
+								<div class="header__cart-icon icon-state" aria-expanded="false">
+									<span class="icon-state__primary">
+										{%- render 'icon', icon: 'cart' -%}
+										<span class="header__cart-count">{{ cart.item_count }}</span>
+										<span class="header__cart__time_reserved">20:00</span>
+									</span>
+									<span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
+								</div>
+								{%- comment -%}
+								<span class="hidden-pocket hidden-lap">{{ 'header.general.cart' | t }}</span>
+								{%- endcomment -%}
+							</div>
+						</a>
+					
+						{%- if settings.cart_type != 'page' and template != 'cart' -%}
+						{%- render 'mini-cart' full_reduction:section.settings.full_reduction-%}
+						{%- endif -%}
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="mini-cart-mask d-none"></div>
 </section>
 
 <style>
@@ -420,279 +597,318 @@
 
   #shopify-section-{{ section.id }} {
     position: relative;
-    z-index: 5;
+    z-index: 6;
 
-    {%- if section.settings.enable_sticky_header -%}
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-    {%- endif -%}
+	{%- if section.settings.enable_sticky_header -%}
+	position: -webkit-sticky;
+    position: sticky;
+    top: 2.7rem;
+	{%- endif -%}
   }
 
-  {%- if section.settings.logo -%}
+	{%- if section.settings.logo -%}
+  .header__logo-image {
+    max-width: {{ section.settings.mobile_logo_max_width }}px !important;
+  }
+
+  @media screen and (max-width: 641px) {
+	#shopify-section-{{ section.id }}{
+		top:2.4rem;
+	}
+  }
+  @media screen and (min-width: 641px) {
     .header__logo-image {
-      max-width: {{ section.settings.mobile_logo_max_width }}px !important;
+      max-width: {{ section.settings.logo_max_width }}px !important;
     }
+  }
 
-    @media screen and (min-width: 641px) {
-      .header__logo-image {
-        max-width: {{ section.settings.logo_max_width }}px !important;
-      }
-    }
-  {%- endif -%}
+	{%- endif -%}
 
-  {%- if settings.header_background == settings.secondary_background -%}
-    .search-bar__top {
-      box-shadow: 1px 1px var(--header-border-color) inset, -1px -1px var(--header-border-color) inset;
-    }
+	{%- if settings.header_background == settings.secondary_background -%}
+  .search-bar__top {
+    box-shadow: 1px 1px var(--header-border-color) inset, -1px -1px var(--header-border-color) inset;
+  }
 
-    @media screen and (min-width: 1000px) {
-      /* This allows to reduce the padding if header background is the same as secondary background to avoid space that is too big */
-      .header:not(.header--condensed) {
-        padding-bottom: 0;
-      }
+  @media screen and (min-width: 1000px) {
+    /* This allows to reduce the padding if header background is the same as secondary background to avoid space that is too big */
+    .header:not(.header--condensed) {
+      padding-bottom: 0;
     }
-  {%- else -%}
-    @media screen and (min-width: 1000px) {
-      .search-bar.is-expanded .search-bar__top {
-        box-shadow: 0 -1px var(--border-color) inset;
-      }
+  }
+
+	{%- else -%}
+  @media screen and (min-width: 1000px) {
+    .search-bar.is-expanded .search-bar__top {
+      box-shadow: 0 -1px var(--border-color) inset;
     }
-  {%- endif -%}
+  }
+
+	{%- endif -%}
+  #shopify-section-{{ section.id }} .cjj-category {
+    flex: 1 1 auto;
+    background: none;
+    border: none;
+  }
+
+  #shopify-section-{{ section.id }} .cjj-category .nav-bar__linklist {
+    text-align: center;
+  }
+
+  #shopify-section-{{ section.id }} .cjj-category:after {
+    width: 0;
+    background: none;
+  }
+	{%- comment -%}
+		#shopify-section-{{ section.id }} .cjj-category .nav-dropdown__item:hover {
+			background-color: var(--header-background);
+		}
+	{%- endcomment -%}
+  #shopify-section-{{ section.id }} .cjj-searchico .icon--search {
+    display: inline-block;
+		padding-top: 2px;
+  }
+
+.mini-cart-mask{
+	position: absolute;
+	top: -100%;
+	left: 0;
+	width: 100vw;
+	height: 120vh;
+	background: rgba(0,0,0,0.6);
+}
 </style>
 
 <script>
-  document.documentElement.style.setProperty('--header-height', document.getElementById('shopify-section-{{ section.id }}').clientHeight + 'px');
+
+    document.documentElement.style.setProperty('--header-height', document.getElementById('shopify-section-{{ section.id }}').clientHeight + 'px');
 </script>
 
 {% schema %}
-{
-  "name": "Header",
-  "class": "shopify-section__header",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "enable_sticky_header",
-      "label": "Enable sticky header",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Logo"
-    },
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Image",
-      "info": "400 x 120px .png recommended"
-    },
-    {
-      "type": "range",
-      "id": "logo_max_width",
-      "min": 50,
-      "max": 300,
-      "step": 5,
-      "unit": "px",
-      "label": "Image width",
-      "default": 140
-    },
-    {
-      "type": "range",
-      "id": "mobile_logo_max_width",
-      "min": 50,
-      "max": 170,
-      "step": 5,
-      "unit": "px",
-      "label": "Mobile image width",
-      "default": 100
-    },
-    {
-      "type": "header",
-      "content": "Language selector",
-      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_locale_selector",
-      "label": "Show language selector",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Country/region selector",
-      "info": "To add a country/region, go to your [currency settings.](/admin/settings/payments)"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_country_selector",
-      "label": "Show country/region selector",
-      "default": false
-    },
-    {
-      "type": "header",
-      "content": "Navigation"
-    },
-    {
-      "type": "link_list",
-      "id": "navigation_menu",
-      "label": "Menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "link_list",
-      "id": "navigation_mobile_menu",
-      "label": "Mobile menu",
-      "info": "If none is set, the desktop menu is used."
-    },
-    {
-      "type": "select",
-      "id": "desktop_navigation_layout",
-      "label": "Desktop layout",
-      "options": [
-        {
-          "value": "condensed",
-          "label": "Condensed"
-        },
-        {
-          "value": "inline",
-          "label": "Inline"
-        }
-      ],
-      "default": "condensed"
-    },
-    {
-      "type": "select",
-      "id": "desktop_navigation_open_trigger",
-      "label": "Open dropdown on...",
-      "options": [
-        {
-          "value": "hover",
-          "label": "Hover"
-        },
-        {
-          "value": "click",
-          "label": "Click"
-        }
-      ],
-      "default": "hover"
-    },
-    {
-      "type": "header",
-      "content": "Mobile navigation"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_navigation_social_media",
-      "label": "Show social media",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "navigation_phone_number",
-      "label": "Phone number text"
-    },
-    {
-      "type": "text",
-      "id": "navigation_email",
-      "label": "Email"
-    },
-    {
-      "type": "header",
-      "content": "Search"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_condensed_search",
-      "label": "Minimise search on mobile",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_search_filter",
-      "label": "Show search filter",
-      "default": true,
-      "info": "Refine by product type. [Learn more](https://support.maestrooo.com/article/184-navigation-filtering-search-results-by-product-type)"
-    },
-    {
-      "type": "link_list",
-      "id": "search_menu",
-      "label": "Quick links menu",
-      "info": "Show quick links when the user hasn't type anything. This menu won't show dropdown items."
-    },
-    {
-      "type": "checkbox",
-      "id": "show_search_menu_title",
-      "label": "Show quick links title",
-      "default": true
-    }
-  ],
-  "blocks": [
-    {
-      "type": "mega_menu",
-      "name": "Mega menu",
-      "settings": [
-        {
-          "type": "text",
-          "id": "menu_item",
-          "label": "Menu item",
-          "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
-        },
-        {
-          "type": "header",
-          "content": "Image 1"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_1",
-          "label": "Image",
-          "info": "600 x 400px .jpg recommended"
-        },
-        {
-          "type": "text",
-          "id": "image_1_heading",
-          "label": "Heading",
-          "default": "Your image"
-        },
-        {
-          "type": "text",
-          "id": "image_1_text",
-          "label": "Text",
-          "default": "Tell your story"
-        },
-        {
-          "type": "url",
-          "id": "image_1_link",
-          "label": "Link"
-        },
-        {
-          "type": "header",
-          "content": "Image 2"
-        },
-        {
-          "type": "image_picker",
-          "id": "image_2",
-          "label": "Image",
-          "info": "600 x 400px .jpg recommended"
-        },
-        {
-          "type": "text",
-          "id": "image_2_heading",
-          "label": "Heading",
-          "default": "Your image"
-        },
-        {
-          "type": "text",
-          "id": "image_2_text",
-          "label": "Text",
-          "default": "Tell your story"
-        },
-        {
-          "type": "url",
-          "id": "image_2_link",
-          "label": "Link"
-        }
-      ]
-    }
-  ]
+	{
+	"name": "Header",
+	"class": "shopify-section__header",
+	"settings": [
+	{
+	"type": "checkbox",
+	"id": "enable_sticky_header",
+	"label": "头部吸顶",
+	"default": true
+	},
+	{
+	"type": "header",
+	"content": "Logo"
+	},
+	{
+	"type": "image_picker",
+	"id": "logo",
+	"label": "logo图片",
+	"info": "400 x 120px .png recommended"
+	},
+	{
+	"type": "range",
+	"id": "logo_max_width",
+	"min": 50,
+	"max": 300,
+	"step": 5,
+	"unit": "px",
+	"label": "logo图片宽度",
+	"default": 140
+	},
+	{
+	"type": "range",
+	"id": "mobile_logo_max_width",
+	"min": 50,
+	"max": 170,
+	"step": 5,
+	"unit": "px",
+	"label": "手机logo宽度",
+	"default": 100
+	},
+	{
+	"type": "header",
+	"content": "语言选择",
+	"info": "添加一种语言,[language settings.](/admin/settings/languages)"
+	},
+	{
+	"type": "checkbox",
+	"id": "show_locale_selector",
+	"label": "显示语言选择",
+	"default": true
+	},
+	{
+	"type": "header",
+	"content": "货币选择",
+	"info": "添加一种货币,[payment settings.](/admin/settings/payments)"
+	},
+	{
+	"type": "checkbox",
+	"id": "show_currency_selector",
+	"label": "显示货币选择",
+	"default": true
+	},
+	{
+	"type": "header",
+	"content": "导航菜单"
+	},
+	{
+	"type": "link_list",
+	"id": "navigation_menu",
+	"label": "桌面菜单",
+	"default": "main-menu"
+	},
+	{
+	"type": "link_list",
+	"id": "navigation_mobile_menu",
+	"label": "手机菜单",
+	"info": "未选择则使用桌面菜单"
+	},
+	{
+	"type": "select",
+	"id": "desktop_navigation_layout",
+	"label": "桌面布局",
+	"options": [
+	{
+	"value": "condensed",
+	"label": "面包屑"
+	},
+	{
+	"value": "inline",
+	"label": "行内"
+	},{
+	"value": "hidden",
+	"label": "隐藏"
+	}
+	],
+	"default": "condensed"
+	},
+	{
+	"type": "select",
+	"id": "desktop_navigation_open_trigger",
+	"label": "次级导航打开方式",
+	"options": [
+	{
+	"value": "hover",
+	"label": "鼠标经过展开"
+	},
+	{
+	"value": "click",
+	"label": "点击展开"
+	}
+	],
+	"default": "hover"
+	},
+	{
+	"type": "header",
+	"content": "手机导航"
+	},
+	{
+	"type": "checkbox",
+	"id": "show_navigation_social_media",
+	"label": "显示社交媒体",
+	"default": true
+	},
+	{
+	"type": "text",
+	"id": "navigation_phone_number",
+	"label": "电话号码"
+	},
+	{
+	"type": "text",
+	"id": "navigation_email",
+	"label": "邮件"
+	},
+	{
+	"type": "header",
+	"content": "搜索"
+	},
+	{
+	"type": "checkbox",
+	"id": "show_condensed_search",
+	"label": "手机上显示小的搜索",
+	"default": true
+	},
+	{
+	"type": "checkbox",
+	"id": "show_search_filter",
+	"label": "显示搜索过滤器 ",
+	"default": true,
+	"info": "按产品类型划分 [Learn more](https://support.maestrooo.com/article/184-navigation-filtering-search-results-by-product-type)"
+	},
+	{
+	"type": "link_list",
+	"id": "search_menu",
+	"label": "快速链接菜单",
+	"info": "当用户没有输入任何内容时显示快速链接。 此菜单不会显示下拉项。"
+	},
+	{
+	"type": "checkbox",
+	"id": "show_search_menu_title",
+	"label": "显示快速链接标题",
+	"default": true
+	}],
+	"blocks": [{
+	"type": "mega_menu",
+	"name": "Mega menu",
+	"settings": [{
+	"type": "text",
+	"id": "menu_item",
+	"label": "Menu item",
+	"info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
+	},
+	{
+	"type": "header",
+	"content": "Image 1"
+	},
+	{
+	"type": "image_picker",
+	"id": "image_1",
+	"label": "Image",
+	"info": "600 x 400px .jpg recommended"
+	},
+	{
+	"type": "text",
+	"id": "image_1_heading",
+	"label": "Heading",
+	"default": "Your image"
+	},
+	{
+	"type": "text",
+	"id": "image_1_text",
+	"label": "Text",
+	"default": "Tell your story"
+	},
+	{
+	"type": "url",
+	"id": "image_1_link",
+	"label": "Link"
+	},
+	{
+	"type": "header",
+	"content": "Image 2"
+	},
+	{
+	"type": "image_picker",
+	"id": "image_2",
+	"label": "Image",
+	"info": "600 x 400px .jpg recommended"
+	},
+	{
+	"type": "text",
+	"id": "image_2_heading",
+	"label": "Heading",
+	"default": "Your image"
+	},
+	{
+	"type": "text",
+	"id": "image_2_text",
+	"label": "Text",
+	"default": "Tell your story"
+	},
+	{
+	"type": "url",
+	"id": "image_2_link",
+	"label": "Link"
+	}]
+	}]
 }
 {% endschema %}
