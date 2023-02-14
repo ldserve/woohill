@@ -1,14 +1,5 @@
 {
   "sections": {
-    "1663931552c2584c97": {
-      "type": "no_space_img",
-      "disabled": true,
-      "settings": {
-        "sensorsName": "fallforyou",
-        "link": "https:\/\/www.hyfol.com\/collections\/fall-for-you",
-        "shadow": false
-      }
-    },
     "166424926021cbf149": {
       "type": "slideshow",
       "blocks": {
@@ -1057,7 +1048,7 @@
         "43abfc06-8518-48d6-acd2-b22d0835bde0"
       ],
       "settings": {
-        "title": "#Hyfol_official",
+        "title": "#Woohill_official",
         "description": "<p>Show us how you match<\/p><p>Label your post @<strong>Hyfol_official<\/strong><\/p>"
       }
     },
@@ -1120,38 +1111,9 @@
       ],
       "settings": {
       }
-    },
-    "1653987264c334ff5e": {
-      "type": "ld-imageText",
-      "disabled": true,
-      "settings": {
-        "noMargin": true,
-        "link": "",
-        "title_align": "row",
-        "title_tb": "column-reverse",
-        "title": "Text",
-        "subtitle": "Text block",
-        "button": "SHOP NOW",
-        "show": false,
-        "title_size": 4,
-        "sub_title_size": 1.5,
-        "m_title_size": 6,
-        "m_sub_title_size": 4,
-        "sub_title_top": 10,
-        "m_sub_title_top": 10,
-        "text_color": "#ffffff",
-        "text_style": "normal",
-        "s_text_style": "normal",
-        "text_align": "center",
-        "button_color": "#ed6123",
-        "button_text_color": "#ffffff",
-        "button_color_hover": "#ffffff",
-        "button_text_color_hover": "#000000"
-      }
     }
   },
   "order": [
-    "1663931552c2584c97",
     "166424926021cbf149",
     "4abbc570-59ea-407d-9bc8-8da13344d02f",
     "16474248460d0593be",
@@ -1166,7 +1128,6 @@
     "1653297879b5b9419a",
     "1640334828c8a975c8",
     "16486080199c077c37",
-    "164854339383efd708",
-    "1653987264c334ff5e"
+    "164854339383efd708"
   ]
 }

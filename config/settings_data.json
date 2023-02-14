@@ -99,19 +99,6 @@
       "header": {
         "type": "header",
         "blocks": {
-          "e29a6dae-562e-4f7f-b60a-3d53dc58a1a1": {
-            "type": "mega_menu",
-            "disabled": true,
-            "settings": {
-              "menu_item": "Thits",
-              "image_1_heading": "Your image",
-              "image_1_text": "Tell your story",
-              "image_1_link": "shopify:\/\/collections\/bottoms",
-              "image_2_heading": "Your image",
-              "image_2_text": "Tell your story",
-              "image_2_link": "shopify:\/\/collections\/bottoms"
-            }
-          },
           "26c0ffdb-23bf-4f51-ba05-101aa1495bbb": {
             "type": "mega_menu",
             "settings": {
@@ -162,7 +149,6 @@
           }
         },
         "block_order": [
-          "e29a6dae-562e-4f7f-b60a-3d53dc58a1a1",
           "26c0ffdb-23bf-4f51-ba05-101aa1495bbb",
           "4013f948-3a31-43a5-8d4d-7bb4e481d12b",
           "9468c34e-2cac-40fc-9a22-6f6b687f193f",
@@ -251,54 +237,10 @@
               "text": "Free Shipping On Orders Over $69",
               "link": ""
             }
-          },
-          "f7871216-4fbb-4392-b4a5-25a3e8dbe911": {
-            "type": "announcement",
-            "settings": {
-              "text": "EXTRA $10 OFF on Order Over $79  🇺🇸Code: HY10",
-              "link": ""
-            }
-          },
-          "933aa31d-00c1-44a5-8b00-66ceefe87acd": {
-            "type": "announcement",
-            "disabled": true,
-            "settings": {
-              "text": "ALL TEES GET 3 FOR $59",
-              "link": ""
-            }
-          },
-          "ebf3f4ad-f1dc-464f-9e19-71c2a7fc4fc3": {
-            "type": "announcement",
-            "disabled": true,
-            "settings": {
-              "text": "Winter Early Sale Buy 4 Get 20% Off",
-              "link": ""
-            }
-          },
-          "ccab5dcb-d3a7-4a2e-9c0e-6699c88abf2e": {
-            "type": "announcement",
-            "disabled": true,
-            "settings": {
-              "text": "Black Friday Extra 20% Off Code: HF30",
-              "link": ""
-            }
-          },
-          "35befae5-1ee9-4348-b0b9-da7aa6f44fc0": {
-            "type": "announcement",
-            "disabled": true,
-            "settings": {
-              "text": "Join in lucky draw, to win your order for FREE!",
-              "link": ""
-            }
           }
         },
         "block_order": [
-          "2caf8430-4f46-405e-b569-d4957d1bde1c",
-          "f7871216-4fbb-4392-b4a5-25a3e8dbe911",
-          "933aa31d-00c1-44a5-8b00-66ceefe87acd",
-          "ebf3f4ad-f1dc-464f-9e19-71c2a7fc4fc3",
-          "ccab5dcb-d3a7-4a2e-9c0e-6699c88abf2e",
-          "35befae5-1ee9-4348-b0b9-da7aa6f44fc0"
+          "2caf8430-4f46-405e-b569-d4957d1bde1c"
         ],
         "settings": {
           "show_announcement": true,
