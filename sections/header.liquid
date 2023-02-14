@@ -1,797 +1,698 @@
- <link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print"
-  onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- if settings.predictive_search_enabled -%}
-<link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
-{%- endif -%}
-
-<noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-search.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-menu-drawer.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-cart-notification.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
-
-<style>
-  header-drawer {
-    justify-self: start;
-    margin-left: -1.2rem;
-  }
-
-  @media screen and (min-width: 990px) {
-    header-drawer {
-      display: none;
-    }
-  }
-
-  .menu-drawer-container {
-    display: flex;
-  }
-
-  .list-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  /* ul.list-menu.list-menu--inline li:nth-child(3) {
-    position: relative;
-    left: 4.5%;
-} */
-  .list-menu--inline {
-    display: flex;
-    /* flex-wrap: wrap; */
-    justify-content: space-between;
-    /* position: relative; */
-  }
-.ny-submenu{
-  display: flex;
-  justify-content: space-between;
+{%- capture section_settings -%}
+{
+  "navigationLayout": {{ section.settings.desktop_navigation_layout | json }},
+  "desktopOpenTrigger": {{ section.settings.desktop_navigation_open_trigger | json }},
+  "useStickyHeader": {{ section.settings.enable_sticky_header | json }}
 }
+{%- endcapture -%}
 
-  .list-menu__item {
-    display: flex;
-    align-items: center;
-    line-height: calc(1 + 0.3 / var(--font-body-scale));
+{%- assign navigation_menu_handle = section.settings.navigation_menu | default: 'main-menu' -%}
+{%- assign navigation_menu = linklists[navigation_menu_handle] -%}
 
-  }
+{%- assign navigation_mobile_menu_handle = section.settings.navigation_mobile_menu | default: navigation_menu_handle -%}
+{%- assign navigation_mobile_menu = linklists[navigation_mobile_menu_handle] -%}
 
-  .header .list-menu__item {
-    white-space: nowrap;
-  }
+<section data-section-id="{{ section.id }}" data-section-type="header" data-section-settings='{{ section_settings }}'>
+  <header class="header header--{{ section.settings.desktop_navigation_layout }} {% unless section.settings.show_condensed_search %}header--search-expanded{% endunless %}" role="banner">
+    <div class="container">
+      <div class="header__inner">
+        {%- comment -%}
+        --------------------------------------------------------------------------------------
+        MOBILE NAV
+        --------------------------------------------------------------------------------------
+        {%- endcomment -%}
 
-  .list-menu__item--link {
-    text-decoration: none;
-    line-height: calc(1 + 0.8 / var(--font-body-scale));
-  }
+        {%- if navigation_menu.links.size > 0 -%}
+          <nav class="header__mobile-nav hidden-lap-and-up">
+            <button class="header__mobile-nav-toggle icon-state touch-area" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-controls="mobile-menu" aria-label="{{ 'header.navigation.open_menu' | t }}">
+              <span class="icon-state__primary">{%- render 'icon', icon: 'hamburger-mobile' -%}</span>
+              <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
+            </button>
 
-  @media screen and (min-width: 750px) {
-    .list-menu__item--link {
-      padding-bottom: 0.5rem;
-      padding-top: 0.5rem;
-    }
+            {%- render 'mobile-menu', menu: navigation_mobile_menu -%}
+          </nav>
+        {%- endif -%}
 
-    .ld-header-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #Details-HeaderMenu-3 summary.list-menu__item{
-      position: relative;
-    left: 56%;
-    }
-  }
+        {%- comment -%}
+          --------------------------------------------------------------------------------------
+          DESKTOP NAV
+          --------------------------------------------------------------------------------------
+        {%- endcomment -%}
 
-  @media screen and (max-width: 749px) {
-    .list-menu.ld-submenu {
-      margin-left: 50px;
-    }
+        {%- if section.settings.desktop_navigation_layout == 'condensed' and navigation_menu.links.size > 0 -%}
+          <nav class="header__desktop-nav hidden-pocket">
+            <button class="header__desktop-nav-toggle" data-action="toggle-menu" aria-expanded="false" aria-haspopup="true" aria-label="{{ 'header.navigation.open_menu' | t }}">
+              <span>{%- render 'icon', icon: 'hamburger' -%} <span class="header__desktop-nav-text">{{- 'header.navigation.menu' | t -}}</span></span>
+            </button>
 
-    .ld-header-icon {
-      display: none;
-    }
-  }
-</style>
+            {%- render 'desktop-menu', menu: navigation_menu, index: 'desktop-menu-0' -%}
+          </nav>
+        {%- endif -%}
 
-<script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
+        {%- comment -%}
+        --------------------------------------------------------------------------------------
+        LOGO COMPONENT
+        --------------------------------------------------------------------------------------
+        {%- endcomment -%}
 
-<svg xmlns="http://www.w3.org/2000/svg" class="hidden">
-  <symbol id="icon-search" viewbox="0 0 18 19" fill="none">
-    <path fill-rule="evenodd" clip-rule="evenodd"
-      d="M11.03 11.68A5.784 5.784 0 112.85 3.5a5.784 5.784 0 018.18 8.18zm.26 1.12a6.78 6.78 0 11.72-.7l5.4 5.4a.5.5 0 11-.71.7l-5.41-5.4z"
-      fill="currentColor" />
-  </symbol>
+        {%- capture header_logo -%}
+          <a href="{{ routes.root_url }}" class="header__logo-link">
+            {%- if section.settings.logo != blank -%}
+              {%- capture image_size -%}{{ section.settings.logo_max_width }}x{%- endcapture -%}
+              <span class="visually-hidden">{{ shop.name }}</span>
+              <img class="header__logo-image"
+                   style="max-width: {{ section.settings.logo_max_width }}px"
+                   width="{{ section.settings.logo.width }}"
+                   height="{{ section.settings.logo.height }}"
+                   src="{{ section.settings.logo | img_url: image_size, scale: 2 }}"
+                   alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+            {%- else -%}
+              <span class="header__logo-text">{{ shop.name }}</span>
+            {%- endif -%}
+          </a>
+        {%- endcapture -%}
 
-  <symbol id="icon-close" class="icon icon-close" fill="none" viewBox="0 0 18 17">
-    <path
-      d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z"
-      fill="currentColor">
-  </symbol>
-</svg>
-<{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}
-  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
-  <header
-    class="header header--{{ section.settings.logo_position }} page-width-900{% if section.settings.menu != blank %} header--has-menu{% endif %} ">
-    {%- if section.settings.menu != blank -%}
-    <header-drawer data-breakpoint="tablet" class="header-flexbox">
-      
-      <details id="Details-menu-drawer-container" class="menu-drawer-container">
-        <summary class="header__icon header__icon--menu header__icon--summary link focus-inset"
-          aria-label="{{ 'sections.header.menu' | t }}">
-          <span>
-            {% render 'icon-hamburger' %}
-            {% render 'icon-close' %}
-          </span>
-        </summary>
-        <div id="menu-drawer" class="menu-drawer motion-reduce" tabindex="-1">
-          <div class="menu-drawer__inner-container">
-            <div class="menu-drawer__navigation-container">
-              <nav class="menu-drawer__navigation">
-                <ul class="menu-drawer__menu list-menu" role="list">
-                  {%- for link in section.settings.menu.links -%}
-                  <li>
-                    {%- if link.links != blank -%}
-                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}" open >
-                            <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}">
-                              {{ link.title | escape }}
-                              {% render 'icon-arrow' %}
-                              {% render 'icon-caret' %}
-                            </summary> 
-                             <div id="link-{{ link.title | escape }}" class="menu-drawer__submenu motion-reduce" tabindex="-1">
-                              <div class="menu-drawer__inner-submenu">
-                                <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                  {% render 'icon-arrow' %}
-                                  {{ link.title | escape }}
-                                </button>
-                                <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                                  {%- for childlink in link.links -%}
-                                    <li>
-                                      {%- if childlink.links == blank -%}
-                                        <a href="{{ childlink.url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} menu-drawer__menu-item--active{% endif %}"{% if childlink.current %} aria-current="page"{% endif %}>
-                                          {{ childlink.title | escape }}                                       
-                                        </a>
-                                      {%- else -%}
-                                        <details id="Details-menu-drawer-submenu-{{ forloop.index }}">
-                                          <summary class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
-                                            {{ childlink.title | escape }}
-                                            {% render 'icon-arrow' %}
-                                            {% render 'icon-caret' %}
-                                          </summary>
-                                          <div id="childlink-{{ childlink.title | escape }}" class="menu-drawer__submenu motion-reduce">
-                                            <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
-                                              {% render 'icon-arrow' %}
-                                              {{ childlink.title | escape }}
-                                            </button>
-                                            <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
-                                              {%- for grandchildlink in childlink.links -%}
-                                                <li>
-                                                  <a href="{{ grandchildlink.url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} menu-drawer__menu-item--active{% endif %}"{% if grandchildlink.current %} aria-current="page"{% endif %}>
-                                                    {{ grandchildlink.title | escape }}
-                                                  </a>
-                                                </li>
-                                              {%- endfor -%}
-                                            </ul>
-                                          </div>
-                                        </details>
-                                      {%- endif -%}
-                                    </li>
-                                  {%- endfor -%}
-                                </ul>
-                              </div>
-                            </div> 
-                          </details>
-                    {%- else -%}
-                    <a href="{{ link.url }}"
-                      class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.current %} menu-drawer__menu-item--active{% endif %}"
-                      {% if link.current %} aria-current="page" {% endif %}>
-                      {{ link.title | escape }}
-                    </a>
-                    {%- endif -%}
-                  </li>
-                  {%- endfor -%}
-                </ul>
-              </nav>
-              <div class="menu-drawer__utility-links">
-                {%- if shop.customer_accounts_enabled -%}
-                <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-                  class="menu-drawer__account link focus-inset h5">
-                  {% render 'icon-account' %}
-                  {%- liquid
-                  if customer
-                  echo 'customer.account_fallback' | t
-                  else
-                  echo 'customer.log_in' | t
-                  endif
-                  -%}
-                </a>
+        {%- if request.page_type == 'index' -%}
+          <h1 class="header__logo">{{ header_logo }}</h1>
+        {%- else -%}
+          <div class="header__logo">{{ header_logo }}</div>
+        {%- endif -%}
+
+        {%- comment -%}
+        --------------------------------------------------------------------------------------
+        SEARCH COMPONENT
+        --------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        <div class="header__search-bar-wrapper {% unless section.settings.show_condensed_search %}is-visible{% endunless %}">
+          <form action="{{ routes.search_url }}" method="get" role="search" class="search-bar">
+            {%- assign search_menu = linklists[section.settings.search_menu] -%}
+
+            <div class="search-bar__top-wrapper">
+              <div class="search-bar__top">
+                <input type="hidden" name="type" value="product">
+                <input type="hidden" name="options[prefix]" value="last">
+                <input type="hidden" name="options[unavailable_products]" value="{{ settings.search_unavailable_products }}">
+
+                <div class="search-bar__input-wrapper">
+                  <input class="search-bar__input" type="text" name="q" autocomplete="off" autocorrect="off" aria-label="{{ 'header.search.input_placeholder' | t }}" placeholder="{{ 'header.search.input_placeholder' | t }}">
+                  <button type="button" class="search-bar__input-clear hidden-lap-and-up" data-action="clear-input">
+                    <span class="visually-hidden">{{ 'header.search.clear' | t }}</span>
+                    {% render 'icon', icon: 'close' %}
+                  </button>
+                </div>
+
+                {%- comment -%}The type detection is sometimes a bit inaccurate as it returns empty type, so we do an additional logic{%- endcomment -%}
+
+                {%- assign has_at_least_one_type = false -%}
+                {%- for product_type in shop.types -%}
+                  {%- if product_type != blank -%}
+                    {%- assign has_at_least_one_type = true -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- if section.settings.show_search_filter and has_at_least_one_type -%}
+                  <div class="search-bar__filter">
+                    <label for="search-product-type" class="search-bar__filter-label">
+                      <span class="search-bar__filter-active">{{ 'header.search.all_categories' | t }}</span> {%- render 'icon', icon: 'arrow-bottom' -%}
+                    </label>
+
+                    <select id="search-product-type">
+                      <option value="" selected="selected">{{ 'header.search.all_categories' | t }}</option>
+
+                      {%- for product_type in shop.types -%}
+                        {%- if product_type != blank -%}
+                          <option value="{{ product_type | escape }}">{{ product_type | escape }}</option>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </select>
+                  </div>
                 {%- endif -%}
-                <ul class="list list-social list-unstyled" role="list">
-                  {%- if settings.social_twitter_link != blank -%}
-                  <li class="list-social__item">
-                    <a href="{{ settings.social_twitter_link }}" class="list-social__link link">
-                      {%- render 'icon-twitter' -%}
-                      <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
-                    </a>
-                  </li>
-                  {%- endif -%}
-                  {%- if settings.social_facebook_link != blank -%}
-                  <li class="list-social__item">
-                    <a href="{{ settings.social_facebook_link }}" class="list-social__link link">
-                      {%- render 'icon-facebook' -%}
-                      <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
-                    </a>
-                  </li>
-                  {%- endif -%}
-                  {%- if settings.social_pinterest_link != blank -%}
-                  <li class="list-social__item">
-                    <a href="{{ settings.social_pinterest_link }}" class="list-social__link link">
-                      {%- render 'icon-pinterest' -%}
-                      <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
-                    </a>
-                  </li>
-                  {%- endif -%}
-                  {%- if settings.social_instagram_link != blank -%}
-                  <li class="list-social__item">
-                    <a href="{{ settings.social_instagram_link }}" class="list-social__link link">
-                      {%- render 'icon-instagram' -%}
-                      <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
-                    </a>
-                  </li>
-                  {%- endif -%}
-                  {%- if settings.social_tiktok_link != blank -%}
-                  <li class="list-social__item">
-                    <a href="{{ settings.social_tiktok_link }}" class="list-social__link link">
-                      {%- render 'icon-tiktok' -%}
-                      <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
-                    </a>
-                  </li>
-                  {%- endif -%}
-                  {%- if settings.social_tumblr_link != blank -%}
-                  <li class="list-social__item">
-                    <a href="{{ settings.social_tumblr_link }}" class="list-social__link link">
-                      {%- render 'icon-tumblr' -%}
-                      <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
-                    </a>
-                  </li>
-                  {%- endif -%}
-                  {%- if settings.social_snapchat_link != blank -%}
-                  <li class="list-social__item">
-                    <a href="{{ settings.social_snapchat_link }}" class="list-social__link link">
-                      {%- render 'icon-snapchat' -%}
-                      <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
-                    </a>
-                  </li>
-                  {%- endif -%}
-                  {%- if settings.social_youtube_link != blank -%}
-                  <li class="list-social__item">
-                    <a href="{{ settings.social_youtube_link }}" class="list-social__link link">
-                      {%- render 'icon-youtube' -%}
-                      <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
-                    </a>
-                  </li>
-                  {%- endif -%}
-                  {%- if settings.social_vimeo_link != blank -%}
-                  <li class="list-social__item">
-                    <a href="{{ settings.social_vimeo_link }}" class="list-social__link link">
-                      {%- render 'icon-vimeo' -%}
-                      <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
-                    </a>
-                  </li>
-                  {%- endif -%}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </details>
-      <details-modal class="header__search search__model">
-        <details>
-          <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle "
-            aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
-            <span>
-              <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false" role="presentation"
-                style="width: 24px;height: 24px;">
-                <use href="#icon-search">
-              </svg>
-              <svg class="modal__toggle-close icon icon-close" aria-hidden="true" focusable="false" role="presentation">
-                <use href="#icon-close">
-              </svg>
-            </span>
-          </summary>
-          <div class="search-modal modal__content" role="dialog" aria-modal="true"
-              aria-label="{{ 'general.search.search' | t }}">
-              <div class="modal-overlay"></div>
-              <div class="search-modal__content" tabindex="-1">
-                {%- if settings.predictive_search_enabled -%}
-                <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
-                  {%- endif -%}
-                  <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
-                    <div class="field">
-                      <input  style="border-radius:5px;" class="search__input field__input" id="Search-In-Modal" type="search" name="q" value=""
-                        placeholder="{{ 'general.search.search' | t }}" {%- if settings.predictive_search_enabled -%}
-                        role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list"
-                        aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list"
-                        autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" {%- endif -%}>
-                      <label class="field__label" for="Search-In-Modal">{{ 'general.search.search' | t }}...</label>
-                      <input type="hidden" name="options[prefix]" value="last">
-                      <button  style="border-radius:5px;" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-                        <svg class="icon icon-search" aria-hidden="true" focusable="false" role="presentation">
-                          <use href="#icon-search">
-                        </svg>
-                      </button>
-                    </div>
-  
-                    {%- if settings.predictive_search_enabled -%}
-                    <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
-                      <div class="predictive-search__loading-state">
-                        <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66"
-                          xmlns="http://www.w3.org/2000/svg">
-                          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                        </svg>
-                      </div>
-                    </div>
-  
-                    <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-                    {%- endif -%}
-                  </form>
-                  {%- if settings.predictive_search_enabled -%}
-                </predictive-search>
-                {%- endif -%}
-                <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset"
-                  aria-label="{{ 'accessibility.close' | t }}">
-                  <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
-                    <use href="#icon-close">
-                  </svg>
+
+                <button type="submit" class="search-bar__submit" aria-label="{{ 'header.search.submit' | t }}">
+                  {%- render 'icon', icon: 'search' -%}
+                  {%- render 'icon', icon: 'search-loader' -%}
                 </button>
               </div>
-            </div>
-        </details>
-      </details-modal>
-    </header-drawer>
-    {%- endif -%}
 
-    {%- if request.page_type == 'index' -%}
-    <h1 class="header__heading">
-      {%- endif -%}
-      <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset shence_commodityView"
-      data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
-      data-scdata='{"mkt_type":"bar",
-      "first_mkt_name":"顶部导航",
-      "first_mkt_id":" {{ section.id}}",
-      "second_mkt_rank":"",
-      "third_mkt_rank":"",
-      "mkt_material_url":"",
-      "mkt_material_name":"",
-      "commodity_spuid":"",
-      "commodity_skuid":"",
-      "commodity_name":"",
-      "original_price":"",
-      "current_price":"",
-      "currency_unit":"",
-      "mkt_tag":[]}'
-      >
-        {%- if section.settings.logo != blank -%}
-        {%- assign image_size = section.settings.logo_width | append: 'x' -%}
-        <img
-          srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
-          src="{{ section.settings.logo | img_url: image_size }}" loading="lazy" class="header__heading-logo"
-          width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}"
-          alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
-        {%- else -%}
-        <span class="h2">{{ shop.name }}</span>
-        {%- endif -%}
-      </a>
-      {%- if request.page_type == 'index' -%}
-    </h1>
-    {%- endif -%}
-
-    <div class="header__icons">
-      <details-modal class="header__search header__search-none">
-        <details >
-          <summary class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
-            aria-haspopup="dialog" aria-label="{{ 'general.search.search' | t }}">
-            <span>
-              <svg class="modal__toggle-open icon icon-search" aria-hidden="true" focusable="false" role="presentation" style="width: 24px;height: 24px;">
-                <use href="#icon-search">
-              </svg>
-              <svg class="modal__toggle-close icon icon-close" aria-hidden="true" focusable="false" role="presentation">
-                <use href="#icon-close">
-              </svg>
-            </span>
-          </summary>
-          <div class="search-modal modal__content" role="dialog" aria-modal="true"
-            aria-label="{{ 'general.search.search' | t }}">
-            <div class="modal-overlay"></div>
-            <div class="search-modal__content" tabindex="-1">
-              {%- if settings.predictive_search_enabled -%}
-              <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
-                {%- endif -%}
-                <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
-                  <div class="field">
-                    <input  style="border-radius:5px;" class="search__input field__input" id="Search-In-Modal-pc" type="search" name="q" value=""
-                      placeholder="{{ 'general.search.search' | t }}" {%- if settings.predictive_search_enabled -%}
-                      role="combobox" aria-expanded="false" aria-owns="predictive-search-results-list"
-                      aria-controls="predictive-search-results-list" aria-haspopup="listbox" aria-autocomplete="list"
-                      autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" {%- endif -%}>
-                    <label class="field__label" for="Search-In-Modal-pc">{{ 'general.search.search' | t }}...</label>
-                    <input type="hidden" name="options[prefix]" value="last">
-                    <button  style="border-radius:5px;" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
-                      <svg class="icon icon-search" aria-hidden="true" focusable="false" role="presentation">
-                        <use href="#icon-search">
-                      </svg>
-                    </button>
-                  </div>
-
-                  {%- if settings.predictive_search_enabled -%}
-                  <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
-                    <div class="predictive-search__loading-state">
-                      <svg aria-hidden="true" focusable="false" role="presentation" class="spinner" viewBox="0 0 66 66"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                      </svg>
-                    </div>
-                  </div>
-
-                  <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
-                  {%- endif -%}
-                </form>
-                {%- if settings.predictive_search_enabled -%}
-              </predictive-search>
-              {%- endif -%}
-              <button type="button" class="search-modal__close-button modal__close-button link link--text focus-inset"
-                aria-label="{{ 'accessibility.close' | t }}">
-                <svg class="icon icon-close" aria-hidden="true" focusable="false" role="presentation">
-                  <use href="#icon-close">
-                </svg>
+              <button type="button" class="search-bar__close-button hidden-tablet-and-up" data-action="unfix-search">
+                <span class="search-bar__close-text">{{ 'header.search.close_search' | t }}</span>
               </button>
             </div>
-          </div>
-        </details>
-      </details-modal>
-      {%- if shop.customer_accounts_enabled -%}
-      <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-        class="header__icon header__icon--account link focus-inset">
-        {% render 'icon-account' %}
-        <span class="visually-hidden">
-          {%- liquid
-          if customer
-          echo 'customer.account_fallback' | t
-          else
-          echo 'customer.log_in' | t
-          endif
-          -%}
-        </span>
-      </a>
-      {%- endif -%}
-      <a href="/pages/collect"
-        class="header__icon header__icon--collect link focus-inset">
-        {% render 'icon-collect' %}
-        <div class="cart-count-bubble">
-          <span style="display: none;"></span>
-        </div>
-      </a>
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        {%render 'icon-cart'%}
-        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-        {%- if cart != empty -%}
-        <div class="cart-count-bubble">
-          {%- if cart.item_count < 100 -%} <span aria-hidden="true">{{ cart.item_count }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-        </div>
-        {%- endif -%}
-      </a>
-    </div>
-  </header>
-  {%- if section.settings.menu != blank -%}
-  <nav class="header__inline-menu page-width-900 hidden-phone">
-    <ul class="list-menu list-menu--inline" role="list">
-      {%- for link in section.settings.menu.links -%}
-      <li>
-        {%- if link.links != blank -%}
-        <details-disclosure>
-          <details id="Details-HeaderMenu-{{ forloop.index }}">
-            <summary class="header__menu-item list-menu__item link focus-inset">
-              {% comment %} <a class="link--text" style="text-decoration:none;" href="{{link.url}}"> <span {%- if
-                  link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span></a> {% endcomment %}
-                  <a href="{{ link.url }}"
-                  class="header__menu-item header__menu-item list-menu__item link link--text focus-inset shence_commodityView" {% if link.current
-                  %} aria-current="page" {% endif %}
-                  data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
-                  data-scdata='{"mkt_type":"bar",
-                  "first_mkt_name":"顶部导航",
-                  "first_mkt_id":" {{ section.id}}",
-                  "second_mkt_rank":"{{ forloop.index }}",
-                  "third_mkt_rank":"",
-                  "mkt_material_url":"",
-                  "mkt_material_name":"",
-                  "commodity_spuid":"",
-                  "commodity_skuid":"",
-                  "commodity_name":"",
-                  "original_price":"",
-                  "current_price":"",
-                  "currency_unit":"",
-                  "mkt_tag":[]}'
-                  >
-              
-                  <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
-                </a>
-            </summary>
-            <div id="HeaderMenu-MenuList-{{ forloop.index }}"
-              class="header__submenu list-menu list-menu--disclosure caption-large motion-reduce" role="list"
-              tabindex="-1">
-              <h2 class="page-width-900"> {{ link.title | escape }}</h2>
-              <div class="page-width-900 ny-submenu">
-                <div class="sub-menu-left">
-                 
-                  <div>
-                    <svg t="1650878769039" class="icon"  viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="10964" width="36" height="36">
-                    <path
-                      d="M913.408 506.294857a31.346939 31.346939 0 0 1 2.15249 41.963102l-2.15249 2.382368-292.571429 292.571428a31.346939 31.346939 0 0 1-46.477061-41.963102l2.15249-2.382367 292.571429-292.571429a31.346939 31.346939 0 0 1 44.324571 0z"
-                      fill="#1b1b1b" p-id="10965"></path>
-                    <path
-                      d="M913.408 507.820408a31.346939 31.346939 0 0 1-41.942204 46.497959l-2.382367-2.152489-292.571429-292.571429a31.346939 31.346939 0 0 1 41.942204-46.477061l2.382367 2.15249 292.571429 292.571428z"
-                      fill="#1b1b1b" p-id="10966"></path>
-                    <path
-                      d="M922.582204 528.049633a31.346939 31.346939 0 0 1-27.898775 31.576816l-3.030205 0.188082-752.32653 10.03102a31.346939 31.346939 0 0 1-3.845225-62.505796l3.009307-0.188082 752.32653-10.03102a31.346939 31.346939 0 0 1 31.764898 30.92898z"
-                      fill="#1b1b1b" p-id="10967"></path>
-                    </svg>
-                  </div>
-                </div>
-                <div class="sub-menu-right">             
-                  {%- for childlink in link.links  -%}                
-                    <div>    
-                    {%- if childlink.links == blank -%}
-                    <a href="{{ childlink.url }}"
-                      class="header__menu-item list-menu__item link link--text focus-inset caption-large shence_commodityView{% if childlink.current %} list-menu__item--active{% endif %}"
-                      {% if childlink.current %} aria-current="page" {% endif %}
-                      data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
-                  data-scdata='{"mkt_type":"bar",
-                  "first_mkt_name":"",
-                  "first_mkt_id":" {{ section.id}}",
-                  "second_mkt_rank":"",
-                  "third_mkt_rank":"{{ forloop.index }}",
-                  "mkt_material_url":"{{childlink.object.image | img_url: '260x' }}",
-                  "mkt_material_name":"",
-                  "commodity_spuid":"",
-                  "commodity_skuid":"",
-                  "commodity_name":"",
-                  "original_price":"",
-                  "current_price":"",
-                  "currency_unit":"",
-                  "mkt_tag":[]}'
-                      >
-                       <img src="{{childlink.object.image | img_url: '260x' }}"  style='float:left;'
-                        loading="lazy"
-                        class="ld-navImage"
-                        alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
-                       >
-                      <p>{{ childlink.title | escape }}</p>
-                    </a>
-                    {%- endif -%}
-                  </div>
+
+            <div class="search-bar__inner">
+              <div class="search-bar__results" aria-hidden="true">
+                <div class="skeleton-container">
+                  {%- for i in (1..3) -%}
+                    <div class="search-bar__result-item search-bar__result-item--skeleton">
+                      <div class="search-bar__image-container">
+                        <div class="aspect-ratio aspect-ratio--square">
+                          <div class="skeleton-image"></div>
+                        </div>
+                      </div>
+
+                      <div class="search-bar__item-info">
+                        <div class="skeleton-paragraph">
+                          <div class="skeleton-text"></div>
+                          <div class="skeleton-text"></div>
+                        </div>
+                      </div>
+                    </div>
                   {%- endfor -%}
+                </div>
+
+                <div class="search-bar__results-inner">
+                  {%- comment -%}Placeholder div for real results{%- endcomment -%}
+                </div>
+              </div>
+
+              {%- if search_menu.links.size > 0 -%}
+                <div class="search-bar__menu-wrapper" aria-hidden="true">
+                  {%- if section.settings.show_search_menu_title -%}
+                    <p class="search-bar__menu-title heading">{{ search_menu.title }}</p>
+                  {%- endif -%}
+
+                  <ul class="search-bar__menu-linklist list--unstyled" role="list">
+                    {%- for link in search_menu.links -%}
+                      <li>
+                        <a href="{{ link.url }}" class="search-bar__menu-link">{{ link.title }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+            </div>
+          </form>
+        </div>
+
+        {%- comment -%}
+        --------------------------------------------------------------------------------------
+        HEADER ACTIONS
+        --------------------------------------------------------------------------------------
+        {%- endcomment -%}
+
+        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+          {%- assign country_selector = true -%}
+        {%- endif -%}
+
+        {%- if section.settings.show_locale_selector and localization.available_languages.size > 1 -%}
+          {%- assign locale_selector = true -%}
+        {%- endif -%}
+
+        <div class="header__action-list">
+          {%- if locale_selector -%}
+            <div class="header__action-item header__action-item--locale hidden-pocket">
+              {%- form 'localization', id: 'localization_form_header_locale' -%}
+                <span class="header__action-item-title">{{ 'header.general.language' | t }}</span>
+                <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+
+                <div class="header__action-item-content">
+                  <button class="header__action-item-link" data-action="toggle-popover" aria-controls="desktop-locale-selector" aria-expanded="false">
+                    <span class="locale-selector__value">{{ localization.language.endonym_name | capitalize }}</span> {% render 'icon', icon: 'arrow-bottom' %}
+                  </button>
+
+                  <div id="desktop-locale-selector" class="popover popover--locale" aria-hidden="true">
+                    {%- render 'icon', icon: 'nav-triangle-borderless' -%}
+
+                    <div class="popover__inner popover__inner--no-padding">
+                      <ul class="popover__linklist" role="list">
+                        {%- for language in localization.available_languages -%}
+                          <li class="popover__linklist-item">
+                            <button type="submit" name="locale_code" class="popover__link-item" value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}>
+                              {{- language.endonym_name | capitalize -}}
+                            </button>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  </div>
+                {%- endform -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- if country_selector -%}
+            <div class="header__action-item header__action-item--currency hidden-pocket">
+              {%- form 'localization', id: 'localization_form_header_currency' -%}
+                <span class="header__action-item-title">{{ 'header.general.country' | t }}</span>
+                <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">
+
+                <div class="header__action-item-content">
+                  <button class="header__action-item-link" data-action="toggle-popover" aria-controls="desktop-currency-selector" aria-expanded="false">
+                    <span class="currency-selector__value">{{- localization.country.name }} ({{ localization.country.currency.iso_code }} {% if localization.country.currency.symbol %}{{ localization.country.currency.symbol }}{%- endif -%})</span> {% render 'icon', icon: 'arrow-bottom' %}
+                  </button>
+
+                  <div id="desktop-currency-selector" class="popover popover--currency" aria-hidden="true">
+                    {%- render 'icon', icon: 'nav-triangle-borderless' -%}
+
+                    <div class="popover__inner popover__inner--no-padding popover__inner--restrict">
+                      <ul class="popover__linklist" role="list">
+                        {%- for country in localization.available_countries -%}
+                          <li class="popover__linklist-item">
+                            <button type="submit" name="country_code" class="popover__link-item" value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}aria-current="true"{% endif %}>
+                              {{- country.name }} ({{ country.currency.iso_code }} {% if country.currency.symbol %}{{ country.currency.symbol }}{%- endif -%})
+                            </button>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  </div>
+                {%- endform -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.show_condensed_search -%}
+            <div class="header__action-item hidden-tablet-and-up">
+              <a class="header__action-item-link" href="{{ routes.search_url }}" data-action="toggle-search" aria-expanded="false" aria-label="{{ 'header.search.open_search' | t }}">{% render 'icon', icon: 'search' %}</a>
+            </div>
+          {%- endif -%}
+
+          {%- if shop.customer_accounts_enabled -%}
+            <div class="header__action-item header__action-item--account">
+              {%- if customer -%}
+                <span class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.welcome' | t: first_name: customer.first_name | truncate: 20 }}</span>
+              {%- else -%}
+                <span class="header__action-item-title hidden-pocket hidden-lap">{{ 'header.general.login' | t }}</span>
+              {%- endif -%}
+
+              <div class="header__action-item-content">
+                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link header__account-icon icon-state hidden-desk" aria-label="{{ 'header.general.account' | t }}" aria-controls="account-popover" aria-expanded="false" data-action="toggle-popover" {% if customer %}data-follow-link="phone"{% endif %}>
+                  <span class="icon-state__primary">{%- render 'icon', icon: 'account' -%}</span>
+                  <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
+                </a>
+
+                <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="header__action-item-link hidden-pocket hidden-lap" aria-controls="account-popover" aria-expanded="false" data-action="toggle-popover">
+                  {{ 'header.general.account' | t }} {% render 'icon', icon: 'arrow-bottom' %}
+                </a>
+
+                <div id="account-popover" class="popover {% if customer %}popover--logged{% else %}popover--large popover--unlogged{% endif %}" aria-hidden="true">
+                  {%- render 'icon', icon: 'nav-triangle-borderless' -%}
+
+                  {%- if customer -%}
+                    <div class="popover__inner popover__inner--no-padding">
+                      <div class="popover__linklist">
+                        <a class="popover__link-item" href="{{ routes.account_url }}">{{ 'customer.general.orders' | t }}</a>
+                        <a class="popover__link-item" href="{{ routes.account_addresses_url }}">{{ 'customer.general.addresses' | t }}</a>
+                        <a class="popover__link-item" href="{{ routes.account_logout_url }}" data-no-instant>{{ 'customer.general.logout' | t }}</a>
+                      </div>
+                    </div>
+                  {%- else -%}
+                    <div class="popover__panel-list">
+                      {%- comment -%}LOGIN{%- endcomment -%}
+                      <div id="header-login-panel" class="popover__panel popover__panel--default is-selected">
+                        <div class="popover__inner">
+                          {%- form 'customer_login', name: 'login', class: 'form', id: 'header_customer_login' -%}
+                            <header class="popover__header">
+                              <h2 class="popover__title heading">{{ 'customer.login.login' | t }}</h2>
+                              <p class="popover__legend">{{ 'customer.login.description' | t }}</p>
+                            </header>
+
+                            <div class="form__input-wrapper form__input-wrapper--labelled">
+                              <input type="email" id="login-customer[email]" class="form__field form__field--text" autocomplete="email" name="customer[email]" required="required">
+                              <label for="login-customer[email]" class="form__floating-label">{{ 'customer.login.email' | t }}</label>
+                            </div>
+
+                            <div class="form__input-wrapper form__input-wrapper--labelled">
+                              <input type="password" id="login-customer[password]" class="form__field form__field--text" name="customer[password]" required="required" autocomplete="current-password">
+                              <label for="login-customer[password]" class="form__floating-label">{{ 'customer.login.password' | t }}</label>
+                            </div>
+
+                            <button type="submit" class="form__submit button button--primary button--full">{{ 'customer.login.submit' | t }}</button>
+                          {%- endform -%}
+
+                          <div class="popover__secondary-action">
+                            <p>{{ 'customer.login.new_customer' | t }} <a href="{{ routes.account_register_url }}" class="link link--accented">{{ 'customer.login.create_your_account' | t }}</a></p>
+                            <p>{{ 'customer.login.lost_password' | t }} <a href="{{ routes.account_url }}#recover-password" aria-controls="header-recover-panel" class="link link--accented">{{ 'customer.login.recover_password' | t }}</a></p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {%- comment -%}RECOVER{%- endcomment -%}
+                      <div id="header-recover-panel" class="popover__panel popover__panel--sliding">
+                        <div class="popover__inner">
+                          {%- form 'recover_customer_password', name: 'recover', class: 'form' -%}
+                            <header class="popover__header">
+                              <h2 class="popover__title heading">{{ 'customer.recover_password.recover_password' | t }}</h2>
+                              <p class="popover__legend">{{ 'customer.recover_password.description' | t }}</p>
+                            </header>
+
+                            <div class="form__input-wrapper form__input-wrapper--labelled">
+                              <input type="email" id="recover-customer[recover_email]" class="form__field form__field--text" name="email" required="required">
+                              <label for="recover-customer[recover_email]" class="form__floating-label">{{ 'customer.recover_password.email' | t }}</label>
+                            </div>
+
+                            <button type="submit" class="form__submit button button--primary button--full">{{ 'customer.recover_password.submit' | t }}</button>
+                          {%- endform -%}
+
+                          <div class="popover__secondary-action">
+                            <p>{{ 'customer.recover_password.remembered_your_password' | t }} <button data-action="show-popover-panel" aria-controls="header-login-panel" class="link link--accented">{{ 'customer.recover_password.back_to_login' | t }}</button></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {%- endif -%}
                 </div>
               </div>
             </div>
-          </details>
-        </details-disclosure>
-        {%- else -%}
-        <a href="{{ link.url }}"
-          class="header__menu-item header__menu-item list-menu__item link link--text focus-inset shence_commodityView" {% if link.current
-          %} aria-current="page" {% endif %}
-          data-scenable="1" data-expenable="1" data-bindexp="1" data-sctype="mktClick" 
-          data-scdata='{"mkt_type":"bar",
-          "first_mkt_name":"顶部导航",
-          "first_mkt_id":" {{ section.id}}",
-          "second_mkt_rank":"{{ forloop.index }}",
-          "third_mkt_rank":"",
-          "mkt_material_url":"",
-          "mkt_material_name":"",
-          "commodity_spuid":"",
-          "commodity_skuid":"",
-          "commodity_name":"",
-          "original_price":"",
-          "current_price":"",
-          "currency_unit":"",
-          "mkt_tag":[]}'
-          >
-          <span {%- if link.current %} class="header__active-menu-item" {% endif %}>{{ link.title | escape }}</span>
-        </a>
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
-  </nav>
+          {%- endif -%}
+
+          <div class="header__action-item header__action-item--cart">
+            <a class="header__action-item-link header__cart-toggle" href="{{ routes.cart_url }}" {% if settings.cart_type != 'page' and template != 'cart' %}aria-controls="mini-cart" aria-expanded="false" data-action="toggle-mini-cart"{% endif %} data-no-instant>
+              <div class="header__action-item-content">
+                <div class="header__cart-icon icon-state" aria-expanded="false">
+                  <span class="icon-state__primary">
+                    {%- render 'icon', icon: 'cart' -%}
+                    <span class="header__cart-count">{{ cart.item_count }}</span>
+                  </span>
+
+                  <span class="icon-state__secondary">{%- render 'icon', icon: 'close' -%}</span>
+                </div>
+
+                <span class="hidden-pocket hidden-lap">{{ 'header.general.cart' | t }}</span>
+              </div>
+            </a>
+
+            {%- if settings.cart_type != 'page' and template != 'cart' -%}
+              {%- render 'mini-cart' -%}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  {%- if section.settings.desktop_navigation_layout == 'inline' and navigation_menu.links.size > 0 -%}
+    <nav class="nav-bar">
+      <div class="nav-bar__inner">
+        <div class="container">
+          <ul class="nav-bar__linklist list--unstyled" data-type="menu" role="list">
+            {%- for link in navigation_menu.links -%}
+              <li class="nav-bar__item">
+                {%- if link.links.size == 0 -%}
+                  <a href="{{ link.url }}" class="nav-bar__link link" data-type="menuitem">{{ link.title }}</a>
+                {%- else -%}
+                  {%- capture index -%}desktop-menu-0-{{ forloop.index }}{%- endcapture -%}
+
+                  <a href="{{ link.url }}" class="nav-bar__link link" data-type="menuitem" aria-expanded="false" aria-controls="{{ index }}" aria-haspopup="true">
+                    {{- link.title -}}
+                    {%- render 'icon', icon: 'arrow-bottom' -%}
+                    {%- render 'icon', icon: 'nav-triangle' -%}
+                  </a>
+
+                  {%- render 'desktop-menu', menu: link, index: index -%}
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    </nav>
   {%- endif -%}
-</{% if section.settings.enable_sticky_header %}sticky-header{% else %}div{% endif %}>
-</div>
-{% javascript %}
-class StickyHeader extends HTMLElement {
-constructor() {
-super();
-}
+</section>
 
-connectedCallback() {
-this.header = document.getElementById('shopify-section-header');
-this.headerBounds = {};
-this.currentScrollTop = 0;
-this.preventReveal = false;
-this.predictiveSearch = this.querySelector('predictive-search');
-
-this.onScrollHandler = this.onScroll.bind(this);
-this.hideHeaderOnScrollUp = () => this.preventReveal = true;
-
-this.addEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
-window.addEventListener('scroll', this.onScrollHandler, false);
-
-this.createObserver();
-}
-
-disconnectedCallback() {
-this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
-window.removeEventListener('scroll', this.onScrollHandler);
-}
-
-createObserver() {
-let observer = new IntersectionObserver((entries, observer) => {
-this.headerBounds = entries[0].intersectionRect;
-observer.disconnect();
-});
-
-observer.observe(this.header);
-}
-
-onScroll() {
-const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-if (this.predictiveSearch && this.predictiveSearch.isOpen) return;
-
-if (scrollTop > this.currentScrollTop && scrollTop > this.headerBounds.bottom) {
-requestAnimationFrame(this.hide.bind(this));
-} else if (scrollTop < this.currentScrollTop && scrollTop> this.headerBounds.bottom) {
-  if (!this.preventReveal) {
-  requestAnimationFrame(this.reveal.bind(this));
-  } else {
-  window.clearTimeout(this.isScrolling);
-
-  this.isScrolling = setTimeout(() => {
-  this.preventReveal = false;
-  }, 66);
-
-  requestAnimationFrame(this.hide.bind(this));
+<style>
+  :root {
+    --header-is-sticky: {% if section.settings.enable_sticky_header %}1{% else %}0{% endif %};
+    --header-inline-navigation: {% if section.settings.desktop_navigation_layout == 'inline' %}1{% else %}0{% endif %};
   }
-  } else if (scrollTop <= this.headerBounds.top) { requestAnimationFrame(this.reset.bind(this)); }
-    this.currentScrollTop=scrollTop; } hide() {
-    this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky' );
-    this.closeMenuDisclosure(); this.closeSearchModal(); } reveal() {
-    this.header.classList.add('shopify-section-header-sticky', 'animate' );
-    this.header.classList.remove('shopify-section-header-hidden'); } reset() {
-    this.header.classList.remove('shopify-section-header-hidden', 'shopify-section-header-sticky' , 'animate' ); }
-    closeMenuDisclosure() { this.disclosures=this.disclosures || this.header.querySelectorAll('details-disclosure');
-    this.disclosures.forEach(disclosure=> disclosure.close());
-    }
 
-    closeSearchModal() {
-    //this.searchModal = this.searchModal || this.header.querySelector('details-modal');
-    //this.searchModal.close(false);
-    }
-    }
+  #shopify-section-{{ section.id }} {
+    position: relative;
+    z-index: 5;
 
-    customElements.define('sticky-header', StickyHeader);
-    {% endjavascript %}
-
-    <script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "Organization",
-    "name": {{ shop.name | json }},
-    {% if section.settings.logo %}
-      {% assign image_size = section.settings.logo.width | append: 'x' %}
-      "logo": {{ section.settings.logo | img_url: image_size | prepend: "https:" | json }},
-    {% endif %}
-    "sameAs": [
-      {{ settings.social_twitter_link | json }},
-      {{ settings.social_facebook_link | json }},
-      {{ settings.social_pinterest_link | json }},
-      {{ settings.social_instagram_link | json }},
-      {{ settings.social_tiktok_link | json }},
-      {{ settings.social_tumblr_link | json }},
-      {{ settings.social_snapchat_link | json }},
-      {{ settings.social_youtube_link | json }},
-      {{ settings.social_vimeo_link | json }}
-    ],
-    "url": {{ shop.url | append: page.url | json }}
+    {%- if section.settings.enable_sticky_header -%}
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+    {%- endif -%}
   }
+
+  {%- if section.settings.logo -%}
+    .header__logo-image {
+      max-width: {{ section.settings.mobile_logo_max_width }}px !important;
+    }
+
+    @media screen and (min-width: 641px) {
+      .header__logo-image {
+        max-width: {{ section.settings.logo_max_width }}px !important;
+      }
+    }
+  {%- endif -%}
+
+  {%- if settings.header_background == settings.secondary_background -%}
+    .search-bar__top {
+      box-shadow: 1px 1px var(--header-border-color) inset, -1px -1px var(--header-border-color) inset;
+    }
+
+    @media screen and (min-width: 1000px) {
+      /* This allows to reduce the padding if header background is the same as secondary background to avoid space that is too big */
+      .header:not(.header--condensed) {
+        padding-bottom: 0;
+      }
+    }
+  {%- else -%}
+    @media screen and (min-width: 1000px) {
+      .search-bar.is-expanded .search-bar__top {
+        box-shadow: 0 -1px var(--border-color) inset;
+      }
+    }
+  {%- endif -%}
+</style>
+
+<script>
+  document.documentElement.style.setProperty('--header-height', document.getElementById('shopify-section-{{ section.id }}').clientHeight + 'px');
 </script>
 
-    {%- if request.page_type == 'index' -%}
-    {% assign potential_action_target = shop.url | append: routes.search_url | append: "?q={search_term_string}" %}
-    <script type="application/ld+json">
+{% schema %}
+{
+  "name": "Header",
+  "class": "shopify-section__header",
+  "settings": [
     {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      "name": {{ shop.name | json }},
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {{ potential_action_target | json }},
-        "query-input": "required name=search_term_string"
-      },
-      "url": {{ shop.url | append: page.url | json }}
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Image",
+      "info": "400 x 120px .png recommended"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "min": 50,
+      "max": 300,
+      "step": 5,
+      "unit": "px",
+      "label": "Image width",
+      "default": 140
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_max_width",
+      "min": 50,
+      "max": 170,
+      "step": 5,
+      "unit": "px",
+      "label": "Mobile image width",
+      "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Language selector",
+      "info": "To add a language, go to your [language settings.](/admin/settings/languages)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_locale_selector",
+      "label": "Show language selector",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Country/region selector",
+      "info": "To add a country/region, go to your [currency settings.](/admin/settings/payments)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "Show country/region selector",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "navigation_menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "navigation_mobile_menu",
+      "label": "Mobile menu",
+      "info": "If none is set, the desktop menu is used."
+    },
+    {
+      "type": "select",
+      "id": "desktop_navigation_layout",
+      "label": "Desktop layout",
+      "options": [
+        {
+          "value": "condensed",
+          "label": "Condensed"
+        },
+        {
+          "value": "inline",
+          "label": "Inline"
+        }
+      ],
+      "default": "condensed"
+    },
+    {
+      "type": "select",
+      "id": "desktop_navigation_open_trigger",
+      "label": "Open dropdown on...",
+      "options": [
+        {
+          "value": "hover",
+          "label": "Hover"
+        },
+        {
+          "value": "click",
+          "label": "Click"
+        }
+      ],
+      "default": "hover"
+    },
+    {
+      "type": "header",
+      "content": "Mobile navigation"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_navigation_social_media",
+      "label": "Show social media",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "navigation_phone_number",
+      "label": "Phone number text"
+    },
+    {
+      "type": "text",
+      "id": "navigation_email",
+      "label": "Email"
+    },
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_condensed_search",
+      "label": "Minimise search on mobile",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_filter",
+      "label": "Show search filter",
+      "default": true,
+      "info": "Refine by product type. [Learn more](https://support.maestrooo.com/article/184-navigation-filtering-search-results-by-product-type)"
+    },
+    {
+      "type": "link_list",
+      "id": "search_menu",
+      "label": "Quick links menu",
+      "info": "Show quick links when the user hasn't type anything. This menu won't show dropdown items."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_menu_title",
+      "label": "Show quick links title",
+      "default": true
     }
-  </script>
-    {%- endif -%}
-
-    {% schema %}
+  ],
+  "blocks": [
     {
-    "name": "t:sections.header.name",
-    "settings": [
-    {
-    "type": "color",
-    "id": "background",
-    "label": "背景颜色",
-    "default": "#1e2d7d"
-    },
-    {
-    "type": "image_picker",
-    "id": "logo",
-    "label": "t:sections.header.settings.logo.label"
-    },
-    {
-    "type": "range",
-    "id": "logo_width",
-    "min": 50,
-    "max": 250,
-    "step": 10,
-    "default": 100,
-    "unit": "t:sections.header.settings.logo_width.unit",
-    "label": "t:sections.header.settings.logo_width.label"
-    },
-    {
-    "type": "select",
-    "id": "logo_position",
-    "options": [
-    {
-    "value": "middle-left",
-    "label": "t:sections.header.settings.logo_position.options__1.label"
-    },
-    {
-    "value": "top-left",
-    "label": "t:sections.header.settings.logo_position.options__2.label"
-    },
-    {
-    "value": "top-center",
-    "label": "t:sections.header.settings.logo_position.options__3.label"
+      "type": "mega_menu",
+      "name": "Mega menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item",
+          "label": "Menu item",
+          "info": "Enter menu item to apply a mega menu dropdown. [Learn more](https://support.maestrooo.com/article/180-navigation-enabling-and-configuring-mega-navigation)."
+        },
+        {
+          "type": "header",
+          "content": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image",
+          "info": "600 x 400px .jpg recommended"
+        },
+        {
+          "type": "text",
+          "id": "image_1_heading",
+          "label": "Heading",
+          "default": "Your image"
+        },
+        {
+          "type": "text",
+          "id": "image_1_text",
+          "label": "Text",
+          "default": "Tell your story"
+        },
+        {
+          "type": "url",
+          "id": "image_1_link",
+          "label": "Link"
+        },
+        {
+          "type": "header",
+          "content": "Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image",
+          "info": "600 x 400px .jpg recommended"
+        },
+        {
+          "type": "text",
+          "id": "image_2_heading",
+          "label": "Heading",
+          "default": "Your image"
+        },
+        {
+          "type": "text",
+          "id": "image_2_text",
+          "label": "Text",
+          "default": "Tell your story"
+        },
+        {
+          "type": "url",
+          "id": "image_2_link",
+          "label": "Link"
+        }
+      ]
     }
-    ],
-    "default": "middle-left",
-    "label": "t:sections.header.settings.logo_position.label",
-    "info": "t:sections.header.settings.logo_position.info"
-    },
-    {
-    "type": "link_list",
-    "id": "menu",
-    "default": "main-menu",
-    "label": "t:sections.header.settings.menu.label"
-    },
-    {
-    "type": "checkbox",
-    "id": "show_line_separator",
-    "default": true,
-    "label": "t:sections.header.settings.show_line_separator.label"
-    },
-    {
-    "type": "checkbox",
-    "id": "enable_sticky_header",
-    "default": true,
-    "label": "t:sections.header.settings.enable_sticky_header.label",
-    "info": "t:sections.header.settings.enable_sticky_header.info"
-    }
-    ]
-    }
-    {% endschema %}
+  ]
+}
+{% endschema %}

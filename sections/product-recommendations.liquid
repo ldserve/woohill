@@ -1,159 +1,129 @@
-<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-product-grid.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'section-product-recommendations.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- assign use_recommendations = true -%}
 
-<noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-price.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'component-product-grid.css' | asset_url | stylesheet_tag }}</noscript>
-<noscript>{{ 'section-product-recommendations.css' | asset_url | stylesheet_tag }}</noscript>
+{%- for block in section.blocks -%}
+  {%- if block.settings.product != blank -%}
+    {%- assign use_recommendations = false -%}
+  {%- endif -%}
+{%- endfor -%}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: calc({{ section.settings.padding_top }}px * 0.75);
-    padding-bottom: calc({{ section.settings.padding_bottom }}px  * 0.75);
-  }
+{%- capture section_settings -%}
+{
+  "stackable": false,
+  "layout": "vertical",
+  "productId": {{ product.id | json }},
+  "useRecommendations": {{ use_recommendations | json }},
+  "recommendationsCount": 10
+}
+{%- endcapture -%}
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
+<section class="section" data-section-id="{{ section.id }}" data-section-type="product-recommendations" data-section-settings='{{ section_settings }}'>
+  <div class="container">
+    {%- if section.settings.heading != blank -%}
+      <header class="section__header">
+        <h2 class="section__title heading h3">{{ section.settings.heading | escape }}</h2>
+      </header>
+    {%- endif -%}
 
-<product-recommendations class="product-recommendations page-width section-{{ section.id }}-padding" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit=4">
-  {% if recommendations.performed and recommendations.products_count > 0 %}
-    <h1 class="product-recommendations__heading">{{ section.settings.heading | escape }}</h1>
-    <ul class="grid grid--2-col product-grid{% if recommendations.products_count > 3 %} grid--4-col-desktop grid--quarter-max{% else %} grid--{{ recommendations.products_count }}-col-tablet{% endif %}" role="list">
-      {% for recommendation in recommendations.products %}
-        <li class="grid__item">
-          {% render 'card-product',
-            card_product: recommendation,
-            media_aspect_ratio: section.settings.image_ratio,
-            show_secondary_image: section.settings.show_secondary_image,
-            show_vendor: section.settings.show_vendor,
-            show_rating: section.settings.show_rating
-          %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-</product-recommendations>
+    <div class="product-recommendations">
+      {%- if recommendations.performed or use_recommendations == false -%}
+        <div class="scroller">
+          <div class="scroller__inner">
+            <div class="product-list product-list--vertical product-list--scrollable">
+              {%- comment -%}
+              If the merchant is explicitly using SuperFields, we use the hand-picked related products, otherwise we
+              switch to the Shopify automatic recommendation
+              {%- endcomment -%}
 
-{% javascript %}
-  class ProductRecommendations extends HTMLElement {
-    constructor() {
-      super();
+              {%- if use_recommendations -%}
+                {%- for product in recommendations.products -%}
+                  {%- render 'product-item', product: product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy -%}
+                {%- else -%}
+                  {%- comment -%}Hide the section if there is no recommendations to show{%- endcomment -%}
+                  <style>
+                    #shopify-section-{{ section.id }} {
+                      display: none;
+                    }
+                  </style>
+                {%- endfor -%}
+              {%- else -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.product != blank -%}
+                    {%- render 'product-item', product: block.settings.product, grid_classes: '1/4--lap 1/5--desk 1/6--wide', show_add_to_cart: section.settings.show_quick_buy -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
 
-      const handleIntersection = (entries, observer) => {
-        if (!entries[0].isIntersecting) return;
-        observer.unobserve(this);
+  {%- comment -%}
+  --------------------------------------------------------------------------------------
+  QUICK VIEW CONTAINER
+  --------------------------------------------------------------------------------------
+  {%- endcomment -%}
 
-        fetch(this.dataset.url)
-          .then(response => response.text())
-          .then(text => {
-            const html = document.createElement('div');
-            html.innerHTML = text;
-            const recommendations = html.querySelector('product-recommendations');
-            if (recommendations && recommendations.innerHTML.trim().length) {
-              this.innerHTML = recommendations.innerHTML;
-            }
-          })
-          .catch(e => {
-            console.error(e);
-          });
-      }
+  <div id="modal-quick-view-{{ section.id }}" class="modal" aria-hidden="true">
+    <div class="modal__dialog modal__dialog--stretch" role="dialog">
+      <button class="modal__close link" data-action="close-modal" title="{{ 'general.accessibility.close' | t | escape }}">
+        {%- render 'icon', icon: 'close' -%}
+      </button>
 
-      new IntersectionObserver(handleIntersection.bind(this), {rootMargin: '0px 0px 200px 0px'}).observe(this);
-    }
-  }
+      <div class="modal__loader">
+        {%- render 'icon', icon: 'search-loader' -%}
+      </div>
 
-  customElements.define('product-recommendations', ProductRecommendations);
-{% endjavascript %}
+      <div class="modal__inner"></div>
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {
-  "name": "t:sections.product-recommendations.name",
-  "tag": "section",
-  "class": "section",
+  "name": "Product recommendations",
+  "templates": ["product"],
+  "max_blocks": 6,
   "settings": [
     {
       "type": "paragraph",
-      "content": "t:sections.product-recommendations.settings.paragraph__1.content"
+      "content": "Dynamic recommendations change and improve with time. Create manual product recommendations using the Shopify Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations)."
     },
     {
       "type": "text",
       "id": "heading",
-      "default": "You may also like",
-      "label": "t:sections.product-recommendations.settings.heading.label"
+      "label": "Heading",
+      "default": "You may also like"
     },
     {
-      "type": "header",
-      "content": "t:sections.product-recommendations.settings.header__2.content"
-    },
+      "type": "checkbox",
+      "id": "show_quick_buy",
+      "label": "Show quick buy",
+      "default": false
+    }
+  ],
+  "blocks": [
     {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
+      "type": "product",
+      "name": "Product",
+      "settings": [
         {
-          "value": "adapt",
-          "label": "t:sections.product-recommendations.settings.image_ratio.options__1.label"
+          "type": "paragraph",
+          "content": "Dynamic recommendations are not shown if products are explicitly selected."
         },
         {
-          "value": "portrait",
-          "label": "t:sections.product-recommendations.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.product-recommendations.settings.image_ratio.options__3.label"
+          "type": "product",
+          "id": "product",
+          "label": "Product"
         }
-      ],
-      "default": "adapt",
-      "label": "t:sections.product-recommendations.settings.image_ratio.label"
-    },
+      ]
+    }
+  ],
+  "presets": [
     {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "t:sections.product-recommendations.settings.show_secondary_image.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "default": false,
-      "label": "t:sections.product-recommendations.settings.show_vendor.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": false,
-      "label": "t:sections.product-recommendations.settings.show_rating.label",
-      "info": "t:sections.product-recommendations.settings.show_rating.info"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "category": "Product",
+      "name": "Product recommendations"
     }
   ]
 }
